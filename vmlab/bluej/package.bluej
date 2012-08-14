@@ -1,0 +1,22 @@
+#BlueJ package file
+package.editor.height=418
+package.editor.width=755
+package.editor.x=236
+package.editor.y=428
+package.numDependencies=0
+package.numTargets=2
+package.showExtends=true
+package.showUses=false
+project.charset=UTF-8
+target1.height=62
+target1.name=Examples
+target1.type=PackageTarget
+target1.width=80
+target1.x=230
+target1.y=10
+target2.height=62
+target2.name=Lab
+target2.type=PackageTarget
+target2.width=80
+target2.x=110
+target2.y=10
