@@ -1,0 +1,6 @@
+import org.restlet.resource.ServerResource;
+
+
+public class FirstServerResource extends ServerResource {
+
+}

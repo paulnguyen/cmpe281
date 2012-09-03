@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<runtimes>\n  <runtime id\="VMware vFabric tc Server Developer Edition (Runtime) v2.6" id-set\="true" location\="/Applications/Tools/SpringSource/vfabric-tc-server-developer-2.6.1.RELEASE" name\="VMware vFabric tc Server Developer Edition (Runtime) v2.6" runtime-type-id\="com.vmware.server.tc.runtime.70" timestamp\="0"/>\n</runtimes>\n

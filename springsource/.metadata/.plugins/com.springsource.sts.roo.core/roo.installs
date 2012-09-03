@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<installs>
+<install is-default="true">
+<home>/Applications/Tools/SpringSource/spring-roo-1.1.5.RELEASE/</home>
+<name>Roo 1.1.5.RELEASE</name>
+</install>
+</installs>

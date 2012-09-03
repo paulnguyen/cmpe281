@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.restlet.Server"/>
+<fullyQualifiedTypeName name="org.restlet.data.Protocol"/>
+<fullyQualifiedTypeName name="org.restlet.resource.Get"/>
+</qualifiedTypeNameHistroy>

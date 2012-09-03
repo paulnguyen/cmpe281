@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.cdyne.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://ws.cdyne.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This engine makes spelling suggestions for text.&lt;br&gt;&lt;br&gt;&lt;b&gt;See it working at&lt;/b&gt;: &lt;a href="http://www.cdyne.com/SpellChecker" target="_blank"&gt;http://www.cdyne.com/SpellChecker&lt;/a&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.cdyne.com/">
+      <s:element name="CheckTextBodyV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BodyText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTextBodyV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DocumentSummary" nillable="true" type="tns:DocumentSummary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MisspelledWord" type="tns:Words" />
+          <s:element minOccurs="0" maxOccurs="1" name="ver" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MisspelledWordCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Words">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Suggestions" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="word" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SuggestionCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckTextBody">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BodyText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTextBodyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DocumentSummary" nillable="true" type="tns:DocumentSummary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentSummary" nillable="true" type="tns:DocumentSummary" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckTextBodyV2SoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTextBodyV2" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyV2SoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTextBodyV2Response" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTextBody" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTextBodyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyV2HttpGetIn">
+    <wsdl:part name="BodyText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyV2HttpGetOut">
+    <wsdl:part name="Body" element="tns:DocumentSummary" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyHttpGetIn">
+    <wsdl:part name="BodyText" type="s:string" />
+    <wsdl:part name="LicenseKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyHttpGetOut">
+    <wsdl:part name="Body" element="tns:DocumentSummary" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyV2HttpPostIn">
+    <wsdl:part name="BodyText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyV2HttpPostOut">
+    <wsdl:part name="Body" element="tns:DocumentSummary" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyHttpPostIn">
+    <wsdl:part name="BodyText" type="s:string" />
+    <wsdl:part name="LicenseKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckTextBodyHttpPostOut">
+    <wsdl:part name="Body" element="tns:DocumentSummary" />
+  </wsdl:message>
+  <wsdl:portType name="checkSoap">
+    <wsdl:operation name="CheckTextBodyV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method checks a body of text for spelling errors.</wsdl:documentation>
+      <wsdl:input message="tns:CheckTextBodyV2SoapIn" />
+      <wsdl:output message="tns:CheckTextBodyV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Depreciated.  Do not use.</wsdl:documentation>
+      <wsdl:input message="tns:CheckTextBodySoapIn" />
+      <wsdl:output message="tns:CheckTextBodySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="checkHttpGet">
+    <wsdl:operation name="CheckTextBodyV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method checks a body of text for spelling errors.</wsdl:documentation>
+      <wsdl:input message="tns:CheckTextBodyV2HttpGetIn" />
+      <wsdl:output message="tns:CheckTextBodyV2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Depreciated.  Do not use.</wsdl:documentation>
+      <wsdl:input message="tns:CheckTextBodyHttpGetIn" />
+      <wsdl:output message="tns:CheckTextBodyHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="checkHttpPost">
+    <wsdl:operation name="CheckTextBodyV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method checks a body of text for spelling errors.</wsdl:documentation>
+      <wsdl:input message="tns:CheckTextBodyV2HttpPostIn" />
+      <wsdl:output message="tns:CheckTextBodyV2HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Depreciated.  Do not use.</wsdl:documentation>
+      <wsdl:input message="tns:CheckTextBodyHttpPostIn" />
+      <wsdl:output message="tns:CheckTextBodyHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="checkSoap" type="tns:checkSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckTextBodyV2">
+      <soap:operation soapAction="http://ws.cdyne.com/CheckTextBodyV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <soap:operation soapAction="http://ws.cdyne.com/CheckTextBody" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="checkSoap12" type="tns:checkSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckTextBodyV2">
+      <soap12:operation soapAction="http://ws.cdyne.com/CheckTextBodyV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <soap12:operation soapAction="http://ws.cdyne.com/CheckTextBody" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="checkHttpGet" type="tns:checkHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CheckTextBodyV2">
+      <http:operation location="/CheckTextBodyV2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <http:operation location="/CheckTextBody" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="checkHttpPost" type="tns:checkHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CheckTextBodyV2">
+      <http:operation location="/CheckTextBodyV2" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTextBody">
+      <http:operation location="/CheckTextBody" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="check">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This engine makes spelling suggestions for text.&lt;br&gt;&lt;br&gt;&lt;b&gt;See it working at&lt;/b&gt;: &lt;a href="http://www.cdyne.com/SpellChecker" target="_blank"&gt;http://www.cdyne.com/SpellChecker&lt;/a&gt;</wsdl:documentation>
+    <wsdl:port name="checkSoap" binding="tns:checkSoap">
+      <soap:address location="http://wsf.cdyne.com/SpellChecker/check.asmx" />
+    </wsdl:port>
+    <wsdl:port name="checkSoap12" binding="tns:checkSoap12">
+      <soap12:address location="http://wsf.cdyne.com/SpellChecker/check.asmx" />
+    </wsdl:port>
+    <wsdl:port name="checkHttpGet" binding="tns:checkHttpGet">
+      <http:address location="http://wsf.cdyne.com/SpellChecker/check.asmx" />
+    </wsdl:port>
+    <wsdl:port name="checkHttpPost" binding="tns:checkHttpPost">
+      <http:address location="http://wsf.cdyne.com/SpellChecker/check.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

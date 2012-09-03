@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+
+<channel>
+	<title>SpringSource Team Blog</title>
+	
+	<link>http://blog.springsource.org</link>
+	<description>The voice of SpringSource</description>
+	<lastBuildDate>Fri, 31 Aug 2012 02:08:39 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.1.1</generator>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/SpringSourceTeamBlog" /><feedburner:info uri="springsourceteamblog" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><item>
+		<title>Integrating Spring MVC with jQuery for validation rules</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/8d8OMYx7Rt0/</link>
+		<comments>http://blog.springsource.org/2012/08/29/integrating-spring-mvc-with-jquery-for-validation-rules/#comments</comments>
+		<pubDate>Wed, 29 Aug 2012 10:18:47 +0000</pubDate>
+		<dc:creator>Michael Isvy</dc:creator>
+				<category><![CDATA[Spring]]></category>
+		<category><![CDATA[Web]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11455</guid>
+		<description>I was thrilled to see in a recent survey from zeroturnaround that Spring MVC was voted the most popular web framework for Java. This framework is very flexible and there are dozens of ways to use it. As with all flexible frameworks that have many options, it is important to discuss common practices. The project  &lt;a href="http://blog.springsource.org/2012/08/29/integrating-spring-mvc-with-jquery-for-validation-rules/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/8d8OMYx7Rt0" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/08/29/integrating-spring-mvc-with-jquery-for-validation-rules/feed/</wfw:commentRss>
+		<slash:comments>23</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/08/29/integrating-spring-mvc-with-jquery-for-validation-rules/</feedburner:origLink></item>
+		<item>
+		<title>Community-Driven Spring Integration Extensions</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/I_a4oFjLVFg/</link>
+		<comments>http://blog.springsource.org/2012/08/23/spring-integration-extensions/#comments</comments>
+		<pubDate>Thu, 23 Aug 2012 20:06:00 +0000</pubDate>
+		<dc:creator>Gunnar Hillert</dc:creator>
+				<category><![CDATA[Enterprise Integration]]></category>
+		<category><![CDATA[Java]]></category>
+		<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[Spring Integration]]></category>
+		<category><![CDATA[SpringSource]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11389</guid>
+		<description>The Spring Integration team proudly announces the availability of the Spring Integration Extensions repository. The main goal for this new GitHub-based repository is to promote a vibrant community of adapter and extension developers, and to encourage a broader segment of the community to contribute to the project. The Spring Integration Extensions project is hosted at:  &lt;a href="http://blog.springsource.org/2012/08/23/spring-integration-extensions/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/I_a4oFjLVFg" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/08/23/spring-integration-extensions/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/08/23/spring-integration-extensions/</feedburner:origLink></item>
+		<item>
+		<title>SpringSource Tool Suites 3.0.0 released – reorganized, open-sourced, and at GitHub</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/qtOhkcKqaUo/</link>
+		<comments>http://blog.springsource.org/2012/08/13/springsource-tool-suites-3-0-0-released-reorganized-open-sourced-and-at-github/#comments</comments>
+		<pubDate>Mon, 13 Aug 2012 20:18:26 +0000</pubDate>
+		<dc:creator>Martin Lippert</dc:creator>
+				<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[SpringSource]]></category>
+		<category><![CDATA[Tools]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11304</guid>
+		<description>Introduction We are proud to announce that the newest major release of our Eclipse-based developer tooling is now available. This is a major release not only in terms new features but because of other serious changes like componentization, open-sourcing and the fact that for the first time we are making multiple distributions available, each tailored  &lt;a href="http://blog.springsource.org/2012/08/13/springsource-tool-suites-3-0-0-released-reorganized-open-sourced-and-at-github/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/qtOhkcKqaUo" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/08/13/springsource-tool-suites-3-0-0-released-reorganized-open-sourced-and-at-github/feed/</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/08/13/springsource-tool-suites-3-0-0-released-reorganized-open-sourced-and-at-github/</feedburner:origLink></item>
+		<item>
+		<title>The Most Amazing Java Type Declaration Ever</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/5KNqkAQOYAY/</link>
+		<comments>http://blog.springsource.org/2012/08/03/the-most-amazing-java-type-declaration-ever/#comments</comments>
+		<pubDate>Fri, 03 Aug 2012 16:40:47 +0000</pubDate>
+		<dc:creator>David Turanski</dc:creator>
+				<category><![CDATA[Java]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[Spring Data]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11269</guid>
+		<description>I&amp;#039;d like to think I&amp;#039;m pretty comfortable with Java and generics but I recently came across this bit of Java code and it stopped me in my tracks : public abstract class AnnotationBasedPersistentProperty&amp;#60;P extends PersistentProperty&amp;#60;P&amp;#62;&amp;#62; extends AbstractPersistentProperty&amp;#60;P&amp;#62; {..} This class is internal to the Spring Data framework&amp;#039;s Repository Support which removes the need to write  &lt;a href="http://blog.springsource.org/2012/08/03/the-most-amazing-java-type-declaration-ever/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/5KNqkAQOYAY" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/08/03/the-most-amazing-java-type-declaration-ever/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/08/03/the-most-amazing-java-type-declaration-ever/</feedburner:origLink></item>
+		<item>
+		<title>Oh the Places You'll Go!</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/j3qkpViP3q8/</link>
+		<comments>http://blog.springsource.org/2012/07/03/oh-the-places-youll-go/#comments</comments>
+		<pubDate>Tue, 03 Jul 2012 16:00:23 +0000</pubDate>
+		<dc:creator>Rod Johnson</dc:creator>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Cloud Computing]]></category>
+		<category><![CDATA[Data Access]]></category>
+		<category><![CDATA[Enterprise Integration]]></category>
+		<category><![CDATA[Java]]></category>
+		<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[SpringSource]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11259</guid>
+		<description>The last ten years has been an exciting and challenging journey for me and I’m very proud of the technology and community that my SpringSource cofounders and I fostered. However, there always comes a time to make a choice about the places you’ll go, and it’s time for me to leave VMware and pursue other  &lt;a href="http://blog.springsource.org/2012/07/03/oh-the-places-youll-go/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/j3qkpViP3q8" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/07/03/oh-the-places-youll-go/feed/</wfw:commentRss>
+		<slash:comments>99</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/07/03/oh-the-places-youll-go/</feedburner:origLink></item>
+		<item>
+		<title>Groovy 2.0 released</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/Jtd0qpsUE20/</link>
+		<comments>http://blog.springsource.org/2012/07/02/groovy-2-0-released/#comments</comments>
+		<pubDate>Mon, 02 Jul 2012 15:50:32 +0000</pubDate>
+		<dc:creator>Guillaume Laforge</dc:creator>
+				<category><![CDATA[Groovy/Grails]]></category>
+		<category><![CDATA[Java]]></category>
+		<category><![CDATA[Open Source]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11253</guid>
+		<description>The Groovy development team and SpringSource are happy to echo the announcement of the release of Groovy 2.0, the highly popular dynamic language for the Java platform. The key highlights of this important milestone are: a static type checker to let the compiler tell you about the correctness of your code, static compilation for the performance  &lt;a href="http://blog.springsource.org/2012/07/02/groovy-2-0-released/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/Jtd0qpsUE20" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/07/02/groovy-2-0-released/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/07/02/groovy-2-0-released/</feedburner:origLink></item>
+		<item>
+		<title>Spring project infrastructure updates</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/OiPA8Pmv3Lg/</link>
+		<comments>http://blog.springsource.org/2012/06/27/spring-project-infrastructure-updates/#comments</comments>
+		<pubDate>Wed, 27 Jun 2012 20:09:49 +0000</pubDate>
+		<dc:creator>Chris Beams</dc:creator>
+				<category><![CDATA[Builds]]></category>
+		<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[Tools]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11216</guid>
+		<description>Introduction Over the last year a number of significant changes have been made to the infrastructure and processes we use to keep the Spring family of projects running smoothly. You may have seen individual announcements about some of these as they happened, while others may have slipped under your radar. I&amp;#039;ll recap these changes below.  &lt;a href="http://blog.springsource.org/2012/06/27/spring-project-infrastructure-updates/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/OiPA8Pmv3Lg" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/06/27/spring-project-infrastructure-updates/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/06/27/spring-project-infrastructure-updates/</feedburner:origLink></item>
+		<item>
+		<title>Highlights of Spring for Apache Hadoop 1.0.0 M2</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/RuFZ7x9taAY/</link>
+		<comments>http://blog.springsource.org/2012/06/13/spring-for-hadoop-1-0-m2/#comments</comments>
+		<pubDate>Wed, 13 Jun 2012 12:02:53 +0000</pubDate>
+		<dc:creator>Costin Leau</dc:creator>
+				<category><![CDATA[Data Access]]></category>
+		<category><![CDATA[Enterprise Integration]]></category>
+		<category><![CDATA[Java]]></category>
+		<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[Spring Data]]></category>
+		<category><![CDATA[Spring Integration]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11190</guid>
+		<description>I am happy to announce that the second milestone (1.0.0.M2) of Spring for Apache Hadoop project is available. In this blog post, I would like to quickly highlight the major new features in M2. HBase DAO support One of the most versatile and powerful feature in Spring Framework is the Data Access Object (or DAO)  &lt;a href="http://blog.springsource.org/2012/06/13/spring-for-hadoop-1-0-m2/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/RuFZ7x9taAY" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/06/13/spring-for-hadoop-1-0-m2/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/06/13/spring-for-hadoop-1-0-m2/</feedburner:origLink></item>
+		<item>
+		<title>Spring Roo 1.2.2.RELEASE available</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/DrtyFUlBk1A/</link>
+		<comments>http://blog.springsource.org/2012/05/28/spring-roo-1-2-2-release-available/#comments</comments>
+		<pubDate>Mon, 28 May 2012 06:41:55 +0000</pubDate>
+		<dc:creator>Alan Stewart</dc:creator>
+				<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11157</guid>
+		<description>The Spring Roo team is pleased to announce the availability 1.2.2.RELEASE.  This is the second maintenance release for 1.2 and includes fixes for a number of issues and includes support for Spring Framework 3.1.1 and JDK 7.  Roo 1.2.2 also includes the excellent new &amp;#034;tailor&amp;#034; feature provided by our new partner, Accenture. I hope you  &lt;a href="http://blog.springsource.org/2012/05/28/spring-roo-1-2-2-release-available/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/DrtyFUlBk1A" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/05/28/spring-roo-1-2-2-release-available/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/05/28/spring-roo-1-2-2-release-available/</feedburner:origLink></item>
+		<item>
+		<title>Understanding proxy usage in Spring</title>
+		<link>http://feedproxy.google.com/~r/SpringSourceTeamBlog/~3/yhAzB0wD0d8/</link>
+		<comments>http://blog.springsource.org/2012/05/23/understanding-proxy-usage-in-spring/#comments</comments>
+		<pubDate>Wed, 23 May 2012 09:05:21 +0000</pubDate>
+		<dc:creator>Michael Isvy</dc:creator>
+				<category><![CDATA[3.1]]></category>
+		<category><![CDATA[AOP]]></category>
+		<category><![CDATA[Containers]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=11113</guid>
+		<description>In the Spring framework, many technical features rely on proxy usage. We are going to go in depth on this topic using three examples: Transactions, Caching and Java Configuration. All the code samples shown in this blog entry are available on my github account. Transactions First step: no transaction The Service class below is not  &lt;a href="http://blog.springsource.org/2012/05/23/understanding-proxy-usage-in-spring/"&gt;&lt;em&gt;Read more...&lt;/em&gt;&lt;/a&gt;&lt;img src="http://feeds.feedburner.com/~r/SpringSourceTeamBlog/~4/yhAzB0wD0d8" height="1" width="1"/&gt;</description>
+		<wfw:commentRss>http://blog.springsource.org/2012/05/23/understanding-proxy-usage-in-spring/feed/</wfw:commentRss>
+		<slash:comments>24</slash:comments>
+		<feedburner:origLink>http://blog.springsource.org/2012/05/23/understanding-proxy-usage-in-spring/</feedburner:origLink></item>
+	</channel>
+</rss>
