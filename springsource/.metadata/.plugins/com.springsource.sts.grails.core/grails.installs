@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<installs>
-<install is-default="true">
-<home>/Applications/Tools/SpringSource/grails-2.0.4/</home>
-<name>Grails 2.0.4</name>
-</install>
-</installs>
