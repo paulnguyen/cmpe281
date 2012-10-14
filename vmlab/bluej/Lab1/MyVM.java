@@ -1,4 +1,4 @@
-package Lab;
+package Lab1;
 
 import java.net.URL;
 import com.vmware.vim25.mo.Folder;
