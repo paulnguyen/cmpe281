@@ -249,7 +249,7 @@ public class MyVM
         { System.out.println( e.toString() ) ; }
     }
 
-    public void codeMigrateVM( String new_host )
+    public void coldMigrateVM( String new_host )
     {
         Folder rootFolder = si.getRootFolder();
         System.out.println("\nCold Migrating... " );        
