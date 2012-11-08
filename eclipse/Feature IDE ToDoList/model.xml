@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="FeatureIDEToDoList">
+				<feature mandatory="true" name="Core"/>
+				<alt abstract="true" name="Tag">
+					<feature mandatory="true" name="DoneTag"/>
+					<feature mandatory="true" name="ScrumTag"/>
+				</alt>
+			</and>
+		</struct>
+		<constraints/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

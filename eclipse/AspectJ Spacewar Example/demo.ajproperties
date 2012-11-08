@@ -1,0 +1,2 @@
+src.includes = src/
+src.excludes = src/spacewar/Debug.aj

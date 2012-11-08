@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="FeatureIDEToDoModel">
+				<feature mandatory="true" name="CoreDomain"/>
+				<or abstract="true" name="Security">
+					<and abstract="true" mandatory="true" name="Auth">
+						<feature mandatory="true" name="Facebook"/>
+						<feature name="OpenID"/>
+					</and>
+					<feature mandatory="true" name="Access"/>
+					<feature mandatory="true" name="Encryption"/>
+				</or>
+				<and abstract="true" name="Notification">
+					<feature name="Badges"/>
+					<feature name="Alerts"/>
+					<feature mandatory="true" name="Email"/>
+				</and>
+				<alt abstract="true" name="Aggregation">
+					<feature mandatory="true" name="Sequence"/>
+					<feature mandatory="true" name="Unorderd"/>
+					<feature mandatory="true" name="Hierarchy"/>
+				</alt>
+				<and name="Collaboration">
+					<feature name="Multi-User"/>
+					<feature name="Concurrent Sessions"/>
+					<feature name="Forums"/>
+					<and abstract="true" name="Social Media">
+						<feature name="Facebook Friends"/>
+						<feature name="Twitter Publications"/>
+					</and>
+				</and>
+				<and name="Methodology">
+					<and abstract="true" name="Gamified">
+						<feature name="Covey Game"/>
+						<feature name="Estimation Game"/>
+						<feature name="How-Now-Wow"/>
+					</and>
+					<feature name="Scrum"/>
+					<feature name="Covey"/>
+					<feature name="Kanban"/>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var/>
+					<var>Scrum</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var/>
+					<var>Covey</var>
+				</imp>
+			</rule>
+		</constraints>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
