@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/base/net/net.jar" sourcepath="/Applications/Tools/Processing.app/Contents/Resources/Java/modes/java/libraries/net/src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/base/net"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/base/core/ant-launcher.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/base/core/ant.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/base/core/core.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/controlP5/controlP5.jar" sourcepath="/Users/pnguyen/Documents/Processing/libraries/controlP5/src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/user/controlP5"/>
+			<attribute name="javadoc_location" value="file:/Users/pnguyen/Documents/Processing/libraries/controlP5/reference/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/jbossaop/jbossaop.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/user/jbossaop"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/xmlrpclib/commons-codec-1.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/user/xmlrpclib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/xmlrpclib/xmlrpc-2.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/user/xmlrpclib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/xmlrpclib/xmlrpclib.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Processing ControlP5 AOP/lib/user/xmlrpclib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
