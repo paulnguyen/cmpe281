@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>9.3. Command Line</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="compiling.html" title="Chapter 9. Building and Compiling Aspectized Java"/>
+      <link rel="prev" href="ant.html" title="9.2. Ant Integration"/>
+      <link rel="next" href="running.html" title="Chapter 10. Running Aspectized Applications"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ant.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="running.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="commandline"/>9.3. Command Line</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+            To run the aop precompiler from the command line you need all the aop jars on your classpath, and
+            the class files you are instrumenting must have everything they would need to run in the java
+            classpath, including themselves, or the precompiler will not be able to run.
+      </p>
+         <p>
+         The
+         <code class="literal">jboss.aop.path</code> optional system property points to XML files that contain your
+            pointcut, advice bindings, and metadata definitions that the precompiler will use to instrument
+            the .class files. The property can have one or files it points to delimited by the operating
+            systems specific classpath delimiter (';' on windows, ':' on unix).  Files or Directories can be specified.
+            If it is a directory, JBoss AOP will take all
+         <code class="literal">aop.xml</code> files from that directory.
+      </p>
+         <p>
+         The
+         <code class="literal">jboss.aop.class.path</code> optional system property points to all JARs or directories that
+            may have classes that are annotated as
+         <code class="literal">@Aspect</code> (See Chapter "Annotated Bindings").
+            JBoss AOP will browse all classes in this path to see if they are annotated.
+            The property can have one or files it points to delimited by the operating
+            systems specific classpath delimiter (';' on windows, ':' on unix). 
+      </p>
+         <p>
+            It is invoked as:
+         </p>
+         <pre class="programlisting">
+$java -classpath ... [-Djboss.aop.path=...] [-Djboss.aop.class.path=...] \
+                     org.jboss.aop.standalone.Compiler &lt;class files or directories&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         In the /bin folder of the distribution we have provided batch/script files to make
+         this easier. It includes all the aop libs for you, so you just have to worry
+         about your files. The usage:
+         </p>
+         <pre class="programlisting">
+$ aopc &lt;classpath&gt; [-aoppath ...] [-aopclasspath ...] [-report] [-verbose] \
+      &lt;class files or directories&gt;+
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         
+         </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <code class="literal">classpath</code> - path to your classes and any jars your code depends on
+            </li>
+            </ul>
+         </div>
+         <p>
+         The other parameters are the same as above.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ant.html">
+               <strong>Prev</strong>9.2. Ant Integration</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="running.html">
+               <strong>Next</strong>Chapter 10. Running Aspectized Applications</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<body>
+<p>
+<h2> The HAS and HASFIELD operator</h2>
+
+</p><p>
+The HAS operator within a pointcut expression allows you to inquire about extra information of the pointcut's target class.  Let's say you have an constructor execution pointcut:
+<pre>
+execution(*-&gt;new(..))
+</pre>
+</p><p>
+You can add a HAS expression to narrow down the expression to include the execution of any constructor who's class has a method setValue:
+<pre>
+execution(*-&gt;new(..)) AND has(void *-&gt;setValue(int))
+</pre>
+</p><p>
+You can also do the same with fields.  Let's say we also wanted to narrow it down to all classes that have a Thread field:
+</p><p>
+<pre>
+execution(*-&gt;new(..)) AND hasfield(java.lang.Thread *.*)
+</pre>
+</p><p>
+<h4>Inversion of Control</h4>
+
+</p><p>
+How is this useful?  A usecase is Inversion of Control (IoC).  IoC is about injecting an object's depencies transparently.  You could define an aspect that intercepted a constructor call, and on the return inject these dependencies into the object.  The has operator allows you to do this and this is what the example program does.
+</p><p>
+The example uses the following binding:
+<pre>
+   &lt;bind pointcut="execution(*-&gt;new(..)) AND has(public void *-&gt;setInjectedParameter(int))"&gt;
+       &lt;interceptor class="DependencyInjectorInterceptor"/&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+On any constructor call where the constructor's class has a public setInjectedParameter method, call the DependencyInjectorInterceptor.  The DependencyInjectorInterceptor will call the constructed object's setInjectedParameter.  
+</p><p>
+</p>
+</body>
+</html>

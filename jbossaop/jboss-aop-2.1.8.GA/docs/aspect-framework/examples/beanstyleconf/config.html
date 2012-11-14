@@ -1,0 +1,229 @@
+<html>
+<body>
+<p>
+<h2>JavaBean-Style Configuration of Aspects/Interceptors</h2>
+
+</p><p>
+<h3>Passing in attributes</h3>
+
+You can configure aspects/interceptors by passing in parameters when you define them. The attribute child element is used to pass in the values.
+<pre>
+   &lt;aop&gt;
+	   &lt;interceptor class="ConfigInterceptor" scope="PER_CLASS"&gt;
+	      &lt;attribute name="Attr1"&gt;aa&lt;/attribute&gt;
+	      &lt;attribute name="Attr2"&gt;1&lt;/attribute&gt;
+	   &lt;/interceptor&gt;
+
+	   &lt;aspect class="ConfigAspectPerVm" scope="PER_VM"&gt;
+	      &lt;attribute name="Attr"&gt;aspect,per,vm&lt;/attribute&gt;
+	   &lt;/aspect&gt;
+
+	   &lt;aspect class="ConfigAspectPerClass" scope="PER_CLASS"&gt;
+	      &lt;attribute name="Attr"&gt;aspect,per,class&lt;/attribute&gt;
+	   &lt;/aspect&gt;
+
+	   &lt;aspect class="ConfigAspectPerInstance" scope="PER_INSTANCE"&gt;
+	      &lt;attribute name="Attr"&gt;aspect,per,instance&lt;/attribute&gt;
+	   &lt;/aspect&gt;
+
+	   &lt;aspect class="ConfigAspectPerJoinpoint" scope="PER_JOINPOINT"&gt;
+	      &lt;attribute name="Attr"&gt;aspect,per,joinpoint&lt;/attribute&gt;
+	   &lt;/aspect&gt;
+
+	   ...
+   &lt;aop&gt;
+</pre>
+</p><p>
+The name attribute is used to indicate which property you want to set, and the contents of the attribute is the value. Valid types are all the primitives (String, float, int etc.), or an array of Strings. The aspect/interceptor must contain a setter matching the signature implied by the configuration in jboss-aop.xml. In this example we have:
+</p><p>
+<pre>
+	public class ConfigInterceptor implements Interceptor
+	{
+	   String attr1;
+	   int attr2;
+	   ...
+
+	   public void setAttr1(String s)
+	   {
+	      attr1 = s;
+	      System.out.println("setAttr1: " + s);
+	   }
+
+	   public void setAttr2(int i)
+	   {
+	      attr2 = i;
+	      System.out.println("setAttr2: " + i);
+	   }
+	   ...
+   }
+
+   public class ConfigAspectPerVm
+   {
+      String[] attr1;
+
+      ...
+      public void setAttr(String[] attr1)
+      {
+         this.attr1 = attr1;
+      }
+   }
+</pre>
+</p><p>
+</p><p>
+So, in the bindings above, JBoss AOP will call ConfigInterceptor.setAttr1("aa"), ConfigInterceptor.setAttr2(1), ConfigAspectPerVm.setAttr({"aspect", "per", "vm"}). ConfigAspectPerClass, ConfigAspectPerInstance and ConfigAspectPerJoinpoint are more or less the same as ConfigAspectPerVm.
+</p><p>
+</p><p>
+<h3>Injection of AOP constructs</h3>
+
+A similar scheme to what is outlined above is used for injecting information about the Advisor, InstanceAdvisor and Joinpoint for the intereceptor. The definition of SimpleInterceptor is shown here, but is exactly the same for ConfigAspectPerVm, ConfigAspectPerClass, ConfigAspectPerInstance and ConfigAspectPerJoinpoint aspects.
+</p><p>
+<pre>
+&lt;aop&gt;
+   &lt;interceptor class="ConfigInterceptor" scope="PER_CLASS"&gt;
+
+      ...
+      &lt;advisor-attribute name="MyAdvisor"/&gt;
+      &lt;instance-advisor-attribute name="MyInstanceAdvisor"/&gt;
+      &lt;joinpoint-attribute name="MyJoinpoint"/&gt;
+   &lt;/interceptor&gt;
+
+&lt;aop&gt;
+</pre>
+</p><p>
+For injecting the Advisor, the setMyAdvisor() method will be called.
+For injecting the InstanceAdvisor, the setMyInstanceAdvisor() method will be called.
+For injecting the Joinpoint, the setMyJoinpoint() method will be called.
+</p><p>
+The setters used by ConfigInterceptor are shown here:
+</p><p>
+<pre>
+   public class ConfigInterceptor implements Interceptor
+   {
+      ...
+      Advisor advisor;
+      InstanceAdvisor instanceAdvisor;
+      Joinpoint jp;
+
+      ...
+      public void setMyAdvisor(Advisor advisor)
+      {
+         this.advisor = advisor;
+      }
+
+      public void setMyInstanceAdvisor(InstanceAdvisor instanceAdvisor)
+      {
+         this.instanceAdvisor = instanceAdvisor;
+      }
+
+      public void setMyJoinpoint(Joinpoint jp)
+      {
+         this.jp = jp;
+      }
+   }
+
+</pre>
+</p><p>
+</p><p>
+<h3>Scoping and Injection of AOP constructs</h3>
+
+Whether an Advisor, InstanceAdvisor or Joinpoint exists for an aspect/interceptor depends on the scope. The following table shows what can be injected for the different scopes.
+</p><p>
+<pre>
+
+   Scope\AOP construct   Advisor   InstanceAdvisor   Joinpoint
+
+   PER_VM                 no        no                no
+   PER_CLASS              yes       no                no
+   PER_INSTANCE           yes*)     yes*)             no
+   PER_JOINPOINT          yes       yes*)             yes
+
+</pre>
+</p><p>
+(The ones marked with *) are not available when invoking a static method or reading/writing a static field.)
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+<h4>Running</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- new POJO(); ---
+     [java] setAttr1: aa
+     [java] setAttr2: 1
+     [java] WARN: Ignoring attempt to set instance advisor attribute on aspect/i
+nterceptor: ConfigInterceptor which is not scoped PER_INSTANCE or PER_JOINPOINT
+     [java] WARN: Ignoring attempt to set joinpoint attribute on aspect/intercep
+tor: ConfigInterceptor which is not scoped PER_JOINPOINT
+     [java] setAttr1: aa
+     [java] setAttr2: 1
+     [java] WARN: Ignoring attempt to set instance advisor attribute on aspect/i
+nterceptor: ConfigInterceptor which is not scoped PER_INSTANCE or PER_JOINPOINT
+     [java] WARN: Ignoring attempt to set joinpoint attribute on aspect/intercep
+tor: ConfigInterceptor which is not scoped PER_JOINPOINT
+     [java] WARN: Ignoring attempt to set advisor attribute on PER_VM scoped asp
+ect/interceptor: ConfigAspectPerVm
+     [java] WARN: Ignoring attempt to set instance advisor attribute on aspect/i
+nterceptor: ConfigAspectPerVm which is not scoped PER_INSTANCE or PER_JOINPOINT
+     [java] WARN: Ignoring attempt to set joinpoint attribute on aspect/intercep
+tor: ConfigAspectPerVm which is not scoped PER_JOINPOINT
+     [java] WARN: Ignoring attempt to set instance advisor attribute on aspect/i
+nterceptor: ConfigAspectPerClass which is not scoped PER_INSTANCE or PER_JOINPOI
+NT
+     [java] WARN: Ignoring attempt to set joinpoint attribute on aspect/intercep
+tor: ConfigAspectPerClass which is not scoped PER_JOINPOINT
+     [java] POJO empty constructor
+     [java] --- pojo.interceptorMethod(); ---
+     [java] &lt;&lt;&lt; Entering ConfigInterceptor type: ConfigInterceptor@17ee8b8
+     [java]       attr1:aa; attr2:1
+     [java]       has advisor: true
+     [java]       has instanceAdvisor: false
+     [java]       has joinpoint: false
+     [java] POJO interceptorMethod
+     [java] &gt;&gt;&gt; Leaving ConfigInterceptor
+     [java] --- pojo.aspectPerVmMethod(); ---
+     [java] &gt;&gt;&gt; Enter ConfigAspectPerVm
+     [java]       attr1: index 0=aspect, index 1=per, index 2=vm
+     [java]       has advisor: false
+     [java]       has instanceAdvisor: false
+     [java]       has joinpoint: false
+     [java] POJO aspectPerVmMethod
+     [java] &gt;&gt;&gt; Leave ConfigAspectPerVm
+     [java] --- pojo.aspectPerClassMethod(); ---
+     [java] &lt;&lt;&lt; Enter ConfigAspectPerClass
+     [java]       attr1: index 0=aspect, index 1=per, index 2=class
+     [java]       has advisor: true
+     [java]       has instanceAdvisor: false
+     [java]       has joinpoint: false
+     [java] POJO aspectPerClassMethod
+     [java] &gt;&gt;&gt; Leave ConfigAspectPerClass
+     [java] --- pojo.aspectPerInstanceMethod(); ---
+     [java] WARN: Ignoring attempt to set joinpoint attribute on aspect/intercep
+tor: ConfigAspectPerInstance which is not scoped PER_JOINPOINT
+     [java] &lt;&lt;&lt; Enter ConfigAspectPerInstance
+     [java]       attr1: index 0=aspect, index 1=per, index 2=instance
+     [java]       has advisor: true
+     [java]       has instanceAdvisor: true
+     [java]       has joinpoint: false
+     [java] POJO aspectPerInstanceMethod
+     [java] &gt;&gt;&gt; Leave ConfigAspectPerInstance
+     [java] --- pojo.aspectPerJoinpointMethod(); ---
+     [java] &lt;&lt;&lt; Enter ConfigAspectPerJoinpoint
+     [java]       attr1: index 0=aspect, index 1=per, index 2=joinpoint
+     [java]       has advisor: true
+     [java]       has instanceAdvisor: true
+     [java]       has joinpoint: true
+     [java] POJO interceptorMethod
+     [java] &gt;&gt;&gt; Leave ConfigAspectPerJoinpoint
+
+</pre>
+</p><p>
+</p>
+</body>
+</html>

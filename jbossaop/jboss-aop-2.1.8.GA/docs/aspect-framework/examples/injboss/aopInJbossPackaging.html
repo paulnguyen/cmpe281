@@ -1,0 +1,471 @@
+<html>
+<body>
+<p>
+<h2> Running and packaging in JBoss</h2>
+
+<b>To run these examples you must edit build.xml and set the jboss.dir to where JBoss is. The server configuration used in this example is 'all', so you must start JBoss with 'run -c all'. </b>
+You can change the server configuration used by modifying the jboss.server.config property in build.xml. 
+</p><p>
+This example assumes you are running against JBoss 4.2.x.. If you want to run against other jboss versions, you might have to edit the 
+<code>jboss.classpath</code> settings. If you want to run against JBoss 5.x, we have provided an alternative ant script, to run this instead 
+of merely running <code>ant deployXXX</code>, you need to run <code>ant -f build-jboss5.xml deployXXX</code>
+</p><p>
+There are several ways to package classes to be run with AOP in JBoss, and this page takes you through a few of the options available to you.
+</p><p>
+All the examples shown here use loadtime transformations, so you will need to modify your jboss/server/--yourconfig--/conf/jboss-service.xml as outlined in <a href="../../reference/en/html/running.html#jboss">Running with JBoss Application Server</a>
+</p><p>
+A simple application is that comes in a web-application and a full J2EE app flavour is used to illustrate how it can be pacaged in different ways to acheive the same thing.
+</p><p>
+The source class/package structure is 
+</p><p>
+<pre>
+   org
+    |
+     - jboss
+         |
+          - injbossaop
+                |
+                 - ejb (Only used in EAR version)
+                |   |
+                |    - ExampleSession
+                |    - ExampleSessionBean
+                |    - ExampleSessionHome
+                |
+                 -lib
+                |  |
+                |   - ExampleValue
+                |   - SimpleInterceptor
+                |
+                |-mbean
+                   |
+                    - Standard
+                    - StandardMBean
+                |  
+                |
+                |-web
+                   |
+                    - BasicExampleServlet (Used for WAR version)
+                    - EarExampleServlet (USed for EAR version)
+                 
+                    
+
+</pre>
+</p><p>
+Both examples use the same jboss-aop.xml file
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;aop&gt;
+   &lt;bind pointcut="all(org.jboss.injbossaop.lib.ExampleValue)"&gt;
+       &lt;interceptor class="org.jboss.injbossaop.lib.SimpleInterceptor"/&gt;
+   &lt;/bind&gt;
+   
+   &lt;typedef name="MyServlets" expr="class($instanceof{javax.servlet.http.HttpServlet}) AND class(org.jboss.injbossaop.web.*)"/&gt;
+   &lt;bind pointcut="all($typedef{MyServlets})"&gt;
+       &lt;interceptor class="org.jboss.injbossaop.lib.SimpleInterceptor"/&gt;
+   &lt;/bind&gt;
+
+   &lt;bind pointcut="all($typedef{MyServlets})"&gt;
+       &lt;interceptor class="org.jboss.injbossaop.lib.SimpleInterceptor"/&gt;
+   &lt;/bind&gt;
+
+   &lt;typedef name="MySessionBeans" expr="class($instanceof{javax.ejb.SessionBean}) AND class(org.jboss.injbossaop.ejb.*)" /&gt;	
+   &lt;bind pointcut="all($typedef{MySessionBeans})"&gt;
+       &lt;interceptor class="org.jboss.injbossaop.lib.SimpleInterceptor"/&gt;
+   &lt;/bind&gt;
+   
+   &lt;bind pointcut="all(org.jboss.injbossaop.mbean.*)"&gt;
+       &lt;interceptor class="org.jboss.injbossaop.lib.SimpleInterceptor"/&gt;
+   &lt;/bind&gt;   
+&lt;/aop&gt;
+
+</pre>
+</p><p>
+</p><p>
+</p><p>
+<b>War functionality</b>
+</p><p>
+<a href="http://localhost:8080/aopexample/index.jsp">http://localhost:8080/aopexample/index.jsp</a>
+   gets ExampleValue from session, calls getMessage() on it, and displays the value.
+</p><p>
+You can fill in a value in the textbox and press submit. The call goes to
+<pre>
+   BasicExampleServlet.service()
+      creates a new ExampleValue with the passed in string and sets that in the session
+      forwards to index.jsp for display
+</pre>
+</p><p>
+index.jsp then gets ExampleValue from session, calls getMessage() on it, and displays the value.
+</p><p>
+The output in the JBoss logs for all the WAR examples will be something like:
+-For initial display of index.jsp page
+<pre>
+   21:34:14,929 INFO  [STDOUT] **** ExampleValue empty Constructor
+   21:34:14,939 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.lib.ExampleValue_getMessage_53534
+   07034680111516_OptimizedMethodInvocation
+        type: Method Invocation
+        method: getMessage
+        Class containing method: org.jboss.injbossaop.lib.ExampleValue
+   21:34:14,939 INFO  [STDOUT] **** ExampleValue.getMessage()
+   21:34:14,939 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+</pre>
+-Having filled in a value and pressed submit, you should get
+<pre>
+   21:34:33,525 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.web.BasicExampleServlet_service_8
+   586428322187484014_OptimizedMethodInvocation
+        type: Method Invocation
+        method: service
+        Class containing method: org.jboss.injbossaop.web.BasicExampleServlet
+   21:34:33,525 INFO  [STDOUT] **** BasicExampleServlet.service()
+   21:34:33,535 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.lib.ExampleValue1OptimizedConstru
+   ctorInvocation
+        type: Constructor Invocation
+        constructor: public org.jboss.injbossaop.lib.ExampleValue(java.lang.Stri
+ng)
+   21:34:33,535 INFO  [STDOUT] **** ExampleValue String Constructor
+   21:34:33,535 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:34:33,625 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.lib.ExampleValue_getMessage_53534
+   07034680111516_OptimizedMethodInvocation
+        type: Method Invocation
+        method: getMessage
+        Class containing method: org.jboss.injbossaop.lib.ExampleValue
+   21:34:33,625 INFO  [STDOUT] **** ExampleValue.getMessage()
+   21:34:33,625 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:34:33,625 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+</pre>
+</p><p>
+</p><p>
+<b>Ear functionality</b>
+</p><p>
+</p><p>
+<a href="http://localhost:8080/aopexample/index.jsp">http://localhost:8080/aopexample/index.jsp</a>
+   gets ExampleValue from session, calls getMessage() on it, and displays the value.
+</p><p>
+You can fill in a value in the textbox and press submit. This works similar to the war example apart from that the servlet used is EarExampleServlet which calls through to the ExampleSession SLSB, which creates the message. The call goes to
+<pre>
+   EarExampleServlet.service()
+      Looks up ExampleSessionHome, calls create() and calls ExampleSession.getValue() with the passed in String
+      
+      ExampleSession.getValue()
+         creates a new ExampleValue with the passed in string and returns that
+   
+   EarExampleServlet.service()
+      sets the ExampleValue in the session and forwards to index.jsp for display
+</pre>
+</p><p>
+</p><p>
+index.jsp then gets ExampleValue from session, calls getMessage() on it, and displays the value.
+</p><p>
+</p><p>
+The output in the JBoss logs for all the EAR examples will be something like:
+-For initial display of index.jsp page
+<pre>
+   21:26:26,305 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+      invocation class: org.jboss.injbossaop.web.EarExampleServlet_service_858
+   6428322187484014_OptimizedMethodInvocation
+      type: Method Invocation
+      method: service
+      Class containing method: org.jboss.injbossaop.web.EarExampleServlet
+   21:26:00,447 INFO  [STDOUT] **** ExampleValue.getMessage()
+   21:26:00,447 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:08:19,332 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.lib.ExampleValue$ExampleValue_mes
+   sage_632994_OptimizedSetFieldInvocation
+        type: Field Write Invocation
+        field: java.lang.String org.jboss.injbossaop.lib.ExampleValue.message
+   21:08:19,332 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:08:19,332 INFO  [STDOUT] **** ExampleValue empty Constructor
+   21:08:19,332 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.lib.ExampleValue_getMessage_53534
+   07034680111516_OptimizedMethodInvocation
+        type: Method Invocation
+        method: getMessage
+        Class containing method: org.jboss.injbossaop.lib.ExampleValue
+   21:08:19,332 INFO  [STDOUT] **** ExampleValue.getMessage()
+   21:08:19,332 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+        invocation class: org.jboss.injbossaop.lib.ExampleValue$ExampleValue_mes
+   sage_32604882_OptimizedGetFieldInvocation
+        type: Field Write Invocation
+        field: java.lang.String org.jboss.injbossaop.lib.ExampleValue.message
+   21:08:19,332 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:08:19,332 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+</pre>
+-Having filled in a value and pressed submit, you should get (a bit longer this time)
+<pre>
+   21:26:36,730 INFO  [STDOUT] **** EarExampleServlet.service()
+   21:26:36,950 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+     invocation class: org.jboss.injbossaop.ejb.ExampleSessionBean_getValue_8
+   555731906870343793_OptimizedMethodInvocation
+     type: Method Invocation
+     method: getValue
+     Class containing method: org.jboss.injbossaop.ejb.ExampleSessionBean
+   21:26:36,950 INFO  [STDOUT] *** ExampleSessionBean.getValue()
+   21:26:36,960 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+     invocation class: org.jboss.injbossaop.lib.ExampleValue1OptimizedConstru
+   ctorInvocation
+     type: Constructor Invocation
+     constructor: public org.jboss.injbossaop.lib.ExampleValue(java.lang.Stri
+   ng)
+   21:26:36,960 INFO  [STDOUT] **** ExampleValue String Constructor
+   21:26:36,960 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:26:36,960 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:26:36,960 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+     invocation class: org.jboss.injbossaop.lib.ExampleValue1OptimizedConstru
+   ctorInvocation
+     type: Constructor Invocation
+     constructor: public org.jboss.injbossaop.lib.ExampleValue(java.lang.Stri
+   ng)
+   21:26:36,960 INFO  [STDOUT] **** ExampleValue String Constructor
+   21:26:36,960 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:26:37,050 INFO  [STDOUT] &lt;&lt;&lt; Entering SimpleInterceptor:
+     invocation class: org.jboss.injbossaop.lib.ExampleValue_getMessage_53534
+   07034680111516_OptimizedMethodInvocation
+     type: Method Invocation
+     method: getMessage
+     Class containing method: org.jboss.injbossaop.lib.ExampleValue
+   21:26:37,050 INFO  [STDOUT] **** ExampleValue.getMessage()
+   21:26:37,050 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+   21:26:37,060 INFO  [STDOUT] &gt;&gt;&gt; Leaving SimpleInterceptor
+</pre>
+</p><p>
+</p><p>
+<h3>Now for the interesting bit - how is it all packaged?</h3>
+
+</p><p>
+Before running the examples, open the local.properties file and set jboss.dir to 
+point to your JBoss distribution.
+</p><p>
+<h3>WAR examples</h3>
+
+</p><p>
+We'll start off looking at a few ways you can package a war file.
+</p><p>
+<b>Standard WAR with stand-alone jboss-aop.xml file</b>
+</p><p>
+<b>Note</b> <i>Due to changes in the default web classloader settings from JBoss 4.0.2 onwards, which effectively mean that jars in WEB-INF/lib directory and classes in the WEB-INF/classes directory do not get transformed, for this example to work you must set the UseJBossClassLoader attribute to true in the <tt>jboss.web:service=WebServer</tt> service. You can either do this by</i>
+<ul>
+<li><i>Modifying the setting in <tt>JBOSS_HOME</tt>/server/all/deploy/jbossweb-tomcat55.sar/META-INF/jboss-service.xml}} before starting JBoss</i></li>
+<li><i>Modifying the setting using the <a href="http://localhost:8080/jmx-console/HtmlAdaptor?action=inspectMBean&name=jboss.web%3Aservice%3DWebServer">JMX Console</a></i></li>
+</ul>
+</p><p>
+</p><p>
+<i>An alternative is to package your application as shown further below in the "WAR and .aop lib file contained in a JAR" example. 
+<b>The above only applies to this current example</b></i>
+</p><p>
+If you run
+$ant deploy-basic-lt-war
+</p><p>
+two files get deployed: jboss-aop.xml and aopexample.war
+aopexample.war is a bog-standard war file. It contains
+<pre>
+   index.jsp
+   WEB-INF/web.xml
+   WEB-INF/lib/aopexamplelib.jar
+</pre>
+</p><p>
+aopexamplelib.jar contains:
+<pre>
+   org/jboss/injbossaop/lib/ExampleValue.class 
+   org/jboss/injbossaop/lib/SimpleInterceptor.class
+   org/jboss/injbossaop/mbean/Standard.class (Never called in this example)
+   org/jboss/injbossaop/mbean/StandardMBean.class (Never called in this example)
+   org/jboss/injbossaop/web/BasicExampleServlet.class
+   org/jboss/injbossaop/web/EarExampleServlet.class (Never called in this example)
+
+   org/jboss/injbossaop/ejb/ExampleSession.class (Never called in this example)
+   org/jboss/injbossaop/ejb/ExampleSessionBean.class (Never called in this example)
+   org/jboss/injbossaop/ejb/ExampleSessionHome.class (Never called in this example)
+</pre>
+</p><p>
+The magic comes from deploying the jboss-aop.xml file BEFORE the war is deployed
+</p><p>
+</p><p>
+</p><p>
+<b>WAR and .aop lib file contained in a SAR</b>
+</p><p>
+If you run
+$ ant deploy-basic-lt-war-in-sar
+</p><p>
+Only one file gets deployed: aopexample.sar. 
+</p><p>
+aopexample.sar contains:
+<pre>
+   aopexample.war
+   aopexamplelib.aop
+   META-INF/jboss-service.xml
+</pre>
+</p><p>
+aopexample.war contains
+<pre>
+   index.jsp
+   WEB-INF/web.xml
+</pre>
+</p><p>
+aopexamplelib.aop contains more or less the same as aopexamplelib, but contains a META-INF/jboss.aop file:
+<pre>
+   org/jboss/injbossaop/lib/ExampleValue.class 
+   org/jboss/injbossaop/lib/SimpleInterceptor.class
+   org/jboss/injbossaop/mbean/Standard.class 
+   org/jboss/injbossaop/mbean/StandardMBean.class
+   org/jboss/injbossaop/web/BasicExampleServlet.class
+   org/jboss/injbossaop/web/EarExampleServlet.class (Never called in this example)
+
+   org/jboss/injbossaop/ejb/ExampleSession.class (Never called in this example)
+   org/jboss/injbossaop/ejb/ExampleSessionBean.class (Never called in this example)
+   org/jboss/injbossaop/ejb/ExampleSessionHome.class (Never called in this example)
+   META-INF/jboss-aop.xml
+</pre>
+</p><p>
+</p><p>
+<b>WAR and .aop lib file contained in a JAR</b>
+</p><p>
+If you run
+$ ant deploy-basic-lt-war-in-jar
+</p><p>
+Only one file gets deployed: aopexample.jar.
+</p><p>
+aopexample.jar contains:
+<pre>
+   aopexample.war
+   aopexamplelib.aop
+</pre>
+</p><p>
+aopexample.war contains
+<pre>
+   index.jsp
+   WEB-INF/web.xml
+</pre>
+</p><p>
+aopexamplelib.aop contains more or less the same as aopexamplelib, but contains a META-INF/jboss.aop file:
+<pre>
+   org/jboss/injbossaop/lib/ExampleValue.class 
+   org/jboss/injbossaop/lib/SimpleInterceptor.class
+   org/jboss/injbossaop/mbean/Standard.class (Never called in this example)
+   org/jboss/injbossaop/mbean/StandardMBean.class (Never called in this example)
+   org/jboss/injbossaop/web/BasicExampleServlet.class
+   org/jboss/injbossaop/web/EarExampleServlet.class (Never called in this example)
+
+   org/jboss/injbossaop/ejb/ExampleSession.class (Never called in this example)
+   org/jboss/injbossaop/ejb/ExampleSessionBean.class (Never called in this example)
+   org/jboss/injbossaop/ejb/ExampleSessionHome.class (Never called in this example)
+   META-INF/jboss-aop.xml
+</pre>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+<h3>EAR examples</h3>
+
+</p><p>
+Now let's take a look at a few ways to package ear files.
+</p><p>
+<b>Standard EAR with standalone jboss-aop.xml file</b>
+</p><p>
+If you run
+$ ant deploy-ear
+</p><p>
+two files get deployed: jboss-aop.xml and aopexample.ear.
+</p><p>
+aopexample.ear contains:
+<pre>
+   aopexample.war
+   aopexampleejb.jar
+   aopexamplelib.jar
+   META-INF/application.xml
+</pre>
+</p><p>
+aopexample.war contains
+<pre>
+   index.jsp
+   WEB-INF/web.xml
+</pre>
+</p><p>
+aopexampeejb.jar contains:
+<pre>
+   org/jboss/injbossaop/ejb/ExampleSession.class
+   org/jboss/injbossaop/ejb/ExampleSessionBean.class
+   org/jboss/injbossaop/ejb/ExampleSessionHome.class
+   META-INF/ejb-jar.xml
+</pre>
+</p><p>
+and, finally aopexamplelib.jar contains:
+<pre>
+   org/jboss/injbossaop/lib/ExampleValue.class
+   org/jboss/injbossaop/lib/SimpleInterceptor.class
+   org/jboss/injbossaop/mbean/Standard.class (Never called in this example)
+   org/jboss/injbossaop/mbean/StandardMBean.class (Never called in this example)
+   org/jboss/injbossaop/web/BasicExampleServlet.class (Never called in this example)
+   org/jboss/injbossaop/web/EarExampleServlet.class 
+</pre>
+</p><p>
+</p><p>
+There's nothing special about the classes in the ear - the  magic comes from deploying the jboss-aop.xml file BEFORE the ear is deployed
+</p><p>
+</p><p>
+<b>EAR containing .aop file</b>
+</p><p>
+If you run
+$ ant deploy-ear-aop
+</p><p>
+One file gets deployed: aopexample.ear.
+</p><p>
+aopexample.ear contains:
+<pre>
+   aopexample.war
+   aopexampleejb.jar
+   aopexamplelib.aop
+   META-INF/application.xml
+</pre>
+</p><p>
+aopexample.war contains:
+<pre>
+   index.jsp
+   WEB-INF/web.xml
+</pre>
+</p><p>
+aopexampeejb.jar contains:
+<pre>
+   org/jboss/injbossaop/ejb/ExampleSession.class
+   org/jboss/injbossaop/ejb/ExampleSessionBean.class
+   org/jboss/injbossaop/ejb/ExampleSessionHome.class
+   META-INF/ejb-jar.xml
+</pre>
+</p><p>
+and, finally aopexamplelib.aop contains:
+<pre>
+   org/jboss/injbossaop/lib/ExampleValue.class
+   org/jboss/injbossaop/lib/SimpleInterceptor.class
+   org/jboss/injbossaop/mbean/Standard.class (Never called in this example)
+   org/jboss/injbossaop/mbean/StandardMBean.class (Never called in this example)
+   org/jboss/injbossaop/web/BasicExampleServlet.class (Never called in this example)
+   org/jboss/injbossaop/web/EarExampleServlet.class 
+   META-INF/jboss-aop.xml   
+</pre>
+</p><p>
+This is pretty similar to what we had in the standard ear example, apart from that the lib file has now has an .aop extension, and contains a META-INF/jboss-aop.xml file. <b>NOTE: ALL</b> the relevant files in the ear get transformed/intercepted. The jboss-aop.xml file resides in aopexamplelib.aop. aopexampleejb.jar contains ExampleSessionBean (i.e. it is outside of aopexamplelib.aop), but the call to ExampleSessionBean.getValue() still gets intercepted.
+</p><p>
+<b>From JBoss 4.0.5, ear contents are deployed in the order they are listed in application.xml, so you need to make sure that the .aop file comes first for the bindings to be available as the ejb's and servlets get deployed.</b>
+</p><p>
+<h3>SAR examples</h3>
+
+If you run If you run
+<pre>
+$ ant deploy-basic-lt-war-in-sar
+</pre>
+or 
+<pre>
+$ ant deploy-example-lt-sar
+</pre>
+you can see examples of instrumenting a standard MBean. Go to 
+<a href="http://localhost:8080/jmx-console/HtmlAdaptor?action=inspectMBean&name=jboss.aop.example%3Aname%3DStandardMBean">StandardMBean</a> 
+and set the fields values and invoke the method() operation, and you will see that the 
+MBean calls get intercepted.
+</p><p>
+</p><p>
+</p><p>
+</p>
+</body>
+</html>

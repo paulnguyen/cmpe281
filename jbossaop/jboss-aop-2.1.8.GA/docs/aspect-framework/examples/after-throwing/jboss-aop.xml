@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <aspect class="Aspect" scope="PER_VM"/>
+
+   <bind pointcut="execution(* POJO->*(..))">
+      <throwing name="afterThrowing" aspect="Aspect"/>
+   </bind>
+   
+   <bind pointcut="execution(* POJO->*(..) throws POJOException)">
+      <throwing name="afterThrowingJoinPoint" aspect="Aspect"/>
+   </bind>
+   
+   <bind pointcut="execution(* POJO->*(java.lang.String))">
+      <throwing name="afterThrowingArg" aspect="Aspect"/>
+      <throwing name="afterThrowingJoinPointArg" aspect="Aspect"/>
+   </bind>
+   
+</aop>

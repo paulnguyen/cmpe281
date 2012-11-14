@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.5. Common Mistakes</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="advices.html" title="Chapter 4. Advices"/>
+      <link rel="prev" href="adv-overldiffsign.html" title="4.4.3. Mixing Different Signatures"/>
+      <link rel="next" href="xml.html" title="Chapter 5. XML Bindings"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-overldiffsign.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="xml.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="adv-errors"/>4.5. Common Mistakes</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         While writing advices and bindings, it is possible to make some mistakes,
+         like, for example, mistyping the advice name, or writing an advice with an
+         invalid signature.
+      </p>
+         <p>
+         Whenever there is a mistake in the advice name or signature, JBoss AOP will
+         throw an exception with a message stating the cause of the error.
+         The exception thrown is a runtime exception and should not be treated.
+         Instead, it indicates a mistake that must be fixed.
+      </p>
+         <p>
+         There are two types of exceptions JBoss AOP can throw on those cases:
+      </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <code class="classname">org.jboss.InvalidAdviceException</code>
+                  <p>
+                This exception indicates that an advice's signature is considered
+                invalid for the type used on the binding.
+             </p>
+                  <p>
+                This can happen when the advice is mistakenly declared to be of the
+                wrong type, or when one of the signature rules was not followed.
+             </p>
+               </li>
+               <li>
+                  <code class="classname">org.jboss.NoMatchingAdviceException</code>
+                  <p>
+                This exception is thrown when JBoss AOP can not find an advice method
+                suitable for a specific joinpoint to be intercepted.
+             </p>
+                  <p>
+                A possible scenario is when there is no advice method with the
+                name used on the bind declaration. To solve it, just fix the advice
+                name on the declaration or add a method with the declared advice name.
+             </p>
+                  <p>
+                When there is one or more methods with the advice name, this exception
+                indicates that JBoss was not able to find an advice with a signature
+                that suits the joinpoint to be intercepted. In this case, the
+                solution can be to alter the signature of one of the existent advice
+                methods, or to add an overloaded advice method that matches the
+                joinpoint to be intercepted.
+             </p>
+               </li>
+            </ul>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-overldiffsign.html">
+               <strong>Prev</strong>4.4.3. Mixing Different Signatures</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="xml.html">
+               <strong>Next</strong>Chapter 5. XML Bindings</a>
+         </li>
+      </ul>
+   </body>
+</html>

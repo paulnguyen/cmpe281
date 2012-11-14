@@ -1,0 +1,6 @@
+<aop>
+	<aspect class="OnewayAspect" />
+	<bind pointcut="execution(void *->@Oneway(..))">
+		<advice name="oneway" aspect="OnewayAspect" />
+	</bind>
+</aop>

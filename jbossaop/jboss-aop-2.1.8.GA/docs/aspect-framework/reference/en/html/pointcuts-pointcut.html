@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>3.6. Pointcuts</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="pointcuts.html" title="Chapter 3. Joinpoint and Pointcut Expressions"/>
+      <link rel="prev" href="pointcuts-field.html" title="3.5. Field Patterns"/>
+      <link rel="next" href="pointcuts-composition.html" title="3.7. Pointcut Composition"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-field.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-composition.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="pointcuts-pointcut"/>3.6. Pointcuts</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         Pointcuts use class, field, constructor, and method expressions to specify the actual joinpoint that should
+         be intercepted/watched.
+      </p>
+         <div class="variablelist">
+            <dl>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">execution(method or constructor)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">execution(public void Foo-&gt;method()
+execution(public Foo-&gt;new())</pre>
+                  <p>
+                  
+                     <code class="literal">execution</code> is used to specify that you want an interception to happen
+                  whenever a method or constructor is called.  The the first example of matches anytime a method
+                  is called, the second matches a constructor.  System classes cannot be used within
+                  <code class="literal">execution</code>
+                  expressions because it is impossible to instrument them.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">construction(constructor)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">construction(public Foo-&gt;new())</pre>
+                  <p>
+                  
+                     <code class="literal">construction</code> is used to specify that you want aspects to run within the constructor.
+                  The <code class="literal">execution</code> pointcut requires that any code that calls new() must be instrumented
+                  by the compiler.  With <code class="literal">construction</code> the aspects are weaved right within the constructor
+                  after all the code in the constructor.  The aspects are appended to the code of the constructor.  
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">get
+               (field expression)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">get(public int Foo-&gt;fieldname)</pre>
+                  <p>
+                  
+                     <code class="literal">get</code> is used to specify that you want an interception to happen
+                  when a specific field is accessed for a read.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">set(field expression)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">get(public int Foo-&gt;fieldname)</pre>
+                  <p>
+                  
+                     <code class="literal">set</code> is used to specify that you want an interception to happen
+                  when a specific field is accessed for a write.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">field(field expression)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">field(public int Foo-&gt;fieldname)</pre>
+                  <p>
+                  
+                     <code class="literal">field</code> is used to specify that you want an interception to happen
+                  when a specific field is accessed for a read or a write.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">all(type expression)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">all(org.acme.SomeClass)
+all(@org.jboss.security.Permission)</pre>
+                  <p>
+                  
+                     <code class="literal">all</code> is used to specify any constructor, method or field of a particular class
+                  will be intercepted.  If an annotation is used, it matches the member's annotation, not the class's
+                  annotation.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">call(method or constructor)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">call(public void Foo-&gt;method()
+call(public Foo-&gt;new())</pre>
+                  <p>
+                  
+                     <code class="literal">call</code> is used to specify any constructor or method that you want intercepted.
+                  It is different than
+                  <code class="literal">execution</code> in that the interception happens at the caller side
+                  of things and the caller information is available within the Invocation object.
+                  <code class="literal">call</code>
+                  can be used to intercept System classes because the bytecode weaving happens within the callers bytecode.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">within(type expression)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">within(org.acme.SomeClass)
+within(@org.jboss.security.Permission)</pre>
+                  <p>
+                  
+                     <code class="literal">within</code> matches any joinpoint (method or constructor call) within any code within a
+                  particular type.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">withincode(method or constructor)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">withincode(public void Foo-&gt;method()
+withincode(public Foo-&gt;new())</pre>
+                  <p>
+                  
+                     <code class="literal">withincode</code> matches any joinpoint (method or constructor call) within a particular
+                  method or constructor.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">has(method or constructor)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">has(void *-&gt;@org.jboss.security.Permission(..))
+has(*-&gt;new(java.lang.String))</pre>
+                  <p>
+                  
+                     <code class="literal">has</code> is an additional requirement for matching.  If a joinpoint is matched, its
+                  class must also have a constructor or method that matches the
+                  <code class="literal">has</code> expression.
+               </p>
+               </dd>
+               <dt>
+                  <span class="term">
+               
+                     <code class="literal">hasfield(field expression)</code>
+            
+                  </span>
+               </dt>
+               <dd>
+                  <pre class="programlisting">hasfield(* *-&gt;@org.jboss.security.Permission)
+hasfield(public java.lang.String *-&gt;*)</pre>
+                  <p>
+                  
+                     <code class="literal">has</code> is an additional requirement for matching.  If a joinpoint is matched, its
+                  class must also have a field that matches the
+                  <code class="literal">hasfield</code> expression.
+               </p>
+               </dd>
+            </dl>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-field.html">
+               <strong>Prev</strong>3.5. Field Patterns</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-composition.html">
+               <strong>Next</strong>3.7. Pointcut Composition</a>
+         </li>
+      </ul>
+   </body>
+</html>

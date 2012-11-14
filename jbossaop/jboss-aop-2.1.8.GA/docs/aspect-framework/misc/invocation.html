@@ -1,0 +1,22 @@
+<html>
+<body>
+<p>
+<h2>Invocation Object</h2>
+
+</p><p>
+<tt>org.jboss.aop.Invocation</tt> is the base class for a bunch of different subtypes. Depending on the thing being invoked on a different Invocation object is created. All of the subclasses are in the org.jboss.aop package.
+</p><p>
+<table border="1">
+<tr><td>execution(method)</td><td>org.jboss.aop.joinpoint.MethodInvocation</td></tr>
+<tr><td>get(field)</td><td>org.jboss.aop.joinpoint.FieldReadInvocation</td></tr>
+<tr><td>set(field)</td><td>org.jboss.aop.joinpointFieldWriteInvocation</td></tr>
+<tr><td>execution(constructor)</td><td>org.jboss.aop.joinpoint.ConstructorInvocation</td></tr>
+<tr><td>call(method) AND withincode(method)</td><td>org.jboss.aop.joinpoint.MethodCalledByMethodInvocation</td></tr>
+<tr><td>call(method) AND withincode(constructor)</td><td>org.jboss.aop.joinpoint.MethodCalledByConstructorInvocation</td></tr>
+<tr><td>call(constructor) AND withincode(constructor)</td><td>org.jboss.aop.joinpoint.ConstructorCalledByConstructorInvocation</td></tr>
+<tr><td>call(constructor) AND withincode(method)</td><td>org.jboss.aop.joinpoint.ConstructorCalledByMethodInvocation</td></tr>
+</table>
+</p><p>
+</p>
+</body>
+</html>

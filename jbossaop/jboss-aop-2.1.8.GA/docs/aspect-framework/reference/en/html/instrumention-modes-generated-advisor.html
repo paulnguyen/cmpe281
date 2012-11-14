@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>14.2. Generated Advisor Weaving</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="insrumentation-modes.html" title="Chapter 14. Instrumentation Modes"/>
+      <link rel="prev" href="instrumentation-modes-classic-optimized.html" title="14.1.2. Optimized"/>
+      <link rel="next" href="instrumention-modes-generated-advisor-batf.html" title="14.2.1. Lightweight Aspects"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="instrumentation-modes-classic-optimized.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="instrumention-modes-generated-advisor-batf.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="instrumention-modes-generated-advisor"/>14.2. Generated Advisor Weaving</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         This is the weaving mode that is used by default in JBoss AOP 2.0.x. In addition to generating
+         the invocation classes, it also generates the 'advisors'. These contain the internal 
+         book-keeping code that keeps track of the advice chains for the varoius woven joinpoints). 
+         At runtime, this means that there is less overhead of looking things up. This mode also allows
+         for some new features in JBoss AOP 2.0.x. 
+      </p>
+         <p>
+         This weaving mode is used by default, so you don't have to specify any extra parameters. This may
+         change in future, so for completeness the parameter you would to pass in to the <code class="literal">aopc</code> 
+         ant task is.
+      </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <code class="literal">jboss.aop.instrumentor</code> - org.jboss.aop.instrument.GeneratedAdvisorInstrumentor</li>
+            </ul>
+         </div>
+         <p>
+         An example is shown in the following build.xml snippet. Only the relevant parts are shown.
+      </p>
+         <pre class="programlisting">
+   &lt;aopc optimized="true" compilerclasspathref="..."&gt;
+      &lt;sysproperty key="jboss.aop.instrumentor" \
+         value="org.jboss.aop.instrument.GeneratedAdvisorInstrumentor"/&gt;
+      ...
+   &lt;/aopc&gt;
+                  
+      </pre>
+         <p>
+         Similarly, for load-time weaving, the default is to use this weaving mode. If you were to need
+         to turn it one you would pass in the <code class="literal">GeneratedAdvisorInstrumentor</code> when
+         starting the JVM:
+      </p>
+         <pre class="programlisting">
+   java -Djboss.aop.instrumentor=org.jboss.aop.instrument.GeneratedAdvisorInstrumentor \
+      [other aop and classpath settings] MyClass
+      </pre>
+         <p>
+      Now we will look at some of the features that are available using this weaving mode.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="instrumentation-modes-classic-optimized.html">
+               <strong>Prev</strong>14.1.2. Optimized</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="instrumention-modes-generated-advisor-batf.html">
+               <strong>Next</strong>14.2.1. Lightweight Aspects</a>
+         </li>
+      </ul>
+   </body>
+</html>

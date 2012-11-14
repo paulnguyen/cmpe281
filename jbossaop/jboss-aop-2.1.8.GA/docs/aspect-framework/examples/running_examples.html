@@ -1,0 +1,42 @@
+<html>
+<body>
+<p>
+<h1>Compiling and Running Examples</h1>
+
+<h2>Run with Ant</h2>
+<p>There are two targets for running the examples with Ant:<p>
+<pre>
+$ ant run.aopc
+$ ant run.loadtime
+</pre>
+
+<h3>ant run.aopc</h3>
+<p>The <i>run.aopc</i> target uses compile-time weaving, and performs the following steps:
+<ul>
+   <li>compiles the classes;</li>
+   <li>runs the <code>aopc</code> compiler;</li>
+   <li>and runs the woven example.</li>
+</ul>
+
+<h3>ant run.loadtime</h3>
+<p>The <i>run.loadtime</i> target uses load-time weaving (the classes are
+transformed when first loaded) and performs the following steps:
+<ul>
+   <li>compiles the classes;</li>
+   <li>and runs the example with the <i>-javagent</i> switch passed in to
+   the java runtime to enable loadtime weaving;</li>
+</ul>
+
+<h2>Run with Maven</h2>
+
+<p>Just run:</p>
+<pre>
+$ mvn install
+</pre>
+<p>This will compile and run the application classes. A few of the examples use compile time weaving, and others
+use loadtime weaving. You can always change between one or the other form by uncommenting sections of the pom.xml
+file.</p>
+<p>The logging example is the only example that use profiles to change from using log4j or the system.out logger. 
+View <a href=logging/logging.html>the logging example</a> for more info.</p>
+
+</html>

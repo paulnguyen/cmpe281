@@ -1,0 +1,36 @@
+<html>
+<body>
+<p>
+<h2>Non-pointcutable Classes, Fields, and Methods</h2>
+
+</p><p>
+The following classes will be ignored for all matching pointcuts:
+</p><p>
+<ul>
+<li> org.jboss.aop.*</li>
+<li> org.jboss.util.*</li>
+<li> javassist.*</li>
+<li> All JBoss generated classes</li>
+<li> All System classes </li>
+</ul>
+</p><p>
+The following field types will be ignored as well:
+</p><p>
+<ul>
+<li> final</li>
+<li> Field namess beginning with "_"</li>
+<li> Field names containing a "$"</li>
+<li> Fields added by AOP framework to a class </li>
+</ul>
+</p><p>
+The following method types are ignored:
+</p><p>
+<ul>
+<li> Abstract</li>
+<li> Native</li>
+<li> Methods added by AOP framework</li>
+<li> Methods beginning with "_" </li>
+</ul>
+</p>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.7. @Prepare</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-mixin.html" title="6.6. @Mixin"/>
+      <link rel="next" href="annotated-prepare-pojo.html" title="6.7.1. @Prepare POJO"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-mixin.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-prepare-pojo.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-prepare"/>6.7. @Prepare</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         To prepare a joinpoint or a set of joinpoints for DynamicAOP annotate a field
+         with
+         <code class="literal">@Prepare</code> in a class anotated with
+         <code class="literal">@Aspect</code>
+         or
+         <code class="literal">@InterceptorDef</code>.
+      </p>
+         <p>
+         The declaration of
+         <code class="literal">org.jboss.aop.Prepare</code> is:
+         </p>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.FIELD, ElementType.TYPE}) @Retention(RetentionPolicy.RUNTIME)
+         public @interface Prepare {
+       String value() default "";
+   }
+         </pre>
+         <p>
+         The single field
+         <code class="literal">value</code> contains a pointcut expression
+         matching one or more joinpoints.
+      </p>
+         <p>
+         To use
+         <code class="literal">@Prepare</code> follow this example:
+         </p>
+         <pre class="programlisting">
+   package com.mypackage;
+
+   import org.jboss.aop.Prepare;
+
+   @InterceptorDef (scope = Scope.PER_VM)
+   @Bind (pointcut="execution("* com.blah.Test-&gt;test(..)")
+   public class MyInterceptor2 implements Interceptor
+   {
+      @Prepare ("all(com.blah.DynamicPOJO)")
+      public static Pointcut dynamicPOJO;
+
+      public Object invoke(Invocation invocation)throws Throwable
+      {
+         return invocation.invokeNext();
+      }
+   }
+
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Using XML configuration instead we would write:
+         </p>
+         <pre class="programlisting">
+            &lt;prepare expr="all(com.blah.DynamicPOJO)"/&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         This simple example used an
+         <code class="literal">@InterceptorDef</code> class for a bit of
+         variety in the examples, and to reiterate that
+         <code class="literal">@Pointcut</code>,
+         <code class="literal">@Introduction</code>,
+         <code class="literal">@Mixin</code>,
+         <code class="literal">@Prepare</code>,
+         <code class="literal">@Typedef</code>,
+         <code class="literal">@CFlow</code>,
+         <code class="literal">@DynamicCFlow</code> and
+         <code class="literal">@AnnotationIntroductionDef</code>
+         can all be used both in
+         <code class="literal">@InterceptorDef</code> annotated classes AND
+         <code class="literal">@Aspect</code> annotated classes. Same for
+         <code class="literal">@Bind</code>,
+         but that is a special case as mentioned above.
+      </p>
+         <p>
+        To summarise, when using @Prepare within an @Interceptor or @Aspect
+        annotated class, you annotate a field within that class. When using
+        @Prepare with a POJO you annotate the class itself.
+     </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-mixin.html">
+               <strong>Prev</strong>6.6. @Mixin</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-prepare-pojo.html">
+               <strong>Next</strong>6.7.1. @Prepare POJO</a>
+         </li>
+      </ul>
+   </body>
+</html>

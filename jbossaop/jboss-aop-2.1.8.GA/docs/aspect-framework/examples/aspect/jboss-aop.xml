@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+  
+   <aspect class="AspectPerVM" scope="PER_VM"/>
+   <aspect class="AspectPerClass" scope="PER_CLASS"/>
+   <aspect class="AspectPerInstance" scope="PER_INSTANCE"/>
+
+   <bind pointcut="execution(POJO*->new())">
+       <advice name="constructorAdvice" aspect="AspectPerVM"/>
+       <advice name="constructorAdvice" aspect="AspectPerClass"/>
+   </bind>
+
+   <bind pointcut="execution(void POJO*->someMethod())">
+       <advice name="methodAdvice" aspect="AspectPerVM"/>
+       <advice name="methodAdvice" aspect="AspectPerClass"/>
+       <advice name="methodAdvice" aspect="AspectPerInstance"/>
+   </bind>
+
+   <bind pointcut="field(* POJO*->field)">
+       <advice name="fieldAdvice" aspect="AspectPerVM"/>
+       <advice name="fieldAdvice" aspect="AspectPerClass"/>
+       <advice name="fieldAdvice" aspect="AspectPerInstance"/>
+   </bind>
+
+</aop>

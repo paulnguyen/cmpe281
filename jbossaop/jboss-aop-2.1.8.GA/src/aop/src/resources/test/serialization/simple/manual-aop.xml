@@ -1,0 +1,5 @@
+<aop>
+   <bind pointcut="execution(* org.jboss.test.aop.serialization.simple.Proxied->someMethod())">
+      <interceptor-ref name="org.jboss.test.aop.serialization.simple.SimpleInterceptor"/>
+   </bind>
+</aop>

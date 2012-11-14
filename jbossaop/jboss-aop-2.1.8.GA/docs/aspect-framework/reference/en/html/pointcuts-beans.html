@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>3.10.1. Joinpoint Beans</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="pointcuts-joinpoints.html" title="3.10. Joinpoints"/>
+      <link rel="prev" href="pointcuts-joinpoints.html" title="3.10. Joinpoints"/>
+      <link rel="next" href="pointcuts-contextvalues.html" title="3.10.2. Context Values"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-joinpoints.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-contextvalues.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="pointcuts-beans"/>3.10.1. Joinpoint Beans</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            JBoss AOP provides JoinPoint Beans, so that an advice can access all information regarding a joinpoint during
+            its execution. This information consists of context values, explained in the next subsection, and of reflection
+            objects (<code class="literal">java.lang.reflection</code>). The reflection objects describe the joinpoint being intercepted 
+            like a <code class="literal">java.lang.Method</code> for a method execution joinpoint).
+         </p>
+         <p>
+            There are two groups of beans. The first one is the <code class="literal">Invocation</code> beans group. All classes of this group are
+            subclasses of <code class="literal">org.jboss.aop.joinpoint.Invocation</code>. The <code class="literal">Invocation</code> class was presented in
+            <a href="implementing.html" title="Chapter 2. Implementing Aspects">Chapter 2</a> as a runtime encapsulation of a joinpoint. An <code class="literal">Invocation</code> object also contains
+            an interceptor chain, where all advices and interceptors that intercept the joinpoint are stored. Invocation beans provide
+            the <code class="literal">invokeNext()</code> method, responsible for proceeding execution to the next advice in the interceptor chain
+            (if there is an advice that has not started execution yet) or to the joinpoint itself (if all advices contained in the interceptor
+            chain have already started running). We will see more on this in the next chapter.
+         </p>
+         <p>
+            The other group of beans contains only information regarding the joinpoint itself, and are called the <code class="literal">
+            JoinPointBean</code> group. All beans of this group are defined in interfaces, with <code class="literal">
+            org.jboss.joinpoint.JoinPointBean</code> being their common superinterface.
+         </p>
+         <p>
+            The <code class="literal">Invocation</code> objects are available only to around advices. All other types of advices can use the
+            <code class="literal">JoinPointBean</code> types to access joinpoint specific data.
+         </p>
+         <p>
+            In both groups there is a specific type for each joinpoint type. The type of bean corresponding to each joinpoint type can be seen
+            in <a href="pointcuts-contextvalues.html#pointcuts-typetable" title="Table 3.1.  Joinpoint Types Table">Table 3.1, “
+              Joinpoint Types Table
+            ”</a>. All beans are in the package <code class="literal">org.jboss.aop.joinpoint</code>.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-joinpoints.html">
+               <strong>Prev</strong>3.10. Joinpoints</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-contextvalues.html">
+               <strong>Next</strong>3.10.2. Context Values</a>
+         </li>
+      </ul>
+   </body>
+</html>

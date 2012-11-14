@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aop>
+
+   <bind pointcut="all(@org.jboss.test.aop.jdk15.trace)">
+      <interceptor class="org.jboss.test.aop.jdk15.SimpleInterceptor"/>
+   </bind>
+
+   <introduction class="@org.jboss.test.aop.jdk15.traceable">
+      <mixin>
+         <interfaces>
+            org.jboss.test.aop.jdk15.Introduction
+         </interfaces>
+         <class>org.jboss.test.aop.jdk15.SomeIntroduction</class>
+         <construction>new org.jboss.test.aop.jdk15.SomeIntroduction(this)</construction>
+      </mixin>
+   </introduction>
+
+
+   <annotation-introduction expr="class(org.jboss.test.aop.jdk15.AnnotatedPOJO)" invisible="false">
+      @org.jboss.test.aop.jdk15.complex (ch='a', string="hello world", flt=5.5, dbl=6.6, shrt=5, lng=6, integer=7, bool=true, annotation=@org.jboss.test.aop.jdk15.single("hello"), array={"hello", "world"}, clazz=java.lang.String, enumVal=org.jboss.test.aop.jdk15.MyEnum.ONE)
+   </annotation-introduction>
+
+</aop>

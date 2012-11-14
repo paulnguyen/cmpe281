@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <interceptor name="SimpleInterceptor" class="org.jboss.test.aop.annotatedparams.SimpleInterceptor" scope="PER_VM"/>
+
+   <bind pointcut="execution(org.jboss.test.aop.annotatedparams.POJO->new(@org.jboss.test.aop.annotatedparams.Param))">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(@org.jboss.test.aop.annotatedparams.Return org.jboss.test.aop.annotatedparams.POJO->method(@org.jboss.test.aop.annotatedparams.Param))">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+</aop>

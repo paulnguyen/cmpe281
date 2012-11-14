@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+	<prepare expr="all(org.jboss.test.aop.annotationoverride.Woven)"/>
+	<annotation expr="class(org.jboss.test.aop.annotationoverride.Woven)">
+		@org.jboss.test.aop.annotationoverride.Some
+	</annotation>
+	<annotation expr="method(void org.jboss.test.aop.annotationoverride.Woven->method())">
+		@org.jboss.test.aop.annotationoverride.Other(value="method")
+	</annotation>
+	<annotation expr="constructor(org.jboss.test.aop.annotationoverride.Woven->new())">
+		@org.jboss.test.aop.annotationoverride.Other(value="ctor")
+	</annotation>
+	<annotation expr="field(int org.jboss.test.aop.annotationoverride.Woven->field)">
+		@org.jboss.test.aop.annotationoverride.Other(value="field")
+	</annotation>
+
+
+	<annotation expr="class(org.jboss.test.aop.annotationoverride.Proxied)">
+		@org.jboss.test.aop.annotationoverride.Some
+	</annotation>
+	<annotation expr="method(void org.jboss.test.aop.annotationoverride.Proxied->method())">
+		@org.jboss.test.aop.annotationoverride.Other(value="method")
+	</annotation>
+	   
+</aop>

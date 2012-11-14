@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>1.3. Applying Aspects in JBoss AOP</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="what.html" title="Chapter 1. What Is Aspect-Oriented Programming?"/>
+      <link rel="prev" href="create.html" title="1.2. Creating Aspects in JBoss AOP"/>
+      <link rel="next" href="terms.html" title="Chapter 2. Terms"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="create.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="terms.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="apply"/>1.3. Applying Aspects in JBoss AOP</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+             To apply an aspect, you define when to execute the aspect code. Those points in execution are called
+             pointcuts. An analogy to a pointcut is a regular expression.  Where a regular expression matches strings,
+             a pointcut expression matches events/points within your application.  For example, a valid pointcut
+             definition would be "for all calls to the JDBC method executeQuery(), call the aspect that verifies SQL syntax."
+          </p>
+         <p>
+             An entry point could be a field access, or a method or constructor call. An event could be an exception
+             being thrown. Some AOP implementations use languages akin to queries to specify pointcuts. Others use tags.
+             JBoss AOP uses both.  Listing Three shows how to define a pointcut for the metrics example.
+          </p>
+         <p>Listing Three: Defining a pointcut in JBoss AOP</p>
+         <pre class="programlisting">1. &lt;bind pointcut="public void com.mc.BankAccountDAO-&gt;withdraw(double amount)"&gt;
+2.       &lt;interceptor class="com.mc.Metrics"/&gt;
+3. &lt;/bind &gt;
+
+4. &lt;bind pointcut="* com.mc.billing.*-&gt;*(..)"&gt;
+5.       &lt;interceptor class="com.mc.Metrics"/&gt;
+6. &lt;/bind &gt;</pre>
+         <p>
+             Lines 1-3 define a pointcut that applies the metrics aspect to the specific method BankAccountDAO.withdraw().
+             Lines 4-6 define a general pointcut that applies the metrics aspect to all methods in all classes in the
+             com.mc.billing package.
+          </p>
+         <p>
+             There is also an optional annotation mapping if you do not like XML.  See our Reference Guide for more information.
+          </p>
+         <p>
+             JBoss AOP has a rich set of pointcut expressions that you can use to define various points/events in your
+             Java application so that you can apply your aspects. You can attach your aspects to a specific Java class
+             in your application or you can use more complex compositional pointcuts to specify a wide range of classes
+             within one expression.
+          </p>
+         <p>
+             With AOP, as this example shows, you're able to pull together crosscutting behavior into one object and
+             apply it easily and simply, without polluting and bloating your code with features that ultimately don't
+             belong mingled with business logic. Instead, common crosscutting concerns can be maintained and extended
+             in one place.
+          </p>
+         <p>
+             Notice too that the code within the BankAccountDAO class has no idea that it's being profiled. This is what
+             aspect-oriented programmers deem orthogonal concerns. Profiling is an orthogonal concern. In the OOP code
+             snippet in Listing One, profiling was part of the application code. With AOP, you can remove that code.
+             A modern promise of middleware is transparency, and AOP (pardon the pun) clearly delivers.
+          </p>
+         <p>
+             Just as important, orthogonal behavior could be bolted on after development. In Listing One, monitoring
+             and profiling must be added at development time. With AOP, a developer or an administrator can (easily)
+             add monitoring and metrics as needed without touching the code.  This is a very subtle but significant
+             part of AOP, as this separation (obliviousness, some may say) allows aspects to be layered on top of or
+            below the code that they cut across. A layered design allows features to be added or removed at will.
+            For instance, perhaps you snap on metrics only when you're doing some benchmarks, but remove it for production.
+            With AOP, this can be done without editing, recompiling, or repackaging the code.
+          </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="create.html">
+               <strong>Prev</strong>1.2. Creating Aspects in JBoss AOP</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="terms.html">
+               <strong>Next</strong>Chapter 2. Terms</a>
+         </li>
+      </ul>
+   </body>
+</html>

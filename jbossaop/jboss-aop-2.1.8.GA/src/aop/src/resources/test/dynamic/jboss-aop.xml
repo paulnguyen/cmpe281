@@ -1,0 +1,8 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.dynamic.Interceptor1"/>
+   <interceptor class="org.jboss.test.aop.dynamic.Interceptor2"/>
+   <interceptor class="org.jboss.test.aop.dynamic.PerInstanceInterceptor1" scope="PER_INSTANCE"/>
+   <interceptor class="org.jboss.test.aop.dynamic.PerInstanceInterceptor2" scope="PER_INSTANCE"/>
+   <prepare expr="all(org.jboss.test.aop.dynamic.POJO)"/>
+   <prepare expr="all(org.jboss.test.aop.dynamic.POJOPerInstance)"/>
+</aop>

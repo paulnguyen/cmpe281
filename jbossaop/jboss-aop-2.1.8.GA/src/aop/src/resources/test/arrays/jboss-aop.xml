@@ -1,0 +1,31 @@
+<aop>
+   <arrayreplacement class="org.jboss.test.aop.array.AOPArrayTestCase"/>
+   <arrayreplacement class="org.jboss.test.aop.array.ArrayReferenceTestCase"/>
+   <arrayreplacement expr="class(org.jboss.test.aop.array.ClassWithArrayFields) OR class(org.jboss.test.aop.array.ClassWithSeveralReferencesToSameArray)"/>
+   <arrayreplacement expr="class($instanceof{org.jboss.test.aop.array.ClassForReference})"/>
+   <prepare expr="field(* org.jboss.test.aop.array.ClassWithArrayFields->*)"/>
+   <prepare expr="field(* org.jboss.test.aop.array.ClassWithSeveralReferencesToSameArray->*)"/> 
+   <prepare expr="field(* org.jboss.test.aop.array.ClassForReference->*)"/>
+   
+   <aspect class="org.jboss.test.aop.array.AspectForPrecedence"/>
+   <interceptor class="org.jboss.test.aop.array.TestArrayElementInterceptor"/>
+   <interceptor class="org.jboss.test.aop.array.TestArrayElementWriteInterceptor"/>
+   <interceptor class="org.jboss.test.aop.array.TestArrayElementReadInterceptor"/>
+
+   <precedence>
+   	<interceptor-ref name="org.jboss.test.aop.array.TestArrayElementInterceptor"/>
+   	<advice aspect="org.jboss.test.aop.array.AspectForPrecedence" name="advice"/>
+   </precedence>
+
+   <arraybind type="READ_WRITE">
+   	<advice aspect="org.jboss.test.aop.array.AspectForPrecedence" name="advice"/>
+   	<interceptor-ref name="org.jboss.test.aop.array.TestArrayElementInterceptor"/>
+   </arraybind>
+   <arraybind type="READ_ONLY">
+	   <interceptor-ref name="org.jboss.test.aop.array.TestArrayElementReadInterceptor"/>
+   </arraybind>
+   <arraybind type="WRITE_ONLY">
+	   <interceptor-ref name="org.jboss.test.aop.array.TestArrayElementWriteInterceptor"/>
+   </arraybind>
+</aop>
+

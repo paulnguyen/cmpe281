@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.3. Annotated Advice Parameters</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="advices.html" title="Chapter 4. Advices"/>
+      <link rel="prev" href="adv-finallysignature.html" title="4.2.4. Finally Advice Signature"/>
+      <link rel="next" href="adv-thrown.html" title="4.3.1. @Thrown annotated parameter"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-finallysignature.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-thrown.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="adv-annotatedparameters"/>4.3. Annotated Advice Parameters</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         This section lists the annotated parameters that can be used on JBoss AOP advices (available only in generated advisor
+         execution mode). <a href="adv-annotatedparameters.html#adv-annotparamtable" title="Table 4.1. Annotated Parameters Table">Table 4.1, “Annotated Parameters Table”</a> lists all annotations and their semantics.
+      </p>
+         <p>
+         Except for the <code class="literal">@JoinPoint</code> annotation, used to refer to joinpoint beans, all other annotations are used on
+         parameters that contain joinpoint context values.
+      </p>
+         <p>
+         Notice that the types of annotated parameters are dependent on the joinpoint being intercepted by the advice.
+      </p>
+         <p>
+         JBoss AOP will accept any type that is assignable from the type referred by that parameter, as shown in the
+         <span class="emphasis">
+               <em>Type Assignable From</em>
+            </span> column of the table below. For example, for a joinpoint whose target is of type
+         <code class="literal">POJO</code>, the annotated parameter that receives the target must be of <code class="literal">POJO</code> type,
+         one of <code class="literal">POJO</code>'s superclasses, or one of the interfaces implemented by <code class="literal">POJO</code>.
+      </p>
+         <p>
+         Regarding the type of joinpoint bean parameters, the rules are the same for the default signature of around advices
+         (without annotations). For example, an around advice that intercepts a method execution, can receive either a
+         <code class="literal">MethodInvocation</code>, or an <code class="literal">Invocation</code> (the complete list of joinpoint beans
+         and their relationship with joinpoint types was shown in <a href="pointcuts-contextvalues.html#pointcuts-typetable" title="Table 3.1.  Joinpoint Types Table">Table 3.1, “
+              Joinpoint Types Table
+            ”</a>).
+         As already explained, around advices use <code class="literal">Invocation</code> instances, while the other advices use
+         <code class="literal">JoinPointBean</code> objects.
+      </p>
+         <p>
+         Notice also that only one annotated parameter can be mandatory: <code class="literal">@Thrown</code>. This will be
+         further explained in <a href="adv-thrown.html" title="4.3.1. @Thrown annotated parameter">Section 4.3.1, “@Thrown annotated parameter”</a>.
+      </p>
+         <p>
+         Except for <code class="literal">@Arg</code>, all annotations are single-enforced, i.e., there must be at most only
+         one advice parameter with that annotation per advice.
+      </p>
+         <div class="table">
+            <a id="adv-annotparamtable"/>
+            <div class="table-contents">
+               <table summary="Annotated Parameters Table" border="1">
+                  <colgroup>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                     <col align="center"/>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th rowspan="2" align="center">Annotation</th>
+                        <th rowspan="2" align="center">Semantics</th>
+                        <th rowspan="2" align="center">Type assignable from</th>
+                        <th rowspan="2" align="center">Mandatory</th>
+                        <th colspan="5" align="center">Advice type</th>
+                     </tr>
+                     <tr>
+                        <th align="center">Before</th>
+                        <th align="center">Around</th>
+                        <th align="center">After</th>
+                        <th align="center">After-Throwing</th>
+                        <th align="center">Finally</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td rowspan="2" align="center">
+                           <code class="literal">@JoinPoint</code>
+                        </td>
+                        <td rowspan="2" align="center">
+                           <a href="pointcuts-beans.html" title="3.10.1. Joinpoint Beans">JoinPoint bean</a>
+                        </td>
+                        <td align="center">Joinpoint invocation type</td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                     </tr>
+                     <tr>
+                        <td align="center">JoinpointBean interface type</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                     <tr>
+                        <td align="center">
+                           <code class="literal">@Target</code>
+                        </td>
+                        <td align="center">Joinpoint target</td>
+                        <td align="center">Joinpoint target type</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                     <tr>
+                        <td align="center">
+                           <code class="literal">@Caller</code>
+                        </td>
+                        <td align="center">Joinpoint caller</td>
+                        <td align="center">JoinPoint caller type (only for call joinpoints)</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                     <tr>
+                        <td align="center">
+                           <code class="literal">@Thrown</code>
+                        </td>
+                        <td align="center">Joinpoint thrown exception</td>
+                        <td align="left">
+                           <code class="literal">java.lang.Throwable</code>
+                         
+                           <p>If used on an after-throwing advice, this parameter can also be:</p>
+                         
+                           <p>- assignable from any exception declared to be thrown by the joinpoint</p>
+                         
+                           <p>- <code class="literal">java.lang.RuntimeException</code> or any subtype of this class</p>
+                  
+                        </td>
+                        <td align="left">Yes:
+                     <p>- for after-throwing advices</p>
+                     
+                           <p>- for finally advices only if <code class="literal">@Return</code> is present</p>
+                     
+                           <p>No: otherwise</p>
+                  
+                        </td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                     <tr>
+                        <td align="center">
+                           <code class="literal">@Return</code>
+                        </td>
+                        <td align="center">Joinpoint return value</td>
+                        <td align="center">JoinPoint return type</td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                     <tr>
+                        <td align="center">
+                           <code class="literal">@Arg</code>
+                        </td>
+                        <td align="center">One of the joinpoint arguments</td>
+                        <td align="center">JoinPoint argument type</td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                     <tr>
+                        <td align="center">
+                           <code class="literal">@Args</code>
+                        </td>
+                        <td align="center">All joinpoint arguments</td>
+                        <td align="center">
+                           <code class="literal">java.lang.Object[]</code>
+                        </td>
+                        <td align="center">No</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                        <td align="center">Yes</td>
+                     </tr>
+                  </tbody>
+               </table>
+         The first column shows the annotation to be used for each parameter type. All annotations are
+         from the <code class="literal">org.jboss.aop.advice.annotation</code> package. The column <span class="emphasis">
+                  <em>Semantics</em>
+               </span>
+         shows what value each annotated parameter represents. The third column shows from which type the parameter
+         type must be assignable (notice that <code class="literal">Throwable</code> and <code class="literal">Object[]</code> belong to
+         <code class="literal">java.lang</code> package). The Mandatory column indicates whether that value must be present in
+         order for the advice to be considered valid. Finally, the Advice Type column shows for which advice types that
+         parameter is allowed.
+      </div>
+            <p class="title">
+               <b>Table 4.1. Annotated Parameters Table</b>
+            </p>
+         </div>
+         <br class="table-break"/>
+         <p>
+         Due to the fact that most of these parameters represent context values, their availability depends on the joinpoint
+         type. If an advice receives as a parameter a context value that is not available during a joinpoint execution, the
+         parameter value will be null. The exception to this rule is @Return. If an advice has this parameter, it will not
+         intercept joinpoints that don’t have a return value.
+      </p>
+         <p>
+         The only exception to this rule is <code class="literal">@Args</code> on field read joinpoints. Such an advice will be called
+         with an empty arguments array, in that case.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-finallysignature.html">
+               <strong>Prev</strong>4.2.4. Finally Advice Signature</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-thrown.html">
+               <strong>Next</strong>4.3.1. @Thrown annotated parameter</a>
+         </li>
+      </ul>
+   </body>
+</html>

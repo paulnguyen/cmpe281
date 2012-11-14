@@ -1,0 +1,360 @@
+<html>
+<body>
+<p>
+<h2>Finally Advices</h2>
+
+</p><p>
+<h3>Overview</h3>
+
+The fifth type of adivce that JBoss AOP provides is the finally advice. In this
+example we will see how to write finally advices and when they are invoked.
+</p><p>
+<h3>Advices Invocation in JBoss AOP</h3>
+
+</p><p>
+When intercepting a joinpoint, one can write after and after-throwing advices
+to perform an interception after the joinpoint execution. However, the execution
+of these advices is not assured. If the joinpoint executes normally, an after advice
+will be invoked, but the after-throwing one will not. On the other hand, when the
+joinpoint throws an exception, all after advices are skipped while advices of
+after-throwing type will be invoked.
+</p><p>
+Finally advices are a mixture of after and after-throwing advices. As in the case of
+both advices, finally advices are also invoked after the joinpoint execution. But
+finally advices are invoked after joinpoint execution independently of its outcome.
+Since finally advices are invoked from inside a finally block, they will always be
+executed.
+</p><p>
+To understand better this mechanism, refer to the following:
+<pre>
+
+0   try
+1   {
+2      call before advices
+3      call around advices -> joinpoint
+4      call after advices
+6   }
+7   catch(Throwable t)
+8   {
+9      call after-throwing advices
+10     throw t;
+11  }
+12  finally
+13  {
+14     call finally advices
+15  }
+</pre>
+</p><p>
+This is a simplified view of how JBoss AOP invokes the several types of
+advices. Before advices are executed before everything else. Next, around advices are
+called. Since around advices are responsible for triggering the joinpoint execution,
+this execution is wrapped in line 3. After advices are called next. After-throwing
+advices follow inside a catch block and, finally advices, inside a finally block. As
+we can see, the advices that are called after a joinpoint execution depend
+on how the joinpoint returns. If the joinpoint throws an exception, after advices
+will be skipped and the control flow will be directed to the catch block, where
+after-throwing advices are invoked. And, after that, we follow to the finally block,
+where finally advices are executed. Lastly, the <tt>Throwable t</tt> is rethrown. But if,
+on the other hand, the joinpoint execution returns normally, the control flow will
+follow from around to after advices. Next, the catch block is skipped and the finally
+block executed.
+</p><p>
+<h2> Writing Finally Advices</h2>
+
+</p><p>
+Finally advices must follow the annotated-parameters signature:
+<pre>
+public &lt;return-value&gt; &lt;any-method-name&gt;(@&lt;Annotation&gt; &lt;any type&gt; arg0, @&lt;Annotation&gt; &lt;any type&gt; arg1, ... , @&lt;Annotation&gt; &lt;any type&gt; argN) throws &lt;Exception1&gt;,&lt;Exception2&gt;,...,&lt;ExceptionN&gt;
+</pre>
+</p><p>
+The annotated parameters can be of all types previously seen.
+</p><p>
+To bind a finally advice, just use the finally tag as below:
+</p><p>
+<pre>
+&lt;bind pointcut="execution(* POJO-&gt;*(..))"&gt;
+      &lt;finally name="finallyAdvice" aspect="Aspect"/&gt;
+&lt;/bind&gt;
+</pre>
+</p><p>
+<h2> Mutex Example Revisited</h2>
+
+</p><p>
+To illustrate the usability of finally advices, lets revisit the example of
+<a href="../beforeafter/beforeafter.html">before/after advices</a>. In that example, we wrote
+a <tt>MutexAspect</tt> to assure that several concurrent bank transactions could be run in
+a synchronized manner. The <tt>MutexAspect</tt> was composed by a pair of related
+before/after advices. The before advice would retrieve the mutex lock, that would be
+later released by the after advice:
+</p><p>
+<pre>
+public class MutexAspect
+{
+   private Object lock = new Object();
+   private boolean locked = false;
+
+   public void beforeAdvice(@JoinPoint Joinpoint joinPoint)
+   {
+      synchronized(lock)
+      {
+         while (locked)
+         {
+            try
+            {
+               lock.wait();
+            }
+            catch(InterruptedException e)
+            {
+               Thread.currentThread().interrupt();
+               return;
+            }
+         }
+         locked = true;
+         System.out.println("&gt;&gt;&gt; Retrieved concurrency lock");
+      }
+   }
+
+   public void afterAdvice(@JoinPoint Joinpoint joinPoint)
+   {
+      synchronized(lock)
+      {
+         locked = false;
+         lock.notify();
+         System.out.println("&lt;&lt;&lt; Releasing concurrency lock");
+      }
+   }
+}
+___________________________
+
+&lt;bind pointcut="execution(protected void $instanceof{Transaction}-&gt;execute())"&gt;
+   &lt;before name="beforeAdvice" aspect="MutexAspect"/&gt;
+   &lt;after name="afterAdvice" aspect="MutexAspect"/&gt;
+&lt;/bind&gt;
+</pre>
+</p><p>
+</p><p>
+But after advices are not assured to be executed always. If an exception is thrown
+during a transaction execution, the after advice will not be invoked, impeding the
+lock from being released, and locking the other threads. To avoid that situation, we
+should replace <tt>afterAdvice</tt> by a finally advice. Differently from the first, the
+finally advice will be executed always, avoiding a deadlock caused by an exception in
+one thread. Replacing the after advice in the example above is simple:
+</p><p>
+<pre>
+public class MutexAspect
+{
+   private Object lock = new Object();
+   private boolean locked = false;
+
+   public void beforeAdvice(@JoinPoint JoinPointBean joinPoint)
+   {
+      synchronized(lock)
+      {
+         while (locked)
+         {
+            try
+            {
+               lock.wait();
+            }
+            catch(InterruptedException e)
+            {
+               Thread.currentThread().interrupt();
+               return;
+            }
+         }
+         locked = true;
+         System.out.println("&gt;&gt;&gt; Retrieved concurrency lock");
+      }
+   }
+
+   public void finallyAdvice(@JoinPoint JoinPointBean joinPoint)
+   {
+      synchronized(lock)
+      {
+         locked = false;
+         lock.notifyAll();
+         System.out.println("&lt;&lt;&lt; Releasing concurrency lock");
+      }
+   }
+}
+___________________________
+
+&lt;bind pointcut="execution(protected void $instanceof{Transaction}-&gt;execute())"&gt;
+   &lt;before name="beforeAdvice" aspect="MutexAspect"/&gt;
+   &lt;finally name="finallyAdvice" aspect="MutexAspect"/&gt;
+&lt;/bind&gt;
+
+</pre>
+</p><p>
+To show the finally mechanism in action, we slightly changed the bank application, by
+throwing an exception when a transaction results in an negative balance.
+</p><p>
+</p><p>
+<h3> @Return and @Thrown Annotated-Paramaters</h3>
+
+</p><p>
+In the same way as other advices, finally advices can receive annotated-parameters.
+The semantics of those parameters have been explained in the
+<a href="../annotated-parameters/annotated-parameters.html">annotated-parameters</a> and
+<a href="../after-throwing/after-throwing.html">after-throwing</a> examples.
+</p><p>
+Besides everything we have seen, there are some subtleties regarding @Return and
+@Thrown. Firstly, if a finally advice that receives a @Thrown parameter intercepts a
+joinpoint that returns normally, without errors, this parameter value will be
+<tt>null</tt>. An example of this follows:
+</p><p>
+<pre>
+public class FinallyAspect
+{
+   public void finallyAdvice1(@Thrown Throwable thrownException)
+   {
+      System.out.println("&gt;&gt;&gt; finallyAdvice1 Exception has been thrown: " + (thrownException != null));
+   }
+}
+___________________________
+
+&lt;bind pointcut="execution(private Account Bank-&gt;getAccount(java.lang.String))"&gt;
+   &lt;finally name="finallyAdvice1" aspect="FinallyAspect"/&gt;
+&lt;/bind&gt;
+</pre>
+</p><p>
+</p><p>
+The finally advice above intercepts <tt>Bank.getAccount(String)</tt> method, that
+throws a <tt>NoSuchAccountException</tt> if the account name is invalid. It prints a
+message telling whether <tt>Bank.getAccount(String)</tt> threw an exception, which
+happened only if <tt>thrownException</tt> is not null. Notice that the @Thrown-annotated
+advice parameter above is not of type <tt>NoSuchAccountException</tt>, it is of type
+<tt>Throwable</tt>. The reason for this is that <i>@Thrown-annotated parameters must
+always be of type <tt>Throwable</tt> when declared at a finally advice.</i>
+</p><p>
+A second consideration we need to make is that, <i>if a finally advice receives a
+@Return parameter, the use of @Thrown is compulsory</i>. This is so because the
+@Thrown parameter indicates the validity of the @Return parameter. This way:
+
+<ul>
+<li><i>if the
+joinpoint being  intercepted returns normally</i> - the @Thrown parameter value will be <tt>null</tt>
+and the @Return parameter will contain the joinpoint return value, as expected.</li>
+<li><i>If
+the joinpoint throws an exception</i> - the @Thrown parameter will contain the exception and
+the the @Return value will invalid.</li>
+</ul>
+</p><p>
+The following advice also intercepts <tt>Bank.getAccount(String)</tt> method execution,
+but this time it prints the result if no exception has been thrown.
+</p><p>
+<pre>
+public class FinallyAspect
+{
+   public void finallyAdvice2(@Return Account account,
+         @Thrown Throwable thrownException, @Arg String queriedName)
+   {
+      if (thrownException == null)
+      {
+         System.out.println("&gt;&gt;&gt; finallyAdvice2 Account retrieved: " + account);
+      }
+      else
+      {
+         System.out.println("&gt;&gt;&gt; finallyAdvice2 Account '" + queriedName +
+               "' not found");
+      }
+   }
+}
+___________________________
+
+&lt;bind pointcut="execution(private Account Bank-&gt;getAccount(java.lang.String))"&gt;
+   &lt;finally name="finallyAdvice2" aspect="FinallyAspect"/&gt;
+&lt;/bind&gt;
+</pre>
+</p><p>
+<h3>Running</h3>
+
+</p>
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+
+     [java] SETUP
+     [java] =====
+     [java] Creating account 'A' with initial balance of $30.0
+     [java] Creating account 'B' with initial balance of $50.0
+     [java] Creating account 'C' with initial balance of $0.0
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: A: US$ 30,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: A: US$ 30,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: true
+     [java] &gt;&gt;&gt; finallyAdvice2 Account 'D' not found
+     [java] ERROR invalid transaction: Account named 'D' does not exist.
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: B: US$ 50,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: B: US$ 50,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: C: US$ 0,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: C: US$ 0,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: A: US$ 30,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: C: US$ 0,00
+     [java] &gt;&gt;&gt; finallyAdvice1 Exception has been thrown: false
+     [java] &gt;&gt;&gt; finallyAdvice2 Account retrieved: B: US$ 50,00
+
+     [java] TRANSACTIONS
+     [java] ============
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Withdrawing US$ 10,00 from account A
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ---
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Transfering US$ 100,00 from account B to account C
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ERROR can't perform operation because it results in: negative balance not allowed -US$ 100,00
+     [java] ---
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Depositing US$ 50,00 to account A
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ---
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Transfering US$ 89,11 from account C to account A
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ERROR can't perform operation because it results in: negative balance not allowed -US$ 89,11
+     [java] ---
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Depositing US$ 51,00 to account B
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ---
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Withdrawing US$ 0,11 from account C
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ERROR can't perform operation because it results in: negative balance not allowed -US$ 0,11
+     [java] ---
+     [java] &gt;&gt;&gt; Retrieved concurrency lock
+     [java] Withdrawing US$ 5,00 from account B
+     [java] &lt;&lt;&lt; Releasing concurrency lock
+     [java] ---
+
+     [java] FINAL BALANCE
+     [java] ===== =======
+     [java] A: US$ 70,00
+     [java] C: US$ 0,00
+     [java] B: US$ 96,00
+
+
+</pre>
+</p><p>
+As before, you can add accounts and transactions to this example application by editing the
+<tt>input.txt</tt> file.
+</p><p>
+Note that you can retrieve different values by running this example, since the order
+of operations varies (they are concurrent after all) and an operation with negative
+outcome will be invalidated.
+</p>
+</body>
+</html>

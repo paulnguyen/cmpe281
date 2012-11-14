@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>JBoss AOP - Aspect-Oriented Framework for Java</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="next" href="preface.html" title="Preface"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous"/>
+         <li class="next">
+            <a accesskey="n" href="preface.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="book" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h1 class="title">
+                     <a id="d0e1"/>JBoss AOP - Aspect-Oriented Framework for Java</h1>
+               </div>
+               <div>
+                  <h2 class="subtitle">JBoss AOP Reference Documentation</h2>
+               </div>
+               <div>
+                  <p class="releaseinfo">2.0.0</p>
+               </div>
+            </div>
+            <hr/>
+         </div>
+         <div class="toc">
+            <dl>
+               <dt>
+                  <span class="preface">
+                     <a href="preface.html">Preface</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="chapter">
+                     <a href="terms.html">1. Terms</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="base-terms.html">1.1. Overview</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="implementing.html">2. Chapter 2</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-overview.html">2.1. Overview</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-aspect.html">2.2. Aspect Class</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-advice.html">2.3. Advice Methods</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-interceptor.html">2.4. Interceptors</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-invocation3.html">2.5. Resolving Annotations</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-invocation4.html">2.6. Metadata</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="impl-metadata1.html">2.6.1. Resolving XML Metadata</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="impl-metadata2.html">2.6.2. Attaching Metadata</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-mixin.html">2.7. Mixin Definition</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="impl-dyn-cflow.html">2.8. Dynamic CFlow</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="pointcuts.html">3. Joinpoint and Pointcut Expressions</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-wilcards.html">3.1. Wildcards</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-types.html">3.2. Type Patterns</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-method.html">3.3. Method Patterns</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-con.html">3.4. Constructor Patterns</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-field.html">3.5. Field Patterns</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-pointcut.html">3.6. Pointcuts</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-composition.html">3.7. Pointcut Composition</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-ref.html">3.8. Pointcut References</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-typedef.html">3.9. Typedef Expressions</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="pointcuts-joinpoints.html">3.10. Joinpoints</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="pointcuts-beans.html">3.10.1. Joinpoint Beans</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="pointcuts-contextvalues.html">3.10.2. Context Values</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="advices.html">4. Advices</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="adv-around.html">4.1. Around Advices</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="adv-batf.html">4.2. Before/After/After-Throwing/Finally Advices</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-beforesignature.html">4.2.1. Before Advice Signature</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-aftersignature.html">4.2.2. After Advice Signature</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-throwingsignature.html">4.2.3. After-Throwing Advice Signature</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-finallysignature.html">4.2.4. Finally Advice Signature</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="adv-annotatedparameters.html">4.3. Annotated Advice Parameters</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-thrown.html">4.3.1. @Thrown annotated parameter</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-joinpointargs.html">4.3.2. JoinPoint Arguments</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="adv-overloaded.html">4.4. Overloaded Advices</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-overlannotparam.html">4.4.1. Annotated-parameter Signature</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-overldefaultsignature.html">4.4.2. Default Signature</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="adv-overldiffsign.html">4.4.3. Mixing Different Signatures</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="adv-errors.html">4.5. Common Mistakes</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="xml.html">5. XML Bindings</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-overview.html">5.1. Intro</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-resolving.html">5.2. Resolving XML</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-resolving1.html">5.2.1. Standalone XML Resolving</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-resolving2.html">5.2.2. Application Server XML Resolving</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-schema.html">5.3. XML Schema</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-aspect.html">5.4. aspect</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-aspect1.html">5.4.1. Basic Definition</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-aspect2.html">5.4.2. Scope</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-aspect3.html">5.4.3. Configuration</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-aspect4.html">5.4.4. Aspect Factories</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-interceptor.html">5.5. interceptor</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-bind.html">5.6. bind</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-stack.html">5.7. stack</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-pointcut.html">5.8. pointcut</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-introduction.html">5.9. introduction</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-introduction1.html">5.9.1. Interface introductions</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="xml-introduction2.html">5.9.2. Mixins</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-annotation-introduction.html">5.10. annotation-introduction</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-cflow.html">5.11. cflow-stack</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-typedef.html">5.12. typedef</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-dynamic.html">5.13. dynamic-cflow</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-prepare.html">5.14. prepare</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-metadata.html">5.15. metadata</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-metadata-loader.html">5.16. metadata-loader</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-precedence.html">5.17. precedence</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="xml-declare.html">5.18. declare</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="declare-warning.html">5.18.1. declare-warning</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="declare-error.html">5.18.2. declare-error</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="annotated.html">6. Annotation Bindings</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-aspect.html">6.1. @Aspect</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-interceptor.html">6.2. @InterceptorDef</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="annotated-interceptor-interceptor.html">6.2.1. Interceptor Example</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="annotated-interceptor-factory.html">6.2.2. AspectFactory Example</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-pointcut.html">6.3. @PointcutDef</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-bind.html">6.4. @Bind</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-introduction.html">6.5. @Introduction</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-mixin.html">6.6. @Mixin</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-prepare.html">6.7. @Prepare</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="annotated-prepare-pojo.html">6.7.1. @Prepare POJO</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-typedef.html">6.8. @TypeDef</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-cflow.html">6.9. @CFlowDef</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-dynamiccflow.html">6.10. @DynamicCFlowDef</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-annotationintro.html">6.11. @AnnotationIntroductionDef</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-precedence.html">6.12. @Precedence</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotated-declare.html">6.13. @DeclareError and @DeclareWarning</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="dynamic.html">7. Dynamic AOP</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dyn-1.html">7.1. Hot Deployment</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dyn-2.html">7.2. Per Instance AOP</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dyn-3.html">7.3. Preparation</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dyn-4.html">7.4. Improved Instance API</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dyn-5.html">7.5. DynamicAOP with HotSwap</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="installing.html">8. Installing</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="installing-standalone.html">8.1. Installing Standalone</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="installing-jboss40-jdk50.html">8.2. Installing with JBoss 4.0.x and JBoss 4.2.x Application Server for JDK 5</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="installing-jboss5-jdk5.html">8.3. Installing with JBoss Application Server 5</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="compiling.html">9. Building and Compiling Aspectized Java</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="modes.html">9.1. Instrumentation modes</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="ant.html">9.2. Ant Integration</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="commandline.html">9.3. Command Line</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="running.html">10. Running Aspectized Applications</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="ch10s01.html">10.1. Loadtime, Compiletime and HotSwap Modes</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="standalone.html">10.2. Regular Java Applications</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="standalone-compiletime.html">10.2.1. Precompiled instrumentation</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s02s02.html">10.2.2. Loadtime</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s02s03.html">10.2.3. HotSwap</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s02s04.html">10.2.4. User-Defined ClassLoaders</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="jboss.html">10.3. JBoss Application Server</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s03s01.html">10.3.1. Packaging AOP Applications</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s03s02.html">10.3.2. The JBoss AspectManager Service</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="running-as-sun-jdk.html">10.3.3. Loadtime transformation in JBoss AS Using Sun JDK</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s03s04.html">10.3.4. JBoss 5 and JRockit</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s03s05.html">10.3.5. Improving Loadtime Performance in a JBoss AS Environment</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="ch10s04.html">10.4. Scoping aop to the classloader</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s04s01.html">10.4.1. Deploying as part of a scoped classloader</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="ch10s04s02.html">10.4.2. Attaching to a scoped deployment</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="maven.html">11. Building JBoss AOP with Maven2</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="compiling_maven.html">11.1. AOP Compile with Maven2</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="compiletests.html">11.2. AOP Compile tests with Maven2</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="maven_running.html">11.3. Running precompiled with Maven2</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="runningweaving.html">11.4. Running loadtime weaving with Maven2</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="runningtests.html">11.5. Running tests with Maven2</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="reflection.html">12. Reflection and AOP</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="reflection-attach-chains.html">12.1. Force interception via reflection</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="reflection-cleaning.html">12.2. Clean results from reflection info methods</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="arrays.html">13. Interception of Array Element Access</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="array-replacement.html">13.1. Replacing Array Access</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="array-preparing.html">13.2. Preparing Array Fields</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="array-binding.html">13.3. Binding Advices to array element access</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="array-invocations.html">13.4. Invocation types for array element access interception</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="insrumentation-modes.html">14. Instrumentation Modes</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="instrumention-modes-classic.html">14.1. Classic Weaving</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="instrumentation-modes-classic-not-optimized.html">14.1.1. Non-optimized</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="instrumentation-modes-classic-optimized.html">14.1.2. Optimized</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="instrumention-modes-generated-advisor.html">14.2. Generated Advisor Weaving</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="instrumention-modes-generated-advisor-batf.html">14.2.1. Lightweight Aspects</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="instrumention-modes-generated-advisor-instance-api.html">14.2.2. Improved Instance API</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="instrumention-modes-generated-advisor-chain-overriding.html">14.2.3. Chain Overriding of Inherited Methods</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+            </dl>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous"/>
+         <li class="next">
+            <a accesskey="n" href="preface.html">
+               <strong>Next</strong>Preface</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <cflow-stack name="normalInstantiate">
+      <!-- picks out NotAnnotatedCaller.instantiate() -->
+      <called expr="void org.jboss.test.aop.annotatedcflow.NotAnnotated*->i*()"/>
+   </cflow-stack>
+   
+   <cflow-stack name="annotatedInstantiate">
+      <called expr="void @org.jboss.test.aop.annotatedcflow.Annotation->instantiate()"/>
+   </cflow-stack>
+   
+   <cflow-stack name="instanceOfInterfaceInstantiate">
+      <called expr="void $instanceof{org.jboss.test.aop.annotatedcflow.InstanceOfCallerInterface}->instantiate()"/>
+   </cflow-stack>
+   
+   <cflow-stack name="normalMakecall">
+      <called expr="void org.jboss.test.aop.annotatedcflow.NotAnnotatedCaller->makeCall()"/>
+   </cflow-stack>
+   
+   <cflow-stack name="annotatedMakecall">
+      <called expr="void @org.jboss.test.aop.annotatedcflow.Annotation->makeCall()"/>
+   </cflow-stack>
+   
+   <cflow-stack name="instanceOfInterfaceMakecall">
+      <called expr="void $instanceof{org.jboss.test.aop.annotatedcflow.InstanceOfCallerInterface}->makeCall()"/>
+   </cflow-stack>
+   
+   <bind pointcut="execution(org.jboss.test.aop.annotatedcflow.POJO->new())" cflow="normalInstantiate">
+      <interceptor class="org.jboss.test.aop.annotatedcflow.TestInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.annotatedcflow.POJO->new())" cflow="annotatedInstantiate">
+      <interceptor class="org.jboss.test.aop.annotatedcflow.TestInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.annotatedcflow.POJO->new())" cflow="instanceOfInterfaceInstantiate">
+      <interceptor class="org.jboss.test.aop.annotatedcflow.TestInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.annotatedcflow.POJO->method())" cflow="normalMakecall">
+      <interceptor class="org.jboss.test.aop.annotatedcflow.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.annotatedcflow.POJO->method())" cflow="annotatedMakecall">
+      <interceptor class="org.jboss.test.aop.annotatedcflow.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.annotatedcflow.POJO->method())" cflow="instanceOfInterfaceMakecall">
+      <interceptor class="org.jboss.test.aop.annotatedcflow.TestInterceptor"/>
+   </bind>
+   
+</aop>

@@ -1,0 +1,52 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   
+   <bind pointcut="field(* org.jboss.test.aop.inheritanceacrosspackages.base.Base->*)">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="field(* org.jboss.test.aop.inheritanceacrosspackages.child.Child->*)">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="construction(org.jboss.test.aop.inheritanceacrosspackages.base.Base->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="construction(org.jboss.test.aop.inheritanceacrosspackages.child.Child->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(org.jboss.test.aop.inheritanceacrosspackages.base.Base->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(org.jboss.test.aop.inheritanceacrosspackages.child.Child->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.inheritanceacrosspackages.base.Base->*(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.inheritanceacrosspackages.child.Child->*(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="call(org.jboss.test.aop.inheritanceacrosspackages.base.Base->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="call(org.jboss.test.aop.inheritanceacrosspackages.child.Child->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="call(* org.jboss.test.aop.inheritanceacrosspackages.base.Base->*(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>
+   
+   <bind pointcut="call(* org.jboss.test.aop.inheritanceacrosspackages.child.Child->*(..))">
+      <interceptor-ref name="org.jboss.test.aop.inheritanceacrosspackages.TestInterceptor"/>
+   </bind>   
+
+</aop>

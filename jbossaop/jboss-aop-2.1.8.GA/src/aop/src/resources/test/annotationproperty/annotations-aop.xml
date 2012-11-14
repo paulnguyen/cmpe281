@@ -1,0 +1,9 @@
+<aop>
+   <prepare expr="all(org.jboss.test.aop.annotationproperty.POJO)"/>
+   <annotation-introduction expr="class(org.jboss.test.aop.annotationproperty.POJO)">
+      @org.jboss.test.aop.annotationproperty.SimpleValue("${value1}")
+   </annotation-introduction>
+   <annotation expr="class(org.jboss.test.aop.annotationproperty.POJO)">
+      @org.jboss.test.aop.annotationproperty.Complex(ch='${ch}', string="${string}", flt=${flt}, dbl=${dbl}, shrt=${shrt}, lng=${lng}, integer=${integer}, bool=${bool}, annotation=${annotation}, array=${array}, clazz=${clazz}, enumVal=${enumVal})
+   </annotation>
+</aop>

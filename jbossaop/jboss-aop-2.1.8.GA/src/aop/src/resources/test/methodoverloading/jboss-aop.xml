@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+  
+   <aspect class="org.jboss.test.aop.methodoverloading.CallerAspect" scope="PER_VM"/>
+  
+   <bind pointcut="call(* $instanceof{org.jboss.test.aop.methodoverloading.DriverInterface}->superMethod())">
+       <advice name="methodAdviceSuper" aspect="org.jboss.test.aop.methodoverloading.CallerAspect"/>
+   </bind>
+
+   <bind pointcut="call(* $instanceof{org.jboss.test.aop.methodoverloading.DriverInterface}->driverMethod())">
+       <advice name="methodAdviceDriver" aspect="org.jboss.test.aop.methodoverloading.CallerAspect"/>
+   </bind>
+ 
+</aop>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <aspect class="org.jboss.test.aop.typedAdvices.SimpleAspect" scope="PER_VM"/>
+   <aspect class="org.jboss.test.aop.typedAdvices.ArgsAspect" scope="PER_VM"/>
+   <aspect class="org.jboss.test.aop.typedAdvices.GeneralAspect" scope="PER_VM"/>
+
+   <stack name="simpleStack">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.SimpleAspect"/>
+      <advice name="around" aspect="org.jboss.test.aop.typedAdvices.SimpleAspect"/>
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.SimpleAspect"/>
+      <throwing name="throwing" aspect="org.jboss.test.aop.typedAdvices.SimpleAspect"/>
+   </stack>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.typedAdvices.POJO->method1(boolean))">
+      <stack-ref name="simpleStack"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.typedAdvices.POJO->method2(boolean))">
+      <stack-ref name="simpleStack"/>
+      <finally name="finallyAdvice" aspect="org.jboss.test.aop.typedAdvices.SimpleAspect"/>
+   </bind>
+
+   <stack name="argsStack">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+      <throwing name="throwing" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </stack>
+
+   <bind pointcut="(execution(org.jboss.test.aop.typedAdvices.POJO->new(boolean, int, long, java.lang.String)) AND ! execution(org.jboss.test.aop.typedAdvices.POJO->new())) OR (execution(* org.jboss.test.aop.typedAdvices.POJO->method*(..)) AND !execution(* *->method*(boolean)) AND !execution(int *->*(..)) AND !execution(* *->*(*SubValue,int))) OR (get(!static * org.jboss.test.aop.typedAdvices.POJO->*) AND !get(int *->*) AND !field(*Value *->*))">
+      <stack-ref name="argsStack"/>
+   </bind>
+   
+   <bind pointcut="set(!static * org.jboss.test.aop.typedAdvices.POJO->*) AND !field(*Value *->*)">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+      <throwing name="throwing" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="execution(int org.jboss.test.aop.typedAdvices.POJO->method*(..)) OR execution(* org.jboss.test.aop.typedAdvices.POJO->method*(*SubValue, int))">
+      <throwing name="throwing" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="get(int org.jboss.test.aop.typedAdvices.POJO->*) OR field(*Value org.jboss.test.aop.typedAdvices.POJO->*) OR execution(* org.jboss.test.aop.typedAdvices.POJO->method*(*SubValue, int))">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+
+   <bind pointcut="get(!static *Value org.jboss.test.aop.typedAdvices.POJO->*)">
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="execution(org.jboss.test.aop.typedAdvices.InvalidPOJO->new())">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="execution(org.jboss.test.aop.typedAdvices.InvalidPOJO->new(short))">
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="execution(org.jboss.test.aop.typedAdvices.InvalidPOJO->new(long))">
+      <throwing name="throwing" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="execution(void org.jboss.test.aop.typedAdvices.InvalidPOJO->methodBefore(..))">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="execution(void org.jboss.test.aop.typedAdvices.InvalidPOJO->methodAfter(..))">
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+
+   <bind pointcut="all(org.jboss.test.aop.typedAdvices.InvalidAdviceNamePOJO)">
+      <throwing name="throwingzzz" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="field(int org.jboss.test.aop.typedAdvices.InvalidPOJO->i)">
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+   
+   <bind pointcut="field(!static *SuperValue org.jboss.test.aop.typedAdvices.InvalidPOJO->*)">
+      <throwing name="throwing" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+
+   <bind pointcut="set(!static *Value org.jboss.test.aop.typedAdvices.InvalidPOJO->*)">
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.ArgsAspect"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.typedAdvices.POJO->new($instanceof{org.jboss.test.aop.typedAdvices.SuperValue}, int)) OR execution(* org.jboss.test.aop.typedAdvices.POJO->method($instanceof{org.jboss.test.aop.typedAdvices.SuperValue}, int))">
+      <before name="before" aspect="org.jboss.test.aop.typedAdvices.GeneralAspect"/>
+      <after name="after" aspect="org.jboss.test.aop.typedAdvices.GeneralAspect"/>
+   </bind>
+</aop>

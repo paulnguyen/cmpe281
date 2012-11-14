@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <interceptor class="org.jboss.test.aop.precedence.FirstInterceptor" scope="PER_VM"/>
+   <interceptor class="org.jboss.test.aop.precedence.FirstInterceptor2" scope="PER_CLASS"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor" scope="PER_INSTANCE"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor2" scope="PER_JOINPOINT"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor3"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect" scope="PER_VM"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect2" scope="PER_CLASS"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect3" scope="PER_INSTANCE"/>
+   <aspect class="org.jboss.test.aop.precedence.LastAspect" scope="PER_JOINPOINT"/>
+   <aspect class="org.jboss.test.aop.precedence.LastAspect2"/>
+
+   <precedence>
+      <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+   </precedence>
+   
+   <precedence>
+      <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+      <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor3"/>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+   </precedence>
+
+   <precedence>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+   </precedence>
+
+   <precedence>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice2"/>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice3"/>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+   </precedence>
+
+   <precedence>
+      <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor"/>
+      <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+   </precedence>
+
+   <precedence>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+      <advice aspect="org.jboss.test.aop.precedence.TestAspect3" name="advice"/>
+   </precedence>
+
+   <bind pointcut="execution(org.jboss.test.aop.precedence.POJO->new())">
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor2"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor3"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect3" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect2" name="advice"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->oneMethod())">
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor2"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor3"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect3" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect2" name="advice"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->twoMethod()) OR call(* org.jboss.test.aop.precedence.POJO->fiveMethod())">
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor2"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice2"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice3"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect2" name="advice"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->threeMethod()) OR call(org.jboss.test.aop.precedence.POJO->new(java.lang.String))">
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor2"/>    
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice3"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice2"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect2" name="advice"/>
+   </bind>
+   
+   <bind pointcut="field(int org.jboss.test.aop.precedence.POJO->var)">
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor2"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor3"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect3" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect2" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect2" name="advice"/>
+   </bind>
+   
+   <cflow-stack name="test">
+      <called expr="* org.jboss.test.aop.precedence.PrecedenceTester->*(..)"/>
+   </cflow-stack>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->sixMethod())" cflow="test">
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.FirstInterceptor2"/>    
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice3"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice2"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.LastAspect2" name="advice"/>
+   </bind>
+   
+   <cflow-stack name="test2">
+      <called expr="* org.jboss.test.aop.precedence..->*(..)"/>
+   </cflow-stack>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->sevenMethod())" cflow="test">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor3"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->sevenMethod())">
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice3"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect" name="advice2"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.POJO->sevenMethod())" cflow="test2">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor2"/>
+   </bind>
+   
+   <!--  NO PRECEDENCE TESTS -->
+   
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor4" scope="PER_VM"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor5" scope="PER_CLASS"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor6" scope="PER_INSTANCE"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor7" scope="PER_JOINPOINT"/>
+   <interceptor class="org.jboss.test.aop.precedence.SimpleInterceptor8"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect4" scope="PER_VM"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect5" scope="PER_CLASS"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect6" scope="PER_INSTANCE"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect7" scope="PER_JOINPOINT"/>
+   <aspect class="org.jboss.test.aop.precedence.TestAspect8"/>
+
+   <bind pointcut="execution(org.jboss.test.aop.precedence.NoPrecedencePOJO->new())">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor4"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor5"/>    
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor6"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor7"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor8"/>
+   </bind>
+   
+   <bind pointcut="execution(org.jboss.test.aop.precedence.NoPrecedencePOJO->new())">
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect6" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect5" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect7" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect8" name="advice"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.NoPrecedencePOJO->oneMethod())">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor4"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect6" name="advice"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor5"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor6"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.NoPrecedencePOJO->oneMethod())">
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect5" name="advice"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor7"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect7" name="advice"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor8"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect8" name="advice"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.NoPrecedencePOJO->twoMethod()) OR call(* org.jboss.test.aop.precedence.NoPrecedencePOJO->fiveMethod())">
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice2"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice3"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect5" name="advice"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.NoPrecedencePOJO->twoMethod()) OR call(* org.jboss.test.aop.precedence.NoPrecedencePOJO->fiveMethod())">
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect7" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect8" name="advice"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor4"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor5"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor6"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.NoPrecedencePOJO->threeMethod()) OR call(org.jboss.test.aop.precedence.NoPrecedencePOJO->new(java.lang.String))">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor5"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.precedence.NoPrecedencePOJO->threeMethod()) OR call(org.jboss.test.aop.precedence.NoPrecedencePOJO->new(java.lang.String))">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor4"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice2"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice3"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect7" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect8" name="advice"/>
+   </bind>
+   
+   <bind pointcut="field(int org.jboss.test.aop.precedence.NoPrecedencePOJO->var)">
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor8"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor7"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor6"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor5"/>
+       <interceptor-ref name="org.jboss.test.aop.precedence.SimpleInterceptor4"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect6" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect4" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect5" name="advice"/>
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect7" name="advice"/>
+   </bind>
+   
+   <bind pointcut="field(int org.jboss.test.aop.precedence.NoPrecedencePOJO->var)">
+       <advice aspect="org.jboss.test.aop.precedence.TestAspect8" name="advice"/>
+   </bind>
+   
+   
+</aop>

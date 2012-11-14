@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>9.3.3. Create Interceptor</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="aopide-tutorial.html" title="9.3. Tutorial"/>
+      <link rel="prev" href="aopide-tutorial-class.html" title="9.3.2. Create Class"/>
+      <link rel="next" href="aopide-tutorial-bind.html" title="9.3.4. Applying the Interceptor"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="aopide-tutorial-class.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide-tutorial-bind.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="aopide-tutorial-interceptor"/>9.3.3. Create Interceptor</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+	            Next we want to create an interceptor to the class.
+               </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                     Right click on the "src" directory in the Package Explorer and in the menu, click 
+                     New &gt; Class. In the resulting dialog:
+                     <div class="itemizedlist">
+                     <ul>
+                        <li>
+                           Name the class <code class="literal">HelloAOPInterceptor</code>
+                        </li>
+                        <li>
+                           Add <code class="literal">org.jboss.aop.advice.Interceptor</code> to the list of interceptors.
+                        </li>
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+         </div>
+         <p>
+               Then modify the class so it looks like:
+               </p>
+         <pre class="programlisting">
+   import org.jboss.aop.advice.Interceptor;
+   import org.jboss.aop.joinpoint.Invocation;
+   
+   public class HelloAOPInterceptor implements Interceptor {
+   
+   	public String getName() {
+   		return "HelloAOPInterceptor";
+   	}
+   
+      //We renamed the arg0 parameter to invocation
+   	public Object invoke(Invocation invocation) throws Throwable {
+   		System.out.print("Hello, ");
+         //Here we invoke the next in the chain
+   		return invocation.invokeNext();
+   	}
+   }               
+               </pre>
+         <p>
+ 	      
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="aopide-tutorial-class.html">
+               <strong>Prev</strong>9.3.2. Create Class</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide-tutorial-bind.html">
+               <strong>Next</strong>9.3.4. Applying the Interceptor</a>
+         </li>
+      </ul>
+   </body>
+</html>

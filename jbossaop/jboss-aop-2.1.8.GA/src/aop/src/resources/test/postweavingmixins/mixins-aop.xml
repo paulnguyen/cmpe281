@@ -1,0 +1,16 @@
+<aop>
+   <introduction class="org.jboss.test.aop.postweavingmixins.WovenPOJO">
+      <mixin>
+         <interfaces>
+            org.jboss.test.aop.postweavingmixins.MixinInterface
+         </interfaces>
+         <class>org.jboss.test.aop.postweavingmixins.Mixin</class>
+      </mixin>
+   </introduction>
+   
+   <introduction class="org.jboss.test.aop.postweavingmixins.WovenPOJO">
+      <interfaces>
+         org.jboss.test.aop.postweavingmixins.MarkerInterface
+      </interfaces>
+   </introduction>
+</aop>

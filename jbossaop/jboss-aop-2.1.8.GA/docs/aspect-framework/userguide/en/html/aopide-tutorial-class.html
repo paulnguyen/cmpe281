@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>9.3.2. Create Class</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="aopide-tutorial.html" title="9.3. Tutorial"/>
+      <link rel="prev" href="aopide-tutorial-project.html" title="9.3.1. Create Project"/>
+      <link rel="next" href="aopide-tutorial-interceptor.html" title="9.3.3. Create Interceptor"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="aopide-tutorial-project.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide-tutorial-interceptor.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="aopide-tutorial-class"/>9.3.2. Create Class</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+   	      Next step is to create a normal Java class. 
+            </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+               	Right click on the "src" directory in the Package Explorer and in the menu, click New &gt; Class.
+               </li>
+               <li>
+               	The only thing you should need to change is the Name of the class. Enter <code class="literal">HelloAOP</code> without 
+               	quotes into the Name textbox, and click <code class="literal">Finish</code>
+               </li>
+            </ul>
+         </div>
+         <p>
+	      
+         </p>
+         <p>
+            Modify the code for your class so it loks like
+            </p>
+         <pre class="programlisting">
+public class HelloAOP {
+
+	public void callMe ()
+	{
+		System.out.println("AOP!");
+	}
+	
+	public static void main (String args[])
+	{
+		new HelloAOP().callMe();
+	}
+}
+            </pre>
+         <p>
+         
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="aopide-tutorial-project.html">
+               <strong>Prev</strong>9.3.1. Create Project</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide-tutorial-interceptor.html">
+               <strong>Next</strong>9.3.3. Create Interceptor</a>
+         </li>
+      </ul>
+   </body>
+</html>

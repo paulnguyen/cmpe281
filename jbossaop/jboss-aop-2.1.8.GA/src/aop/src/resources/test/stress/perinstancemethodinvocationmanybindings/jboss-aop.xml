@@ -1,0 +1,119 @@
+<aop>
+   <interceptor name="perVm" class="org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.PerVmInterceptor" scope="PER_VM"/>
+   <interceptor name="perInstance" class="org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.PerInstanceInterceptor" scope="PER_INSTANCE"/>
+
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new())">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->new(int, int, int, int, int, int, int, int, int, int, int, int))">
+      <interceptor-ref name="perVm"/>
+   </bind>
+   
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field1)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field2)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field3)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field4)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field5)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field6)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field7)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field8)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field9)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field10)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field11)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->field12)">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method1())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method2())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method3())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method4())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method5())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method6())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method7())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method8())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method9())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method10())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method11())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocationmanybindings.POJO->method12())">
+      <interceptor-ref name="perInstance"/>
+   </bind>
+   
+</aop>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+	<introduction class="org.jboss.test.aop.instanceofintroduced.POJO">
+		<interfaces>org.jboss.test.aop.instanceofintroduced.Interface</interfaces>
+	</introduction>
+	<introduction class="org.jboss.test.aop.instanceofintroduced.POJO">
+		<interfaces>org.jboss.test.aop.instanceofintroduced.ImplementsInterface</interfaces>
+	</introduction>
+	<introduction class="org.jboss.test.aop.instanceofintroduced.POJO">
+      <mixin>
+			<interfaces>org.jboss.test.aop.instanceofintroduced.MixinInterface</interfaces>
+         <class>org.jboss.test.aop.instanceofintroduced.MixinClass</class>
+      </mixin>
+	</introduction>
+	<typedef name="introduced" expr="class($instanceof{org.jboss.test.aop.instanceofintroduced.Interface}) AND class($instanceof{org.jboss.test.aop.instanceofintroduced.MixinInterface})"/>
+	<interceptor name="icptr" class="org.jboss.test.aop.instanceofintroduced.SimpleInterceptor"/>
+	<bind pointcut="execution($typedef{introduced}->new())">
+	   <interceptor-ref name="icptr"/>
+	</bind>
+	<bind pointcut="construction($typedef{introduced}->new(int))">
+	   <interceptor-ref name="icptr"/>
+	</bind>
+	<bind pointcut="execution(* $typedef{introduced}->method())">
+	   <interceptor-ref name="icptr"/>
+	</bind>
+	<bind pointcut="field(int $typedef{introduced}->i)">
+	   <interceptor-ref name="icptr"/>
+	</bind>
+	<bind pointcut="field(int $typedef{introduced}->i)">
+	   <interceptor-ref name="icptr"/>
+	</bind>
+	<bind pointcut="execution(* $instanceof{org.jboss.test.aop.instanceofintroduced.ImplementsInterface}->$implements{org.jboss.test.aop.instanceofintroduced.ImplementsInterface}(..))">
+	   <interceptor class="org.jboss.test.aop.instanceofintroduced.ReturningInterceptor"/>
+	</bind>
+</aop>

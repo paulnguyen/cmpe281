@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC
+   "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+   "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+   <description>AOP in JBoss example</description>
+
+   <servlet>
+      <servlet-name>BasicExampleServlet</servlet-name>
+      <servlet-class>org.jboss.injbossaop.web.BasicExampleServlet</servlet-class>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>BasicExampleServlet</servlet-name>
+      <url-pattern>/srv/*</url-pattern>
+   </servlet-mapping>
+
+   <welcome-file-list>
+       <welcome-file>index.jsp</welcome-file>
+   </welcome-file-list>
+   
+</web-app>

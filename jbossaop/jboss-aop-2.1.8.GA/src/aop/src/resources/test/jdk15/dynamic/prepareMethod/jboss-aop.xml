@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <prepare expr="execution(public void *POJO->someMethod(..))"/>
+
+</aop>

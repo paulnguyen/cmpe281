@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <prepare expr="all(org.jboss.test.aop.reflection.ReflectionAopPOJO)"/>
+   <prepare expr="all(org.jboss.test.aop.reflection.ReflectionAopRootPOJO)"/>
+
+   <introduction class="org.jboss.test.aop.reflection.ReflectionAopPOJO">
+      <interfaces>
+         org.jboss.test.aop.reflection.Introduction
+      </interfaces>
+   </introduction>
+   <aspect class="org.jboss.test.aop.reflection.ReflectionAspectTester" scope="PER_VM"/>
+   <interceptor class="org.jboss.test.aop.reflection.SimplePerVmInterceptor" scope="PER_VM"/>
+   <interceptor class="org.jboss.test.aop.reflection.CallerInterceptor" scope="PER_VM"/>
+
+   <bind pointcut="execution(org.jboss.test.aop.reflection.ReflectionAopPOJO->new())">
+      <interceptor-ref name="org.jboss.test.aop.reflection.SimplePerVmInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.reflection.ReflectionAopPOJO->new(int))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.SimplePerVmInterceptor"/>
+   </bind>
+
+   <bind pointcut="field(int org.jboss.test.aop.reflection.ReflectionAopPOJO->j)">
+      <interceptor-ref name="org.jboss.test.aop.reflection.SimplePerVmInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.reflection.ReflectionAopPOJO->method(int))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.SimplePerVmInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.reflection.ReflectionAopPOJO->new(boolean))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(void org.jboss.test.aop.reflection.ReflectionAopPOJO->method(boolean))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.CallerInterceptor"/>
+   </bind>
+
+   <!-- caller and execution -->
+   <bind pointcut="call(org.jboss.test.aop.reflection.ReflectionAopPOJO->new(long))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.reflection.ReflectionAopPOJO->new(long))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.SimplePerVmInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(void org.jboss.test.aop.reflection.ReflectionAopPOJO->otherMethod(long))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.reflection.ReflectionAopPOJO->otherMethod(long))">
+      <interceptor-ref name="org.jboss.test.aop.reflection.SimplePerVmInterceptor"/>
+   </bind>
+
+
+
+   <!-- The reflection aspect library -->
+   <bind pointcut="call(* java.lang.Class->newInstance())">
+      <advice name="interceptNewInstance" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.reflect.Constructor->newInstance(java.lang.Object[]))">
+      <advice name="interceptNewInstance" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.reflect.Method->invoke(java.lang.Object, java.lang.Object[]))">
+      <advice name="interceptMethodInvoke" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.reflect.Field->get*(..))">
+      <advice name="interceptFieldGet" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.reflect.Field->set*(..))">
+      <advice name="interceptFieldSet" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getInterfaces())">
+      <advice name="interceptGetInterfaces" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getDeclaredMethods())">
+      <advice name="interceptGetDeclaredMethods" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getDeclaredMethod(..))">
+      <advice name="interceptGetDeclaredMethod" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getMethods())">
+      <advice name="interceptGetMethods" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getMethod(..))">
+      <advice name="interceptGetMethod" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getDeclaredFields())">
+      <advice name="interceptGetDeclaredFields" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getDeclaredClasses())">
+      <advice name="interceptGetDeclaredClasses" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getClasses())">
+      <advice name="interceptGetClasses" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+
+   <bind pointcut="call(* java.lang.Class->getDeclaredField(..))">
+      <advice name="interceptGetDeclaredField" aspect="org.jboss.test.aop.reflection.ReflectionAspectTester"/>
+   </bind>
+</aop>

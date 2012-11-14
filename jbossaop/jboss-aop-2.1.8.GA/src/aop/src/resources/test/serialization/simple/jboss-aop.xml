@@ -1,0 +1,6 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.serialization.simple.SimpleInterceptor"/>
+   <bind pointcut="execution(* org.jboss.test.aop.serialization.simple.POJO->someMethod())">
+      <interceptor-ref name="org.jboss.test.aop.serialization.simple.SimpleInterceptor"/>
+   </bind>
+</aop>

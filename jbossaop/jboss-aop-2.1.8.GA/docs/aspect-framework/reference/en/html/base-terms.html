@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>1.1. Overview</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="terms.html" title="Chapter 1. Terms"/>
+      <link rel="prev" href="terms.html" title="Chapter 1. Terms"/>
+      <link rel="next" href="implementing.html" title="Chapter 2. Implementing Aspects"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="terms.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="implementing.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="base-terms"/>1.1. Overview</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+            The section defines some basic terms that will be used throughout this guide.
+      </p>
+         <p>
+
+         
+         </p>
+         <div class="variablelist">
+            <dl>
+               <dt>
+                  <span class="term">Joinpoint</span>
+               </dt>
+               <dd>
+                  <p>
+                     A joinpoint is any point in your java program.  The call of a method.  The execution of a constructor
+                     the access of a field.  All these are joinpoints.  You could also think of a joinpoint as a particular
+                     Java event.  Where an event is a method call, constructor call, field access etc...
+                  </p>
+               </dd>
+               <dt>
+                  <span class="term">Invocation</span>
+               </dt>
+               <dd>
+                  <p>
+                     An Invocation is a JBoss AOP class that encapsulates what a joinpiont is at runtime.  It could
+                     contain information like which method is being called, the arguments of the method, etc...
+                  </p>
+               </dd>
+               <dt>
+                  <span class="term">Advice</span>
+               </dt>
+               <dd>
+                  <p>
+                     An advice is a method that is called when a particular joinpoint is executed, i.e., the behavior
+                     that is triggered when a method is called.  It could also be thought of as the code that does the
+                     interception.  Another analogy is that an advice is an "event handler".
+                  </p>
+               </dd>
+               <dt>
+                  <span class="term">Pointcut</span>
+               </dt>
+               <dd>
+                  <p>
+                     Pointcuts are AOP's expression language.  Just as a regular expression matches strings, a pointcut
+                     expression matches a particular joinpoint.
+                  </p>
+               </dd>
+               <dt>
+                  <span class="term">Introductions</span>
+               </dt>
+               <dd>
+                  <p>
+                     An introduction modifies the type and structure of a Java class.  It can be used to force
+                     an existing class to implement an interface or to add an annotation to anything.
+                  </p>
+               </dd>
+               <dt>
+                  <span class="term">Aspect</span>
+               </dt>
+               <dd>
+                  <p>
+                     An Aspect is a plain Java class that encapsulates any number of advices, pointcut definitions,
+                     mixins, or any other JBoss AOP construct.
+                  </p>
+               </dd>
+               <dt>
+                  <span class="term">Interceptor</span>
+               </dt>
+               <dd>
+                  <p>
+                     An interceptor is an Aspect with only one advice named "invoke".  It is a specific interface
+                     that you can implement if you want your code to be checked by forcing your class to implement an interface.
+                     It also will be portable and can be reused in other JBoss environments like EJBs and JMX MBeans.
+                  </p>
+               </dd>
+            </dl>
+         </div>
+         <p>
+      
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="terms.html">
+               <strong>Prev</strong>Chapter 1. Terms</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="implementing.html">
+               <strong>Next</strong>Chapter 2. Implementing Aspects</a>
+         </li>
+      </ul>
+   </body>
+</html>

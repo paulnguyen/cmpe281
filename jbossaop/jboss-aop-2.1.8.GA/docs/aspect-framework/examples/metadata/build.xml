@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="usage" name="JBoss/AOP">
+
+   <import file="../examples-build.xml"/>
+
+   <target name="aopc" depends="_compile">
+      <taskdef name="aopc" classname="org.jboss.aop.ant.AopC" classpathref="jboss.aop.classpath"/>
+
+      <aopc compilerclasspathref="classpath" classpathref="classpath" verbose="true">
+         <classpath path="."/>
+         <src path="."/>
+         <aoppath>
+            <pathelement path="jboss-aop.xml"/>
+            <pathelement path="metadata-aop.xml"/>
+         </aoppath>
+      </aopc>
+
+   </target>
+
+   <target name="run.aopc" depends="aopc">
+      <java fork="yes" failOnError="true" className="Driver">
+         <sysproperty key="jboss.aop.path" value="metadata-aop.xml${path.separator}jboss-aop.xml"/>
+         <classpath refid="classpath"/>
+      </java>
+   </target>
+
+   <target name="run.loadtime" depends="_compile">
+      <java fork="yes" failOnError="true" className="Driver">
+         <sysproperty key="jboss.aop.path" value="metadata-aop.xml${path.separator}jboss-aop.xml"/>
+         <classpath refid="classpath"/>
+         <jvmarg value="-javaagent:${aopjar}"/>
+      </java>
+   </target>
+
+</project>

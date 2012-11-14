@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.3.4. JBoss 5 and JRockit</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="jboss.html" title="10.3. JBoss Application Server"/>
+      <link rel="prev" href="running-as-sun-jdk.html" title="10.3.3. Loadtime transformation in JBoss AS Using Sun JDK"/>
+      <link rel="next" href="ch10s03s05.html" title="10.3.5. Improving Loadtime Performance in a JBoss AS Environment"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="running-as-sun-jdk.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s05.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="d0e4699"/>10.3.4. JBoss 5 and JRockit</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+         JRockit also supports the -javaagent switch mentioned in <a href="running-as-sun-jdk.html" title="10.3.3. Loadtime transformation in JBoss AS Using Sun JDK">Section 10.3.3, “Loadtime transformation in JBoss AS Using Sun JDK”</a>. If you wish to 
+         use that, then the steps in <a href="running-as-sun-jdk.html" title="10.3.3. Loadtime transformation in JBoss AS Using Sun JDK">Section 10.3.3, “Loadtime transformation in JBoss AS Using Sun JDK”</a> are sufficient. However, JRockit also comes
+         with its own framework for intercepting when classes are loaded, which might be faster than the -javaagent switch.
+         If you wish to use this, there are three steps you must take.
+      </p>
+         <p>
+            If you want to do load-time
+            transformations with JBoss 5 and JRockit using the special JRockit hooks, these are the steps you must take.
+         </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+               Set the <code class="literal">enableLoadtimeWeaving</code> attribute/property to true.  
+               By default, JBoss application server will not do load-time bytecode manipulation
+               of AOP files unless this is set. If <code class="literal">suppressTransformationErrors</code>
+               is <code class="literal">true</code> failed bytecode transformation will only give an error warning. This flag is
+               needed because sometimes a JBoss deployment will not have all the classes a class references.
+              </li>
+               <li>
+               Copy the <code class="literal">jrockit-pluggable-instrumentor.jar</code> from the <code class="literal">lib/</code> 
+               directory of your JBoss AOP distribution to the <code class="literal">bin/</code> directory of your 
+               JBoss AOP application server installation.  
+             </li>
+               <li>
+               Next edit <code class="literal">run.sh</code> or 
+               <code class="literal">run.bat</code> (depending on what OS you're on) and add the following to the JAVA_OPTS 
+                and JBOSS_CLASSPATH environment variables:
+                  <pre class="programlisting">
+# Setup JBoss sepecific properties
+JAVA_OPTS="$JAVA_OPTS -Dprogram.name=$PROGNAME \
+   -Xmanagement:class=org.jboss.aop.hook.JRockitPluggableClassPreProcessor"
+JBOSS_CLASSPATH="$JBOSS_CLASSPATH:jrockit-pluggable-instrumentor.jar"
+                  </pre>
+               </li>
+               <li>
+               Set the class of the AspectManager Service to be <code class="literal">org.jboss.aop.deployers.AspectManagerJRockit</code>
+               on JBoss 5, or <code class="literal">org.jboss.aop.deployment.AspectManagerService</code> as these are what work with 
+               special hooks in JRockit.
+              </li>
+            </ul>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="running-as-sun-jdk.html">
+               <strong>Prev</strong>10.3.3. Loadtime transformation in JBoss AS Using...</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s05.html">
+               <strong>Next</strong>10.3.5. Improving Loadtime Performance in a JBoss...</a>
+         </li>
+      </ul>
+   </body>
+</html>

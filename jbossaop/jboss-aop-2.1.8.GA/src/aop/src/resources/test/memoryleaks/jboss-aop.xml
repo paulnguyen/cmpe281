@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <aspect class="org.jboss.test.aop.memoryleaks.TestAspect" scope="PER_INSTANCE"/>
+   <interceptor class="org.jboss.test.aop.memoryleaks.TestInterceptor" scope="PER_INSTANCE"/>
+
+	<bind pointcut="all(org.jboss.test.aop.memoryleaks.POJO)">
+      <interceptor-ref name="org.jboss.test.aop.memoryleaks.TestInterceptor"/>
+	   <advice aspect="org.jboss.test.aop.memoryleaks.TestAspect" name="invoke"/>
+	</bind>
+</aop>

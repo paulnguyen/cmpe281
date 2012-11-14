@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Chapter 3. Joinpoint and Pointcut Expressions</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="prev" href="impl-dyn-cflow.html" title="2.8. Dynamic CFlow"/>
+      <link rel="next" href="pointcuts-wilcards.html" title="3.1. Wildcards"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-dyn-cflow.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-wilcards.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="chapter" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="pointcuts"/>Chapter 3. Joinpoint and Pointcut Expressions</h2>
+               </div>
+            </div>
+         </div>
+         <div class="toc">
+            <dl>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-wilcards.html">3.1. Wildcards</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-types.html">3.2. Type Patterns</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-method.html">3.3. Method Patterns</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-con.html">3.4. Constructor Patterns</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-field.html">3.5. Field Patterns</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-pointcut.html">3.6. Pointcuts</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-composition.html">3.7. Pointcut Composition</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-ref.html">3.8. Pointcut References</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-typedef.html">3.9. Typedef Expressions</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="pointcuts-joinpoints.html">3.10. Joinpoints</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect2">
+                           <a href="pointcuts-beans.html">3.10.1. Joinpoint Beans</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="pointcuts-contextvalues.html">3.10.2. Context Values</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+            </dl>
+         </div>
+         <p>
+      The pointcut language is a tool that allows joinpoint matching. A pointcut expression determines in
+      which joinpoint executions of the base system an advice should be invoked.
+   </p>
+         <p>
+      In this Chapter, we will explore the syntax of pointcut expressions.
+   </p>
+         <p>
+      We will also see the API used to represent a matched joinpoint during advice execution,
+      and how this relates to pointcut expression constructs.
+   </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-dyn-cflow.html">
+               <strong>Prev</strong>2.8. Dynamic CFlow</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-wilcards.html">
+               <strong>Next</strong>3.1. Wildcards</a>
+         </li>
+      </ul>
+   </body>
+</html>

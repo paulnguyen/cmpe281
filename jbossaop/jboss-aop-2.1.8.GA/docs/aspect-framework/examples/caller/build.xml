@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="usage" name="JBoss/AOP">
+   <import file="../examples-build.xml"/>
+
+   <target name="run.aopc" depends="_run.aopc"/>
+
+   <target name="run.loadtime" depends="_run.loadtime"/>
+</project>
+

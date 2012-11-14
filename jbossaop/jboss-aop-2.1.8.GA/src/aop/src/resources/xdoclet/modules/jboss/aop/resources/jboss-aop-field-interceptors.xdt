@@ -1,0 +1,52 @@
+<XDtComment:comment>
+  Generates interceptor lists for pointcuts, etc, declared at field level
+</XDtComment:comment>
+
+    <interceptors>
+        <XDtField:forAllFieldTags tagName="<XDtJBossValue:value/>">
+
+          <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="class">
+        
+      <interceptor class="<XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="class"/>"
+            <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="singleton">
+                   singleton="<XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="singleton"/>"
+            </XDtField:ifHasFieldTag>
+                   >
+              <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="xml">
+        <XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="xml"/>
+              </XDtField:ifHasFieldTag>
+              <XDtJBossField:ifDoesntHaveFieldTag tagName="<XDtJBossValue:value/>" paramName="xml">
+                <XDtJBossAttribute:forAllFieldTagAttributes ignore="class,singleton">
+        <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                </XDtJBossAttribute:forAllFieldTagAttributes>
+              </XDtJBossField:ifDoesntHaveFieldTag>
+      </interceptor>
+          </XDtField:ifHasFieldTag>
+          <XDtJBossField:ifDoesntHaveFieldTag tagName="<XDtJBossValue:value/>" paramName="class">
+            <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="factory">
+      <interceptor factory="<XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="factory"/>">
+                <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="xml">
+        <XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="xml"/>
+                </XDtField:ifHasFieldTag>
+                <XDtJBossField:ifDoesntHaveFieldTag tagName="<XDtJBossValue:value/>" paramName="xml">
+                  <XDtJBossAttribute:forAllFieldTagAttributes ignore="factory">
+        <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllFieldTagAttributes>
+                </XDtJBossField:ifDoesntHaveFieldTag>
+      </interceptor>
+            </XDtField:ifHasFieldTag>
+            <XDtJBossField:ifDoesntHaveFieldTag tagName="<XDtJBossValue:value/>" paramName="factory">
+              <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="interceptor-ref">
+      <interceptor-ref name="<XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="interceptor-ref"/>"/>
+              </XDtField:ifHasFieldTag>
+              <XDtJBossField:ifDoesntHaveFieldTag tagName="<XDtJBossValue:value/>" paramName="interceptor-ref">
+                <XDtField:ifHasFieldTag tagName="<XDtJBossValue:value/>" paramName="stack-ref">
+      <stack-ref name="<XDtField:fieldTagValue tagName="<XDtJBossValue:value/>" paramName="stack-ref"/>"/>
+                </XDtField:ifHasFieldTag>
+              </XDtJBossField:ifDoesntHaveFieldTag>
+            </XDtJBossField:ifDoesntHaveFieldTag>
+          </XDtJBossField:ifDoesntHaveFieldTag>
+
+        </XDtField:forAllFieldTags>
+    </interceptors>
+

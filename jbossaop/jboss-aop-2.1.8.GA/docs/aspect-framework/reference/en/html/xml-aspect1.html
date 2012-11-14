@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>5.4.1. Basic Definition</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="xml-aspect.html" title="5.4. aspect"/>
+      <link rel="prev" href="xml-aspect.html" title="5.4. aspect"/>
+      <link rel="next" href="xml-aspect2.html" title="5.4.2. Scope"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="xml-aspect.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="xml-aspect2.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="xml-aspect1"/>5.4.1. Basic Definition</h3>
+               </div>
+            </div>
+         </div>
+         <pre class="programlisting">&lt;aspect class="org.jboss.MyAspect"/&gt;</pre>
+         <p>
+            In a basic declaration you specify the fully qualified class name of the aspect.  If you want to reference
+            the aspect at runtime through the AspectManager, the name of the aspect is the same name as the class name.
+            The default Scope of this aspect is
+            <code class="literal">PER_VM</code>.  Another important note is that aspect instances are created on demand and NOT
+            at deployment time.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="xml-aspect.html">
+               <strong>Prev</strong>5.4. aspect</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="xml-aspect2.html">
+               <strong>Next</strong>5.4.2. Scope</a>
+         </li>
+      </ul>
+   </body>
+</html>

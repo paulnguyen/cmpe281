@@ -1,0 +1,1119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xdoclet>
+	<namespace>
+		<name>jbossaop</name>
+		<usage-description>Tags for creation of jboss-aop.xml deployment descriptors.</usage-description>
+		<tags>
+
+			<tag>
+				<name>jboss-aop.advisable</name>
+        <level>class</level>
+				<usage-description>
+          Declares this class as an Advisable class.  Note: it is not necessary
+          to use this tag if there are any other class-level tags in the source
+          file that will cause the class to be instrumented (for example,
+          pointcut definitions or class metadata). Generally, this tag would
+          only be used where you want to force the class to be instrumented
+          at load-time, so that you can attach interceptors or metadata
+          dynamically at run-time.
+        </usage-description>
+				<unique>true</unique>
+				<condition-description></condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>method-filter</name>
+					<usage-description>
+            A string defining which methods are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED,
+            MEMBER, STATIC.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>field-filter</name>
+					<usage-description>
+            A string defining which fields are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED,
+            MEMBER, STATIC, TRANSIENT, NON_TRANSIENT.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>constructor-filter</name>
+					<usage-description>
+            A string defining which constructors are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+				<name>jboss-aop.interceptor</name>
+        <level>class</level>
+				<usage-description>
+          Defines this class as an Interceptor, or an InterceptorFactory.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description></condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>name</name>
+					<usage-description>
+            A name for the Interceptor that may be used in subsequent pointcut
+            declarations.  If this attribute is not supplied, the class name
+            will be used.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If this is an Interceptor class and the singleton attribute is
+            "true", JBoss will only allocate one instance of this Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Set to "true" if this class is an InterceptorFactory class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            Contains xml configuration data passed to the Interceptor class,
+            or the factory class, if that class implements the XmlLoadable
+            interface.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            Any unrecognised attributes of the interceptor tag will be converted
+            into corresponding xml child elements of the interceptor element.
+            This allows arbitrary XmlLoadable data to be specified in the
+            XDoclet tags.  For example, specifying logging="true" will result
+            in a &lt;logging&gt;true&lt;/logging&gt; element being inserted
+            within the generated interceptor element.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+				<name>jboss-aop.stack</name>
+        <level>class</level>
+				<usage-description>
+          Defines a stack of interceptors. Note that only one stack may be
+          defined per source file in this way because all stack tags are
+          combined to define a single stack, with the ordering of the tags in
+          the source file being used to determine the ordering of the declared
+          interceptors.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description></condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>class</name>
+					<usage-description>
+            The fully qualified name of the Interceptor class to include in
+            this stack.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If the class attribute is supplied and the singleton attribute is
+            "true", JBoss will only allocate one instance of the specified
+            Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Declares a factory class for creating Interceptors
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>interceptor-ref</name>
+					<usage-description>
+            Contains the name of an Interceptor defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>stack-ref</name>
+					<usage-description>
+            Contains the name of a stack defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, the
+            xml attribute may be used to provide configuration data passed
+            to the class, if that class implements the XmlLoadable interface.
+            Note, interceptor-refs and stack-refs will ignore the xml attribute.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, and the
+            xml attribute is not used, any unrecognised attributes of the stack
+            tag will be converted into corresponding xml child elements of the
+            current Interceptor or factory element.  Note, interceptor-refs and
+            stack-refs will ignore arbitrary attribute tags.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.interceptor-pointcut</name>
+				<usage-description>
+          Defines an Interceptor Pointcut on this class. Only one Interceptor
+          Pointcut may be defined per source file in this way because all
+          interceptor-pointcut tags are combined to define a single pointcut,
+          with the ordering of the tags in the source file being used to
+          determine the ordering of the declared interceptors, stacks, etc.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description>
+        </condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>method-filter</name>
+					<usage-description>
+            A string defining which methods are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED,
+            MEMBER, STATIC.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>field-filter</name>
+					<usage-description>
+            A string defining which fields are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED,
+            MEMBER, STATIC, TRANSIENT, NON_TRANSIENT.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>constructor-filter</name>
+					<usage-description>
+            A string defining which constructors are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>class</name>
+					<usage-description>
+            The fully qualified name of the Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If the class attribute is supplied and the singleton attribute is
+            "true", JBoss will only allocate one instance of the specified
+            Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Declares a factory class for creating Interceptors.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>interceptor-ref</name>
+					<usage-description>
+            Contains the name of an Interceptor defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>stack-ref</name>
+					<usage-description>
+            Contains the name of a stack defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, the
+            xml attribute may be used to provide configuration data passed
+            to the class, if that class implements the XmlLoadable interface.
+            Note, interceptor-refs and stack-refs will ignore the xml attribute.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, and the
+            xml attribute is not used, any unrecognised attributes of the
+            interceptor-pointcut tag will be converted into corresponding xml
+            child elements of the current Interceptor or factory element.
+            Note, interceptor-refs and stack-refs will ignore arbitrary
+            attribute tags.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+        <level>method</level>
+        <level>field</level>
+				<name>jboss-aop.pointcut</name>
+				<usage-description>
+          Defines a Pointcut.  This tag may be used at class level, or for
+          individual methods and fields, the matching pointcut declaration is
+          generated in the jboss-aop.xml file.  For example, if used at class
+          level a &lt;class-pointcut&gt; element is generated, and if used
+          on an individual method, a &lt;method-pointcut&gt; element is
+          generated.  Usage of this tag is very much the same as for the
+          interceptor-pointcut tag, with the exception that the method-filter,
+          field-filter and constructor-filter attributes are only valid if
+          used at class level (they will be silently ignored if used for
+          methods or fields).  Also, as for the interceptor-pointcut tag,
+          only one pointcut may be defined per class, method or field in this
+          way because all pointcut tags are combined to define a single
+          pointcut, with the ordering of the tags in the source file being
+          used to determine the ordering of the declared interceptors, stacks,
+          etc.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description>
+        </condition-description>
+        <!--<version>CVS</version>-->
+				<parameter type="text">
+					<name>method-filter</name>
+					<usage-description>
+            A string defining which methods are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED,
+            MEMBER, STATIC.
+          </usage-description>
+					<mandatory>false</mandatory>
+          <condition-description>Class level tags only</condition-description>
+				</parameter>
+				<parameter type="text">
+					<name>field-filter</name>
+					<usage-description>
+            A string defining which fields are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED,
+            MEMBER, STATIC, TRANSIENT, NON_TRANSIENT.
+          </usage-description>
+					<mandatory>false</mandatory>
+          <condition-description>Class level tags only</condition-description>
+				</parameter>
+				<parameter type="text">
+					<name>constructor-filter</name>
+					<usage-description>
+            A string defining which constructors are allowed to be instrumented.  May be
+            ALL or NONE or a combination of the following (combined using a logical
+            OR character '|') : PUBLIC, PRIVATE, PROTECTED, PACKAGE_PROTECTED.
+          </usage-description>
+					<mandatory>false</mandatory>
+          <condition-description>Class level tags only</condition-description>
+				</parameter>
+				<parameter type="text">
+					<name>class</name>
+					<usage-description>
+            The fully qualified name of the Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If the class attribute is supplied and the singleton attribute is
+            "true", JBoss will only allocate one instance of the specified
+            Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Declares a factory class for creating Interceptors.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>interceptor-ref</name>
+					<usage-description>
+            Contains the name of an Interceptor defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>stack-ref</name>
+					<usage-description>
+            Contains the name of a stack defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, the
+            xml attribute may be used to provide configuration data passed
+            to the class, if that class implements the XmlLoadable interface.
+            Note, interceptor-refs and stack-refs will ignore the xml attribute.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, and the
+            xml attribute is not used, any unrecognised attributes of the
+            interceptor-pointcut tag will be converted into corresponding xml
+            child elements of the current Interceptor or factory element.
+            Note, interceptor-refs and stack-refs will ignore arbitrary
+            attribute tags.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.constructor-pointcut</name>
+				<usage-description>
+          Defines a Constructor Pointcut. Usage of this tag is very much the
+          same as for the interceptor-pointcut tag. Note that only one
+          constructor pointcut may be defined per class this way because all
+          constructor-pointcut tags are combined to define a single
+          pointcut, with the ordering of the tags in the source file being
+          used to determine the ordering of the declared interceptors, stacks,
+          etc.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description>
+        </condition-description>
+        <!--<version>CVS</version>-->
+				<parameter type="text">
+					<name>class</name>
+					<usage-description>
+            The fully qualified name of the Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If the class attribute is supplied and the singleton attribute is
+            "true", JBoss will only allocate one instance of the specified
+            Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Declares a factory class for creating Interceptors.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>interceptor-ref</name>
+					<usage-description>
+            Contains the name of an Interceptor defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>stack-ref</name>
+					<usage-description>
+            Contains the name of a stack defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, the
+            xml attribute may be used to provide configuration data passed
+            to the class, if that class implements the XmlLoadable interface.
+            Note, interceptor-refs and stack-refs will ignore the xml attribute.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, and the
+            xml attribute is not used, any unrecognised attributes of the
+            interceptor-pointcut tag will be converted into corresponding xml
+            child elements of the current Interceptor or factory element.
+            Note, interceptor-refs and stack-refs will ignore arbitrary
+            attribute tags.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.method-pointcut</name>
+				<usage-description>
+          Defines a Method Pointcut at class level, using a regular expression
+          pattern to match method names within the class. Usage of this tag is
+          very much the same as for the interceptor-pointcut tag. Note that
+          only one method pointcut may be defined per class this way because all
+          method-pointcut tags are combined to define a single pointcut, with
+          the ordering of the tags in the source file being used to determine
+          the ordering of the declared interceptors, stacks, etc.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description>
+        </condition-description>
+        <!--<version>CVS</version>-->
+				<parameter type="text">
+					<name>class</name>
+					<usage-description>
+            The fully qualified name of the Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If the class attribute is supplied and the singleton attribute is
+            "true", JBoss will only allocate one instance of the specified
+            Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Declares a factory class for creating Interceptors.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>interceptor-ref</name>
+					<usage-description>
+            Contains the name of an Interceptor defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>stack-ref</name>
+					<usage-description>
+            Contains the name of a stack defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, the
+            xml attribute may be used to provide configuration data passed
+            to the class, if that class implements the XmlLoadable interface.
+            Note, interceptor-refs and stack-refs will ignore the xml attribute.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, and the
+            xml attribute is not used, any unrecognised attributes of the
+            interceptor-pointcut tag will be converted into corresponding xml
+            child elements of the current Interceptor or factory element.
+            Note, interceptor-refs and stack-refs will ignore arbitrary
+            attribute tags.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.field-pointcut</name>
+				<usage-description>
+          Defines a Field Pointcut at class level, using a regular expression
+          pattern to match field names within the class. Usage of this tag is
+          very much the same as for the interceptor-pointcut tag. Note that
+          only one field pointcut may be defined per class this way because all
+          field-pointcut tags are combined to define a single pointcut, with
+          the ordering of the tags in the source file being used to determine
+          the ordering of the declared interceptors, stacks, etc.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description>
+        </condition-description>
+        <!--<version>CVS</version>-->
+				<parameter type="text">
+					<name>class</name>
+					<usage-description>
+            The fully qualified name of the Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>singleton</name>
+					<usage-description>
+            If the class attribute is supplied and the singleton attribute is
+            "true", JBoss will only allocate one instance of the specified
+            Interceptor class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>factory</name>
+					<usage-description>
+            Declares a factory class for creating Interceptors.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>interceptor-ref</name>
+					<usage-description>
+            Contains the name of an Interceptor defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>stack-ref</name>
+					<usage-description>
+            Contains the name of a stack defined previously.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, the
+            xml attribute may be used to provide configuration data passed
+            to the class, if that class implements the XmlLoadable interface.
+            Note, interceptor-refs and stack-refs will ignore the xml attribute.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            If an Interceptor class or a factory class is specified, and the
+            xml attribute is not used, any unrecognised attributes of the
+            interceptor-pointcut tag will be converted into corresponding xml
+            child elements of the current Interceptor or factory element.
+            Note, interceptor-refs and stack-refs will ignore arbitrary
+            attribute tags.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.introduction</name>
+				<usage-description>
+          Declares an introduction pointcut for this class.  Multiple
+          introductions may be specified in a single source file if, for
+          example, there are different mixin classes to handle different
+          interfaces.
+        </usage-description>
+				<unique>false</unique>
+				<condition-description></condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>interfaces</name>
+					<usage-description>
+            A comma separated list of interfaces to introduce to this class.
+            The interfaces must be handled by an Interceptor previously defined.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>mixin-class</name>
+					<usage-description>
+            The fully qualified name of a class that services the methods
+            of the specified interface. One instance of the mixin class will be
+            created for each instance of the instrumented class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>mixin-interfaces</name>
+					<usage-description>
+            A comma separated list of interfaces to introduce to this class
+            that will be handled by the specified mixin class.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>construction</name>
+					<usage-description>
+            Specifies the construction of the mixin class, as a string
+            containing the java source code used to create a new instance.
+            If this attribute is omitted, the default constructor of the
+            mixin class will be called.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+      <tag>
+        <level>class</level>
+				<name>jboss-aop.security</name>
+				<usage-description>
+          Declares this class as being instrumented by the JBoss AOP system
+          level security Interceptor stack.  Note this tag is required, even
+          if only empty, in order for the correct security metadata to be
+          generated.
+        </usage-description>
+				<unique>true</unique>
+				<condition-description></condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>domain</name>
+					<usage-description>
+            The security domain for this class.  This can alternatively be
+            specified by using a config parameter in the build file.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>run-as</name>
+					<usage-description>
+            The role name that will be used when running all methods in
+            this class.  This can alternatively be specified by using a config
+            parameter in the build file.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.method-permission</name>
+				<usage-description>
+          Defines the permissions for the specified methods within this class.
+          This tag is very similar to the ejb.permission tag.  This is really
+          just a convenience tag allowing you to specify permissions for
+          multiple methods using a regular expression to match names.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>pattern</name>
+					<usage-description>
+            A regular expression used to determine the method names to apply
+            this permission to.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="bool">
+					<name>unchecked</name>
+					<usage-description>
+            If true, all methods matching the pattern regular expression will
+            run as unchecked.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>role-name</name>
+					<usage-description>
+            A comma separated list of role names that are allowed to access
+            the methods matching the pattern regular expression.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="bool">
+					<name>exclude</name>
+					<usage-description>
+            If true, all methods matching the pattern regular expression will
+            be added to the list of excluded methods, ie those that may not
+            be executed by anyone.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.field-permission</name>
+				<usage-description>
+          Defines the permissions for the specified fields within this class.
+          This tag is very similar to the ejb.permission tag. This is really
+          just a convenience tag allowing you to specify permissions for
+          multiple fields using a regular expression to match names.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>pattern</name>
+					<usage-description>
+            A regular expression used to determine the field names to apply
+            this permission to.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="bool">
+					<name>unchecked</name>
+					<usage-description>
+            If true, all field matching the pattern regular expression will
+            be unchecked.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>role-name</name>
+					<usage-description>
+            A comma separated list of role names that are allowed to access
+            the fields matching the pattern regular expression.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="bool">
+					<name>exclude</name>
+					<usage-description>
+            If true, all fields matching the pattern regular expression will
+            be added to the list of excluded fields, ie those that may not
+            be accessed by anyone.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>method</level>
+        <level>field</level>
+        <level>constructor</level>
+				<name>jboss-aop.permission</name>
+				<usage-description>
+          Defines the permissions for this method, field or constructor.
+          This tag is very similar to the ejb.permission tag.
+        </usage-description>
+				<unique>true</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="bool">
+					<name>unchecked</name>
+					<usage-description>
+            If true, this field, method or constructor will be unchecked.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>role-name</name>
+					<usage-description>
+            A comma separated list of role names that are allowed to access
+            this field, method or constructor.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="bool">
+					<name>exclude</name>
+					<usage-description>
+            If true, this field, method or constructor will be added to the
+            list of excluded fields, methods and constructors, ie those that
+            may not be accessed by anyone.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>method</level>
+        <level>class</level>
+				<name>jboss-aop.transaction</name>
+				<usage-description>
+          If applied at the class level, this defines the transactional behaviour
+          for all methods within the class, except where overridden by
+          tags applied at the method level. This tag is very similar to the
+          ejb.transaction tag.
+        </usage-description>
+				<unique>true</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>type</name>
+					<usage-description>
+            The type of the transaction
+          </usage-description>
+					<mandatory>true</mandatory>
+          <option-sets>
+            <option-set>
+              <options>
+                <option>NotSupported</option>
+                <option>Supports</option>
+                <option>Required</option>
+                <option>RequiresNew</option>
+                <option>Mandatory</option>
+                <option>Never</option>
+              </options>
+            </option-set>
+          </option-sets>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.method-transaction</name>
+				<usage-description>
+          Defines the transactional behaviour for methods whose names match the
+          supplied regular expression.  This tag is very similar to the
+          ejb.transaction tag.  This is really just a convenience tag allowing
+          you to specify transactional behaviour for multiple methods using a
+          regular expression to match names.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>pattern</name>
+					<usage-description>
+            A regular expression used to determine the method names to apply
+            this permission to.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>type</name>
+					<usage-description>
+            The type of the transaction
+          </usage-description>
+					<mandatory>true</mandatory>
+          <option-sets>
+            <option-set>
+              <options>
+                <option>NotSupported</option>
+                <option>Supports</option>
+                <option>Required</option>
+                <option>RequiresNew</option>
+                <option>Mandatory</option>
+                <option>Never</option>
+              </options>
+            </option-set>
+          </option-sets>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.field-transaction</name>
+				<usage-description>
+          Defines the transactional behaviour for fields whose names match the
+          supplied regular expression.  This tag is very similar to the
+          ejb.transaction tag.  This is really just a convenience tag allowing
+          you to specify transactional behaviour for multiple fields using a
+          regular expression to match names.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>pattern</name>
+					<usage-description>
+            A regular expression used to determine the field names to apply
+            this permission to.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>type</name>
+					<usage-description>
+            The type of the transaction
+          </usage-description>
+					<mandatory>true</mandatory>
+          <option-sets>
+            <option-set>
+              <options>
+                <option>NotSupported</option>
+                <option>Supports</option>
+                <option>Required</option>
+                <option>RequiresNew</option>
+                <option>Mandatory</option>
+                <option>Never</option>
+              </options>
+            </option-set>
+          </option-sets>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+        <level>method</level>
+        <level>field</level>
+				<name>jboss-aop.metadata</name>
+				<usage-description>
+          Declares custom class metadata for this class. If applied at
+          class level, it declares the default class metadata, otherwise
+          it may be applied at method or field level.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>group</name>
+					<usage-description>
+            The group name for this class metadata.  It is possible to define
+            multiple class metadata groups (for use by different
+            ClassMetaDataLoaders) by using different group names.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            Contains arbitray xml for the class metadata. 
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            Any unrecognised attributes of the metadata tag will be converted
+            into corresponding xml child elements of the metadata element.
+            This allows arbitrary class meta data to be specified in the
+            XDoclet tags.  For example, specifying logging="true" will result
+            in a &lt;logging&gt;true&lt;/logging&gt; element being inserted
+            within the generated metadata element.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.method-metadata</name>
+				<usage-description>
+          Declares custom class metadata for the methods of this class whose
+          names match the supplied regular expression.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>pattern</name>
+					<usage-description>
+            A regular expression used to determine the method names for
+            this class metadata.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>group</name>
+					<usage-description>
+            The group name for this class metadata.  It is possible to define
+            multiple class metadata groups (for use by different
+            ClassMetaDataLoaders) by using different group names.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            Contains arbitray xml for the class metadata. 
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            Any unrecognised attributes of the metadata tag will be converted
+            into corresponding xml child elements of the metadata element.
+            This allows arbitrary class meta data to be specified in the
+            XDoclet tags.  For example, specifying logging="true" will result
+            in a &lt;logging&gt;true&lt;/logging&gt; element being inserted
+            within the generated metadata element.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.field-metadata</name>
+				<usage-description>
+          Declares custom class metadata for the fields of this class whose
+          names match the supplied regular expression.
+        </usage-description>
+				<unique>false</unique>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>pattern</name>
+					<usage-description>
+            A regular expression used to determine the field names for
+            this class metadata.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>group</name>
+					<usage-description>
+            The group name for this class metadata.  It is possible to define
+            multiple class metadata groups (for use by different
+            ClassMetaDataLoaders) by using different group names.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>xml</name>
+					<usage-description>
+            Contains arbitray xml for the class metadata. 
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+				<parameter type="text">
+					<name>*</name>
+					<usage-description>
+            Any unrecognised attributes of the metadata tag will be converted
+            into corresponding xml child elements of the metadata element.
+            This allows arbitrary class meta data to be specified in the
+            XDoclet tags.  For example, specifying logging="true" will result
+            in a &lt;logging&gt;true&lt;/logging&gt; element being inserted
+            within the generated metadata element.
+          </usage-description>
+					<mandatory>false</mandatory>
+				</parameter>
+			</tag>
+
+			<tag>
+        <level>class</level>
+				<name>jboss-aop.metadata-loader</name>
+				<usage-description>
+          Declares this class as a ClassMetaDataLoader.
+        </usage-description>
+				<unique>true</unique>
+				<condition-description></condition-description>
+        <!--<version>DR2</version>-->
+				<parameter type="text">
+					<name>group</name>
+					<usage-description>
+            The group that this ClassMetaDataLoader will load metadata for.
+          </usage-description>
+					<mandatory>true</mandatory>
+				</parameter>
+			</tag>
+
+    </tags>
+	</namespace>
+</xdoclet>

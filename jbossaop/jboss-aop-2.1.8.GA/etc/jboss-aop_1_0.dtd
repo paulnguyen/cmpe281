@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!ELEMENT aop (interceptor|introduction|metadata-loader|metadata|
+               stack|aspect|pointcut|pluggable-pointcut|bind|
+               prepare|cflow-stack|dynamic-cflow|annotation-introduction|annotation|typedef|domain)+>
+
+<!ELEMENT domain (interceptor|introduction|metadata-loader|metadata|
+               stack|aspect|pointcut|pluggable-pointcut|bind|
+               prepare|cflow-stack|dynamic-cflow|annotation|annotation-introduction|typedef)+>
+<!ATTLIST domain name CDATA #REQUIRED>
+<!ATTLIST domain extends CDATA #IMPLIED>
+<!ATTLIST domain inheritBindings CDATA #IMPLIED>
+<!ATTLIST domain parentFirst CDATA #IMPLIED>
+
+
+<!ELEMENT interceptor ANY>
+<!ATTLIST interceptor name CDATA #IMPLIED>
+<!ATTLIST interceptor class CDATA #IMPLIED>
+<!ATTLIST interceptor factory CDATA #IMPLIED>
+<!ATTLIST interceptor scope (PER_VM|PER_CLASS|PER_INSTANCE|PER_JOINPOINT|PER_CLASS_JOINPOINT) "PER_VM">
+
+<!ELEMENT aspect ANY>
+<!ATTLIST aspect name CDATA #IMPLIED>
+<!ATTLIST aspect class CDATA #IMPLIED>
+<!ATTLIST aspect factory CDATA #IMPLIED>
+<!ATTLIST aspect scope (PER_VM|PER_CLASS|PER_INSTANCE|PER_JOINPOINT|PER_CLASS_JOINPOINT) "PER_VM">
+
+<!ELEMENT introduction (mixin*,interfaces)>
+<!ATTLIST introduction class CDATA #IMPLIED>
+<!ATTLIST introduction expr CDATA #IMPLIED>
+<!ELEMENT mixin (interfaces, class, construction?)>
+<!ATTLIST mixin transient (true|false) "true">
+<!ELEMENT interfaces (#PCDATA)>
+<!ELEMENT class (#PCDATA)>
+<!ELEMENT construction (#PCDATA)>
+
+<!ELEMENT metadata-loader EMPTY>
+<!ATTLIST metadata-loader tag CDATA #REQUIRED>
+<!ATTLIST metadata-loader class CDATA #REQUIRED>
+
+<!ELEMENT metadata ANY>
+<!ATTLIST metadata tag CDATA #REQUIRED>
+<!ATTLIST metadata class CDATA #REQUIRED>
+
+<!ELEMENT stack (interceptor|interceptor-ref|stack-ref|advice)+>
+<!ATTLIST stack name CDATA #REQUIRED>
+
+<!ELEMENT interceptor-ref EMPTY>
+<!ATTLIST interceptor-ref name CDATA #REQUIRED>
+
+<!ELEMENT stack-ref EMPTY>
+<!ATTLIST stack-ref name CDATA #REQUIRED>
+
+<!ELEMENT advice EMPTY>
+<!ATTLIST advice name CDATA #REQUIRED>
+<!ATTLIST advice aspect CDATA #REQUIRED>
+
+<!ELEMENT pointcut EMPTY>
+<!ATTLIST pointcut name CDATA #REQUIRED>
+<!ATTLIST pointcut expr CDATA #REQUIRED>
+
+<!ELEMENT prepare EMPTY>
+<!ATTLIST prepare expr CDATA #REQUIRED>
+
+<!ELEMENT pluggable-pointcut ANY>
+<!ATTLIST pluggable-pointcut name CDATA #REQUIRED>
+<!ATTLIST pluggable-pointcut class CDATA #REQUIRED>
+
+<!ELEMENT bind (interceptor|interceptor-ref|stack-ref|advice)+>
+<!ATTLIST bind name CDATA #IMPLIED>
+<!ATTLIST bind pointcut CDATA #REQUIRED>
+<!ATTLIST bind cflow CDATA #IMPLIED>
+
+<!ELEMENT cflow-stack (called|not-called)+>
+<!ATTLIST cflow-stack name CDATA #REQUIRED>
+
+<!ELEMENT called EMPTY>
+<!ATTLIST called expr CDATA #REQUIRED>
+<!ELEMENT not-called EMPTY>
+<!ATTLIST not-called expr CDATA #REQUIRED>
+
+
+<!ELEMENT dynamic-cflow EMPTY>
+<!ATTLIST dynamic-cflow name CDATA #REQUIRED>
+<!ATTLIST dynamic-cflow class CDATA #REQUIRED>
+
+<!ELEMENT annotation-introduction (#PCDATA)>
+<!ATTLIST annotation-introduction expr CDATA #REQUIRED>
+<!ATTLIST annotation-introduction invisible (true|false) #REQUIRED>
+
+<!ELEMENT annotation (#PCDATA)>
+<!ATTLIST annotation expr CDATA #REQUIRED>
+
+<!ELEMENT typedef EMPTY>
+<!ATTLIST typedef name CDATA #REQUIRED>
+<!ATTLIST typedef expr CDATA #REQUIRED>
+
+
+
+
+
+
+
+
+
+
+
+

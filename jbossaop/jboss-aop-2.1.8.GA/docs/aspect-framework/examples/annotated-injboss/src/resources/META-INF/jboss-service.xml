@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+   <mbean code="org.jboss.injbossaop.mbean.Standard" name="jboss.aop.example:name=StandardMBean"/>
+</server>

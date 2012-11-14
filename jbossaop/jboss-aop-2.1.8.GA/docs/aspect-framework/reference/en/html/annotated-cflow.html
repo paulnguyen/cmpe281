@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.9. @CFlowDef</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-typedef.html" title="6.8. @TypeDef"/>
+      <link rel="next" href="annotated-dynamiccflow.html" title="6.10. @DynamicCFlowDef"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-typedef.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-dynamiccflow.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-cflow"/>6.9. @CFlowDef</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         To create a CFlow stack, you annotate a field with
+         <code class="literal">@CFlowDef</code>
+         in a class anotated with
+         <code class="literal">@Aspect</code> or
+         <code class="literal">@InterceptorDef</code>.
+         The declaration of
+         <code class="literal">org.jboss.aop.CFlowStackDef</code> is:
+         </p>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.FIELD}) @Retention(RetentionPolicy.RUNTIME)
+         public @interface CFlowStackDef
+   {
+      CFlowDef[] cflows();
+   }
+         </pre>
+         <p>
+         In turn the declaration of
+         <code class="literal">org.jboss.aop.CFlowDef</code> is:
+         </p>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   public @interface CFlowDef {
+       boolean called();
+       String expr();
+   }
+         </pre>
+         <p>
+         The parameters of
+         <code class="literal">@CFlowDef</code> are:
+         </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <code class="literal">called</code>, whether the corresponding expr should appear
+               in the stack trace or not.
+            </li>
+               <li>
+                  <code class="literal">expr</code>, a string matching stack a trace element
+            </li>
+            </ul>
+         </div>
+         <p>
+         The name of the CFlowStackDef used for reference and internally is:
+         </p>
+         <pre class="programlisting">&lt;name of @Aspect/@InterceptorDef annotated class&gt;.&lt;name of @CFlowStackDef annotated field&gt;</pre>
+         <p>
+      
+         </p>
+         <p>
+         CFlowStackDef is used like the following example:
+         </p>
+         <pre class="programlisting">
+   package com.mypackage;
+
+   import org.jboss.aop.CFlowStackDef;
+   import org.jboss.aop.pointcut.CFlowStack;
+
+   @Aspect (scope=org.jboss.aop.advice.Scope.PER_VM)
+   public class CFlowAspect
+   {
+
+      @CFlowStackDef (cflows={@CFlowDef(expr= "void com.blah.POJO-&gt;cflowMethod1()", \
+            called=false),  @CFlowDef(expr = "void com.blah.POJO-&gt;cflowMethod2()", \
+            called=true)})
+      public static CFlowStack cfNot1And2Stack;
+
+      @Bind (pointcut="execution(void com.blah.POJO*-&gt;privMethod())", \
+            cflow="com.mypackage.CFlowAspect.cfNot1And2Stack")
+      public Object cflowAdvice(Invocation invocation) throws Throwable
+      {
+         return invocation.invokeNext();
+      }
+   }
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         The above means the same as this XML:
+         </p>
+         <pre class="programlisting">
+            &lt;aop&gt;
+            &lt;cflow-stack name="com.mypackage.CFlowAspect.cfNot1And2Stack"&gt;
+            &lt;called expr="void com.blah.POJO-&gt;cflowMethod1()"/&gt;
+            &lt;not-called expr="void com.blah.POJO-&gt;cflowMethod2()"/&gt;
+            &lt;/cflow-stack&gt;
+            &lt;/aop&gt;
+         </pre>
+         <p>
+      
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-typedef.html">
+               <strong>Prev</strong>6.8. @TypeDef</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-dynamiccflow.html">
+               <strong>Next</strong>6.10. @DynamicCFlowDef</a>
+         </li>
+      </ul>
+   </body>
+</html>

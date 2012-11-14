@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <aspect class="org.jboss.test.aop.inforesolve.ResolveAnnotationAspect" scope="PER_VM"/>
+
+   <bind pointcut="all(org.jboss.test.aop.inforesolve.POJO)">
+      <before name="before" aspect="org.jboss.test.aop.inforesolve.ResolveAnnotationAspect"/>
+   </bind>
+</aop>

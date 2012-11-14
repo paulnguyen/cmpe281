@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <cflow-stack name="ShowOnlyWhen123Before">
+      <called expr="void POJO->method1()"/>
+      <called expr="void POJO->method2()"/>
+      <called expr="void POJO->method3()"/>
+   </cflow-stack>
+
+   <cflow-stack name="ShowOnlyWhenConstructorAnd3">
+      <called expr="POJO->new(int)"/>
+      <called expr="void POJO->method3()"/>
+   </cflow-stack>
+
+   <cflow-stack name="showSecondRecursiveCall">
+      <called expr="void POJO->recursive(int)"/>
+      <called expr="void POJO->recursive(int)"/>
+      <not-called expr="void POJO->recursive(int)"/>
+   </cflow-stack>
+
+   <bind pointcut="execution(void POJO->method4())" cflow="(ShowOnlyWhen123Before OR ShowOnlyWhenConstructorAnd3)">
+      <interceptor class="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void POJO->recursive(int))" cflow="showSecondRecursiveCall">
+      <interceptor class="SimpleInterceptor"/>
+   </bind>
+
+</aop>

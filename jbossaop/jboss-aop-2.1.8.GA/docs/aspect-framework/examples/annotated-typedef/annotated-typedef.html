@@ -1,0 +1,96 @@
+<html>
+<body>
+<p>
+<h2> Annotated Typedefs</h2>
+
+</p><p>
+The theory about how typedefs work is the same as when defining them via <a href="typedef/typedef.html">XML</a>. This example shows you how to define them using annotations
+</p><p>
+Let's take a look at SimpleInterceptor.java
+</p><p>
+<pre>
+import org.jboss.aop.TypeDef;
+import org.jboss.aop.pointcut.Typedef;
+
+@InterceptorDef
+@Bind (pointcut = "all($typedef{SimpleInterceptor.myTypedef})")
+public class SimpleInterceptor implements Interceptor
+{
+   @TypeDef ("(class(POJO) AND has(* *-&gt;method(..))) OR class($instanceof{ExecutionTypedefInterface})")
+   public static Typedef myTypedef;
+
+   public String getName() { return "SimpleInterceptor"; }
+
+   public Object invoke(Invocation invocation) throws Throwable
+   {
+      ...
+   }
+}
+</pre>
+</p><p>
+<tt>SimpleInterceptor</tt> contains a field annotated with <tt>@TypeDef</tt>, which specifies a type expression for all classes to be used for the typedef. As for the <a href="../annotated-composition/annotated-composition.html">Annotated composition</a> example, the fully qualified name of the field itself is used as the name when we want to reference the typedef. We have used a field type of <tt>Typedef</tt> for clarity, but the actual type of the field is irrelevant.
+</p><p>
+<tt>SimpleInterceptor</tt> and <tt>SimpleInterceptor2</tt> both reference the typedef in their <tt>@Bind</tt> annotation:
+<pre>
+   @Bind (pointcut = "all($typedef{SimpleInterceptor.myTypedef})")
+</pre>
+</p><p>
+</p><p>
+<h4>Run the example</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- new POJO(); ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] --- pojo.field1 = 10; ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] --- get pojo.field1;---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] --- pojo.method(); ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+
+     [java] =======================
+
+     [java] --- new POJO2(); ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] --- pojo2.field1 = 10; ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] --- get pojo2.field1; ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] --- pojo2.method(); ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+</pre>
+</p><p>
+</p>
+</body>
+</html>

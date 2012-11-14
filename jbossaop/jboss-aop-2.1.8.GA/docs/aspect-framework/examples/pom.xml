@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.jboss.aop</groupId>
+   <artifactId>examples</artifactId>
+   <packaging>pom</packaging>
+   <name>JBoss AOP</name>
+   <version>1.0.0</version>
+
+   <properties>
+     <jboss.aop.version>2.0.0.CR3</jboss.aop.version>
+     <jboss.aop.plugin.version>1.0.0-SNAPSHOT</jboss.aop.plugin.version>
+     <jdkVersion>1.5</jdkVersion>
+   </properties>
+
+
+   <pluginRepositories>
+     <pluginRepository>
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+         <id>snapshots.jboss.org</id>
+         <name>JBoss Maven Snapshot Repository</name>
+         <url>http://snapshots.jboss.org/maven2</url>
+      </pluginRepository>
+   </pluginRepositories>
+
+<!--
+   <repositories>
+     <repository>
+       <id>snapshots.jboss.org</id>
+       <name>JBoss Maven Snapshot Repository</name>
+       <url>http://snapshots.jboss.org/maven2</url>
+     </repository>
+   </repositories>
+
+   -->
+
+</project>

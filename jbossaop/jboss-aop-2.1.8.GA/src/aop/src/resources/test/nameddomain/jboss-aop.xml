@@ -1,0 +1,6 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.nameddomain.SimpleInterceptor"/>
+   <bind pointcut="execution(* org.jboss.test.aop.nameddomain.POJO->someMethod())">
+      <interceptor-ref name="org.jboss.test.aop.nameddomain.SimpleInterceptor"/>
+   </bind>
+</aop>

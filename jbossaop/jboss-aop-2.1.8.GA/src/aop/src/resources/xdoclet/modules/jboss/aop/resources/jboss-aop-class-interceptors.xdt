@@ -1,0 +1,52 @@
+<XDtComment:comment>
+  Generates interceptor lists for pointcuts, etc, declared at class level
+</XDtComment:comment>
+
+    <interceptors>
+        <XDtClass:forAllClassTags tagName="<XDtJBossValue:value/>">
+
+          <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="class">
+        
+      <interceptor class="<XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="class"/>"
+            <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="singleton">
+                   singleton="<XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="singleton"/>"
+            </XDtClass:ifHasClassTag>
+                   >
+              <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="xml">
+        <XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="xml"/>
+              </XDtClass:ifHasClassTag>
+              <XDtClass:ifDoesntHaveClassTag tagName="<XDtJBossValue:value/>" paramName="xml">
+                <XDtJBossAttribute:forAllClassTagAttributes ignore="class,singleton">
+        <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                </XDtJBossAttribute:forAllClassTagAttributes>
+              </XDtClass:ifDoesntHaveClassTag>
+      </interceptor>
+          </XDtClass:ifHasClassTag>
+          <XDtClass:ifDoesntHaveClassTag tagName="<XDtJBossValue:value/>" paramName="class">
+            <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="factory">
+      <interceptor factory="<XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="factory"/>">
+                <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="xml">
+        <XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="xml"/>
+                </XDtClass:ifHasClassTag>
+                <XDtClass:ifDoesntHaveClassTag tagName="<XDtJBossValue:value/>" paramName="xml">
+                  <XDtJBossAttribute:forAllClassTagAttributes ignore="factory">
+        <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllClassTagAttributes>
+                </XDtClass:ifDoesntHaveClassTag>
+      </interceptor>
+            </XDtClass:ifHasClassTag>
+            <XDtClass:ifDoesntHaveClassTag tagName="<XDtJBossValue:value/>" paramName="factory">
+              <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="interceptor-ref">
+      <interceptor-ref name="<XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="interceptor-ref"/>"/>
+              </XDtClass:ifHasClassTag>
+              <XDtClass:ifDoesntHaveClassTag tagName="<XDtJBossValue:value/>" paramName="interceptor-ref">
+                <XDtClass:ifHasClassTag tagName="<XDtJBossValue:value/>" paramName="stack-ref">
+      <stack-ref name="<XDtClass:classTagValue tagName="<XDtJBossValue:value/>" paramName="stack-ref"/>"/>
+                </XDtClass:ifHasClassTag>
+              </XDtClass:ifDoesntHaveClassTag>
+            </XDtClass:ifDoesntHaveClassTag>
+          </XDtClass:ifDoesntHaveClassTag>
+
+        </XDtClass:forAllClassTags>
+    </interceptors>
+

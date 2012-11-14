@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aop>
+   <interceptor class="org.jboss.test.aop.dotinpointcutname.SimpleInterceptor" scope="PER_VM"/>
+
+   <pointcut name="someMethod" expr="execution(* org.jboss.test.aop.dotinpointcutname.POJO->someMethod(..))"/>
+
+   <pointcut name="org.jboss.test.aop.dotinpointcutname.POJO.otherMethod" expr="execution(* org.jboss.test.aop.dotinpointcutname.POJO->otherMethod(..))"/>
+
+   <bind pointcut="someMethod">
+       <interceptor class="org.jboss.test.aop.dotinpointcutname.SimpleInterceptor"/>
+   </bind>
+      
+   <bind pointcut="org.jboss.test.aop.dotinpointcutname.POJO.otherMethod">
+       <interceptor class="org.jboss.test.aop.dotinpointcutname.SimpleInterceptor"/>
+   </bind>
+</aop>

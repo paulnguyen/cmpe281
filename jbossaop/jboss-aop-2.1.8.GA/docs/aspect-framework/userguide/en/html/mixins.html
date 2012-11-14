@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>5.2. Mixin It Up</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="introductions.html" title="Chapter 5. Mixins and Introductions"/>
+      <link rel="prev" href="intros.html" title="5.1. Introducing Introductions"/>
+      <link rel="next" href="multi.html" title="5.2.1. Multiple Inheritance"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="intros.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="multi.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="mixins"/>5.2. Mixin It Up</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         Introducing interfaces only is quite limited when the introduced interfaces have methods that the class doesn't
+         implement as you have to write a lot of generically inclined code that handle these types of method calls within
+         an advice or interceptor.  This is where mixins come in.  The AOP framework allows you to define a mixin class
+         that implements the introduced interface(s).  An instance of this mixin class will be allocated the first time
+         you invoke a method of the introduced interface.
+      </p>
+         <p>
+         Again, let's steal from the introductions tutorial.  We'll take an existing class, force it to implement
+         the
+         <code class="literal">java.io.Externalizable</code> interface and provide a class that implements
+         <code class="literal">Externalizable</code>
+      
+         </p>
+         <pre class="programlisting">public class POJO
+{
+  private String field;
+}</pre>
+         <p>
+         To take this class and make it externalizable is very simple. Just the following XML is required:
+      </p>
+         <pre class="programlisting">&lt;introduction class="POJO"&gt;
+   &lt;mixin&gt;
+      &lt;interfaces&gt;
+         java.io.Externalizable
+      &lt;/interfaces&gt;
+      &lt;class&gt;ExternalizableMixin&lt;/class&gt;
+      &lt;construction&gt;new ExternalizableMixin(this)&lt;/construction&gt;
+   &lt;/mixin&gt;
+&lt;/introduction&gt;</pre>
+         <p>
+         The above XML just states that the AOP framework is to apply the
+         <code class="literal">java.io.Externalizable</code> interface
+         to the
+         <code class="literal">POJO</code> class.  You can have one or more interfaces specified with the
+         <code class="literal">interfaces</code>
+         element.  These interfaces are comma delimited.
+      </p>
+         <p>
+         The
+         <code class="literal">class</code> element defines the mixin class that will implement the externalizable interface
+         and handle serialization of the
+         <code class="literal">POJO</code> class.
+      </p>
+         <p>
+         The
+         <code class="literal">construction</code> element allows you to specify Java code that will be used to initialize
+         the mixin class when it is created.  JBoss AOP will create a field within the
+         <code class="literal">POJO</code>
+         class that will hold the instance of the mixin.  This field will be initialized with the Java code you provide
+         in the
+         <code class="literal">construction</code> element.  The
+         <code class="literal">this</code> pointer in the construction above
+         pertains to the
+         <code class="literal">POJO</code> class instance.
+      </p>
+         <p>
+         Finally, you need to implement the mixin class that will handle externalization.
+      </p>
+         <pre class="programlisting">public class ExternalizableMixin implements java.io.Externalizable
+{
+   POJO pojo;
+
+   public ExternalizableMixin(POJO pojo)
+   {
+      this.pojo = pojo;
+   }
+
+   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException
+   {
+      pojo.stuff2 = in.readUTF();
+   }
+   public void writeExternal(ObjectOutput out) throws IOException
+   {
+      out.writeUTF(pojo.stuff2);
+   }
+}</pre>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="intros.html">
+               <strong>Prev</strong>5.1. Introducing Introductions</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="multi.html">
+               <strong>Next</strong>5.2.1. Multiple Inheritance</a>
+         </li>
+      </ul>
+   </body>
+</html>

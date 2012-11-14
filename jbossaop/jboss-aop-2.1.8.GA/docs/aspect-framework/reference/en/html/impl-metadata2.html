@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>2.6.2. Attaching Metadata</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="impl-invocation4.html" title="2.6. Metadata"/>
+      <link rel="prev" href="impl-metadata1.html" title="2.6.1. Resolving XML Metadata"/>
+      <link rel="next" href="impl-mixin.html" title="2.7. Mixin Definition"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-metadata1.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="impl-mixin.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="impl-metadata2"/>2.6.2. Attaching Metadata</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+         You can attach untyped metadata to the invocation object, or even to the response.  This allows advices
+         to pass contextual data to one another in the incoming invocation or outgoing response for instance if you
+         had advices running on a remote client that wanted to pass contextual data to server-side aspects.  This method
+         on invocation gets you access to a
+            <code class="literal">org.jboss.aop.metadata.SimpleMetaData</code> instance so that you can attach
+         or read data.
+         </p>
+         <pre class="programlisting">SimpleMetaData getMetaData()</pre>
+         <p>
+            
+            <code class="literal">SimpleMetaData</code> has three types of metadata, AS_IS, MARSHALLED, and TRANSIENT.  This allows
+         you to specify whether or not metadata is marshalled across the wire.  TRANSIENT says, attached metadata
+         should not be sent across the wire.  MARSHALLED is for classloader sensitive contextual data.  AS_IS doesn't
+         care about classloaders.  Read the Javadocs for more information.
+         </p>
+         <p>
+         To piggyback and read metadata on the invocation response, two methods are provided.  One to attach data
+         one to read data.
+         </p>
+         <pre class="programlisting">Object getResponseAttachment(Object key);
+void addResponseAttachment(Object key, Object value);
+         </pre>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-metadata1.html">
+               <strong>Prev</strong>2.6.1. Resolving XML Metadata</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="impl-mixin.html">
+               <strong>Next</strong>2.7. Mixin Definition</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>8.3. Installing with JBoss Application Server 5</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="installing.html" title="Chapter 8. Installing"/>
+      <link rel="prev" href="installing-jboss40-jdk50.html" title="8.2. Installing with JBoss 4.0.x and JBoss 4.2.x Application Server for JDK 5"/>
+      <link rel="next" href="compiling.html" title="Chapter 9. Building and Compiling Aspectized Java"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="installing-jboss40-jdk50.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="compiling.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="installing-jboss5-jdk5"/>8.3. Installing with JBoss Application Server 5</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         JBoss AS 5 ships with AOP 2.0.0.GA. To upgrade to a newer AOP version, we have provided am an script to 
+         upgrade the server. It can be found at <code class="literal">jboss-50-install/build.xml</code>. Modifly 
+         <code class="literal">jboss-50-install</code> to point to the root of your JBoss installation, and specify the
+         application server configuration you want to upgrade. These are the steps taken by the
+         ant script:
+      </p>
+         <div class="orderedlist">
+            <ol>
+               <li>
+             Back up the existing <code class="literal">${jboss.home}/lib</code> and 
+             <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deployers/jboss-aop-jboss5.deployer</code> folders.
+         </li>
+               <li>
+             Overwrite the <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deployers/jboss-aop-jboss5.deployer</code> 
+             folder with the files from <code class="literal">jboss-50-install/jboss-aop-jboss5.deployer</code>.
+         </li>
+               <li>
+             Overwrite the <code class="literal">${jboss.home}/lib</code> folder with the files from 
+             <code class="literal">jboss-50-install/lib</code>.
+         </li>
+            </ol>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="installing-jboss40-jdk50.html">
+               <strong>Prev</strong>8.2. Installing with JBoss 4.0.x and JBoss 4.2.x ...</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="compiling.html">
+               <strong>Next</strong>Chapter 9. Building and Compiling Aspectized Java</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.4.1.2. Assignability Degree</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="adv-overlannotparam.html" title="4.4.1. Annotated-parameter Signature"/>
+      <link rel="prev" href="adv-overlannotparampresence.html" title="4.4.1.1. Presence priority"/>
+      <link rel="next" href="adv-overlannotparamreturn.html" title="4.4.1.3. Return Types"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-overlannotparampresence.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-overlannotparamreturn.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect3" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h4 class="title">
+                     <a id="adv-overlannotparamdegree"/>4.4.1.2. Assignability Degree</h4>
+               </div>
+            </div>
+         </div>
+         <p>
+               The assignability degree rule will select the advice with the lowest assignability
+               degree on the highest priority parameter. The assignability degree is simply the distance
+               in the class hierarchy between the parameter type, and the type it must be assignable from.
+            </p>
+         <p>
+               As an example, let us look at the following class hierarchy:
+            </p>
+         <pre class="programlisting">public interface POJOInterface{}
+
+public class POJOSuperClass extends java.lang.Object{}
+
+public class POJO extends POJOSuperClass implements POJOInterface
+{
+   void method(){}
+}</pre>
+         <p>
+               And this advice binding:
+            </p>
+         <pre class="programlisting">&lt;aop&gt;
+   &lt;aspect class="OneAspect"/&gt;
+   &lt;bind pointcut="execution(* POJO-&gt;method(..))"&gt;
+      &lt;before aspect="OneAspect" name="before"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;
+
+public class OneAspect
+{
+   public void before(@Target POJO target){} //1
+   public void before(@Target POJOInterface target){} //2
+   public void before(@Target POJOSuperClass target){} //3
+   public void before(@Target Object target){} //4
+}</pre>
+         <p>
+               With <code class="literal">POJO</code> as the target of a joinpoint, the parameter list fo
+               the first <code class="literal">OneAspect.before()</code> advice method has an assignability degree
+               0 on <code class="literal">@Target</code>.
+            </p>
+         <p>
+               The parameter lists for the second and third <code class="literal">OneAspect.before()</code> advice
+               methods both have an assignability degree of 1 for <code class="literal">@Target</code>, since it takes
+               one step through the hierarchy to reach the desired type, <code class="literal">POJO</code>.
+            </p>
+         <p>
+               Finally, the parameter list for the fourth <code class="literal">OneAspect.before()</code> advice method
+               has an assignability degree of 2 on <code class="literal">@Target</code>.
+            </p>
+         <p>
+               Hence, JBoss AOP will select the first advice in the example above, since it has the lowest
+               asignability degree on <code class="literal">@Target</code>.
+            </p>
+         <p>
+               The assignability degree rule is, similarly to the presence rule, applied on the highest priority
+               annotated parameter, which is <code class="literal">@JoinPoint</code>. In case there is a match using this
+               criteria (i.e., either both advices lack a <code class="literal">@JoinPoint</code> annotated parameter, or
+               they both have the same type on the <code class="literal">@JoinPoint</code> parameter), we move to the next
+               highest priority annotated parameter, which is <code class="literal">@Target</code>. The same rule is applied
+               until we can find an advice with the highest priority.
+            </p>
+         <p>
+               Notice that the assignability degree of an advice on <code class="literal">@Arg</code> is the sum of the
+               assignability degree on all <code class="literal">@Arg</code> parameters. In the following scenario:
+            </p>
+         <pre class="programlisting">public class POJO
+{
+   public void method(POJO argument0, String argument1, int argument2)
+}
+
+
+&lt;aop&gt;
+   &lt;aspect class="OneAspect"/&gt;
+   &lt;bind pointcut="execution(* POJO-&gt;method(..))"&gt;
+      &lt;before aspect="OneAspect" name="before"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;
+
+
+public class OneAspect
+{
+   public void before(@Arg POJO p, @Arg String s, @Arg int i){} //1
+   public void before(@Arg POJOSuperClass p, @Arg String s, @Arg int i){} //2
+   public void before(@Arg POJO p, @Arg Object s, @Arg int i){} //3
+   public void before(@Arg Object p, @Arg Object s, @Arg int i){} //4
+}</pre>
+         <p>
+               The first advice has assignability degree of 0 (for <code class="literal">POJO</code>) + 0
+               (for <code class="literal">String</code>) + 0 (for <code class="literal">int</code>). Notice how primitive
+               types don’t have superclasses, and, hence, have always a 0 value of assinability degree.
+            </p>
+         <p>
+               The second advice has a larger assignability degree, since <code class="literal">POJOSuperClass</code> is
+               the superclass of <code class="literal">POJO</code>, <code class="literal">@Arg POJOSuperClass p</code> has
+               assignability degree of 1. Hence, this advice assignability degree on <code class="literal">@Arg</code> is:
+               1 + 0 + 0 = 1.
+            </p>
+         <p>
+               The third one also has an assignability degree of 1, since <code class="literal">Object</code> is the superclass
+               of <code class="literal">String</code>.
+            </p>
+         <p>
+               Finally, the last advice has assignability degree of 3 on <code class="literal">@Arg</code>. The first parameter,
+               <code class="literal">@Arg Object p</code>, refers to <code class="literal">POJO</code> and has assignability degree of 2.
+               The second one, assignability degree of 1, since it refers to <code class="literal">String</code>. And, since
+               <code class="literal">@Arg int</code> refers to the <code class="literal">int</code> argument of <code class="literal">POJO.method()</code>,
+               we have 2 + 1 + 0 = 3.
+            </p>
+         <p>
+               In the above example, JBoss AOP would select the first advice to intercept <code class="literal">POJO.method()</code> execution.
+            </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-overlannotparampresence.html">
+               <strong>Prev</strong>4.4.1.1. Presence priority</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-overlannotparamreturn.html">
+               <strong>Next</strong>4.4.1.3. Return Types</a>
+         </li>
+      </ul>
+   </body>
+</html>

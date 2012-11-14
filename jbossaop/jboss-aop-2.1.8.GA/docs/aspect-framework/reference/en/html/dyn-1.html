@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>7.1. Hot Deployment</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="dynamic.html" title="Chapter 7. Dynamic AOP"/>
+      <link rel="prev" href="dynamic.html" title="Chapter 7. Dynamic AOP"/>
+      <link rel="next" href="dyn-2.html" title="7.2. Per Instance AOP"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="dynamic.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="dyn-2.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="dyn-1"/>7.1. Hot Deployment</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         With JBoss AOP you can change advice and interceptor bindings at runtime.  You can unregister
+         existing bindings, and hot deploy new bindings if the given joinpoints have been instrumented.
+
+         Hot-deploying within the JBoss application server is as easy as putting (or removing) a
+         <code class="literal">*-aop.xml</code>
+         file or
+         <code class="literal">.aop</code> jar file within the deploy/ directory.
+
+         There is also a runtime API for adding advice bindings at runtime.  Getting an instance of
+         <code class="literal">org.jboss.aop.AspectManager.instance()</code>, you can add your binding.
+      </p>
+         <pre class="programlisting">      org.jboss.aop.advice.AdviceBinding binding = 
+                              new AdviceBinding("execution(POJO-&gt;new(..))", null);
+      binding.addInterceptor(SimpleInterceptor.class);
+      AspectManager.instance().addBinding(binding);</pre>
+         <p>
+         First, you allocated an
+         <code class="literal">AdviceBinding</code> passing in a pointcut expression.  Then you add
+         the interceptor via its class and then add the binding through the AspectManager.  When the binding is added
+         the AspectManager will iterate through ever loaded class to see if the pointcut expression matches any
+         of the joinpoints within those classes.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="dynamic.html">
+               <strong>Prev</strong>Chapter 7. Dynamic AOP</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="dyn-2.html">
+               <strong>Next</strong>7.2. Per Instance AOP</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+  <bind pointcut="execution(* org.jboss.test.aop.bridgemethod.POJO->getFoo())">                
+       <interceptor class="org.jboss.test.aop.bridgemethod.SimpleMethodInterceptor"/>
+  </bind>
+  <bind pointcut="execution(* org.jboss.test.aop.bridgemethod.SubPOJO->setFoo(..))">                
+       <interceptor class="org.jboss.test.aop.bridgemethod.SimpleMethodInterceptor"/>
+  </bind>
+  <bind pointcut="execution(* org.jboss.test.aop.bridgemethod.SubPOJO2->setFoo(..))">                
+       <interceptor class="org.jboss.test.aop.bridgemethod.SimpleMethodInterceptor"/>
+  </bind>
+</aop>

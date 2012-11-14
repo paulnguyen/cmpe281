@@ -1,0 +1,15 @@
+<aop>
+	<aspect class="org.jboss.test.aop.beforeafterthrowingstack.Aspect" scope="PER_VM"/>
+	
+	<stack name="bat">
+		<before aspect="org.jboss.test.aop.beforeafterthrowingstack.Aspect" name="before"/>
+		<around aspect="org.jboss.test.aop.beforeafterthrowingstack.Aspect" name="around"/>
+		<after aspect="org.jboss.test.aop.beforeafterthrowingstack.Aspect" name="after"/>
+		<throwing aspect="org.jboss.test.aop.beforeafterthrowingstack.Aspect" name="throwing"/>		
+		<finally aspect="org.jboss.test.aop.beforeafterthrowingstack.Aspect" name="finaly"/>
+	</stack>
+	
+	<bind pointcut="execution(* org.jboss.test.aop.beforeafterthrowingstack.POJO->stack*())">
+		<stack-ref name="bat"/>	
+	</bind>
+</aop>

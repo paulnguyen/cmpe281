@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop xmlns="urn:jboss:aop-beans:1.0">
+   <interceptor class="org.jboss.injbossaop.lib.SimpleInterceptor"/>
+   <bind pointcut="execution(org.jboss.injbossaop.lib.ExampleValue->new(..))">
+       <interceptor-ref name="org.jboss.injbossaop.lib.SimpleInterceptor"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.injbossaop.lib.ExampleValue->getMessage())">
+       <interceptor-ref name="org.jboss.injbossaop.lib.SimpleInterceptor"/>
+   </bind>
+   
+   <typedef name="MyServlets" expr="class($instanceof{javax.servlet.http.HttpServlet}) AND class(org.jboss.injbossaop.web.*)"/>
+   <bind pointcut="execution(* $typedef{MyServlets}->service(..))">
+       <interceptor-ref name="org.jboss.injbossaop.lib.SimpleInterceptor"/>
+   </bind>
+
+   <typedef name="MySessionBeans" expr="class($instanceof{javax.ejb.SessionBean}) AND class(org.jboss.injbossaop.ejb.*)" />	
+   <bind pointcut="execution(* $typedef{MySessionBeans}->getValue(..))">
+       <interceptor-ref name="org.jboss.injbossaop.lib.SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="all(org.jboss.injbossaop.mbean.*)">
+       <interceptor-ref name="org.jboss.injbossaop.lib.SimpleInterceptor"/>
+   </bind>
+</aop>

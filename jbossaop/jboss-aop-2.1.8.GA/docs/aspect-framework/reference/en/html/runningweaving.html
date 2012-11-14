@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>11.4. Running loadtime weaving with Maven2</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="maven.html" title="Chapter 11. Building JBoss AOP with Maven2"/>
+      <link rel="prev" href="maven_running.html" title="11.3. Running precompiled with Maven2"/>
+      <link rel="next" href="runningtests.html" title="11.5. Running tests with Maven2"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="maven_running.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="runningtests.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="runningweaving"/>11.4. Running loadtime weaving with Maven2</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+    Running a java application in loadtime weaving is almost identical to compile time (except that you dont need
+    to precompile it first). The only change is that we need an option to say that we want to run it loadtime.
+    </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <p>
+          
+                     <code class="literal">loadtime</code> - set it to true if you want loadtime weaving. Default is set to false.
+        </p>
+               </li>
+            </ul>
+         </div>
+         <p>
+    A small example:
+    </p>
+         <pre class="programlisting">
+&lt;plugin&gt;
+  &lt;groupId&gt;org.jboss.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-jbossaop-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.0.CR1&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;id&gt;run&lt;/id&gt;
+      &lt;configuration&gt;
+        &lt;aoppaths&gt;
+          &lt;aoppath&gt;src/main/resources/jboss-aop_testcase.xml&lt;/aoppath&gt;
+        &lt;/aoppaths&gt;
+        &lt;loadtime&gt;true&lt;/loadtime&gt;
+        &lt;executable&gt;Test&lt;/executable&gt;
+      &lt;/configuration&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;run&lt;/goal&gt;
+      &lt;/goals&gt;
+    &lt;/execution&gt; 
+  &lt;/executions&gt;
+&lt;/plugin&gt; </pre>
+         <p>
+    
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="maven_running.html">
+               <strong>Prev</strong>11.3. Running precompiled with Maven2</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="runningtests.html">
+               <strong>Next</strong>11.5. Running tests with Maven2</a>
+         </li>
+      </ul>
+   </body>
+</html>

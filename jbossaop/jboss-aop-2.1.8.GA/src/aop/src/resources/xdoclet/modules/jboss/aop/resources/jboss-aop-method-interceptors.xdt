@@ -1,0 +1,52 @@
+<XDtComment:comment>
+  Generates interceptor lists for pointcuts, etc, declared at method level
+</XDtComment:comment>
+
+    <interceptors>
+        <XDtMethod:forAllMethodTags tagName="<XDtJBossValue:value/>">
+
+          <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="class">
+        
+      <interceptor class="<XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="class"/>"
+            <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="singleton">
+                   singleton="<XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="singleton"/>"
+            </XDtMethod:ifHasMethodTag>
+                   >
+              <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="xml">
+        <XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="xml"/>
+              </XDtMethod:ifHasMethodTag>
+              <XDtMethod:ifDoesntHaveMethodTag tagName="<XDtJBossValue:value/>" paramName="xml">
+                <XDtJBossAttribute:forAllMethodTagAttributes ignore="class,singleton">
+        <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                </XDtJBossAttribute:forAllMethodTagAttributes>
+              </XDtMethod:ifDoesntHaveMethodTag>
+      </interceptor>
+          </XDtMethod:ifHasMethodTag>
+          <XDtMethod:ifDoesntHaveMethodTag tagName="<XDtJBossValue:value/>" paramName="class">
+            <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="factory">
+      <interceptor factory="<XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="factory"/>">
+                <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="xml">
+        <XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="xml"/>
+                </XDtMethod:ifHasMethodTag>
+                <XDtMethod:ifDoesntHaveMethodTag tagName="<XDtJBossValue:value/>" paramName="xml">
+                  <XDtJBossAttribute:forAllMethodTagAttributes ignore="factory">
+        <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllMethodTagAttributes>
+                </XDtMethod:ifDoesntHaveMethodTag>
+      </interceptor>
+            </XDtMethod:ifHasMethodTag>
+            <XDtMethod:ifDoesntHaveMethodTag tagName="<XDtJBossValue:value/>" paramName="factory">
+              <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="interceptor-ref">
+      <interceptor-ref name="<XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="interceptor-ref"/>"/>
+              </XDtMethod:ifHasMethodTag>
+              <XDtMethod:ifDoesntHaveMethodTag tagName="<XDtJBossValue:value/>" paramName="interceptor-ref">
+                <XDtMethod:ifHasMethodTag tagName="<XDtJBossValue:value/>" paramName="stack-ref">
+      <stack-ref name="<XDtMethod:methodTagValue tagName="<XDtJBossValue:value/>" paramName="stack-ref"/>"/>
+                </XDtMethod:ifHasMethodTag>
+              </XDtMethod:ifDoesntHaveMethodTag>
+            </XDtMethod:ifDoesntHaveMethodTag>
+          </XDtMethod:ifDoesntHaveMethodTag>
+
+        </XDtMethod:forAllMethodTags>
+    </interceptors>
+

@@ -1,0 +1,7 @@
+<aop>
+   <interceptor name="MyInterceptor" class="org.jboss.test.aop.dynamicinvoke.MyInterceptor"/>
+   
+   <bind pointcut="execution(void org.jboss.test.aop.dynamicinvoke.POJO->advised())">
+      <interceptor-ref name="MyInterceptor"/>
+   </bind>
+</aop>

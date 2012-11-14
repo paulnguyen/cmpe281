@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.2.3. HotSwap</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="standalone.html" title="10.2. Regular Java Applications"/>
+      <link rel="prev" href="ch10s02s02s02.html" title="10.2.2.2. Improving Loadtime Performance"/>
+      <link rel="next" href="ch10s02s04.html" title="10.2.4. User-Defined ClassLoaders"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s02s02s02.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s02s04.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="d0e4502"/>10.2.3. HotSwap</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            The HotSwap feature allows bytecode of your classes to be weaved in runtime. This results in application flow control changes
+            to your classes only when joinpoints become intercepted (to do this, use the dynamic aop funcionality provided by JBoss AOP).
+            This is a mode to be considered when you want to assure the flow control of your classes will be kept intact until a binding or
+            a interceptor is added.
+         </p>
+         <p>
+            This mode is currently provided through the <code class="literal">java.lang.instrument.Instrumentation</code> hot swap functionality,
+            which is part of the JVMTI (Java Virtual Machine Tool Interface). So, you cannot run JBoss AOP in this mode when
+            using a previous JDK version.
+         </p>
+         <p>
+            To enable HotSwap, you have to add an argument to the Java command line in a very similar way to the Loadtime mode:
+            <code class="literal">-javaagent:jboss-aop.jar=-hotSwap</code>.
+            The difference is that the <code class="literal">-hotSwap</code> argument was added to the agent parameter list.
+         </p>
+         <p>
+            This way, if your jboss-aop.xml file is contained in a jar file, run:
+            </p>
+         <pre class="programlisting">
+$ java -cp=&lt;classpath as described above&gt; -Djboss.aop.path=&lt;path to jboss-aop.xml&gt; \
+		-javaagent:jboss-aop.jar=-hotSwap com.blah.MyMainClass
+            </pre>
+         <p>
+         
+         </p>
+         <p>
+            And if your jboss-aop.xml file is contained in a jar, run the following command line:
+            </p>
+         <pre class="programlisting">
+$ java -cp=&lt;classpath as described above&gt; -javaagent:jboss-aop.jar=-hotSwap \
+		com.blah.MyMainClass
+            </pre>
+         <p>
+         
+         </p>
+         <p>
+            The <code class="literal">run-loadHotSwap</code> batch/script files contained in the /bin folder of the distribution are similar to the
+            <code class="literal">run-load</code> ones, described in the previous subsection. All aop libs are included in these script files.
+            To use them, run:
+            </p>
+         <pre class="programlisting">
+$ run-load classpath [-aoppath path_to_aop.xml] [-aopclasspath path_to_annotated] \
+		com.blah.MyMainClass [args...]
+            </pre>
+         <p>
+         
+         </p>
+         <p>
+            When hotswap is enabled, the prunning of classes is turned off. Therefore, if you try to configure the jboss.aop.prune option as
+               <code class="literal"> true</code>, this setup will be ignored.
+         </p>
+         <p>
+            As with the Loadtime mode, the HotSwap mode results in a boot time delay. Besides this drawback, the execution of some dynamic aop operations
+            may be slower than in the other modes, when classes need to be hot swapped. The available options to tune performance are the same as described
+            in the "Improving Loadtime Performance" subsection, except the pruning of classes.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s02s02s02.html">
+               <strong>Prev</strong>10.2.2.2. Improving Loadtime Performance</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s02s04.html">
+               <strong>Next</strong>10.2.4. User-Defined ClassLoaders</a>
+         </li>
+      </ul>
+   </body>
+</html>

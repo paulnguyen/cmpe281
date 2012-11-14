@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <bind pointcut="get(private java.lang.String POJO->var1)">
+       <interceptor class="GetInterceptor"/>
+   </bind>
+
+   <bind pointcut="set(private java.lang.String POJO->var2)">
+       <interceptor class="SetInterceptor"/>
+   </bind>
+
+   <bind pointcut="field(public static * POJO->*)">
+       <interceptor class="FieldInterceptor"/>
+   </bind>
+
+</aop>

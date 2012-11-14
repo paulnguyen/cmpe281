@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="install" name="JBoss/AOP Application Server installation">
+
+   <target name="init">
+      <!-- ========================================= -->
+      <!-- Set the jboss root and server config here -->
+      <!-- ========================================= -->
+      <property file="jboss.properties"/>
+
+      <!-- The rest are automatic -->
+      <property name="jboss.config.dir" value="${jboss.home}/server/${jboss.config}"/>
+      <property name="jboss.bin.dir" value="${jboss.home}/bin"/>
+      <property name="jboss.client.dir" value="${jboss.home}/client"/>
+      <property name="jboss.backup.dir" value="${jboss.config.dir}/deployers.bak"/>
+
+      <available file="${jboss.home}" property="jboss.exists" type="dir"/>
+      <fail unless="jboss.exists" message="${jboss.home} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <available file="${jboss.bin.dir}" property="bin.exists" type="dir"/>
+      <fail unless="bin.exists" message="${jboss.bin.dir} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <available file="${jboss.client.dir}" property="client.exists" type="dir"/>
+      <fail unless="client.exists" message="${jboss.client.dir} does not exist. Modify 'jboss.config' in jboss.properties to be a valid server configuration"/>
+
+      <available file="${jboss.config.dir}" property="config.exists" type="dir"/>
+      <fail unless="config.exists" message="${jboss.config.dir} does not exist. Modify 'jboss.config' in jboss.properties to be a valid server configuration"/>
+
+      <property name="deployers.dir" value="${jboss.config.dir}/deployers"/>
+
+      <property name="aspect.deployer" value="${deployers.dir}/jboss-aop-jboss5.deployer"/>
+      <available file="${aspect.deployer}" property="deployer.exists" type="dir"/>
+      <fail unless="deployer.exists" message="${aspect.deployer} does not exist."/>
+
+      <property name="jboss.lib" value="${jboss.home}/lib"/>
+      <available file="${jboss.lib}" property="lib.exists" type="dir"/>
+      <fail unless="lib.exists" message="${jboss.lib} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <property name="jboss.aop.lib" value="../lib"/>
+      <available file="${jboss.aop.lib}" property="lib.jboss.aop.exists"/>
+      <fail unless="lib.jboss.aop.exists" message="${jboss.aop.lib} does not exist. Modify build.xml, setting the value of the property 'jboss.aop.lib' to be the path of the JBoss AOP lib installation directory."/>
+
+      <property name="lib.jbossaop-client" value="${jboss.aop.lib}/jboss-aop-client.jar"/>
+      <available file="${lib.jbossaop-client}" property="lib.jbossaop-client.exists"/>
+      <fail unless="lib.jbossaop-client.exists" message="${lib.jbossaop-client} does not exist. Modify build.xml, setting the value of the property 'jboss.aop.lib' to be the path of the JBoss AOP lib installation directory."/>
+
+      <property name="lib.jbossaop-client.injboss" value="${jboss.client.dir}/jboss-aop-client.jar"/>
+      <available file="${lib.jbossaop-client.injboss}" property="lib.jbossaop-client.injboss.exists"/>
+      <fail unless="lib.jbossaop-client.injboss.exists" message="${lib.jbossaop-client.injboss} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <property name="bak.jbossaop-client" value="${jboss.client.dir}/jboss-aop-client.bak"/>
+      <available file="${bak.jbossaop-client}" property="jbossaop-client.bak.exists"/>
+      <condition property="backup.jbossaop-client" value="true">
+         <not>
+            <isset property="jbossaop-client.bak.exists"/>
+         </not>
+      </condition>
+
+      <tstamp>
+         <format property="tstamp"  pattern="yyyyMMdd-HHmmss"/>
+      </tstamp>
+   </target>
+
+
+   <target name="backup.lib" depends="init">
+      <property name="old.lib" value="${jboss.lib}-${tstamp}.bak"/>
+      <echo>Backing up existing lib directory to ${old.lib}</echo>
+      <copy todir="${old.lib}">
+         <fileset dir="${jboss.lib}"/>
+      </copy>
+   </target>
+
+   <target name="backup.deployer" depends="init">
+      <mkdir dir="${jboss.backup.dir}"/>
+      <echo>Backing up existing aop deployer to ${old.deployer}</echo>
+      <copy todir="${jboss.backup.dir}/jboss-aop-jboss5.deployer-${tstamp}.bak">
+         <fileset dir="${aspect.deployer}"/>
+      </copy>
+   </target>
+
+   <target name="backup.client.lib" if="backup.jbossaop-client">
+      <echo>Backing up existing ${lib.jbossaop-client.injboss} to ${bak.jbossaop-client}</echo>
+      <copy file="${lib.jbossaop-client.injboss}" tofile="${bak.jbossaop-client}"/>
+   </target>
+
+   <target name="install.lib" depends="backup.lib,backup.client.lib">
+      <copy todir="${jboss.lib}" overwrite="true">
+         <fileset dir="lib">
+            <include name="*"/>
+         </fileset>
+      </copy>
+      <copy file="${lib.jbossaop-client}" tofile="${bak.jbossaop-client.injboss}"/>
+   </target>
+
+   <target name="install.deployer" depends="backup.deployer">
+      <copy todir="${aspect.deployer}" overwrite="true">
+         <fileset dir="jboss-aop-jboss5.deployer">
+            <include name="**/*"/>
+         </fileset>
+      </copy>
+   </target>
+
+   <target name="install.bin" depends="init">
+      <copy todir="${jboss.bin.dir}" overwrite="true">
+         <fileset dir="../lib">
+            <include name="pluggable-instrumentor.jar"/>
+         </fileset>
+      </copy>
+   </target>
+
+
+   <target name="install" depends="install.lib,install.deployer,install.bin"/>
+</project>

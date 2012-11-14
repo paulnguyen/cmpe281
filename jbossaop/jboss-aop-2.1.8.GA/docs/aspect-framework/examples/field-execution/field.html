@@ -1,0 +1,74 @@
+<html>
+<body>
+<p>
+<h2>Field interception</h2>
+
+</p><p>
+<h4>Overview</h4>
+
+JBoss AOP allows you to intercept a field access and insert behavior their.
+If you look at <tt>Driver.java</tt> and <tt>POJO.java</tt> you will see that they are accessing a number of fields.
+</p><p>
+<h4>How do I apply an Interceptor to a field execution?</h4>
+
+To bind an interceptor to the access of a field, you must create an XML file.  Open up <tt>jboss-aop.xml</tt> and take a look.  Let's take a look at the first bindings.
+<pre>
+&lt;aop&gt;
+...
+   &lt;bind pointcut="get(private java.lang.String POJO-&gt;var1)"&gt;
+       &lt;interceptor class="GetInterceptor"/&gt;
+   &lt;/bind&gt;
+...
+&lt;/aop&gt;
+</pre>
+This bindings states that when POJO.var1 is accessed for a read, invoke the GetInterceptor.
+</p><p>
+The next one is:
+<pre>
+...
+   &lt;bind pointcut="set(private java.lang.String POJO-&gt;var2)"&gt;
+       &lt;interceptor class="SetInterceptor"/&gt;
+   &lt;/bind&gt;
+...
+</pre>
+Whenever the field POJO.var2 is written to, invoke the SetInterceptor.
+</p><p>
+The next one is:
+<pre>
+...
+   &lt;bind pointcut="field(public static * POJO-&gt;*)"&gt;
+       &lt;interceptor class="FieldInterceptor"/&gt;
+   &lt;/bind&gt;
+...
+</pre>
+Whenever any public static field in POJO is accessed for a read or a write, call the FieldInterceptor.  The <i>field</i> expression matches both get/set of a field.
+</p><p>
+<h4>Running</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- pojo.getVar1(); ---
+     [java] &lt;&lt;&lt; Entering GetInterceptor for: var1
+     [java] &gt;&gt;&gt; Leaving GetInterceptor
+     [java] hello
+     [java] --- pojo.setVar2(); ---
+     [java] &lt;&lt;&lt; Entering SetInterceptor for: var2
+     [java] &gt;&gt;&gt; Leaving SetInterceptor
+     [java] --- pojo.getVar2(); ---
+     [java] world
+     [java] --- POJO.var3++; ---
+     [java] &lt;&lt;&lt; Entering FieldInterceptor for: var3 type: org.jboss.aop.joinpoint.FieldReadInvocation
+     [java] &gt;&gt;&gt; Leaving FieldInterceptor
+     [java] &lt;&lt;&lt; Entering FieldInterceptor for: var3 type: org.jboss.aop.joinpoint.FieldWriteInvocation
+     [java] &gt;&gt;&gt; Leaving FieldInterceptor
+</pre>
+</p><p>
+</p>
+</body>
+</html>

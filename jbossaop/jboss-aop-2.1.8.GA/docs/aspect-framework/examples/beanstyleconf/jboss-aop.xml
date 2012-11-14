@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <!-- Aspect and interceptor definitions -->
+   <interceptor class="ConfigInterceptor" scope="PER_CLASS">
+      <attribute name="Attr1">aa</attribute>
+      <attribute name="Attr2">1</attribute>
+      <advisor-attribute name="MyAdvisor"/>
+      <instance-advisor-attribute name="MyInstanceAdvisor"/>
+      <joinpoint-attribute name="MyJoinpoint"/>  
+   </interceptor>
+   
+   <aspect class="ConfigAspectPerVm" scope="PER_VM">
+      <attribute name="Attr">aspect,per,vm</attribute>
+      <advisor-attribute name="MyAdvisor"/>
+      <instance-advisor-attribute name="MyInstanceAdvisor"/>
+      <joinpoint-attribute name="MyJoinpoint"/>  
+   </aspect>
+   <aspect class="ConfigAspectPerClass" scope="PER_CLASS">
+      <attribute name="Attr">aspect,per,class</attribute>
+      <advisor-attribute name="MyAdvisor"/>
+      <instance-advisor-attribute name="MyInstanceAdvisor"/>
+      <joinpoint-attribute name="MyJoinpoint"/>  
+   </aspect>
+    
+   <aspect class="ConfigAspectPerInstance" scope="PER_INSTANCE">
+      <attribute name="Attr">aspect,per,instance</attribute>
+      <advisor-attribute name="MyAdvisor"/>
+      <instance-advisor-attribute name="MyInstanceAdvisor"/>
+      <joinpoint-attribute name="MyJoinpoint"/>  
+   </aspect>
+    
+   <aspect class="ConfigAspectPerJoinpoint" scope="PER_JOINPOINT">
+      <attribute name="Attr">aspect,per,joinpoint</attribute>
+      <advisor-attribute name="MyAdvisor"/>
+      <instance-advisor-attribute name="MyInstanceAdvisor"/>
+      <joinpoint-attribute name="MyJoinpoint"/>  
+   </aspect>
+    
+
+   <!-- bindings -->
+    
+   <bind pointcut="execution(* POJO->interceptorMethod())">
+      <interceptor-ref name="ConfigInterceptor"/>
+   </bind>
+   
+   <bind pointcut="execution(* POJO->aspectPerVmMethod())">
+      <advice name="methodAdvice" aspect="ConfigAspectPerVm"/>
+   </bind>
+   
+   <bind pointcut="execution(* POJO->aspectPerClassMethod())">
+      <advice name="methodAdvice" aspect="ConfigAspectPerClass"/>
+   </bind>
+   
+   <bind pointcut="execution(* POJO->aspectPerInstanceMethod())">
+      <advice name="methodAdvice" aspect="ConfigAspectPerInstance"/>
+   </bind>
+
+   <bind pointcut="execution(* POJO->aspectPerJoinpointMethod())">
+      <advice name="methodAdvice" aspect="ConfigAspectPerJoinpoint"/>
+   </bind>
+</aop>

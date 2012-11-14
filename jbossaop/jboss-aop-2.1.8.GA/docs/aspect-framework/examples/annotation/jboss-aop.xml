@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <bind pointcut="execution(POJO->@Billable(..))">
+       <interceptor class="BillingInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* POJO->@Billable(..))">
+       <interceptor class="BillingInterceptor"/>
+   </bind>
+
+   <bind pointcut="all(@Trace)">
+       <interceptor class="TraceInterceptor"/>
+   </bind>
+
+</aop>

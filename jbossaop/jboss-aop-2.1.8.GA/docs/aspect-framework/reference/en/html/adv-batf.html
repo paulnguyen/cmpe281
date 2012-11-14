@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.2. Before/After/After-Throwing/Finally Advices</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="advices.html" title="Chapter 4. Advices"/>
+      <link rel="prev" href="adv-around.html" title="4.1. Around Advices"/>
+      <link rel="next" href="adv-beforesignature.html" title="4.2.1. Before Advice Signature"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-around.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-beforesignature.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="adv-batf"/>4.2. Before/After/After-Throwing/Finally Advices</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         These advices are more lightweight in the JBoss AOP framework, since they do not wrap a joinpoint,
+         avoiding the creation of the <code class="literal">Invocation</code> objects per joinpoint execution.
+      </p>
+         <p>
+         Instead of <code class="literal">Invocation</code> objects, JBoss AOP provides <a href="pointcuts-contextvalues.html#pointcuts-typetable" title="Table 3.1.  Joinpoint Types Table">JoinPointBean beans</a>
+         for these advices. As described in <a href="pointcuts-beans.html" title="3.10.1. Joinpoint Beans">Section 3.10.1, “Joinpoint Beans”</a>, these beans contain all information regarding a joinpoint,
+         like an <code class="literal">Invocation</code> would do. However, since <code class="literal">JoinPointBean</code> objects are not used on around
+         advice types, they do not provide proceeding methods, like <code class="literal">invokeNext()</code>. They also do not allow you to
+         attach metadata for a particular invocation.
+      </p>
+         <p>
+         The rules for before, after, after-throwing and finally advices are quite similar. All of them can have zero or more
+         annotated advice parameters in their signature, which will be described in the next subsection.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-around.html">
+               <strong>Prev</strong>4.1. Around Advices</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-beforesignature.html">
+               <strong>Next</strong>4.2.1. Before Advice Signature</a>
+         </li>
+      </ul>
+   </body>
+</html>

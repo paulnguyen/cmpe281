@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <pointcut name="allPrivateMethodAndFields" expr="(execution(private * POJO->*(..)) OR field(private * POJO->*)) AND !execution(private void POJO->avoidMethod())"/>
+
+   <pointcut name="allPublicConstructors" expr="execution(public POJO->new(..))"/>
+
+
+   <bind pointcut="allPrivateMethodAndFields OR allPublicConstructors">
+       <interceptor class="SimpleInterceptor"/>
+   </bind>
+
+</aop>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>11.5. Running tests with Maven2</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="maven.html" title="Chapter 11. Building JBoss AOP with Maven2"/>
+      <link rel="prev" href="runningweaving.html" title="11.4. Running loadtime weaving with Maven2"/>
+      <link rel="next" href="reflection.html" title="Chapter 12. Reflection and AOP"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="runningweaving.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="reflection.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="runningtests"/>11.5. Running tests with Maven2</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+      Running tests with aop is a different matter since the maven tests plugin is rather complex. 
+      But we can add the hooks we need to run it both compiletime and loadtime with the maven tests too.
+      An example on how to run a test thats been aop compiled:
+      </p>
+         <pre class="programlisting">
+&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.4&lt;/version&gt;
+  &lt;configuration&gt;
+    &lt;forkMode&gt;always&lt;/forkMode&gt;
+    &lt;useSystemClassLoader&gt;true&lt;/useSystemClassLoader&gt;
+    &lt;argLine&gt;-Djboss.aop.path=src/main/resources/jboss-aop_testcase.xml&lt;/argLine&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt; </pre>
+         <p>
+    
+         </p>
+         <p>
+      To run it loadtime we only need to add the javaagent option to argLine. Like this:
+      </p>
+         <pre class="programlisting">
+    &lt;argLine&gt;-javaagent:${settings.localRepository}/org/jboss/jboss-aop/2.0.0.CR3/\
+    jboss-aop-2.0.0.CR3.jar \
+    -Djboss.aop.path=src/main/resources/jboss-aop_testcase.xml&lt;/argLine&gt; </pre>
+         <p>
+    - big thanks to henrik and finn for figuring out how to do this :)
+    Note again that the versions used here are just for a reference and to provide as examples. Check the JBoss AOP
+    homepage for the up-to-date versions.
+    </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="runningweaving.html">
+               <strong>Prev</strong>11.4. Running loadtime weaving with Maven2</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="reflection.html">
+               <strong>Next</strong>Chapter 12. Reflection and AOP</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <prepare expr="set(public int *POJO->counter)"/>
+
+</aop>

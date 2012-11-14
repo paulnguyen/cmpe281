@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <interceptor class="org.jboss.test.aop.callerscope.PerVmInterceptor" scope="PER_VM"/>
+   <interceptor class="org.jboss.test.aop.callerscope.PerClassInterceptor" scope="PER_CLASS"/>
+   <interceptor class="org.jboss.test.aop.callerscope.PerInstanceInterceptor" scope="PER_INSTANCE"/>
+   <interceptor class="org.jboss.test.aop.callerscope.PerJoinpointInterceptor" scope="PER_JOINPOINT"/>
+   <interceptor class="org.jboss.test.aop.callerscope.PerClassJoinpointInterceptor" scope="PER_CLASS_JOINPOINT"/>
+   <aspect class="org.jboss.test.aop.callerscope.PerVmAspect" scope="PER_VM"/>
+   <aspect class="org.jboss.test.aop.callerscope.PerClassAspect" scope="PER_CLASS"/>
+   <aspect class="org.jboss.test.aop.callerscope.PerInstanceAspect" scope="PER_INSTANCE"/>
+   <aspect class="org.jboss.test.aop.callerscope.PerJoinpointAspect" scope="PER_JOINPOINT"/>
+   <aspect class="org.jboss.test.aop.callerscope.PerClassJoinpointAspect" scope="PER_CLASS_JOINPOINT"/>
+
+   <bind pointcut="call(org.jboss.test.aop.callerscope.POJO->new())">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerVmInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerVmAspect"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.callerscope.POJO->new(int))">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerClassInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerClassAspect"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.callerscope.POJO->new(boolean))">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerClassJoinpointInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerClassJoinpointAspect"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.callerscope.POJO->perVmMethod())">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerVmInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerVmAspect"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.callerscope.POJO->perClassMethod())">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerClassInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerClassAspect"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.callerscope.POJO->perInstanceMethod())">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerInstanceInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerInstanceAspect"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.callerscope.POJO->perJoinpointMethod())">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerJoinpointInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerJoinpointAspect"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.callerscope.POJO->perClassJoinpointMethod())">
+      <interceptor-ref name="org.jboss.test.aop.callerscope.PerClassJoinpointInterceptor"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.callerscope.PerClassJoinpointAspect"/>
+   </bind>
+</aop>

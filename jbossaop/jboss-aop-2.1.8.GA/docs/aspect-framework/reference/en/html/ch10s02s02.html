@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.2.2. Loadtime</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="standalone.html" title="10.2. Regular Java Applications"/>
+      <link rel="prev" href="standalone-compiletime.html" title="10.2.1. Precompiled instrumentation"/>
+      <link rel="next" href="ch10s02s02s01.html" title="10.2.2.1. Loadtime using JRockit"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="standalone-compiletime.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s02s02s01.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="d0e4355"/>10.2.2. Loadtime</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            This section describes how to use loadtime instrumentation of classes with aop. The
+            classes themselves are just compiled using Java, but are not precompiled with the aop
+            precompiler. 
+            In the examples given
+            if your classes are contained in a jar with a META-INF/jboss-aop.xml file, you
+            would omit the
+            <code class="literal">-Djboss.aop.path</code> system property.
+         </p>
+         <p>
+            The JVM has a pluggable way of defining a class transformer via the
+               <code class="literal">java.lang.instrument</code>
+            package.  JBoss AOP uses this mechanism to weave aspects at class load time.
+            Using loadtime weaving is really easy.  All you have to do is define an additional standard switch
+            on the Java command line.
+            <code class="literal">-javaagent:jboss-aop.jar</code>. 
+            Here's how run an AOP application with loadtime instrumentation,
+            where your jboss-aop.xml file is not part of a jar:
+            </p>
+         <pre class="programlisting">
+$ java -cp=&lt;classpath as described above&gt; -Djboss.aop.path=&lt;path to jboss-aop.xml&gt; \
+      -javaagent:jboss-aop.jar com.blah.MyMainClass
+            </pre>
+         <p>
+         
+         </p>
+         <p>
+            And to run an AOP application with loadtime instrumentation,
+            where your application contains a jar with a META-INF/jboss-aop.xml file:
+            </p>
+         <pre class="programlisting">
+$ java -cp=&lt;classpath as described above&gt; -javaagent:jboss-aop.jar \
+      com.blah.MyMainClass
+            </pre>
+         <p>
+         
+         </p>
+         <p>
+            In the /bin folder of the distribution we have provided batch/script files to make
+            this easier. It includes all the aop libs for you, so you just have to worry
+            about your files. The usage:
+            </p>
+         <pre class="programlisting">
+$ run-load classpath [-aoppath path_to_aop.xml] [-aopclasspath path_to_annotated] \
+      com.blah.MyMainClass [args...]
+            </pre>
+         <p>
+            The parameters have the same meaning as for the run-precompiled scripts.
+         </p>
+         <p>
+            If you invoke the previous
+            <code class="literal">java</code> examples with ant, by using
+            the ant
+            <code class="literal">java</code> task, make sure that you set
+            <code class="literal">fork="true"</code> in the ant
+            <code class="literal">java</code> task. Failure
+            to do so, causes the
+            <code class="literal">java</code> task to execute in the same VM
+            as ant which is already running. This means that the special classloader used to
+            do the loadtime transformations does not replace the standard one, so no
+            instrumentation takes place.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="standalone-compiletime.html">
+               <strong>Prev</strong>10.2.1. Precompiled instrumentation</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s02s02s01.html">
+               <strong>Next</strong>10.2.2.1. Loadtime using JRockit</a>
+         </li>
+      </ul>
+   </body>
+</html>

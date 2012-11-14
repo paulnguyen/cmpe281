@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="usage" name="JBoss/AOP">
+   <import file="../examples-build.xml"/>
+
+   <target name="_aopc.private" depends="_compile"
+      description="Compile-time weave the classes with the jboss-aop.xml configuration file enabled">
+
+      <taskdef name="aopc" classname="org.jboss.aop.ant.AopC" classpathref="jboss.aop.classpath"/>
+
+      <aopc compilerclasspathref="classpath" classpathref="classpath" verbose="true">
+         <sysproperty key="jboss.aop.verbose" value="true"/>
+         <classpath path="."/>
+         <src path="."/>
+      </aopc>
+   </target>
+
+   <target name="run.aopc" depends="_aopc.private"
+      description="Run the example using compile-time weaving with the jboss-aop.xml configuration file enabled">
+
+      <jar jarfile="example.jar">
+         <fileset dir=".">
+            <include name="*.class"/>
+            <include name="META-INF/jboss-aop.xml"/>
+         </fileset>
+      </jar>
+
+      <delete>
+         <fileset dir="." includes="*.class"/>
+      </delete>
+
+      
+      <java fork="yes" failOnError="true" className="Driver">
+         <classpath refid="jboss.aop.classpath"/>
+         <classpath path="example.jar"/>
+      </java>
+   </target>
+
+   <target name="run.loadtime" depends="_compile"
+      description="Run the example using loadtime-time weaving with the jboss-aop.xml configuration file enabled">
+
+      <jar jarfile="example.jar">
+         <fileset dir=".">
+            <include name="*.class"/>
+            <include name="META-INF/jboss-aop.xml"/>
+         </fileset>
+      </jar>
+
+      <delete>
+         <fileset dir="." includes="*.class"/>
+      </delete>
+      
+      <java fork="yes" failOnError="true" className="Driver">
+         <jvmarg value="-javaagent:${aopjar}"/>
+         <classpath refid="jboss.aop.classpath"/>
+         <classpath path="example.jar"/>
+      </java>
+   </target>
+
+</project>
+

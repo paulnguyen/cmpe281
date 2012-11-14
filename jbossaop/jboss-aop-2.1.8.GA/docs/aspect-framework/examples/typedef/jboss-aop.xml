@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+  <typedef name="TD" expr="(class(POJO) AND has(* *->method(..))) OR class($instanceof{ExecutionTypedefInterface}) OR class(@executionTypedef)" />
+  <!--  Annotate class, since could not figure out how to do this with jdk 1.4.2  -->
+  <metadata tag="executionTypedef" class="POJO3">
+    <class />
+  </metadata>
+  <bind pointcut="execution($typedef{TD}->new())">
+    <interceptor class="SimpleInterceptor" />
+  </bind>
+  <bind pointcut="execution(* $typedef{TD}->method())">
+    <interceptor class="SimpleInterceptor" />
+  </bind>
+  <bind pointcut="field(* $typedef{TD}->field1)">
+    <interceptor class="SimpleInterceptor" />
+  </bind>
+  <bind pointcut="all($typedef{TD})">
+    <interceptor class="SimpleInterceptor2" />
+  </bind>
+</aop>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <dynamic-cflow name="simple" class="SimpleDynamicCFlow"/>
+
+   <bind pointcut="execution(void POJO->method1())" cflow="simple">
+      <interceptor class="SimpleInterceptor"/>
+   </bind>
+
+</aop>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.2. @InterceptorDef</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-aspect.html" title="6.1. @Aspect"/>
+      <link rel="next" href="annotated-interceptor-interceptor.html" title="6.2.1. Interceptor Example"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-aspect.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-interceptor-interceptor.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-interceptor"/>6.2. @InterceptorDef</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         To mark a class as an interceptor or an aspect factory you annotate it with the
+         <code class="literal">@InterceptorDef</code> annotation. The class must either implement
+         the
+         <code class="literal">org.jboss.aop.advice.Interceptor</code> interface or the
+         <code class="literal">org.jboss.aop.advice.AspectFactory</code> interface.
+      </p>
+         <p>
+         The declaration of
+         <code class="literal">org.jboss.aop.InterceptorDef</code> is:
+         </p>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.TYPE}) @Retention(RetentionPolicy.RUNTIME)
+           public @interface Aspect
+   {
+      Scope scope() default Scope.PER_VM;
+   }
+
+         </pre>
+         <p>
+         The same
+         <code class="literal">Scope</code> enum is used as for
+         <code class="literal">Aspect</code>.
+         The following examples use the @Bind annotation, which will be described in more
+         detail below.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-aspect.html">
+               <strong>Prev</strong>6.1. @Aspect</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-interceptor-interceptor.html">
+               <strong>Next</strong>6.2.1. Interceptor Example</a>
+         </li>
+      </ul>
+   </body>
+</html>

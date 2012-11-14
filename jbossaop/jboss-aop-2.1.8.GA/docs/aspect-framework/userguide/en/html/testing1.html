@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>8.2. Injecting Mock Objects</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="testing.html" title="Chapter 8. Testing with AOP"/>
+      <link rel="prev" href="exception.html" title="8.1. Testing Exception Handling"/>
+      <link rel="next" href="required.html" title="8.2.1. Required Knowledge"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="exception.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="required.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="testing1"/>8.2. Injecting Mock Objects</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         This section was taken from Staale Pedersen's article at <code class="literal">http://folk.uio.no/staalep/aop/testing.html</code>.
+         Thanks Staale for putting together some ideas on how you can use JBoss AOP for use in unit testing.
+      </p>
+         <p>
+         The use of unit testing has increased tremendously lately, and many developers have seen the increase in quality
+         and speed that comes from having a comprehensive unit-test suite.  As the use of unit testing has increased, so
+         have the number of situations where writing test are troublesome or maybe impossible. A common problem with
+         writing tests is that it can require large amount of setup code. Testing code that rely on a remote system or
+         data access from file/db/net can be almost impossible to implement. But with the help of JBoss AOP and mock
+         objects this is no longer any problem.
+      </p>
+         <p>
+         In this example we will examine a common situation where writing unit tests is difficult, but desirable. For
+         simplicity we will use POJO's, but the example can easily be translated for a large J2EE application.
+      </p>
+         <p>
+         Everyting is now in place to write the test. Note that much of this setup code is written once and it will be
+        reused by all similar tests.  Then the test: BankBusinessTestCase
+      </p>
+         <pre class="programlisting">package bank;
+
+import junit.framework.TestCase;
+
+import customer.Customer;
+import util.MockService;
+
+public class BankBusinessTestCase extends TestCase {
+
+  private MockBankAccountDAO mock;
+  private Customer customer;
+
+  public BankBusinessTestCase(String name) {
+    super( name);
+  }
+
+  public void setUp() {
+    mock = new MockBankAccountDAO();
+
+    BankAccount account = new BankAccount( 10);
+    account.setBalance( 100);
+    BankAccount account2 = new BankAccount( 11);
+    account2.setBalance( 500);
+
+    mock.setupGetBankAccount( account);
+    mock.setupGetBankAccount( account2);
+
+    MockService mockService = MockService.getInstance();
+    mockService.addMock( "BankAccountDAO", mock);
+
+    customer = new Customer("John", "Doe");
+    customer.addAccount( new Long(10));
+    customer.addAccount( new Long(11));
+  }
+
+  public void testSumOfAllAccounts() {
+    BankBusiness business = new BankBusiness();
+    double sum = business.getSumOfAllAccounts( customer);
+    assertEquals((double) 600, sum);
+    System.out.println("SUM: "+sum);
+  }
+}</pre>
+         <p>
+         To compile and run the test we call ant compile test. Output from the test:
+      </p>
+         <pre class="programlisting">test-bankbusiness:
+    [junit] .SUM: 600.0
+    [junit] Time: 0,23
+    [junit] OK (1 test)</pre>
+         <p>
+         The testresult was exactly what we expected.
+      </p>
+         <p>
+         With the the use of AOP we can test every aspect of our code. This example show the limits of object-oriented
+         programming (OOP) compared to AOP. It must be pointed out that it is possible to write these tests without AOP,
+         but it would require to edit production code just to make the tests pass.
+      </p>
+         <p>
+         The approach in this example can easily be used to mock SessionBeans instead of a DAO layer.
+         Theoretically, we can test all of the business methods in a large J2EE application outside the container.
+         This would greatly increase quality and speed during software development.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="exception.html">
+               <strong>Prev</strong>8.1. Testing Exception Handling</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="required.html">
+               <strong>Next</strong>8.2.1. Required Knowledge</a>
+         </li>
+      </ul>
+   </body>
+</html>

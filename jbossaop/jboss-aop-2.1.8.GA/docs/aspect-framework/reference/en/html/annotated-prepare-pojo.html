@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.7.1. @Prepare POJO</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated-prepare.html" title="6.7. @Prepare"/>
+      <link rel="prev" href="annotated-prepare.html" title="6.7. @Prepare"/>
+      <link rel="next" href="annotated-typedef.html" title="6.8. @TypeDef"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-prepare.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-typedef.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="annotated-prepare-pojo"/>6.7.1. @Prepare POJO</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+           You can also annotate a POJO with @Prepare directly in cases where
+           you are using Dynamic AOP, and the exact bindings are not known at
+           instrumentation time. In this case you annotate the class itself.
+           Here's how it is done:
+           </p>
+         <pre class="programlisting">
+   package com.mypackage;
+
+   import org.jboss.aop.Prepare;
+
+   @Prepare ("all(this)")
+   public class MyDynamicPOJO implements Interceptor
+   {
+      ...
+   }
+           </pre>
+         <p>
+           
+            <code class="literal">all(this)</code> means the same as
+           <code class="literal">all(com.blah.MyDynamicPOJO)</code>, but the use of
+           <code class="literal">all(this)</code> is recommended.
+        </p>
+         <p>
+           The examples just given equate to this XML
+           </p>
+         <pre class="programlisting">
+            &lt;prepare expr="all(com.blah.MyDynamicPOJO)"/&gt;
+           </pre>
+         <p>
+        
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-prepare.html">
+               <strong>Prev</strong>6.7. @Prepare</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-typedef.html">
+               <strong>Next</strong>6.8. @TypeDef</a>
+         </li>
+      </ul>
+   </body>
+</html>

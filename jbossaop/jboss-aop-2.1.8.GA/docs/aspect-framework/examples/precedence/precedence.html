@@ -1,0 +1,117 @@
+<html>
+<body>
+<p>
+<h2>Interceptor Precedence</h2>
+
+</p><p>
+<h4>Background</h4>
+
+In the other examples shown, the ordering of interceptors is according to how they are specified for each binding. This is fine for a lot of cases, but becomes a bit
+more problematic if you have several bindings resolving to each pointcut. Also, aspects defined using annotations (see reference documentation) have no notion
+of ordering, how they are ordered is completely random. To examine the case of XML, we have the following two bindings in our jboss-aop.xml file:
+</p><p>
+<pre>
+
+   &lt;bind pointcut="execution(POJO-&gt;new())"&gt;
+       &lt;interceptor-ref name="FirstInterceptor"/&gt;
+       &lt;interceptor-ref name="SimpleInterceptor3"/&gt;
+       &lt;interceptor-ref name="SimpleInterceptor2"/&gt;
+       &lt;interceptor-ref name="SimpleInterceptor"/&gt;
+   &lt;/bind&gt;
+
+   &lt;bind pointcut="execution(PO*-&gt;new())"&gt;
+       &lt;advice aspect="TestAspect" name="otherAdvice"/&gt;
+       &lt;advice aspect="TestAspect" name="advice"/&gt;
+       &lt;interceptor-ref name="LastInterceptor"/&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+The default ordering of these would create the following interceptor chain:
+<pre>
+   FirstInterceptor
+		comes before
+   SimpleInterceptor3
+		comes before
+   SimpleInterceptor2
+		comes before
+   SimpleInterceptor
+		comes before
+   TestAspect.otherAdvice
+		comes before
+   TestAspect.advice
+		comes before
+   LastInterceptor
+</pre>
+</p><p>
+<h4>Precedence</h4>
+
+Now, imagine if the two pointcuts defined were more complex, so that some methods would resolve to the first, some to the second, some to both, and that we would
+like to be able to merge the interceptor chains according to a predefined order. This is where precedence comes in. It is defined in the jboss-aop.xml file as:
+</p><p>
+<pre>
+   &lt;precedence&gt;
+      &lt;interceptor-ref name="SimpleInterceptor2"/&gt;
+      &lt;advice aspect="TestAspect" name="advice"/&gt;
+      &lt;interceptor-ref name="SimpleInterceptor3"/&gt;
+      &lt;advice aspect="TestAspect" name="otherAdvice"/&gt;
+   &lt;/precedence&gt;
+
+   &lt;precedence&gt;
+      &lt;interceptor-ref name="SimpleInterceptor"/&gt;
+      &lt;interceptor-ref name="SimpleInterceptor2"/&gt;
+   &lt;/precedence&gt;
+</pre>
+</p><p>
+These two precedence entries each define a relative sorting order of interceptors. You can have as many precedence entries in your jboss-aop.xml file as you
+like, and as many entries as you would like in each. (Just make sure that the precedence orderings do not conflict.) The precedence entries are merged into an
+overall precedence entry, so that:
+</p><p>
+<pre>
+  SimpleInterceptor
+		comes before
+  SimpleInterceptor2
+		comes before
+  TestAspect.advice
+		comes before
+  SimpleInterceptor3
+		comes before
+  TestAspect.otherAdvice
+</pre>
+</p><p>
+If you look at the first jboss-aop.xml snippet containing the bindings you will see that FirstInterceptor and LastInterceptor have not been defined to have a
+precedence. This means that they will remain where they were before any precedence was applied. Now if you run the example you should see that the advices
+are sorted and run according to the precedence defined.
+</p><p>
+</p><p>
+<h4>Run the example</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- new POJO(); ---
+     [java] &lt;&lt;&lt; Entering FirstInterceptor type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2 type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering TestAspect.advice type:POJO0OptimizedConstructorInvocation@6e293a
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor3 type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering TestAspect.otherAdvice type:POJO0OptimizedConstructorInvocation@6e293a
+     [java] &lt;&lt;&lt; Entering LastInterceptor type: POJO0OptimizedConstructorInvocation
+     [java] empty constructor
+     [java] &gt;&gt;&gt; Leaving LastInterceptor
+     [java] &lt;&lt;&lt; Leaving TestAspect.otherAdvice type:POJO0OptimizedConstructorInvocation@6e293a
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor3
+     [java] &lt;&lt;&lt; Leaving TestAspect.advice type:POJO0OptimizedConstructorInvocation@6e293a
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+     [java] &gt;&gt;&gt; Leaving FirstInterceptor
+</pre>
+</p><p>
+</p><p>
+</p>
+</body>
+</html>

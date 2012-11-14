@@ -1,0 +1,41 @@
+<aop>
+
+   <interceptor class="org.jboss.test.aop.invoketarget.CountingInterceptor"/>
+   <interceptor class="org.jboss.test.aop.invoketarget.BypassInterceptor"/>
+   
+   <stack name="stacky">
+      <interceptor-ref name="org.jboss.test.aop.invoketarget.CountingInterceptor"/>
+      <interceptor-ref name="org.jboss.test.aop.invoketarget.BypassInterceptor"/>
+      <interceptor-ref name="org.jboss.test.aop.invoketarget.CountingInterceptor"/>
+   </stack>
+
+   <bind pointcut="execution(org.jboss.test.aop.invoketarget.POJO->new(..))">
+       <stack-ref name="stacky"/>
+   </bind>
+
+   <bind pointcut="construction(org.jboss.test.aop.invoketarget.POJO->new(..))">
+       <stack-ref name="stacky"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.invoketarget.POJO->*(..))">
+       <stack-ref name="stacky"/>
+   </bind>
+
+   <bind pointcut="field(int org.jboss.test.aop.invoketarget.POJO->i)">
+       <stack-ref name="stacky"/>
+   </bind>
+
+   <bind pointcut="field(* org.jboss.test.aop.invoketarget.POJO->s)">
+       <stack-ref name="stacky"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.invoketarget.CalledPOJO->new(..))">
+       <stack-ref name="stacky"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.invoketarget.CalledPOJO->*(..))">
+       <stack-ref name="stacky"/>
+   </bind>
+
+</aop>
+

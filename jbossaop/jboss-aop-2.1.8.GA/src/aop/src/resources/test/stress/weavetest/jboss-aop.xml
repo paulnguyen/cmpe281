@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <bind pointcut="execution(* org.jboss.test.aop.stress.weavetest.Woven*->method())">
+   	<interceptor class="org.jboss.test.aop.stress.weavetest.TestInterceptor"/>
+   </bind>
+</aop>

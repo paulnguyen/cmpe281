@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.4.2. Attaching to a scoped deployment</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="ch10s04.html" title="10.4. Scoping aop to the classloader"/>
+      <link rel="prev" href="ch10s04s01.html" title="10.4.1. Deploying as part of a scoped classloader"/>
+      <link rel="next" href="maven.html" title="Chapter 11. Building JBoss AOP with Maven2"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s04s01.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="maven.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="d0e4767"/>10.4.2. Attaching to a scoped deployment</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            If you have an application using classloader isolation, as long as you have "prepared your classes" you can later attach a .aop file to that deployment. If
+            we have a .ear file scoped using a jboss-app.xml file, with the scoped loader repository <code class="literal">jboss.test:service=scoped</code>:
+         </p>
+         <pre class="programlisting">&lt;jboss-app&gt;
+  &lt;loader-repository&gt;
+      jboss.test:service=scoped
+  &lt;/loader-repository&gt;
+&lt;/jboss-app&gt;</pre>
+         <p>We can later deploy a .aop file containing aspects and configuration to attach that deployment to the scoped .ear. This is done using the <code class="literal">loader-repository</code>
+         tag in the .aop files <code class="literal">META-INF/jboss-aop.xml</code> file.
+         </p>
+         <pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;aop&gt;
+   &lt;loader-repository&gt;jboss.test:service=scoped&lt;/loader-repository&gt;
+
+   &lt;!-- Aspects and bindings --&gt;
+&lt;/aop&gt;</pre>
+         <p>This has the same effect as deploying the .aop file as part of the .ear as we saw previously, but allows you to hot deploy aspects into your scoped application.</p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s04s01.html">
+               <strong>Prev</strong>10.4.1. Deploying as part of a scoped classloader</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="maven.html">
+               <strong>Next</strong>Chapter 11. Building JBoss AOP with Maven2</a>
+         </li>
+      </ul>
+   </body>
+</html>

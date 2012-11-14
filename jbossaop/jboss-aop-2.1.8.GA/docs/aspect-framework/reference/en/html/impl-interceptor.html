@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>2.4. Interceptors</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="implementing.html" title="Chapter 2. Implementing Aspects"/>
+      <link rel="prev" href="impl-advice.html" title="2.3. Advice Methods"/>
+      <link rel="next" href="impl-invocation3.html" title="2.5. Resolving Annotations"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-advice.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="impl-invocation3.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="impl-interceptor"/>2.4. Interceptors</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         Interceptors are a special type of aspect that contains only one advice. This advice has its
+         signature defined by an interface, <code class="literal">org.jboss.aop.advice.Interceptor</code>:
+      </p>
+         <pre class="programlisting">public interface Interceptor
+{
+   public String getName();
+   
+   public Object invoke(Invocation invocation) throws Throwable;
+}</pre>
+         <p>
+         The method <code class="literal">invoke(Invocation)</code> is the unique advice contained in an interceptor.
+         The method <code class="literal">getName()</code> is used for identification in the JBoss AOP framework.
+         So, this method must return a name that is unique in the whole system. It is only really used for
+         aspects added to the <code class="literal">InstanceAdvisor</code> as shown in <a href="dyn-2.html" title="7.2. Per Instance AOP">Section 7.2, “Per Instance AOP”</a>.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-advice.html">
+               <strong>Prev</strong>2.3. Advice Methods</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="impl-invocation3.html">
+               <strong>Next</strong>2.5. Resolving Annotations</a>
+         </li>
+      </ul>
+   </body>
+</html>

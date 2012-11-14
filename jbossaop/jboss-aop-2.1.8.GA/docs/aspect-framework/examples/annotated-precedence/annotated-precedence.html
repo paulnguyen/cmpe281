@@ -1,0 +1,112 @@
+<html>
+
+<body>
+<p>
+<h2>Annotated Interceptor Precedence</h2>
+
+</p><p>
+<h4>Background</h4>
+
+The theory for precedence is the same as in the <a href="../precedence/precedence.html">XML</a> example, but when using annotations precedence is declared differently. Also, the whole concept of precedence is somewhat more important when applied to an application where the AOP bindings are defined using annotations rather than in XML, since using XML the interceptions occur in the order they have been defined, while using annotations there is no other notion of ordering of interceptions.
+</p><p>
+<h3>Defining</h3>
+
+</p><p>
+You define precedence in a separate class annotated with @Precedence
+<pre>
+   import org.jboss.aop.Precedence;
+   import org.jboss.aop.PrecedenceInterceptor;
+
+   @Precedence
+   public class Precedence1
+   {
+
+      @PrecedenceInterceptor
+      public static SimpleInterceptor precedenceInterceptor1;
+
+      @PrecedenceInterceptor
+      public static SimpleInterceptor2 precedenceInterceptor2;
+   }
+</pre>
+</p><p>
+The @PrecedenceInterceptor is used to annotate fields where the type is an interceptor, and the orderings within the class define the relative sort order for the precedence. In other words this class defines that
+<pre>
+   SimpleInterceptor
+                comes before
+   SimpleInterceptor2
+</pre>
+</p><p>
+<tt>Precedence2</tt> also defines a set of precedences:
+<pre>
+   @Precedence
+   public class Precedence2
+   {
+      @PrecedenceInterceptor
+      public static SimpleInterceptor2 simple2;
+
+      @PrecedenceAdvice ("advice")
+      public static TestAspect advice;
+
+      @PrecedenceInterceptor
+      public static SimpleInterceptor3 simple3;
+
+      @PrecedenceAdvice ("otherAdvice")
+      public static TestAspect otherAdvice;
+   }
+</pre>
+</p><p>
+The @PredenceAdvice is used to annotate fields where the type is an aspect. The attribute value in the @PrecedenceAdvice annotation is the name of the advice method in the aspect, so:
+<pre>
+   SimpleInterceptor2
+                comes before
+   TestAspect.advice
+                comes before
+   SimpleInterceptor3
+                comes before
+   TestAspect.otherAdvice
+</pre>
+</p><p>
+The precedence entries are merged into an
+overall precedence entry, so that:
+</p><p>
+<pre>
+  SimpleInterceptor
+		comes before
+  SimpleInterceptor2
+		comes before
+  TestAspect.advice
+		comes before
+  SimpleInterceptor3
+		comes before
+  TestAspect.otherAdvice
+</pre>
+</p><p>
+</p><p>
+<h4>Run the example</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- new POJO(); ---
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor2 type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering TestAspect.advice type:POJO0OptimizedConstructorInvocation@f6a746
+     [java] &lt;&lt;&lt; Entering SimpleInterceptor3 type: POJO0OptimizedConstructorInvocation
+     [java] &lt;&lt;&lt; Entering TestAspect.otherAdvice type:POJO0OptimizedConstructorInvocation@f6a746
+     [java] empty constructor
+     [java] &lt;&lt;&lt; Leaving TestAspect.otherAdvice type:POJO0OptimizedConstructorInvocation@f6a746
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor3
+     [java] &lt;&lt;&lt; Leaving TestAspect.advice type:POJO0OptimizedConstructorInvocation@f6a746
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor2
+     [java] &gt;&gt;&gt; Leaving SimpleInterceptor
+</pre>
+</p><p>
+</p><p>
+</p>
+</body>
+</html>

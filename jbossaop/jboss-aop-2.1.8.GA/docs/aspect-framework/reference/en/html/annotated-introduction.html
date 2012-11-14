@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.5. @Introduction</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-bind.html" title="6.4. @Bind"/>
+      <link rel="next" href="annotated-mixin.html" title="6.6. @Mixin"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-bind.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-mixin.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-introduction"/>6.5. @Introduction</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         Interface introductions can be done using the
+         <code class="literal">@Introduction</code> annotation.
+         Only fields within a class annotated with
+         <code class="literal">@Aspect</code> or
+         <code class="literal">@InterceptorDef</code> can be annotated with
+         <code class="literal">@Introduction</code>.
+      </p>
+         <p>
+         The declaration of
+         <code class="literal">org.jboss.aop.Introduction</code>:
+         </p>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.FIELD}) @Retention(RetentionPolicy.RUNTIME)
+   public @interface Introduction
+   {
+      Class target() default java.lang.Class.class;
+      String typeExpression() default "";
+      Class[] interfaces();
+   }
+         </pre>
+         <p>
+         The parameters of
+         <code class="literal">@Introduction</code> are:
+         </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <code class="literal">target</code>, the name of the class we want to introduce
+               an interface to.
+            </li>
+               <li>
+                  <code class="literal">typeExpression</code>, a type expression that should resolve
+               to one or more classes we want to introduce an interface to.
+            </li>
+               <li>
+                  <code class="literal">interfaces</code>, an array of the interfaces we want to introduce
+            </li>
+            </ul>
+         </div>
+         <p>
+
+         
+            <code class="literal">target</code> or
+         <code class="literal">typeExpression</code> has to be specified,
+         but not both.
+      </p>
+         <a id="introductionEx"/>
+         <p>
+         This is how to use this annotation:
+         </p>
+         <pre class="programlisting">
+   package com.mypackage;
+
+   import org.jboss.aop.Introduction;
+
+   @Aspect (scope = Scope.PER_VM)
+   public class IntroAspect
+   {
+      @Introduction (target=com.blah.SomeClass.class, \
+            interfaces={java.io.Serializable.class})
+      public static Object pojoNoInterfacesIntro;
+   }
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         This means make
+         <code class="literal">com.blah.SomeClass.class</code> implement the
+         <code class="literal">java.io.Serializable</code> interface. The equivalent configured
+         via XML would be:
+         </p>
+         <pre class="programlisting">
+            &lt;introduction class="com.blah.SomeClass.class"&gt;
+            &lt;interfaces&gt;
+         java.io.Serializable
+            &lt;/interfaces&gt;
+            &lt;/introduction&gt;
+         </pre>
+         <p>
+      
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-bind.html">
+               <strong>Prev</strong>6.4. @Bind</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-mixin.html">
+               <strong>Next</strong>6.6. @Mixin</a>
+         </li>
+      </ul>
+   </body>
+</html>

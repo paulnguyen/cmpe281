@@ -1,0 +1,62 @@
+<html>
+<body>
+<p>
+<h2>Caller pointcuts</h2>
+
+</p><p>
+<h4>Callers</h4>
+
+Execution pointcuts on methods and constructors are very useful, but limiting some times.  For instance, what if you don't want a method to be intercepted once you are within the method's class?  Another problem is that JBoss AOP does not allow you to have an execution pointcut applied to any Java system classes.  This is where caller pointcuts come in.  Executions are invoked whenever the method is called within the method itself.  Callers are invoked at the point of the calling code.  Callers allow you to specify what method in what class calls whatever method.  Confused?  Here's some examples from jboss-aop.xml.
+<pre>
+   &lt;bind pointcut="call(int java.util.ArrayList-&gt;size()) AND withincode(void Driver-&gt;caller())"&gt;
+          &lt;interceptor class="CallerInterceptor1"/&gt;
+   &lt;/bind&gt;
+</pre>
+Whenever <tt>ArrayList.size()</tt> method is called from within the <tt>Driver.caller()</tt> method, invoke <tt>CallerInterceptor1</tt>.  You see?  You can specify the point of interception from within the caller's code.  You can also use boolean expressions to specify your within:
+<pre>
+   &lt;bind pointcut="call(int java.util.ArrayList-&gt;size()) AND withincode(* Driver-&gt;*(..)) AND !withincode(void Driver-&gt;caller())"&gt;
+       &lt;interceptor class="CallerInterceptor2"/&gt;
+   &lt;/bind&gt;
+</pre>
+This binding states to invoke <tt>CallerInterceptor2</tt> whenever <tt>ArrayList.size()</tt> is called from within any <tt>Driver</tt> class method, but not from within <tt>Driver.caller()</tt>.
+</p><p>
+<pre>
+   &lt;bind pointcut="call(java.util.ArrayList-&gt;new()) AND within(Driver)"&gt;
+       &lt;interceptor class="CallerInterceptor1"/&gt;
+   &lt;/bind&gt;
+</pre>
+This binding is a little different in that it uses the within keyword rather than the withincode keyword.  Within matches anything within an entire class.  So the above pointcut states, whenever the ArrayList empty constructor is called from within any method or constructor of the Driver class.
+</p><p>
+<h4>Running</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- main is calling new ArrayList(); ---
+     [java] &lt;&lt;&lt; Entering CallerInterceptor1
+     [java] &gt;&gt;&gt; Leaving CallerInterceptor1
+     [java] --- main is calling list.size(); ---
+     [java] &lt;&lt;&lt; Entering CallerInterceptor2
+     [java] &gt;&gt;&gt; Leaving CallerInterceptor2
+     [java] --- caller is calling new ArrayList(); ---
+     [java] &lt;&lt;&lt; Entering CallerInterceptor1
+     [java] &gt;&gt;&gt; Leaving CallerInterceptor1
+     [java] --- caller is calling list.size(); ---
+     [java] &lt;&lt;&lt; Entering CallerInterceptor1
+     [java] &gt;&gt;&gt; Leaving CallerInterceptor1
+     [java] --- anotherCaller is calling new ArrayList(); ---
+     [java] &lt;&lt;&lt; Entering CallerInterceptor1
+     [java] &gt;&gt;&gt; Leaving CallerInterceptor1
+     [java] --- anotherCaller is calling list.size(); ---
+     [java] &lt;&lt;&lt; Entering CallerInterceptor2
+     [java] &gt;&gt;&gt; Leaving CallerInterceptor2
+</pre>
+</p><p>
+</p>
+</body>
+</html>

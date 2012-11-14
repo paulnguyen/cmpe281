@@ -1,0 +1,215 @@
+<html>
+<body>
+<p>
+<h2> Declare Error/Warning</h2>
+
+</p><p>
+JBoss AOP can be used to enforce certain architectural constraints. The sample application in this example consists of a "business layer" (i.e <tt>Driver.java</tt>) which can call the "dao layer" (i.e. <tt>VehicleDAO</tt> and its subclasses <tt>MotorbikeDAO</tt> and <tt>CarDAO</tt>).
+</p><p>
+<tt>VehicleDAO</tt> is an abstract class, and in our architecture for this small application we want to make sure that:
+<ul>
+<li>All subclasses of <tt>VehicleDAO</tt> implement a <tt>save()</tt> method.</li>
+<li>The dao layer classes should not call back to the business layer classes (i.e. <tt>XXXDAO</tt> should not call <tt>Driver</tt>)</li>
+</ul>
+</p><p>
+JBoss AOP allows you to check for this at instrumentation time, so if you are running precompiled AOP, the checks will be done at the aopc stage. If you are using loadtime AOP the checks will be performed when the class is first loaded.
+</p><p>
+Two new XML tags are used for this <tt>declare-warning</tt> and <tt>declare-error</tt>, the only difference between them is that <tt>declare-error</tt> will throw an exception, causing execution to stop, while <tt>declare-warning</tt> prints out a warning message and continues as normal. Here is the jboss-aop.xml file used for this example:
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;aop&gt;
+   &lt;declare-warning expr="class($instanceof{VehicleDAO}) AND !has(public void *-&gt;save())"&gt;
+      All VehicleDAO subclasses must override the save() method.
+   &lt;/declare-warning&gt;
+   &lt;declare-warning expr="call(Driver-&gt;new(..)) AND within(*DAO)"&gt;
+      DAO classes should not access the Driver class
+   &lt;/declare-warning&gt;
+   &lt;declare-warning expr="call(* Driver-&gt;*(..)) AND withincode(* *DAO-&gt;*())"&gt;
+      DAO classes should not access the Driver class
+   &lt;/declare-warning&gt;
+&lt;/aop&gt;
+</pre>
+</p><p>
+<ul>
+<li>The first <tt>declare-warning</tt> tag specifies that <tt>VehicleDAO</tt> and its subclasses must implement a void noargs save() method. This condition is broken in our example by the fact that <tt>MotorbikeDAO</tt> does not do so.</li>
+<li>The second <tt>declare-warning</tt> tag specifies that none of the DAO classes can call the Driver constructor. This condition is broken in our example by the fact that <tt>CarDAO.save()</tt> tries to create a new <tt>Driver</tt> class.</li>
+<li>The third  <tt>declare-warning</tt> tag specifies that no method on any of the the DAO classes can call the Driver methods. This condition is broken in our example by the fact that <tt>CarDAO.save()</tt> tries to call a method on the <tt>Driver</tt> class</li>
+</ul>
+</p><p>
+For pointcut expressions, only caller side pointcut expressions will work (so you cannot use <tt>all</tt>, <tt>execution</tt>, <tt>field</tt>, <tt>set</tt> or <tt>get</tt>).
+</p><p>
+<h4>Run the example compile-time instrumented</h4>
+
+</p><p>
+Now if you run the example:
+</p>
+<pre>
+  $ ant run.aopc
+</pre>
+</p><p>
+It will generate the following output:
+<pre>
+_aopc:
+     [aopc] WARNING: declare-warning condition
+     [aopc]     'call(Driver-&gt;new(..)) AND within(*DAO)'
+     [aopc] was broken for constructor call: CarDAO.save()V calls Driver.new()V
+     [aopc]     DAO classes should not access the Driver class
+
+     [aopc] WARNING: declare-warning condition
+     [aopc]     'call(* Driver-&gt;*(..)) AND withincode(* *DAO-&gt;save())'
+     [aopc] was broken for method call:CarDAO.save()V calls Driver.method()V
+     [aopc]     DAO classes should not access the Driver class
+
+     [aopc] WARNING: declare-warning condition
+     [aopc]     'class($instanceof{VehicleDAO}) AND !has(public void *-&gt;save())'
+     [aopc] was broken for class MotorbikeDAO
+     [aopc]     All VehicleDAO subclasses must override the save() method.
+
+
+_run.aopc:
+     [java] ---- Start ----
+     [java] Car DAO save
+
+
+
+BUILD SUCCESSFUL
+</pre>
+</p><p>
+Note that when using compile time instrumentation the warnings are generated during the aopc phase.
+</p><p>
+<h4>Run the example load-time instrumented</h4>
+
+</p
+<p>
+To run:
+</p><p>
+<pre>
+  $ ant run.loadtime
+</pre>
+</p>
+<pre>
+_run.loadtime:
+     [java] ---- Start ----
+     [java] WARNING: declare-warning condition
+     [java]     'call(Driver->new(..)) AND within(*DAO)'
+     [java] was broken for constructor call: CarDAO.save()V calls Driver.new()V
+     [java]     DAO classes should not access the Driver class
+
+     [java] WARNING: declare-warning condition
+     [java]     'call(* Driver->*(..)) AND withincode(* *DAO->save())'
+     [java] was broken for method call:CarDAO.save()V calls Driver.method()V
+     [java]     DAO classes should not access the Driver class
+
+     [java] Car DAO save
+     [java] WARNING: declare-warning condition
+     [java]     'class($instanceof{VehicleDAO}) AND !has(public void *->save())'
+     [java] was broken for class MotorbikeDAO
+     [java]     All VehicleDAO subclasses must override
+
+</pre>
+Note that now the warnings are displayed when running the application, as the classes are transformed when loaded.
+</p><p>
+<h3>declare-error</h3>
+
+If we replace all the <tt>declare-warning</tt> occurances with <tt>declare-error</tt> in jboss-aop.xml
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;aop&gt;
+   &lt;declare-error expr="class($instanceof{VehicleDAO}) AND !has(public void *-&gt;save())"&gt;
+      All VehicleDAO subclasses must override the save() method.
+   &lt;/declare-error&gt;
+   &lt;declare-error expr="call(Driver-&gt;new(..)) AND within(*DAO)"&gt;
+      DAO classes should not access the Driver class
+   &lt;/declare-error&gt;
+   &lt;declare-error expr="call(* Driver-&gt;*(..)) AND withincode(* *DAO-&gt;save())"&gt;
+      DAO classes should not access the Driver class
+   &lt;/declare-error&gt;
+&lt;/aop&gt;
+</pre>
+</p><p>
+<h3>declare-error precompiled</h3>
+
+When running precompiled we get:
+<pre>
+$ ant run.aopc
+....
+_aopc:
+     [aopc] ERROR: declare-error condition
+     [aopc]     'call(Driver-&gt;new(..)) AND within(*DAO)'
+     [aopc] was broken for constructor call: CarDAO.save()V calls Driver.new()V
+     [aopc]     DAO classes should not access the Driver class
+
+     [aopc] java.lang.RuntimeException: ERROR: declare-error condition
+     [aopc]     'call(Driver-&gt;new(..)) AND within(*DAO)'
+     [aopc] was broken for constructor call: CarDAO.save()V calls Driver.new()V
+     [aopc]     DAO classes should not access the Driver class
+
+     [aopc]     at org.jboss.aop.instrument.DeclareChecker.checkDeclares(DeclareChecker.java:124)
+     [aopc]     at org.jboss.aop.instrument.DeclareChecker.checkDeclares(DeclareChecker.java:57)
+     [aopc]     at org.jboss.aop.instrument.CallerTransformer$CallerExprEditor.edit(CallerTransformer.java:472)
+     [aopc]     at javassist.expr.ExprEditor.doit(ExprEditor.java:136)
+     [aopc]     at javassist.CtBehavior.instrument(CtBehavior.java:362)
+     [aopc]     at org.jboss.aop.instrument.CallerTransformer.applyCallerPointcuts(CallerTransformer.java:69)
+     [aopc]     at org.jboss.aop.instrument.Instrumentor.applyCallerPointcuts(Instrumentor.java:495)
+     [aopc]     at org.jboss.aop.instrument.Instrumentor.transform(Instrumentor.java:562)
+...
+
+BUILD FAILED
+</pre>
+</p><p>
+See how the compiler stops at the first error and execution stops. (To run with JDK 1.4 use $ ant run.loadtime.14 as shown in the <a href="../valid_targets_not_annotated.html"/>non-annotated examples guide</a>.)
+</p><p>
+<h3>declare-error loadtime</h3>
+
+When running with loadtime transformations we get:
+<pre>
+$ ant run.loadtime
+
+...
+
+_run.loadtime:
+     [java] ---- Start ----
+     [java] ERROR: declare-error condition
+     [java]     'call(Driver-&gt;new(..)) AND within(*DAO)'
+     [java] was broken for constructor call: CarDAO.save()V calls Driver.new()V
+     [java]     DAO classes should not access the Driver class
+
+     [java] java.lang.RuntimeException: ERROR: declare-error condition
+     [java]     'call(Driver-&gt;new(..)) AND within(*DAO)'
+     [java] was broken for constructor call: CarDAO.save()V calls Driver.new()V
+     [java]     DAO classes should not access the Driver class
+
+     [java]     at org.jboss.aop.instrument.DeclareChecker.checkDeclares(DeclareChecker.java:124)
+     [java]     at org.jboss.aop.instrument.DeclareChecker.checkDeclares(DeclareChecker.java:57)
+     [java]     at org.jboss.aop.instrument.CallerTransformer$CallerExprEditor.edit(CallerTransformer.java:472)
+     [java]     at javassist.expr.ExprEditor.doit(ExprEditor.java:136)
+     [java]     at javassist.CtBehavior.instrument(CtBehavior.java:362)
+     [java]     at org.jboss.aop.instrument.CallerTransformer.applyCallerPointcuts(CallerTransformer.java:69)
+     [java]     at org.jboss.aop.instrument.Instrumentor.applyCallerPointcuts(Instrumentor.java:495)
+     [java]     at org.jboss.aop.instrument.Instrumentor.transform(Instrumentor.java:562)
+     [java]     at org.jboss.aop.AspectManager.translate(AspectManager.java:564)
+     [java]     at org.jboss.aop.AspectManager.transform(AspectManager.java:482)
+     [java]     at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+     [java]     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java]     at java.lang.reflect.Method.invoke(Method.java:585)
+     [java]     at org.jboss.aop.standalone.SystemClassLoader.loadClass(SystemClassLoader.java:174)
+     [java]     at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+     [java]     at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+     [java]     at Driver.createVehicles(Driver.java:24)
+     [java]     at Driver.main(Driver.java:19)
+     [java] [error] failed to transform: CarDAO.. Do verbose mode if you want full stack trace.
+     [java] Exception in thread "main" java.lang.Error: Error transforming the class CarDAO: java.lang.RuntimeException: failed to transform: CarDAO
+     [java]     at org.jboss.aop.standalone.SystemClassLoader.loadClass(SystemClassLoader.java:191)
+     [java]     at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+     [java]     at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+     [java]     at Driver.createVehicles(Driver.java:24)
+     [java]     at Driver.main(Driver.java:19)
+
+
+
+BUILD FAILED
+</pre>
+Again you can see how the first broken condition causes execution to stop. (To run with JDK 1.4 use $ ant run.loadtime.14 as shown in the <a href="../valid_targets_not_annotated.html"/>non-annotated examples guide</a>.)
+</p>
+</body>
+</html>

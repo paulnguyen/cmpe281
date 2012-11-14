@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.3.1. @Thrown annotated parameter</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="adv-annotatedparameters.html" title="4.3. Annotated Advice Parameters"/>
+      <link rel="prev" href="adv-annotatedparameters.html" title="4.3. Annotated Advice Parameters"/>
+      <link rel="next" href="adv-joinpointargs.html" title="4.3.2. JoinPoint Arguments"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-annotatedparameters.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-joinpointargs.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="adv-thrown"/>4.3.1. @Thrown annotated parameter</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            As shown in <a href="adv-annotatedparameters.html#adv-annotparamtable" title="Table 4.1. Annotated Parameters Table">Table 4.1, “Annotated Parameters Table”</a>, the presence of a <code class="literal">@Thrown</code> annotated parameter
+            can be mandatory depending on the advice type and its parameters.
+         </p>
+         <p>
+            This annotation is available only for after-throwing and finally advices. For after-throwing advices this parameter
+            is always mandatory:
+         </p>
+         <pre class="programlisting">public class Aspect
+{
+   public void throwing1(@Thrown RuntimeException thrownException)
+   {
+      ...
+   }
+
+   public void throwing2()
+   {
+      ...
+   }
+}
+
+
+&lt;aop&gt;
+   &lt;aspect class="Aspect"/&gt;
+   &lt;bind pointcut="..."&gt;
+      &lt;throwing aspect="Aspect" name="throwing1"/&gt;
+      &lt;throwing aspect="Aspect" name="throwing2"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;</pre>
+         <p>
+            The advice <code class="literal">throwing1</code> follows this rule; advice <code class="literal">throwing2</code>,
+            on the other hand, is invalid, because it does not contain the mandatory <code class="literal">@Thrown</code>
+            annotated parameter.
+         </p>
+         <p>
+            For finally advices, the <code class="literal">@Thrown</code> annotation is compulsory only if a
+            <code class="literal">@Return</code> annotated parameter is present. This way, a finally advice can identify
+            whether the return value is valid or not. If the <code class="literal">@Thrown</code> parameter is
+            <code class="literal">null</code>, it means that the joinpoint returned normally and that the value contained in
+            the <code class="literal">@Return</code> annotated-parameter is valid. Otherwise, the value contained in
+            <code class="literal">@Return</code> annotated parameter must be ignored (it will be <code class="literal">null</code> if
+            the return type is not primitive, <code class="literal">0</code> if it is a primitive number or <code class="literal">false</code>
+            if it is boolean). If the finally advice does not receive the joinpoint return value, the use of the
+            <code class="literal">@Thrown</code> annotated parameter is optional and, as expected, its value will be
+            <code class="literal">null</code> if the joinpoint being intercepted did not throw an exception. Take a look at the
+            next example:
+         </p>
+         <pre class="programlisting">public class Aspect
+{
+   public void finally1(@Thrown Throwable thrownException)
+   {
+      ...
+   }
+
+   public void finally2()
+   {
+      ...
+   }
+
+   public void finally3(@Return int returnedValue, @Thrown Throwable thrownException)
+   {
+      if (thrownException == null)
+
+      {
+
+         //We returned normally, the @Return parameter is valid
+
+         int i = returnedValue;
+
+      }
+
+      else
+
+      {
+
+         //An exception happened while invoking the target joinpoint
+
+         //The return value is invalid
+
+      }
+
+    }
+
+   public void finally4(@Return int returnedValue)
+   {
+      ...
+   }
+
+}
+
+
+&lt;aop&gt;
+   &lt;aspect class="Aspect"/&gt;
+   &lt;bind pointcut="execution(public int *-&gt;*(..))"&gt;
+      &lt;finally aspect="Aspect" name="finally1"/&gt;
+      &lt;finally aspect="Aspect" name="finally2"/&gt;
+
+      &lt;finally aspect="Aspect" name="finally3"/&gt;
+
+      &lt;finally aspect="Aspect" name="finally4"/&gt;
+
+   &lt;/bind&gt;
+&lt;/aop&gt;</pre>
+         <p>
+            This example binds four finally advices to the execution of all public methods that return an int value. Take note on the
+            type of the <code class="literal">@Thrown</code>-annotated parameters, which must be <code class="literal">Throwable</code> for this type of
+            advice.
+         </p>
+         <p>
+            The presence of <code class="literal">@Thrown</code> is not mandatory in advices <code class="literal">finally1()</code>
+            and <code class="literal">finally2()</code>, because they do not have a <code class="literal">@Return</code> annotated parameter.
+            Hence, both advices are valid. Besides, <code class="literal">finally1()</code> will receive a non-null exception only
+            when the joinpoint being intercepted throws an exception.
+         </p>
+         <p>
+            For advice method <code class="literal">finally3()</code> the presence of a <code class="literal">@Thrown</code> annotated parameter
+            is mandatory because this advice also has a <code class="literal">@Return</code> annotated parameter. If an exception
+            happens when invoking the target joinpoint, this advice will receive a non-null <code class="literal">@Thrown</code> parameter,
+            meaning that the <code class="literal">@Return</code> annotated parameter is invalid. If the joinpoint completes normally,
+            the <code class="literal">@Thrown</code> annotated parameter will be <code class="literal">null</code> and the <code class="literal">@Return</code>
+            annotated parameter will contain the return value of the target joinpoint.
+         </p>
+         <p>
+            The <code class="literal">finally4()</code> advice is invalid, it contains a <code class="literal">@Return</code> parameter, but has no
+            <code class="literal">@Thrown</code> annotated parameter. Finally advices require a <code class="literal">@Thrown</code> parameter if a
+            <code class="literal">@Return</code> annotated parameter is present.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-annotatedparameters.html">
+               <strong>Prev</strong>4.3. Annotated Advice Parameters</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-joinpointargs.html">
+               <strong>Next</strong>4.3.2. JoinPoint Arguments</a>
+         </li>
+      </ul>
+   </body>
+</html>

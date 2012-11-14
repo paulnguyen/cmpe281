@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <bind pointcut="execution(public void POJO->noop())">
+       <interceptor class="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* POJO->*(int))">
+       <interceptor class="MethodInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(static * POJO->*(..))">
+       <interceptor class="MethodInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* POJO$Bar->*(..))">
+       <interceptor class="MethodInterceptor"/>
+   </bind>
+
+</aop>

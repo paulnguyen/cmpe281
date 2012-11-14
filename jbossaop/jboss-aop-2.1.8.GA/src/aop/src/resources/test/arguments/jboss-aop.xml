@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <aspect class="org.jboss.test.aop.arguments.ArgumentsAspect" scope="PER_VM"/>
+
+   <stack name="getAndChange">
+		<advice name="getArgumentsAdvice1" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="getAndChangeArgumentsAdvice" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="getArgumentsAdvice2" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+   </stack>
+
+   <cflow-stack name="ArgumentsPOJO1_constructor">
+      <called expr="org.jboss.test.aop.arguments.ArgumentsPOJO1->new(..)"/>
+   </cflow-stack>
+
+   <cflow-stack name="ArgumentsPOJO1_method">
+      <called expr="* org.jboss.test.aop.arguments.ArgumentsPOJO1->*(..)"/>
+   </cflow-stack>
+
+   <bind pointcut="all(org.jboss.test.aop.arguments.ArgumentsPOJO1)">
+		<stack-ref name="getAndChange"/>
+   </bind>
+ 
+	<bind pointcut="call(org.jboss.test.aop.arguments.CalledPOJO->new(int))" cflow="(ArgumentsPOJO1_constructor OR ArgumentsPOJO1_method)">
+		<stack-ref name="getAndChange"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.arguments.CalledPOJO->*(int))" cflow="(ArgumentsPOJO1_constructor OR ArgumentsPOJO1_method)">
+		<stack-ref name="getAndChange"/>
+   </bind>
+
+	<bind pointcut="call(static * org.jboss.test.aop.arguments.CalledPOJO->*(int))" cflow="(ArgumentsPOJO1_constructor OR ArgumentsPOJO1_method)">
+      <advice name="setArgumentsAdvice" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+   </bind>
+
+   <stack name="set">
+      <advice name="getArgumentsAdvice1" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="setArgumentsAdvice" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="getArgumentsAdvice2" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+   </stack>
+
+   <cflow-stack name="ArgumentsPOJO2_constructor">
+      <called expr="org.jboss.test.aop.arguments.ArgumentsPOJO2->new(..)"/>
+   </cflow-stack>
+
+   <cflow-stack name="ArgumentsPOJO2_method">
+      <called expr="* org.jboss.test.aop.arguments.ArgumentsPOJO2->*(..)"/>
+   </cflow-stack>
+
+   <bind pointcut="all(org.jboss.test.aop.arguments.ArgumentsPOJO2)">
+      <stack-ref name="set"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.arguments.CalledPOJO->new(..))" cflow="(ArgumentsPOJO2_constructor OR ArgumentsPOJO2_method)">
+      <stack-ref name="set"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.arguments.CalledPOJO->*(int))" cflow="(ArgumentsPOJO2_constructor OR ArgumentsPOJO2_method)">
+      <stack-ref name="set"/>
+   </bind>
+
+	<bind pointcut="call(static * org.jboss.test.aop.arguments.CalledPOJO->*(int))" cflow="(ArgumentsPOJO2_constructor OR ArgumentsPOJO2_method)">
+      <advice name="getAndChangeArgumentsAdvice" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+   </bind>
+   
+   <precedence>
+      <advice name="getArgumentsAdvice1" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="setArgumentsAdvice" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="getArgumentsAdvice2" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+      <advice name="getAndChangeArgumentsAdvice" aspect="org.jboss.test.aop.arguments.ArgumentsAspect"/>
+   </precedence>
+   
+   <aspect class="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect" scope="PER_VM"/>
+   
+   <bind pointcut="call(* org.jboss.test.aop.arguments.CalledPOJO->*(long))" cflow="(ArgumentsPOJO2_constructor OR ArgumentsPOJO2_method)">
+      <advice name="getArgumentsAdvice1" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+      <advice name="setArgumentsAdvice" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+      <advice name="getArgumentsAdvice2" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+   </bind>
+
+   <bind pointcut="call(static * org.jboss.test.aop.arguments.CalledPOJO->*(long))" cflow="(ArgumentsPOJO2_constructor OR ArgumentsPOJO2_method)">
+      <advice name="getAndChangeArgumentsAdvice" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+   </bind>
+   
+   <stack name="noPrecedenceGetAndChange">
+      <advice name="getArgumentsAdvice1" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+      <advice name="getAndChangeArgumentsAdvice" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+      <advice name="getArgumentsAdvice2" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+   </stack>
+   
+   <bind pointcut="call(org.jboss.test.aop.arguments.CalledPOJO->new(long))" cflow="(ArgumentsPOJO1_constructor OR ArgumentsPOJO1_method)">
+      <stack-ref name="noPrecedenceGetAndChange"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.arguments.CalledPOJO->*(long))" cflow="(ArgumentsPOJO1_constructor OR ArgumentsPOJO1_method)">
+      <stack-ref name="noPrecedenceGetAndChange"/>
+   </bind>
+   
+   <bind pointcut="call(static * org.jboss.test.aop.arguments.CalledPOJO->*(long))" cflow="(ArgumentsPOJO1_constructor OR ArgumentsPOJO1_method)">
+      <advice name="setArgumentsAdvice" aspect="org.jboss.test.aop.arguments.NoPrecedenceArgumentsAspect"/>
+   </bind>
+</aop>

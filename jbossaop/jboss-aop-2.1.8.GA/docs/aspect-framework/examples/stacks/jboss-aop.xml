@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <stack name="stuff">
+      <interceptor class="SimpleInterceptor1"/>
+      <interceptor class="SimpleInterceptor2"/>
+      <interceptor class="SimpleInterceptor3"/>
+   </stack>
+
+   <bind pointcut="execution(* POJO->*(..))">
+       <stack-ref name="stuff"/>
+   </bind>
+
+</aop>

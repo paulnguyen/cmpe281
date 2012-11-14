@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	'ct' = compile time AOP instrumentation
+	'lt' = load time AOP instrumentation
+-->
+<project default="usage" name="AOP in JBoss example" basedir=".">
+
+   <import file="../examples-build.xml"/>
+
+   <target name="prepare" depends="_prepare">
+      <!-- Set jboss.dir property to root of your JBoss distribution -->
+      <property name="jboss.dir" value="/Users/kabir/sourcecontrol/jboss-head/build/output/jboss-5.0.0.GA"/>
+   	  <!--
+   	     Set jboss.server.config property to either default or all.
+   	        if you set this to default, JBoss should be started with
+   	           run -c default
+   	        if you set this to all, JBoss should be started with
+   	           run -c all
+   	  -->
+      <property name="jboss.server.config" value="all" />
+
+      <available file="${jboss.dir}" property="jboss.exists" type="dir"/>
+      <fail unless="jboss.exists" message="${jboss.dir} does not exist. Modify 'jboss.dir' in build.xml to be a valid root of a jboss installation"/>
+
+      <echo>===========================================================</echo>
+      <echo>YOUR JBOSS DISTRIBUTION ROOT IS: ${jboss.dir}</echo>
+      <echo>YOUR SERVER CONFIG IS: ${jboss.server.config}</echo>
+      <echo>MAKE SURE YOU STARTED JBOSS WITH: run -c ${jboss.server.config}</echo>
+      <echo>===========================================================</echo>
+
+      <property name="src.dir" value="src/main"/>
+      <property name="resource.dir" value="src/resources"/>
+      <property name="resource.jboss-aop.xml" value="${resource.dir}/META-INF/jboss-aop.xml"/>
+      <property name="basic.web.dir" value="${resource.dir}/web-basic"/>
+      <property name="ear.web.dir" value="${resource.dir}/web-ear"/>
+
+      <property name="output.dir" value="output"/>
+      <property name="classes.dir" value="${output.dir}/classes"/>
+      <property name="aop.classes.dir" value="${output.dir}/aopclasses"/>
+      <property name="lib.dir" value="${output.dir}/lib"/>
+      <property name="basic.web.out.dir" value="${output.dir}/web-basic"/>
+      <property name="basic.web.out.lib.dir" value="${basic.web.out.dir}/WEB-INF/lib"/>
+      <property name="ear.web.out.dir" value="${output.dir}/web-basic"/>
+      <property name="ear.web.out.lib.dir" value="${ear.web.out.dir}/WEB-INF/lib"/>
+
+      <property name="deploy.dir" value="${jboss.dir}/server/${jboss.server.config}/deploy" />
+      <property name="ejb.jar.name" value="aopexampleejb.jar"/>
+      <property name="ejb.jar" value="${lib.dir}/${ejb.jar.name}"/>
+      <property name="lib.jar.name" value="aopexamplelib.jar"/>
+      <property name="lib.jar" value="${lib.dir}/${lib.jar.name}"/>
+      <property name="lib.aop.name" value="aopexamplelib.aop"/>
+      <property name="lib.aop" value="${lib.dir}/${lib.aop.name}"/>
+      <property name="basic.war.name" value="aopexample.war"/>
+      <property name="basic.war" value="${lib.dir}/${basic.war.name}"/>
+      <property name="aopexample.war.name" value="aopexample.war"/>
+      <property name="aopexample.war" value="${lib.dir}/${aopexample.war.name}"/>
+      <property name="example.ear.name" value="aopexample.ear"/>
+      <property name="example.ear" value="${lib.dir}/${example.ear.name}"/>
+      <property name="example.sar.name" value="aopexample.sar"/>
+      <property name="example.sar" value="${lib.dir}/${example.sar.name}"/>
+      <property name="example.jar.name" value="aopexample.jar"/>
+      <property name="example.jar" value="${lib.dir}/${example.jar.name}"/>
+
+      <path id="jboss.classpath">
+         <pathelement path="${jboss.dir}/server/default/lib/servlet-api.jar"/>
+         <pathelement path="${jboss.dir}/server/default/lib/jboss-javaee.jar"/>
+      </path>
+
+      <path id="classpath">
+         <path refid="jboss.aop.classpath"/>
+         <path refid="jboss.classpath"/>
+         <pathelement path="."/>
+      </path>
+
+      <delete dir="${output.dir}"/>
+      <mkdir dir="${output.dir}"/>
+      <mkdir dir="${classes.dir}"/>
+      <mkdir dir="${aop.classes.dir}"/>
+      <mkdir dir="${lib.dir}"/>
+      <mkdir dir="${basic.web.out.dir}"/>
+      <mkdir dir="${ear.web.out.dir}"/>
+      <taskdef name="aopc" classname="org.jboss.aop.ant.AopC" classpathref="jboss.aop.classpath"/>
+   </target>
+
+   <target name="compile" depends="prepare">
+      <javac srcdir="${src.dir}"
+         destdir="${classes.dir}"
+         debug="on"
+         deprecation="on"
+         optimize="off"
+         includes="**">
+         <classpath refid="classpath"/>
+      </javac>
+    </target>
+
+    <target name="compile-aop" depends="compile">
+   	   <copy todir="${aop.classes.dir}">
+   	      <fileset dir="${classes.dir}">
+   	  	     <include name="**/*"/>
+   	      </fileset>
+   	  </copy>
+
+        <aopc compilerclasspathref="classpath" classpathref="classpath" verbose="true">
+            <classpath path="${aop.classes.dir}"/>
+            <src path="${aop.classes.dir}"/>
+            <aoppath path="${resource.jboss-aop.xml}"/>
+        </aopc>
+   </target>
+
+
+   <target name="lib-ct-jar" depends="compile-aop">
+
+      <!-- Create lib-jar -->
+      <jar destfile="${lib.jar}">
+	  	   <fileset dir="${aop.classes.dir}">
+	  	      <include name="**/*"/>
+         </fileset>
+	   </jar>
+   </target>
+
+   <target name="lib-lt-jar" depends="compile">
+
+      <!-- Create lib-jar -->
+	   <jar destfile="${lib.jar}">
+         <fileset dir="${classes.dir}">
+            <include name="**/*"/>
+	  	   </fileset>
+	  </jar>
+   </target>
+
+   <target name="lib-lt-aop" depends="compile">
+
+      <!-- Create .aop file-->
+      <jar destfile="${lib.aop}">
+         <fileset dir="${classes.dir}">
+            <include name="**/*"/>
+         </fileset>
+         <fileset dir="${resource.dir}">
+            <include name="META-INF/jboss-aop.xml"/>
+         </fileset>
+      </jar>
+   </target>
+
+   <target name="lib-ct-aop" depends="compile-aop">
+      <!-- Create .aop file with pre-instrumented files -->
+      <jar destfile="${lib.aop}">
+         <fileset dir="${aop.classes.dir}">
+            <include name="**/*"/>
+         </fileset>
+         <fileset dir="${resource.dir}">
+            <include name="META-INF/jboss-aop.xml"/>
+         </fileset>
+      </jar>
+   </target>
+
+   <target name="basic-ct-war" depends="lib-ct-jar">
+
+	  <!-- Create simple war, containing aop'ed classes lib -->
+      <copy todir="${basic.web.out.dir}">
+         <fileset dir="${basic.web.dir}">
+            <include name="**/*"/>
+         </fileset>
+	   </copy>
+      <copy todir="${basic.web.out.lib.dir}" file="${lib.jar}"/>
+      <jar destfile="${basic.war}" basedir="${basic.web.out.dir}"/>
+   </target>
+
+   <target name="basic-lt-war" depends="lib-lt-jar">
+
+     <!-- Create simple war, containing normal classes lib  -->
+     <copy todir="${basic.web.out.dir}">
+        <fileset dir="${basic.web.dir}">
+           <include name="**/*"/>
+        </fileset>
+     </copy>
+     <copy todir="${basic.web.out.lib.dir}" file="${lib.jar}"/>
+     <jar destfile="${basic.war}" basedir="${basic.web.out.dir}"/>
+   </target>
+
+   <target name="basic-lt-aop-war" depends="lib-lt-aop">
+
+     <!-- Create simple war, containing normal classes aop lib  -->
+     <copy todir="${basic.web.out.dir}">
+        <fileset dir="${basic.web.dir}">
+           <include name="**/*"/>
+        </fileset>
+     </copy>
+     <copy todir="${basic.web.out.lib.dir}" file="${lib.aop}"/>
+     <jar destfile="${basic.war}" basedir="${basic.web.out.dir}"/>
+   </target>
+
+   <target name="basic-lt-war-in-sar" depends="lib-lt-aop">
+        <!-- Create war, classes will be in a .aop lib in the sar -->
+     <copy todir="${basic.web.out.dir}">
+        <fileset dir="${basic.web.dir}">
+           <include name="**/*"/>
+         </fileset>
+     </copy>
+     <jar destfile="${basic.war}" basedir="${basic.web.out.dir}"/>
+     <jar destfile="${example.sar}" basedir="${lib.dir}">
+        <fileset dir="${resource.dir}">
+           <include name="META-INF/jboss-service.xml"/>
+        </fileset>
+     </jar>
+   </target>
+
+   <target name="example-lt-sar" depends="lib-lt-aop">
+     <jar destfile="${example.sar}" basedir="${lib.dir}">
+        <fileset dir="${resource.dir}">
+           <include name="META-INF/jboss-service.xml"/>
+        </fileset>
+     </jar>
+   </target>
+
+   <target name="basic-ct-war-in-sar" depends="lib-ct-aop">
+        <!-- Create war, classes will be in a .aop lib in the sar -->
+     <copy todir="${basic.web.out.dir}">
+        <fileset dir="${basic.web.dir}">
+           <include name="**/*"/>
+         </fileset>
+     </copy>
+     <jar destfile="${basic.war}" basedir="${basic.web.out.dir}"/>
+     <jar destfile="${example.sar}">
+        <fileset dir="${lib.dir}">
+           <include name="*.war"/>
+           <include name="*.aop"/>
+        </fileset>
+        <fileset dir="${resource.dir}">
+           <include name="META-INF/jboss-service.xml"/>
+        </fileset>
+     </jar>
+   </target>
+
+   <target name="basic-lt-war-in-jar" depends="lib-lt-aop">
+        <!-- Create war, classes will be in a .aop lib in the jar -->
+     <copy todir="${basic.web.out.dir}">
+        <fileset dir="${basic.web.dir}">
+           <include name="**/*"/>
+         </fileset>
+     </copy>
+     <jar destfile="${basic.war}" basedir="${basic.web.out.dir}"/>
+     <jar destfile="${example.jar}" basedir="${lib.dir}"/>
+   </target>
+
+
+   <target name="ear-war" depends="compile">
+      <!-- Create war for use in ear -->
+      <copy todir="${ear.web.out.dir}">
+         <fileset dir="${ear.web.dir}">
+            <include name="**/*"/>
+         </fileset>
+      </copy>
+     <jar destfile="${basic.war}">
+        <fileset dir="${ear.web.dir}">
+           <include name="**/*"/>
+        </fileset>
+     </jar>
+   </target>
+
+   <target name="ear-ejb-jar" depends="compile">
+      <!-- Create ejb-jar for use in ear -->
+      <jar destfile="${ejb.jar}">
+         <fileset dir="${classes.dir}">
+            <include name="**/ejb/*"/>
+         </fileset>
+         <fileset dir="${resource.dir}">
+            <include name="META-INF/ejb-jar.xml"/>
+         </fileset>
+      </jar>
+   </target>
+
+   <target name="ear-lib-jar" depends="compile">
+      <!-- Create lib.jar for use in ear-->
+      <jar destfile="${lib.jar}">
+	      <fileset dir="${classes.dir}">
+	         <include name="**/web/*"/>
+	         <include name="**/lib/*"/>
+	      </fileset>
+      </jar>
+   </target>
+
+	<target name="ear-lib-aop" depends="compile">
+
+		<!-- Create .aop file for use in ear-->
+		<jar destfile="${lib.aop}">
+			<fileset dir="${classes.dir}">
+            <include name="**/web/*"/>
+            <include name="**/lib/*"/>
+			</fileset>
+			<fileset dir="${resource.dir}">
+			   <include name="META-INF/jboss-aop.xml"/>
+			</fileset>
+		 </jar>
+	</target>
+
+   <target name="ear" depends="ear-ejb-jar, ear-lib-jar, ear-war">
+      <filter token="lib" value="${lib.jar.name}"/>
+      <mkdir dir="${output.dir}/META-INF"/>
+        <copy file="${resource.dir}/META-INF/application.xml"
+          todir="${output.dir}/META-INF" filtering="on"/>
+
+      <jar destfile="${example.ear}">
+         <fileset dir="${lib.dir}">
+            <include name="${basic.war.name}"/>
+            <include name="${ejb.jar.name}"/>
+            <include name="${lib.jar.name}"/>
+         </fileset>
+         <fileset dir="${output.dir}">
+            <include name="META-INF/application.xml"/>
+         </fileset>
+      </jar>
+   </target>
+
+   <target name="ear-aop" depends="ear-ejb-jar, ear-lib-aop, ear-war">
+      <filter token="lib" value="${lib.aop.name}"/>
+      <mkdir dir="${output.dir}/META-INF"/>
+        <copy file="${resource.dir}/META-INF/application.xml"
+          todir="${output.dir}/META-INF" filtering="on"/>
+
+      <jar destfile="${example.ear}">
+         <fileset dir="${lib.dir}">
+            <include name="${basic.war.name}"/>
+            <include name="${ejb.jar.name}"/>
+            <include name="${lib.aop.name}"/>
+         </fileset>
+         <fileset dir="${output.dir}">
+            <include name="META-INF/application.xml"/>
+         </fileset>
+      </jar>
+   </target>
+
+   <target name="undeploy" depends="prepare">
+        <delete>
+            <fileset dir="${deploy.dir}">
+            <include name="${ejb.jar.name}"/>
+            <include name="${lib.jar.name}"/>
+            <include name="${basic.war.name}"/>
+            <include name="${lib.jar.name}"/>
+            <include name="${example.ear.name}"/>
+            <include name="${example.sar.name}"/>
+            <include name="jboss-aop.xml"/>
+            <include name="${example.jar.name}" />
+            </fileset>
+        </delete>
+   </target>
+
+   <target name="undeploy-wait" depends="undeploy">
+     <echo>Waiting for undeploy to take effect...</echo>
+     <sleep seconds="10"/>
+   </target>
+
+   <target name="usage" depends="">
+        <echo>
+         Run 'ant deploy-basic-lt-war-in-sar',
+         'ant deploy-ear-aop' or
+         'ant deploy-example-lt-sar'
+         to deploy to JBoss for loadtime AOP</echo>
+   </target>
+
+   <!--- The following are the targets to be executed -->
+
+   <target name="deploy-basic-ct-war" depends="basic-ct-war, undeploy-wait" if="">
+      <copy file="${basic.war}" todir="${deploy.dir}"/>
+        <!-- Problems - see issues.txt -->
+      <echo>Waiting for war to deploy before deploying jboss-aop.xml</echo>
+      <sleep seconds="10"/>
+      <copy file="${resource.jboss-aop.xml}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Contains already aop'ed classes - run with enable transformations = false</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+   <target name="deploy-basic-lt-war" depends="basic-lt-war, undeploy-wait">
+      <copy file="${resource.jboss-aop.xml}" todir="${deploy.dir}"/>
+      <copy file="${basic.war}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+         <echo>Classes have not been aop'ed - run JBoss with enable transformations = true</echo>
+         <echo>Deploying war with a standard WEB-INF/lib/lib.jar file and a standalone jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+   <target name="deploy-example-lt-sar" depends="example-lt-sar, undeploy-wait">
+      <copy file="${example.sar}" todir="${deploy.dir}"/>
+   </target>
+
+
+
+   <!-- This one does not get aop'ed. WEB-INF/lib contains .aop file. Possibly due to classloader stuff? -->
+   <target name="deploy-basic-lt-aop-war" depends="basic-lt-aop-war, undeploy-wait">
+      <copy file="${basic.war}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Classes have not been aop'ed - run JBoss with enable transformations = true</echo>
+      <echo>Deploying war with a WEB-INF/lib/lib.aop file containing the jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+
+   <target name="deploy-basic-lt-war-in-sar" depends="basic-lt-war-in-sar, undeploy-wait">
+      <copy file="${example.sar}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Classes have not been aop'ed - run JBoss with enable transformations = true</echo>
+      <echo>Deploying sar containing a war and all classes in a lib.aop file containing the jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+   <target name="deploy-basic-ct-war-in-sar" depends="basic-ct-war-in-sar, undeploy-wait">
+      <!-- Problems - see issues.txt -->
+      <copy file="${example.sar}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Classes been aop'ed</echo>
+      <echo>Deploying sar containing a war and all classes in a lib.aop file containing the jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+   <target name="deploy-basic-lt-war-in-jar" depends="basic-lt-war-in-jar, undeploy-wait">
+      <copy file="${example.jar}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Classes have not been aop'ed - run JBoss with enable transformations = true</echo>
+      <echo>Deploying jar containing a war and all classes in a lib.aop file containing the jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+   <target name="deploy-ear" depends="ear, undeploy-wait">
+      <copy file="${resource.jboss-aop.xml}" todir="${deploy.dir}"/>
+      <copy file="${example.ear}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Classes have not been aop'ed - run JBoss with enable transformations = true</echo>
+      <echo>Deploying ear with a standard contents and a standalone jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+   <target name="deploy-ear-aop" depends="ear-aop, undeploy-wait">
+      <copy file="${example.ear}" todir="${deploy.dir}"/>
+      <echo>=============================================================</echo>
+      <echo>Classes have not been aop'ed - run JBoss with enable transformations = true</echo>
+      <echo>Deploying ear containing a lib.aop file containing the jboss-aop.xml file</echo>
+      <echo>=============================================================</echo>
+   </target>
+
+</project>

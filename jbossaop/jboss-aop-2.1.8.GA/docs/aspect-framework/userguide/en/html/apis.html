@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>5.3. Aspects with APIs</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="introductions.html" title="Chapter 5. Mixins and Introductions"/>
+      <link rel="prev" href="multi.html" title="5.2.1. Multiple Inheritance"/>
+      <link rel="next" href="dynamic.html" title="Chapter 6. Dynamic AOP"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="multi.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="dynamic.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="apis"/>5.3. Aspects with APIs</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         The serialization and externalization examples show previously in this chapter are kinda lame.  Sure, you
+         can use introductions/mixins for multiple inheritance, or to do nice tricks like forcing an existing class
+         to be serializable.  A more compelling use case is needed to justify this particular feature.  This is what
+         this section is about.
+      </p>
+         <p>
+         The best use cases for introductions/mixins comes when you have an aspect that requires an API for the user
+         to interact with.  Many aspects have runtime APIs so that the application developer can interact with a particular
+         aspect to set configuration or to gain added behavior.  A good example of an aspect with an API is if we expand
+         on the
+         <code class="literal">@Oneway</code> example in the "Aspect-Oriented Annotations" section of this user guide.
+         <code class="literal">@Oneway</code> allows you to tag a method as oneway and when you invoke that method it runs in
+         the background.  The problem with this example is that you can only run
+         <code class="literal">void</code> methods in
+         the background and cannot interact asynchronously with methods that return a value.  You have no way of
+         obtaining the return value of an asynchronous call.  Let's walk through an example of taking the oneway
+         aspect and adding a runtime API for that aspect so that application developers can obtain method return values
+         asynchronously.
+      </p>
+         <p>
+         The end goal of this example is to allow an application developer to tag a method as
+         <code class="literal">@Asynchronous</code>
+         have the method run in the background, but to provide an API so that the developer can obtain the value of a method
+         return asynchronously.  What we'll use here is an introduction and mixin to provide an API to obtain a
+         <code class="literal">java.util.concurrent.Future</code> instance (from JDK 5.0 concurrent package) that will allow us to get access to the asynchronous
+         method's return value.
+      </p>
+         <p>Using the
+         <code class="literal">@Asynchronous</code> annotation
+      </p>
+         <pre class="programlisting">public class POJO
+{
+   @Asynchronous int someMethod() { ... }
+}</pre>
+         <p>
+         This is the interface we want to introduce to any class that has a method tagged as
+         <code class="literal">@Asynchronous</code>
+      
+         </p>
+         <pre class="programlisting">public interface AsynchronousFacade
+{
+   java.util.concurrent.Future getLastFuture();
+}</pre>
+         <p>
+         So, the user would interact with this asynchronous aspect in the following way.
+      </p>
+         <pre class="programlisting">{
+   POJO pojo = new POJO();
+   AsynchronousFacade facade = (AsynchronousFacade)pojo;
+...
+   pojo.someMethod(); // invokes in background
+   Future future = facade.getLastFuture();
+... do other work...
+   // go back and get result. block until it returns.
+   int result = (Integer)future.get();
+}</pre>
+         <p>
+         The first thing we need to do is define the mixin that will provide
+         <code class="literal">Futures</code>.  This mixin
+         should also have a private interface so that the asynchronous aspect has a way to set the current invocation's
+         future after it spawns the method invocation to the background.  The mixin will be very very simple.  It
+         will basically expose a
+         <code class="literal">java.lang.ThreadLocal</code> so that the Future can be set and acquired.
+      </p>
+         <pre class="programlisting">public class AsynchMixin implements AsynchronousFacade, FutureProvider
+{
+    private ThreadLocal currentFuture = new ThreadLocal();
+
+    public Future getLastFuture()
+    {
+       return (Future)currentFuture.get();
+    }
+
+    public void setFuture(Future future)
+    {
+       currentFuture.set(future);
+    }
+}</pre>
+         <p>
+        The
+         <code class="literal">FutureProvider</code> is an additional interface introduction that the aspect will use to
+         set the future when after it spawns the task in the background.
+      </p>
+         <pre class="programlisting">public interface FutureProvider
+{
+   public void setFuture(Future future);
+}</pre>
+         <p>
+         Next, let's look at the aspect that will implement the asynchronous behavior.  The aspect is made up of an
+         advice that will create a
+         <code class="literal">java.util.concurrent.Callable</code> instance so that the current
+         method invocation will run in the background.
+      </p>
+         <pre class="programlisting">public class AsynchAspect
+{
+   ExecutorService executor = Executors.newCachedThreadPool();
+
+   public Object invokeAsynch(MethodInvocation invocation) throws Throwable
+   {
+      final Invocation copy = invocation.copy();
+      Future future = executor.submit( new Callable()
+      {
+         public Object call()
+         {
+            try
+            {
+               return copy.invokeNext();
+            }
+            catch (Throwable throwable)
+            {
+               return throwable;
+            }
+         }
+      });
+      FutureProvider provider = (FutureProvider)invocation.getTargetObject();
+      provider.setFuture(future);
+
+      return nullOrZero(invocation.getMethod().getReturnType());
+   }
+
+   private Object nullOrZero(Class type)
+   {
+      if (type.equals(long.class)) return 0;
+      //... other types ...
+      return null;
+   }
+}</pre>
+         <p>
+         The
+         <code class="literal">invokeAsynch</code> advice first copies the invocation.  A copy copies the entire state
+         of the invocation objec and remembers exactly in the interceptor/advice chain to continue on when the
+         method is spawned off into a separate thread.  The copy allows the current Java call stack to return while allowing
+         the copy to live in a separate thread and continue down the interceptor stack towards the actual method call.
+      </p>
+         <p>
+         After creating a callable and running the method in a separate thread, the advice gets the target object
+         from the invocation, and typecasts it to
+         <code class="literal">FutureProvider</code> so that it can make the
+         future available to the app developer.
+      </p>
+         <p>
+         So the mixin and aspect are written.  The next thing to do is to define an advice binding so that when a method
+         is tagged as asynchronous, the asynch advice will be triggered, and the method will run in the background.
+      </p>
+         <pre class="programlisting">
+         &lt;aspect class="AsynchAspect" scope="PER_VM"/&gt;
+&lt;bind pointcut="execution(!static * *-&gt;@Asynchronous(..))"&gt;
+   &lt;advice name="invokeAsynch" aspect="AsynchAspect"/&gt;
+&lt;/bind&gt;</pre>
+         <p>
+         After defining the aspect binding, we then come to the introduction definition itself.  We want the introduction
+         to be added to any class that has any method tagged as
+         <code class="literal">@Asynchronous</code>.  The JBoss AOP
+         pointcut expression language has a keyword
+         <code class="literal">has</code> to allow for this type of matching.  Let's
+         look at the introduction binding.
+      </p>
+         <pre class="programlisting">&lt;introduction expr="has(!static * *-&gt;@Asynchronous(..))"&gt;
+   &lt;mixin&gt;
+      &lt;interfaces&gt;AsynchronousFacade, FutureProvider&lt;/interfaces&gt;
+      &lt;class&gt;AsynchMixin&lt;/class&gt;
+      &lt;construction&gt;new AsynchMixin()&lt;/construction&gt;
+   &lt;/mixin&gt;
+&lt;/introduction&gt;</pre>
+         <p>
+         The example is now complete.  Introductions/mixins aren't solely limited to pseudo-multiple inheritance and the
+         asynch aspect is a great example of an aspect with a runtime API.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="multi.html">
+               <strong>Prev</strong>5.2.1. Multiple Inheritance</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="dynamic.html">
+               <strong>Next</strong>Chapter 6. Dynamic AOP</a>
+         </li>
+      </ul>
+   </body>
+</html>

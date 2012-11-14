@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.1. Around Advices</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="advices.html" title="Chapter 4. Advices"/>
+      <link rel="prev" href="advices.html" title="Chapter 4. Advices"/>
+      <link rel="next" href="adv-batf.html" title="4.2. Before/After/After-Throwing/Finally Advices"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="advices.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-batf.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="adv-around"/>4.1. Around Advices</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         An around advice can follow this template:
+      </p>
+         <pre class="programlisting">
+public Object [advice name]([Invocation] invocation) throws Throwable
+{
+   try{
+      // do something before joinpoint execution
+      ...
+      // execute the joinpoint and get its return value
+      Object returnValue = invocation.invokeNext();
+      // do something after joinpoint has executed successfully ...
+      // return a value
+      return returnValue;
+   }
+   catch(Exception e)
+   {
+      //handle any exceptions arising from calling the joinpoint
+      throw e;
+   }
+   finally
+   {
+      //Take some action once the joinpoint has completed successfully or not
+   }
+}</pre>
+         <p>
+         In the template above, <span class="emphasis">
+               <em>Invocation</em>
+            </span> refers to one of the <a href="pointcuts-contextvalues.html#pointcuts-typetable" title="Table 3.1.  Joinpoint Types Table">Invocation beans</a>,
+         and can be the class
+         <code class="classname">org.jboss.aop.joinpoint.Invocation</code> or one of its subtypes.
+      </p>
+         <p>
+         Since an around advice wraps a joinpoint, it must proceed execution to the joinpoint itself during its execution.
+         This can be done by calling the method <code class="literal">invokeNext()</code> on <code class="literal">invocation</code>. This method will
+         proceed execution to the next around advice of that joinpoint. At the end of this chain this <code class="literal">invokeNext()</code>
+         will proceed to the joinpoint itself. The value returned by the around advice will replace the joinpoint return value in the base system.
+      </p>
+         <p>
+         For example, in the case where there are two around advices bound to a joinpoint, the first around advice will
+         trigger the second around advice by calling <code class="literal">invokeNext()</code>. The second advice will trigger
+         the joinpoint execution by calling the same method. As a result of the <code class="literal">invokeNext()</code> execution,
+         the second advice will receive the joinpoint return value. The value returned by this second advice will be received
+         as a result by the first around advice. Finally, the value returned by this advice will replace the joinpoint
+         return value in the base system execution. Normally though, around advices will simply return whatever value
+         the joinpoint returned! This is shown in the preceding template example.
+      </p>
+         <p>
+         If an around advice wants to completely replace the joinpoint execution, it can skip the call to <code class="literal">invokeNext()</code>.
+         This will also skip execution of any subsequent around advices in the chain. As a third alternative, the around advice can
+         call the method <code class="literal">invokeTarget()</code> instead of <code class="literal">invokeNext()</code>. This method will invoke 
+         the target joinpoint directly, skipping any subsequent advices.
+      </p>
+         <p>
+         The presence of the <code class="literal">Invocation</code> parameter is optional. If an around advice does not
+         have this parameter, it can replace the call to <code class="literal">invokeNext()</code> with a call to
+         <code class="literal">org.jboss.aop.joinpoint.CurrentInvocation.proceed()</code>.
+      </p>
+         <p>
+         The signature described before is the default around advice signature rule. In addition to it,
+         the around advice signature can also be of this form (only in generated advisor mode):
+      </p>
+         <pre class="programlisting">public [return type] [advice name]([annotated parameter],[annotated parameter],...[annotated parameter]) throws Throwable</pre>
+         <p>
+         This signature is joinpoint dependent. The return type of the advice must be a type assignable to the the return
+         type of the joinpoint to be intercepted (i.e. be the same type; a subclass, if the return type is class; or a
+         subinterface or an implementing class, if the return type is an interface). In case the joinpoint being intercepted
+         does not have a return type, this advice return type must be <code class="literal">void</code>.
+      </p>
+         <p>
+         An around advice can have zero or more annotated parameters. The annotated parameters will be covered in detail in
+         <a href="adv-annotatedparameters.html" title="4.3. Annotated Advice Parameters">Section 4.3, “Annotated Advice Parameters”</a>.
+      </p>
+         <p>
+         Finally, JBoss AOP also features a special type of around advice: <code class="literal">Interceptor</code>. An interceptor class implements
+         <code class="literal">org.jboss.aop.Interceptor</code>, and is described in <a href="impl-interceptor.html" title="2.4. Interceptors">Section 2.4, “Interceptors”</a>.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="advices.html">
+               <strong>Prev</strong>Chapter 4. Advices</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-batf.html">
+               <strong>Next</strong>4.2. Before/After/After-Throwing/Finally Advices</a>
+         </li>
+      </ul>
+   </body>
+</html>

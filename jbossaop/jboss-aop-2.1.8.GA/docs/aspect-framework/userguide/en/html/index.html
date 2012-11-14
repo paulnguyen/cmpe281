@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>JBoss AOP - User Guide</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="next" href="preface.html" title="Preface"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous"/>
+         <li class="next">
+            <a accesskey="n" href="preface.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="book" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h1 class="title">
+                     <a id="d0e1"/>JBoss AOP - User Guide</h1>
+               </div>
+               <div>
+                  <h2 class="subtitle">The Case For Aspects</h2>
+               </div>
+               <div>
+                  <p class="releaseinfo">2.0.0</p>
+               </div>
+            </div>
+            <hr/>
+         </div>
+         <div class="toc">
+            <dl>
+               <dt>
+                  <span class="preface">
+                     <a href="preface.html">Preface</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="chapter">
+                     <a href="what.html">1. What Is Aspect-Oriented Programming?</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="whatif.html">1.1. What is it?</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="create.html">1.2. Creating Aspects in JBoss AOP</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="apply.html">1.3. Applying Aspects in JBoss AOP</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="terms.html">2. Terms</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="base-terms.html">2.1. Overview</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="building.html">3. Building Aspects</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="identifying.html">3.1. Identifying Aspects</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="exceptions.html">3.2. Exception Handling</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="annotations.html">4. Aspect-Oriented Annotations</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotations1.html">4.1. Methods and Annotations</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotations2.html">4.2. Fields and Annotations</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="annotations3.html">4.3. Dependency Injection</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="introductions.html">5. Mixins and Introductions</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="intros.html">5.1. Introducing Introductions</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="mixins.html">5.2. Mixin It Up</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="multi.html">5.2.1. Multiple Inheritance</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                     <dt>
+                        <span class="sect1">
+                           <a href="apis.html">5.3. Aspects with APIs</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="dynamic.html">6. Dynamic AOP</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dynamic1.html">6.1. Hot Deployment</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="dynamic2.html">6.2. Per Instance AOP</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="integration.html">7. Integration With Pointcuts</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="integration1.html">7.1. Integration</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="testing.html">8. Testing with AOP</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="exception.html">8.1. Testing Exception Handling</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="testing1.html">8.2. Injecting Mock Objects</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="required.html">8.2.1. Required Knowledge</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="problem.html">8.2.2. The Problem</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="mock.html">8.2.3. Mock Objects</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aop.html">8.2.4. AOP with Mocks</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="chapter">
+                     <a href="aopide.html">9. JBoss AOP IDE</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect1">
+                           <a href="aopide-intro.html">9.1. The AOP IDE</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="aopide-install.html">9.2. Installing</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect1">
+                           <a href="aopide-tutorial.html">9.3. Tutorial</a>
+                        </span>
+                     </dt>
+                     <dd>
+                        <dl>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aopide-tutorial-project.html">9.3.1. Create Project</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aopide-tutorial-class.html">9.3.2. Create Class</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aopide-tutorial-interceptor.html">9.3.3. Create Interceptor</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aopide-tutorial-bind.html">9.3.4. Applying the Interceptor</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aopide-tutorial-running.html">9.3.5. Running</a>
+                              </span>
+                           </dt>
+                           <dt>
+                              <span class="sect2">
+                                 <a href="aopide-tutorial-navigation.html">9.3.6. Navigation</a>
+                              </span>
+                           </dt>
+                        </dl>
+                     </dd>
+                  </dl>
+               </dd>
+            </dl>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous"/>
+         <li class="next">
+            <a accesskey="n" href="preface.html">
+               <strong>Next</strong>Preface</a>
+         </li>
+      </ul>
+   </body>
+</html>

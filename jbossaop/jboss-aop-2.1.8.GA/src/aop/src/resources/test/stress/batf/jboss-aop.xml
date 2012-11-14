@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <aspect class="org.jboss.test.aop.stress.batf.SimpleAspect"/>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithAroundNoExceptions())">
+	   <around aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="methodWithAroundNoExceptions"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithBeforeAfter())">
+	   <before aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="before"/>
+   	<after aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="after"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithAroundExceptions())">
+	   <around aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="methodWithAroundExceptions"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithBeforeThrowingFinally())">
+	   <before aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="before"/>
+	   <throwing aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="throwing"/>
+	   <finally aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="finaly"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithSimulatedBefore())">
+	   <around aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="methodWithSimulatedBefore"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithOnlyBefore())">
+	   <before aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="before"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithAroundArguments(..))">
+	   <around aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="aroundWithAroundArguments"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.stress.batf.POJO->methodWithTypedArguments(..))">
+	   <before aspect="org.jboss.test.aop.stress.batf.SimpleAspect" name="beforeWithTypedArguments"/>
+   </bind>
+</aop>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <aspect class="TestAspect"/>
+   <interceptor class="FirstInterceptor"/>
+   <interceptor class="SimpleInterceptor"/>
+   <interceptor class="SimpleInterceptor2"/>
+   <interceptor class="SimpleInterceptor3"/>
+   <interceptor class="LastInterceptor"/>
+
+   <precedence>
+      <interceptor-ref name="SimpleInterceptor2"/>
+      <advice aspect="TestAspect" name="advice"/>
+      <interceptor-ref name="SimpleInterceptor3"/>
+      <advice aspect="TestAspect" name="otherAdvice"/>
+   </precedence>
+
+   <precedence>
+      <interceptor-ref name="SimpleInterceptor"/>
+      <interceptor-ref name="SimpleInterceptor2"/>
+   </precedence>
+
+   
+   <bind pointcut="execution(POJO->new())">
+       <interceptor-ref name="FirstInterceptor"/>    
+       <interceptor-ref name="SimpleInterceptor3"/>
+       <interceptor-ref name="SimpleInterceptor2"/>
+       <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(PO*->new())">
+       <advice aspect="TestAspect" name="otherAdvice"/>
+       <advice aspect="TestAspect" name="advice"/>
+       <interceptor-ref name="LastInterceptor"/>          
+   </bind>   
+   
+</aop>

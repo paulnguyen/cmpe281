@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.3. @PointcutDef</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-interceptor-factory.html" title="6.2.2. AspectFactory Example"/>
+      <link rel="next" href="annotated-bind.html" title="6.4. @Bind"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-interceptor-factory.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-bind.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-pointcut"/>6.3. @PointcutDef</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         To define a named pointcut you annotate a field within an
+         <code class="literal">@Aspect</code>
+         or
+         <code class="literal">@InterceptorDef</code> annotated class with
+         <code class="literal">@PointcutDef</code>.
+         <code class="literal">@PointcutDef</code> only applies to fields and is not recognised outside
+         <code class="literal">@Aspect</code> or
+         <code class="literal">@InterceptorDef</code> annotated classes.
+      </p>
+         <p>
+         The declaration of
+         <code class="literal">org.jboss.aop.PointcutDef</code> is:
+         </p>
+         <pre class="programlisting">
+package org.jboss.aop;
+
+@Target({ElementType.FIELD}) @Retention(RetentionPolicy.RUNTIME)
+public @interface PointcutDef
+{
+   String value();
+}</pre>
+         <p>
+         
+            <code class="literal">@PointcutDef</code> takes only one value, a valid pointcut expression.
+         The name of the pointcut used internally and when yo want to reference it is:
+         </p>
+         <pre class="programlisting">&lt;name of @Aspect/@InterceptorDef annotated class&gt;.&lt;name of @PointcutDef annotated field&gt;</pre>
+         <p>
+      
+         </p>
+         <p>
+         An example of an aspect class containing a named pointcut which it references from
+         a bindng's pointcut expression:
+         </p>
+         <pre class="programlisting">
+   package com.mypackage;
+
+   import org.jboss.aop.PointcutDef;
+   import org.jboss.aop.pointcut.Pointcut;
+
+   @Aspect (scope = Scope.PER_VM)
+   public class MyAspect
+   {
+      @PointcutDef ("(execution(* org.blah.Foo-&gt;someMethod()) OR \
+	      execution(* org.blah.Foo-&gt;otherMethod()))")
+      public static Pointcut fooMethods;
+
+      public Object myAdvice(Invocation invocation)
+      {
+         return invocation.invokeNext();
+      }
+   }
+         </pre>
+         <p>
+         It is worth noting that named pointcuts can be referenced in pointcut expressions
+         outside the class they are declared in (if the annotated fields are declared
+         public of course!).
+      </p>
+         <p>
+         Using XML configuration this would be:
+         </p>
+         <pre class="programlisting">
+            &lt;aop&gt;
+            &lt;aspect class="com.mypackage.MyAspect" scope="PER_VM"/&gt;
+            &lt;pointcut
+            name="com.mypackage.MyAspect.fooMethods"
+            expr="(execution(* org.blah.Foo-&gt;someMethod()) OR \
+                  execution(* org.blah.Foo-&gt;otherMethod()))"
+      /&gt;
+            &lt;/aop&gt;
+         </pre>
+         <p>
+         
+            <code class="literal"/>
+      
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-interceptor-factory.html">
+               <strong>Prev</strong>6.2.2. AspectFactory Example</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-bind.html">
+               <strong>Next</strong>6.4. @Bind</a>
+         </li>
+      </ul>
+   </body>
+</html>

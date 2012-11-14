@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aop>
+
+  <XDtMerge:merge file="jboss-aop.xml">
+  <!--
+       To add aop deployment elements that you want to apply across multiple
+       classes in your deployment unit, add a file to your XDoclet merge
+       directory called jboss-aop.xml containing the aop elements.
+  -->
+  </XDtMerge:merge>
+
+  <XDtJBossCollection:create name="interceptors" type="set"/>
+
+  <XDtClass:forAllClasses>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor">
+      <XDtJBossCollection:ifDoesntContain name="interceptors" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="interceptors" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+  </XDtClass:forAllClasses>
+
+  <XDtJBossCollection:create name="classes" type="set"/>
+
+  <XDtClass:forAllClasses>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.advisable">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.stack">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor-pointcut">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.pointcut">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.method-pointcut">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.constructor-pointcut">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.field-pointcut">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.introduction">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.metadata-loader">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.security">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.transaction">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+    <XDtClass:ifHasClassTag tagName="jboss-aop.metadata">
+      <XDtJBossCollection:ifDoesntContain name="classes" value="<XDtClass:fullClassName/>">
+        <XDtJBossCollection:put name="classes" value="<XDtClass:fullClassName/>"/>
+      </XDtJBossCollection:ifDoesntContain>
+    </XDtClass:ifHasClassTag>
+  </XDtClass:forAllClasses>
+  
+  <XDtClass:forAllClasses>
+  
+    <XDtMerge:merge file="{0}-aop.xml">
+  <!-- Merge point for <XDtClass:fullClassName/> -->
+    </XDtMerge:merge>
+
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ============= Advisable ============= </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+  <advisable class="<XDtClass:fullClassName/>"
+      <XDtClass:ifHasClassTag tagName="jboss-aop.advisable" paramName="method-filter">
+             methodFilter="<XDtClass:classTagValue tagName="jboss-aop.advisable" paramName="method-filter"/>"
+      </XDtClass:ifHasClassTag>
+      <XDtClass:ifHasClassTag tagName="jboss-aop.advisable" paramName="field-filter">
+             fieldFilter="<XDtClass:classTagValue tagName="jboss-aop.advisable" paramName="field-filter"/>"
+      </XDtClass:ifHasClassTag>
+      <XDtClass:ifHasClassTag tagName="jboss-aop.advisable" paramName="constructor-filter">
+             constructorFilter="<XDtClass:classTagValue tagName="jboss-aop.advisable" paramName="constructor-filter"/>"
+      </XDtClass:ifHasClassTag>
+             />
+    
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+
+<XDtComment:comment> =========== Interceptors ============ </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="interceptors" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:forAllClassTags tagName="jboss-aop.interceptor">
+  <interceptor
+        <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor" paramName="name">
+               name="<XDtClass:classTagValue tagName='jboss-aop.interceptor' paramName='name'/>"
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.interceptor" paramName="name">
+               name="<XDtClass:className/>"
+        </XDtClass:ifDoesntHaveClassTag>
+        <XDtClass:ifClassTagValueEquals tagName="jboss-aop.interceptor" paramName="factory" value="true">
+               factory="<XDtClass:fullClassName/>">
+        </XDtClass:ifClassTagValueEquals>
+        <XDtClass:ifClassTagValueNotEquals tagName="jboss-aop.interceptor" paramName="factory" value="true">
+               class="<XDtClass:fullClassName/>"
+          <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor" paramName="singleton">
+               singleton="<XDtClass:classTagValue tagName='jboss-aop.interceptor' paramName='singleton'/>"
+          </XDtClass:ifHasClassTag>
+               >
+        </XDtClass:ifClassTagValueNotEquals>
+        <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor" paramName="xml">
+    <XDtClass:classTagValue tagName="jboss-aop.interceptor" paramName="xml"/>
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.interceptor" paramName="xml">
+          <XDtClass:ifClassTagValueEquals tagName="jboss-aop.interceptor" paramName="factory" value="true">
+            <XDtJBossAttribute:forAllClassTagAttributes ignore="name,factory,class">
+    <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+            </XDtJBossAttribute:forAllClassTagAttributes>
+          </XDtClass:ifClassTagValueEquals>
+          <XDtClass:ifClassTagValueNotEquals tagName="jboss-aop.interceptor" paramName="factory" value="true">
+            <XDtJBossAttribute:forAllClassTagAttributes ignore="name,factory,class,singleton">
+    <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+            </XDtJBossAttribute:forAllClassTagAttributes>
+          </XDtClass:ifClassTagValueNotEquals>
+        </XDtClass:ifDoesntHaveClassTag>
+  </interceptor>
+      </XDtClass:forAllClassTags>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ============== Stacks =============== </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="name">
+  <stack name="<XDtClass:classTagValue tagName='jboss-aop.stack' paramName='name'/>">
+        <XDtClass:forAllClassTags tagName="jboss-aop.stack">
+          <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.stack" paramName="name">
+            
+            <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="class">
+    <interceptor class="<XDtClass:classTagValue tagName="jboss-aop.stack" paramName="class"/>"
+              <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="singleton">
+                 singleton="<XDtClass:classTagValue tagName="jboss-aop.stack" paramName="singleton"/>"
+              </XDtClass:ifHasClassTag>
+                 >
+                <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="xml">
+      <XDtClass:classTagValue tagName="jboss-aop.stack" paramName="xml"/>
+                </XDtClass:ifHasClassTag>
+                <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.stack" paramName="xml">
+                  <XDtJBossAttribute:forAllClassTagAttributes ignore="class,singleton">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllClassTagAttributes>
+                </XDtClass:ifDoesntHaveClassTag>
+    </interceptor>
+            </XDtClass:ifHasClassTag>
+            <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.stack" paramName="class">
+              <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="factory">
+    <interceptor factory="<XDtClass:classTagValue tagName="jboss-aop.stack" paramName="factory"/>">
+                  <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="xml">
+      <XDtClass:classTagValue tagName="jboss-aop.stack" paramName="xml"/>
+                  </XDtClass:ifHasClassTag>
+                  <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.stack" paramName="xml">
+                    <XDtJBossAttribute:forAllClassTagAttributes ignore="factory">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                    </XDtJBossAttribute:forAllClassTagAttributes>
+                  </XDtClass:ifDoesntHaveClassTag>
+    </interceptor>
+              </XDtClass:ifHasClassTag>
+              <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.stack" paramName="factory">
+                <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="interceptor-ref">
+    <interceptor-ref name="<XDtClass:classTagValue tagName="jboss-aop.stack" paramName="interceptor-ref"/>"/>
+                </XDtClass:ifHasClassTag>
+                <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.stack" paramName="interceptor-ref">
+                  <XDtClass:ifHasClassTag tagName="jboss-aop.stack" paramName="stack-ref">
+    <stack-ref name="<XDtClass:classTagValue tagName="jboss-aop.stack" paramName="stack-ref"/>"/>
+                  </XDtClass:ifHasClassTag>
+                </XDtClass:ifDoesntHaveClassTag>
+              </XDtClass:ifDoesntHaveClassTag>
+            </XDtClass:ifDoesntHaveClassTag>
+            
+          </XDtClass:ifDoesntHaveClassTag>
+        </XDtClass:forAllClassTags>
+  </stack>
+      </XDtClass:ifHasClassTag>
+    
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ======= Interceptor Pointcuts ======= </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor-pointcut">
+      
+  <interceptor-pointcut class="<XDtClass:fullClassName/>"
+        <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor-pointcut" paramName="constructor-filter">
+                        constructorFilter="<XDtClass:classTagValue tagName="jboss-aop.interceptor-pointcut" paramName="constructor-filter"/>"
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor-pointcut" paramName="method-filter">
+                        methodFilter="<XDtClass:classTagValue tagName="jboss-aop.interceptor-pointcut" paramName="method-filter"/>"
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifHasClassTag tagName="jboss-aop.interceptor-pointcut" paramName="field-filter">
+                        fieldFilter="<XDtClass:classTagValue tagName="jboss-aop.interceptor-pointcut" paramName="field-filter"/>"
+        </XDtClass:ifHasClassTag>
+                        >
+
+    <XDtJBossValue:setValue value="jboss-aop.interceptor-pointcut">                    
+    <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-class-interceptors.xdt">
+    </XDtMerge:merge>
+    </XDtJBossValue:setValue>                    
+  </interceptor-pointcut>
+  
+      </XDtClass:ifHasClassTag>
+    
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ========== Class Pointcuts ========== </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.pointcut">
+      
+  <class-pointcut class="<XDtClass:fullClassName/>"
+        <XDtClass:ifHasClassTag tagName="jboss-aop.pointcut" paramName="constructor-filter">
+                        constructorFilter="<XDtClass:classTagValue tagName="jboss-aop.pointcut" paramName="constructor-filter"/>"
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifHasClassTag tagName="jboss-aop.pointcut" paramName="method-filter">
+                        methodFilter="<XDtClass:classTagValue tagName="jboss-aop.pointcut" paramName="method-filter"/>"
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifHasClassTag tagName="jboss-aop.pointcut" paramName="field-filter">
+                        fieldFilter="<XDtClass:classTagValue tagName="jboss-aop.pointcut" paramName="field-filter"/>"
+        </XDtClass:ifHasClassTag>
+                        >
+                        
+        <XDtJBossValue:setValue value="jboss-aop.pointcut">                    
+          <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-class-interceptors.xdt">
+          </XDtMerge:merge>
+        </XDtJBossValue:setValue>                    
+  </class-pointcut>
+  
+      </XDtClass:ifHasClassTag>
+    
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+
+<XDtComment:comment> ========== Method Pointcuts ========= </XDtComment:comment>
+  
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.method-pointcut">
+      
+  <method-pointcut class="<XDtClass:fullClassName/>"
+                   methodName="<XDtClass:classTagValue tagName="jboss-aop.method-pointcut" paramName="pattern"/>">
+                        
+        <XDtJBossValue:setValue value="jboss-aop.method-pointcut">                    
+          <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-class-interceptors.xdt">
+          </XDtMerge:merge>
+        </XDtJBossValue:setValue>                    
+  </method-pointcut>
+  
+      </XDtClass:ifHasClassTag>
+    
+      <XDtMethod:forAllMethods superclasses="false">
+        <XDtMethod:ifHasMethodTag tagName="jboss-aop.pointcut">
+
+  <method-pointcut class="<XDtClass:fullClassName/>"
+                   methodName="<XDtMethod:methodName/>">
+
+          <XDtJBossValue:setValue value="jboss-aop.pointcut">                    
+            <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-method-interceptors.xdt">
+            </XDtMerge:merge>
+          </XDtJBossValue:setValue>                    
+  </method-pointcut>
+        </XDtMethod:ifHasMethodTag>
+      </XDtMethod:forAllMethods>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ======== Constructor Pointcuts ====== </XDtComment:comment>
+  
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.constructor-pointcut">
+      
+  <constructor-pointcut class="<XDtClass:fullClassName/>">
+                        
+        <XDtJBossValue:setValue value="jboss-aop.constructor-pointcut">                    
+          <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-class-interceptors.xdt">
+          </XDtMerge:merge>
+        </XDtJBossValue:setValue>                    
+  </constructor-pointcut>
+  
+      </XDtClass:ifHasClassTag>
+    
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+
+<XDtComment:comment> =========== Field Pointcuts ========= </XDtComment:comment>
+  
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.field-pointcut">
+      
+  <field-pointcut class="<XDtClass:fullClassName/>"
+                  fieldName="<XDtClass:classTagValue tagName="jboss-aop.field-pointcut" paramName="pattern"/>">
+                        
+        <XDtJBossValue:setValue value="jboss-aop.field-pointcut">                    
+          <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-class-interceptors.xdt">
+          </XDtMerge:merge>
+        </XDtJBossValue:setValue>                    
+  </field-pointcut>
+  
+      </XDtClass:ifHasClassTag>
+    
+      <XDtField:forAllFields superclasses="false">
+        <XDtField:ifHasFieldTag tagName="jboss-aop.pointcut">
+
+  <field-pointcut class="<XDtClass:fullClassName/>"
+                  fieldName="<XDtField:fieldName/>">
+
+          <XDtJBossValue:setValue value="jboss-aop.pointcut">                    
+            <XDtMerge:merge file="xdoclet/modules/jboss/aop/resources/jboss-aop-field-interceptors.xdt">
+            </XDtMerge:merge>
+          </XDtJBossValue:setValue>                    
+  </field-pointcut>
+        </XDtField:ifHasFieldTag>
+      </XDtField:forAllFields>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+
+<XDtComment:comment> ======= Introduction Pointcuts ====== </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+
+      <XDtClass:forAllClassTags tagName="jboss-aop.introduction">
+
+  <introduction-pointcut class="<XDtClass:fullClassName/>">
+        <XDtClass:ifHasClassTag tagName="jboss-aop.introduction" paramName="mixin-class">
+    <mixin>
+      <class><XDtClass:classTagValue tagName="jboss-aop.introduction" paramName="mixin-class"/></class>
+          <XDtClass:ifHasClassTag tagName="jboss-aop.introduction" paramName="construction">
+      <construction><XDtClass:classTagValue tagName="jboss-aop.introduction" paramName="construction"/></construction>
+          </XDtClass:ifHasClassTag>
+      <interfaces>
+          <XDtClass:classTagValue tagName="jboss-aop.introduction" paramName="mixin-interfaces"/>
+      </interfaces>
+    </mixin>
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifHasClassTag tagName="jboss-aop.introduction" paramName="interfaces">
+    <interfaces>
+          <XDtClass:classTagValue tagName="jboss-aop.introduction" paramName="interfaces"/>
+    </interfaces>
+        </XDtClass:ifHasClassTag>
+  </introduction-pointcut>
+
+      </XDtClass:forAllClassTags>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ======== ClassMetaDataLoaders ======= </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.metadata-loader">
+  <metadata-loader group="<XDtClass:classTagValue tagName="jboss-aop.metadata-loader" paramName="group"/>"
+                   class="<XDtClass:fullClassName/>"/>
+      </XDtClass:ifHasClassTag>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ========= Security MetaData ========= </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.security">
+  <class-metadata group="security" class="<XDtClass:fullClassName/>">
+        <XDtClass:ifHasClassTag tagName="jboss-aop.security" paramName="domain">
+    <security-domain><XDtClass:classTagValue tagName="jboss-aop.security" paramName="domain"/></security-domain>
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.security" paramName="domain">
+          <XDtConfig:ifHasConfigParam paramName="SecurityDomain" optional="true">
+    <security-domain><XDtConfig:configParameterValue paramName="SecurityDomain"/></security-domain>
+          </XDtConfig:ifHasConfigParam>
+        </XDtClass:ifDoesntHaveClassTag>
+
+        <XDtClass:ifHasClassTag tagName="jboss-aop.security" paramName="run-as">
+    <run-as><XDtClass:classTagValue tagName="jboss-aop.security" paramName="run-as"/></run-as>
+        </XDtClass:ifHasClassTag>
+        <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.security" paramName="run-as">
+          <XDtConfig:ifHasConfigParam paramName="RunAs" optional="true">
+    <run-as><XDtConfig:configParameterValue paramName="RunAs"/></run-as>
+          </XDtConfig:ifHasConfigParam>
+        </XDtClass:ifDoesntHaveClassTag>
+
+        <XDtClass:forAllClassTags tagName="jboss-aop.method-permission">
+          <XDtClass:ifClassTagValueNotEquals tagName="jboss-aop.method-permission" paramName="exclude" value="true">
+  
+    <method-permission>
+            <XDtClass:ifClassTagValueEquals tagName="jboss-aop.method-permission" paramName="unchecked" value="true">
+      <unchecked/>
+            </XDtClass:ifClassTagValueEquals>
+            <XDtClass:ifClassTagValueNotEquals tagName="jboss-aop.method-permission" paramName="unchecked" value="true">
+              <XDtClass:ifHasClassTag tagName="jboss-aop.method-permission" paramName="role-name">
+                <XDtClass:forAllClassTagTokens tagName="jboss-aop.method-permission" paramName="role-name" delimiter=",">
+      <role-name><XDtClass:currentToken/></role-name>
+                </XDtClass:forAllClassTagTokens>
+              </XDtClass:ifHasClassTag>
+            </XDtClass:ifClassTagValueNotEquals>
+            <XDtClass:ifHasClassTag tagName="jboss-aop.method-permission" paramName="pattern">
+              <XDtClass:forAllClassTagTokens tagName="jboss-aop.method-permission" paramName="pattern" delimiter=",">
+      <method>
+        <method-name><XDtClass:currentToken/></method-name>
+      </method>
+              </XDtClass:forAllClassTagTokens>
+            </XDtClass:ifHasClassTag>
+            <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.method-permission" paramName="pattern">
+      <method>
+        <method-name>*</method-name>
+      </method>
+            </XDtClass:ifDoesntHaveClassTag>
+    </method-permission>
+    
+          </XDtClass:ifClassTagValueNotEquals>
+        </XDtClass:forAllClassTags>
+
+        <XDtClass:forAllClassTags tagName="jboss-aop.field-permission">
+          <XDtClass:ifClassTagValueNotEquals tagName="jboss-aop.field-permission" paramName="exclude" value="true">
+
+    <field-permission>
+            <XDtClass:ifClassTagValueEquals tagName="jboss-aop.field-permission" paramName="unchecked" value="true">
+      <unchecked/>
+            </XDtClass:ifClassTagValueEquals>
+            <XDtClass:ifClassTagValueNotEquals tagName="jboss-aop.field-permission" paramName="unchecked" value="true">
+              <XDtClass:ifHasClassTag tagName="jboss-aop.field-permission" paramName="role-name">
+                <XDtClass:forAllClassTagTokens tagName="jboss-aop.field-permission" paramName="role-name" delimiter=",">
+      <role-name><XDtClass:currentToken/></role-name>
+                </XDtClass:forAllClassTagTokens>
+              </XDtClass:ifHasClassTag>
+            </XDtClass:ifClassTagValueNotEquals>
+          
+            <XDtClass:ifHasClassTag tagName="jboss-aop.field-permission" paramName="pattern">
+              <XDtClass:forAllClassTagTokens tagName="jboss-aop.field-permission" paramName="pattern" delimiter=",">
+      <field>
+        <field-name><XDtClass:currentToken/></field-name>
+      </field>
+              </XDtClass:forAllClassTagTokens>
+            </XDtClass:ifHasClassTag>
+            <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.field-permission" paramName="pattern">
+      <field>
+        <field-name>*</field-name>
+      </field>
+            </XDtClass:ifDoesntHaveClassTag>
+    </field-permission>
+  
+          </XDtClass:ifClassTagValueNotEquals>
+        </XDtClass:forAllClassTags>
+
+        <XDtMethod:forAllMethods superclasses="false">
+          <XDtMethod:forAllMethodTags tagName="jboss-aop.permission">
+            <XDtMethod:ifMethodTagValueNotEquals tagName="jboss-aop.permission" paramName="exclude" value="true">
+            
+    <method-permission>
+              <XDtMethod:ifMethodTagValueEquals tagName="jboss-aop.permission" paramName="unchecked" value="true">
+      <unchecked/>
+              </XDtMethod:ifMethodTagValueEquals>
+              <XDtMethod:ifMethodTagValueNotEquals tagName="jboss-aop.permission" paramName="unchecked" value="true">
+                <XDtMethod:ifHasMethodTag tagName="jboss-aop.permission" paramName="role-name">
+                  <XDtMethod:forAllMethodTagTokens tagName="jboss-aop.permission" paramName="role-name" delimiter=",">
+      <role-name><XDtMethod:currentToken/></role-name>
+                  </XDtMethod:forAllMethodTagTokens>
+                </XDtMethod:ifHasMethodTag>
+              </XDtMethod:ifMethodTagValueNotEquals>
+      <method>
+        <method-name><XDtMethod:methodName/></method-name>
+        <method-params>
+              <XDtParameter:forAllMethodParams>
+          <method-param><XDtParameter:methodParamType/></method-param>
+              </XDtParameter:forAllMethodParams>
+        </method-params>
+      </method>
+    </method-permission>
+    
+            </XDtMethod:ifMethodTagValueNotEquals>
+          </XDtMethod:forAllMethodTags>
+        </XDtMethod:forAllMethods>
+
+        <XDtField:forAllFields>
+          <XDtField:forAllFieldTags tagName="jboss-aop.permission">
+            <XDtJBossField:ifFieldTagValueNotEquals tagName="jboss-aop.permission" paramName="exclude" value="true">
+
+    <field-permission>
+              <XDtField:ifFieldTagValueEquals tagName="jboss-aop.permission" paramName="unchecked" value="true">
+      <unchecked/>
+              </XDtField:ifFieldTagValueEquals>
+              <XDtJBossField:ifFieldTagValueNotEquals tagName="jboss-aop.permission" paramName="unchecked" value="true">
+                <XDtField:ifHasFieldTag tagName="jboss-aop.permission" paramName="role-name">
+                  <XDtField:forAllFieldTagTokens tagName="jboss-aop.permission" paramName="role-name" delimiter=",">
+      <role-name><XDtField:currentToken/></role-name>
+                  </XDtField:forAllFieldTagTokens>
+                </XDtField:ifHasFieldTag>
+              </XDtJBossField:ifFieldTagValueNotEquals>
+      <field>
+        <field-name><XDtField:fieldName/></field-name>
+      </field>
+    </field-permission>
+
+            </XDtJBossField:ifFieldTagValueNotEquals>
+          </XDtField:forAllFieldTags>
+        </XDtField:forAllFields>
+
+        <XDtConstructor:forAllConstructors>
+          <XDtConstructor:forAllConstructorTags tagName="jboss-aop.permission">
+            <XDtConstructor:ifConstructorTagValueNotEquals tagName="jboss-aop.permission" paramName="exclude" value="true">
+
+    <constructor-permission>
+              <XDtConstructor:ifConstructorTagValueEquals tagName="jboss-aop.permission" paramName="unchecked" value="true">
+      <unchecked/>
+              </XDtConstructor:ifConstructorTagValueEquals>
+              <XDtConstructor:ifConstructorTagValueNotEquals tagName="jboss-aop.permission" paramName="unchecked" value="true">
+                <XDtConstructor:ifHasConstructorTag tagName="jboss-aop.permission" paramName="role-name">
+                  <XDtConstructor:forAllConstructorTagTokens tagName="jboss-aop.permission" paramName="role-name" delimiter=",">
+      <role-name><XDtConstructor:currentToken/></role-name>
+                  </XDtConstructor:forAllConstructorTagTokens>
+                </XDtConstructor:ifHasConstructorTag>
+              </XDtConstructor:ifConstructorTagValueNotEquals>
+      <constructor>
+        <constructor-params>
+                <XDtParameter:forAllConstructorParams>
+          <constructor-param>
+            <XDtParameter:methodParamType/>
+          </constructor-param>
+                </XDtParameter:forAllConstructorParams>
+        </constructor-params>
+      </constructor>
+    </constructor-permission>
+            </XDtConstructor:ifConstructorTagValueNotEquals>
+          </XDtConstructor:forAllConstructorTags>
+        </XDtConstructor:forAllConstructors>
+
+  
+    <exclude-list>
+        <XDtClass:forAllClassTags tagName="jboss-aop.method-permission">
+          <XDtClass:ifClassTagValueEquals tagName="jboss-aop.method-permission" paramName="exclude" value="true">
+            <XDtClass:ifHasClassTag tagName="jboss-aop.method-permission" paramName="pattern">
+      <method>
+        <method-name>
+          <XDtClass:classTagValue tagName="jboss-aop.method-permission" paramName="pattern"/>
+        </method-name>
+      </method>
+            </XDtClass:ifHasClassTag>
+            <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.method-permission" paramName="pattern">
+      <method>
+        <method-name>*</method-name>
+      </method>
+            </XDtClass:ifDoesntHaveClassTag>
+          </XDtClass:ifClassTagValueEquals>
+        </XDtClass:forAllClassTags>
+
+        <XDtClass:forAllClassTags tagName="jboss-aop.field-permission">
+          <XDtClass:ifClassTagValueEquals tagName="jboss-aop.field-permission" paramName="exclude" value="true">
+            <XDtClass:ifHasClassTag tagName="jboss-aop.field-permission" paramName="pattern">
+      <field>
+        <field-name>
+          <XDtClass:classTagValue tagName="jboss-aop.field-permission" paramName="pattern"/>
+        </field-name>
+      </field>
+            </XDtClass:ifHasClassTag>
+            <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.field-permission" paramName="pattern">
+      <field>
+        <field-name>*</field-name>
+      </field>
+            </XDtClass:ifDoesntHaveClassTag>
+          </XDtClass:ifClassTagValueEquals>
+        </XDtClass:forAllClassTags>
+
+        <XDtMethod:forAllMethods superclasses="false">
+          <XDtMethod:forAllMethodTags tagName="jboss-aop.permission">
+            <XDtMethod:ifMethodTagValueEquals tagName="jboss-aop.permission" paramName="exclude" value="true">
+      <method>
+        <method-name>
+          <XDtMethod:methodName/>
+        </method-name>
+        <method-params>
+            <XDtParameter:forAllMethodParams>
+          <method-param><XDtParameter:methodParamType/></method-param>
+            </XDtParameter:forAllMethodParams>
+        </method-params>
+      </method>
+            </XDtMethod:ifMethodTagValueEquals>
+          </XDtMethod:forAllMethodTags>
+        </XDtMethod:forAllMethods>
+        
+        <XDtField:forAllFields>
+          <XDtField:forAllFieldTags tagName="jboss-aop.permission">
+            <XDtField:ifFieldTagValueEquals tagName="jboss-aop.permission" paramName="exclude" value="true">
+      <field>
+        <field-name>
+          <XDtField:fieldName/>
+        </field-name>
+      </field>
+            </XDtField:ifFieldTagValueEquals>
+          </XDtField:forAllFieldTags>
+        </XDtField:forAllFields>
+        
+        <XDtConstructor:forAllConstructors>
+          <XDtConstructor:forAllConstructorTags tagName="jboss-aop.permission">
+            <XDtConstructor:ifConstructorTagValueEquals tagName="jboss-aop.permission" paramName="exclude" value="true">
+      <constructor>
+        <constructor-params>
+                <XDtParameter:forAllConstructorParams>
+          <constructor-param>
+            <XDtParameter:methodParamType/>
+          </constructor-param>
+                </XDtParameter:forAllConstructorParams>
+        </constructor-params>
+      </constructor>
+            </XDtConstructor:ifConstructorTagValueEquals>
+          </XDtConstructor:forAllConstructorTags>
+        </XDtConstructor:forAllConstructors>
+    </exclude-list>
+    
+  </class-metadata>
+  
+      </XDtClass:ifHasClassTag>
+  
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ======= Transaction MetaData ======== </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtClass:ifHasClassTag tagName="jboss-aop.transaction">
+  <class-metadata group="transaction" class="<XDtClass:fullClassName/>">
+        <XDtClass:ifHasClassTag tagName="jboss-aop.transaction" paramName="type">
+
+    <default>
+      <trans-attribute><XDtClass:classTagValue tagName="jboss-aop.transaction" paramName="type"/></trans-attribute>
+    </default>
+    
+        </XDtClass:ifHasClassTag>
+        
+        <XDtClass:forAllClassTags tagName="jboss-aop.method-transaction">
+    
+    <method name="<XDtClass:classTagValue tagName="jboss-aop.method-transaction" paramName="pattern"/>">
+      <trans-attribute><XDtClass:classTagValue tagName="jboss-aop.method-transaction" paramName="type"/></trans-attribute>
+    </method>
+    
+        </XDtClass:forAllClassTags>
+
+        <XDtClass:forAllClassTags tagName="jboss-aop.field-transaction">
+    
+    <field name="<XDtClass:classTagValue tagName="jboss-aop.field-transaction" paramName="pattern"/>">
+      <trans-attribute><XDtClass:classTagValue tagName="jboss-aop.field-transaction" paramName="type"/></trans-attribute>
+    </field>
+    
+        </XDtClass:forAllClassTags>
+
+        <XDtMethod:forAllMethods superclasses="false">
+          <XDtMethod:ifHasMethodTag tagName="jboss-aop.transaction" paramName="type">
+
+    <method name="<XDtMethod:methodName/>">
+      <method-params>
+          <XDtParameter:forAllMethodParams>
+        <method-param><XDtParameter:methodParamType/></method-param>
+          </XDtParameter:forAllMethodParams>
+      </method-params>
+      <trans-attribute><XDtMethod:methodTagValue tagName="jboss-aop.transaction" paramName="type"/></trans-attribute>
+    </method>
+    
+          </XDtMethod:ifHasMethodTag>
+        </XDtMethod:forAllMethods>
+        
+        <XDtField:forAllFields>
+          <XDtField:ifHasFieldTag tagName="jboss-aop.transaction" paramName="type">
+          
+    <field name="<XDtField:fieldName/>">
+      <trans-attribute><XDtField:fieldTagValue tagName="jboss-aop.transaction" paramName="type"/></trans-attribute>
+    </field>
+    
+          </XDtField:ifHasFieldTag>
+        </XDtField:forAllFields>
+  </class-metadata>
+
+      </XDtClass:ifHasClassTag>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+  
+<XDtComment:comment> ======= Other Class MetaData ======== </XDtComment:comment>
+
+  <XDtClass:forAllClasses>
+    <XDtJBossCollection:ifContains name="classes" value="<XDtClass:fullClassName/>">
+
+      <XDtJBossCollection:create name="groups" type="set"/>
+
+      <XDtClass:forAllClassTags tagName="jboss-aop.metadata">
+        <XDtJBossCollection:ifDoesntContain name="groups" value="<XDtClass:classTagValue tagName='jboss-aop.metadata' paramName='group'/>">
+          <XDtJBossCollection:put name="groups" value="<XDtClass:classTagValue tagName='jboss-aop.metadata' paramName='group'/>"/>
+        </XDtJBossCollection:ifDoesntContain>
+      </XDtClass:forAllClassTags>
+      <XDtClass:forAllClassTags tagName="jboss-aop.method-metadata">
+        <XDtJBossCollection:ifDoesntContain name="groups" value="<XDtClass:classTagValue tagName='jboss-aop.method-metadata' paramName='group'/>">
+          <XDtJBossCollection:put name="groups" value="<XDtClass:classTagValue tagName='jboss-aop.method-metadata' paramName='group'/>"/>
+        </XDtJBossCollection:ifDoesntContain>
+      </XDtClass:forAllClassTags>
+      <XDtClass:forAllClassTags tagName="jboss-aop.field-metadata">
+        <XDtJBossCollection:ifDoesntContain name="groups" value="<XDtClass:classTagValue tagName='jboss-aop.method-metadata' paramName='group'/>">
+          <XDtJBossCollection:put name="groups" value="<XDtClass:classTagValue tagName='jboss-aop.method-metadata' paramName='group'/>"/>
+        </XDtJBossCollection:ifDoesntContain>
+      </XDtClass:forAllClassTags>
+      <XDtMethod:forAllMethods superclasses="false">
+        <XDtMethod:forAllMethodTags tagName="jboss-aop.metadata">
+          <XDtJBossCollection:ifDoesntContain name="groups" value="<XDtMethod:methodTagValue tagName='jboss-aop.metadata' paramName='group'/>">
+            <XDtJBossCollection:put name="groups" value="<XDtMethod:methodTagValue tagName='jboss-aop.metadata' paramName='group'/>"/>
+          </XDtJBossCollection:ifDoesntContain>
+        </XDtMethod:forAllMethodTags>
+      </XDtMethod:forAllMethods>
+      <XDtField:forAllFields>
+        <XDtField:forAllFieldTags tagName="jboss-aop.metadata">
+          <XDtJBossCollection:ifDoesntContain name="groups" value="<XDtField:fieldTagValue tagName='jboss-aop.metadata' paramName='group'/>">
+            <XDtJBossCollection:put name="groups" value="<XDtField:fieldTagValue tagName='jboss-aop.metadata' paramName='group'/>"/>
+          </XDtJBossCollection:ifDoesntContain>
+        </XDtField:forAllFieldTags>
+      </XDtField:forAllFields>
+      <XDtConstructor:forAllConstructors>
+        <XDtConstructor:forAllConstructorTags tagName="jboss-aop.metadata">
+          <XDtJBossCollection:ifDoesntContain name="groups" value="<XDtConstructor:constructorTagValue tagName='jboss-aop.metadata' paramName='group'/>">
+            <XDtJBossCollection:put name="groups" value="<XDtConstructor:constructorTagValue tagName='jboss-aop.metadata' paramName='group'/>"/>
+          </XDtJBossCollection:ifDoesntContain>
+        </XDtConstructor:forAllConstructorTags>
+      </XDtConstructor:forAllConstructors>
+
+      <XDtJBossCollection:forAllCollectionElements name="groups">
+  <class-metadata group="<XDtJBossCollection:currentValue/>" class="<XDtClass:fullClassName/>">
+  
+          <XDtClass:forAllClassTags tagName="jboss-aop.metadata">
+            <XDtClass:ifClassTagValueEquals tagName="jboss-aop.metadata" paramName="group" value="<XDtJBossCollection:currentValue/>">
+    <default>
+              <XDtClass:ifHasClassTag tagName="jboss-aop.metadata" paramName="xml">
+      <XDtClass:classTagValue tagName="jboss-aop.metadata" paramName="xml"/>
+              </XDtClass:ifHasClassTag>
+              <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.metadata" paramName="xml">
+                <XDtJBossAttribute:forAllClassTagAttributes ignore="group">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                </XDtJBossAttribute:forAllClassTagAttributes>
+              </XDtClass:ifDoesntHaveClassTag>
+    </default>
+            </XDtClass:ifClassTagValueEquals>
+          </XDtClass:forAllClassTags>
+
+          <XDtClass:forAllClassTags tagName="jboss-aop.method-metadata">
+            <XDtClass:ifClassTagValueEquals tagName="jboss-aop.method-metadata" paramName="group" value="<XDtJBossCollection:currentValue/>">
+              <XDtClass:ifHasClassTag tagName="jboss-aop.method-metadata" paramName="pattern">
+    <method name="<XDtClass:classTagValue tagName="jboss-aop.method-metadata" paramName="pattern"/>">
+                <XDtClass:ifHasClassTag tagName="jboss-aop.method-metadata" paramName="xml">
+      <XDtClass:classTagValue tagName="jboss-aop.method-metadata" paramName="xml"/>
+                </XDtClass:ifHasClassTag>
+                <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.method-metadata" paramName="xml">
+                  <XDtJBossAttribute:forAllClassTagAttributes ignore="group,pattern">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllClassTagAttributes>
+                </XDtClass:ifDoesntHaveClassTag>
+    </method>
+              </XDtClass:ifHasClassTag>
+            </XDtClass:ifClassTagValueEquals>
+          </XDtClass:forAllClassTags>
+          
+          <XDtClass:forAllClassTags tagName="jboss-aop.field-metadata">
+            <XDtClass:ifClassTagValueEquals tagName="jboss-aop.field-metadata" paramName="group" value="<XDtJBossCollection:currentValue/>">
+              <XDtClass:ifHasClassTag tagName="jboss-aop.field-metadata" paramName="pattern">
+    <field name="<XDtClass:classTagValue tagName="jboss-aop.field-metadata" paramName="pattern"/>">
+                <XDtClass:ifHasClassTag tagName="jboss-aop.field-metadata" paramName="xml">
+      <XDtClass:classTagValue tagName="jboss-aop.field-metadata" paramName="xml"/>
+                </XDtClass:ifHasClassTag>
+                <XDtClass:ifDoesntHaveClassTag tagName="jboss-aop.field-metadata" paramName="xml">
+                  <XDtJBossAttribute:forAllClassTagAttributes ignore="group,pattern">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllClassTagAttributes>
+                </XDtClass:ifDoesntHaveClassTag>
+    </field>
+              </XDtClass:ifHasClassTag>
+            </XDtClass:ifClassTagValueEquals>
+          </XDtClass:forAllClassTags>
+          
+          <XDtMethod:forAllMethods superclasses="false">
+            <XDtMethod:forAllMethodTags tagName="jboss-aop.metadata">
+              <XDtMethod:ifMethodTagValueEquals tagName="jboss-aop.metadata" paramName="group" value="<XDtJBossCollection:currentValue/>">
+    <method name="<XDtMethod:methodName/>">
+      <method-params>
+              <XDtParameter:forAllMethodParams>
+        <method-param><XDtParameter:methodParamType/></method-param>
+              </XDtParameter:forAllMethodParams>
+      </method-params>
+                <XDtMethod:ifHasMethodTag tagName="jboss-aop.metadata" paramName="xml">
+      <XDtMethod:methodTagValue tagName="jboss-aop.metadata" paramName="xml"/>
+                </XDtMethod:ifHasMethodTag>
+                <XDtMethod:ifDoesntHaveMethodTag tagName="jboss-aop.metadata" paramName="xml">
+                  <XDtJBossAttribute:forAllMethodTagAttributes ignore="group">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllMethodTagAttributes>
+                </XDtMethod:ifDoesntHaveMethodTag>
+    </method>
+              </XDtMethod:ifMethodTagValueEquals>
+            </XDtMethod:forAllMethodTags>
+          </XDtMethod:forAllMethods>
+          
+          <XDtField:forAllFields>
+            <XDtField:forAllFieldTags tagName="jboss-aop.metadata">
+              <XDtField:ifFieldTagValueEquals tagName="jboss-aop.metadata" paramName="group" value="<XDtJBossCollection:currentValue/>">
+    <field name="<XDtField:fieldName/>">
+                <XDtField:ifHasFieldTag tagName="jboss-aop.metadata" paramName="xml">
+      <XDtField:fieldTagValue tagName="jboss-aop.metadata" paramName="xml"/>
+                </XDtField:ifHasFieldTag>
+                <XDtJBossField:ifDoesntHaveFieldTag tagName="jboss-aop.metadata" paramName="xml">
+                  <XDtJBossAttribute:forAllFieldTagAttributes ignore="group">
+      <<XDtJBossAttribute:attributeName/>><XDtJBossAttribute:attributeValue/></<XDtJBossAttribute:attributeName/>>
+                  </XDtJBossAttribute:forAllFieldTagAttributes>
+                </XDtJBossField:ifDoesntHaveFieldTag>
+    </field>
+              </XDtField:ifFieldTagValueEquals>
+            </XDtField:forAllFieldTags>
+          </XDtField:forAllFields>
+                        
+  </class-metadata>
+  
+      </XDtJBossCollection:forAllCollectionElements>
+        
+      <XDtJBossCollection:destroy name="groups"/>
+
+    </XDtJBossCollection:ifContains>
+  </XDtClass:forAllClasses>
+
+  <XDtJBossCollection:destroy name="classes"/>
+  <XDtJBossCollection:destroy name="interceptors"/>
+  
+</aop>
+

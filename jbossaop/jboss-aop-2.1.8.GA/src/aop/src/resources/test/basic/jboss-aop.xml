@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+
+   <!-- AOPTester -->
+
+   <prepare expr="all(org.jboss.test.aop.basic.POJORef)"/>
+   <prepare expr="all(org.jboss.test.aop.basic.NoInterceptorsPOJO)"/>
+
+   <aspect class="org.jboss.test.aop.basic.Aspect"/>
+
+   <bind pointcut="execution(org.jboss.test.aop.basic.POJOAspectTester->new())">
+      <advice name="interceptConstructor" aspect="org.jboss.test.aop.basic.Aspect"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.POJOAspectTester->someMethod())">
+      <around name="interceptMethod" aspect="org.jboss.test.aop.basic.Aspect"/>
+   </bind>
+
+   <bind pointcut="get(* org.jboss.test.aop.basic.POJOAspectTester->field) OR set(* org.jboss.test.aop.basic.POJOAspectTester->field)">
+      <around name="interceptField" aspect="org.jboss.test.aop.basic.Aspect"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.basic.POJOWildCardConstructorTest->new(..))">
+      <interceptor class="org.jboss.test.aop.basic.POJOWildCardConstructorInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.basic.POJOConstructorTest->new())">
+      <interceptor class="org.jboss.test.aop.basic.POJOConstructorInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.basic.POJOConstructorTest->new(int, int))">
+      <interceptor class="org.jboss.test.aop.basic.POJOConstructorInterceptor"/>
+   </bind>
+
+   <metadata tag="test" class="org.jboss.test.aop.basic.POJOConstructorTest">
+      <constructor expr="POJOConstructorTest()">
+         <data>empty</data>
+      </constructor>
+      <constructor expr="POJOConstructorTest(int, int)">
+         <data>int, int</data>
+      </constructor>
+      <method expr="int *(..)">
+         <data>someMethod</data>
+      </method>
+      <method expr="* another()">
+         <data>another()</data>
+      </method>
+      <method expr="void another(int, int)">
+         <data>another(int, int)</data>
+      </method>
+   </metadata>
+
+   <bind pointcut="execution(!static * org.jboss.test.aop.basic.NotPOJO->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(int org.jboss.test.aop.basic.POJOConstructorTest->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.POJOMethodInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.POJOConstructorTest->another(int, int))">
+      <interceptor class="org.jboss.test.aop.basic.POJOMethodInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.basic.POJOConstructorTest->another())">
+      <interceptor class="org.jboss.test.aop.basic.POJOMethodInterceptor"/>
+   </bind>
+
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.POJO->someMethod(..)) AND withincode(* org.jboss.test.aop.basic.CallingPOJO->callSomeMethod(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.NonadvisedPOJO->remoteTest(..)) AND withincode(* org.jboss.test.aop.basic.CallingPOJO->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.POJO->someMethod(..)) AND withincode(org.jboss.test.aop.basic.CallingPOJO->new(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.NonadvisedPOJO->remoteTest(..)) AND withincode(org.jboss.test.aop.basic.CallingPOJO->new(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.basic.POJO->new(..)) AND withincode(* org.jboss.test.aop.basic.CallingPOJO->callSomeMethod(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.basic.NonadvisedPOJO->new(..)) AND withincode(* org.jboss.test.aop.basic.CallingPOJO->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.basic.POJO->new(..)) AND withincode(org.jboss.test.aop.basic.CallingPOJO->new(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.basic.NonadvisedPOJO->new(..)) AND withincode(org.jboss.test.aop.basic.CallingPOJO->new(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.POJO->staticMethod(..)) AND within(org.jboss.test.aop.basic.CallingPOJO)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <!-- Test caller invocation of private protected methods/constructors -->
+   <bind pointcut="call(org.jboss.test.aop.basic.PrivateProtectedPOJO->new()) AND within(org.jboss.test.aop.basic.CallingPOJO)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.basic.PrivateProtectedPOJO->new()) AND within(org.jboss.test.aop.basic.PrivateProtectedPOJO)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.PrivateProtectedPOJO->protectedMethod(..)) AND within(org.jboss.test.aop.basic.CallingPOJO)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.PrivateProtectedPOJO->protectedMethod(..)) AND within(org.jboss.test.aop.basic.PrivateProtectedPOJO)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.basic.PrivateProtectedPOJO->protectedStaticMethod(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+   <bind pointcut="call(* org.jboss.test.aop.basic.PrivateProtectedPOJO->privateMethod(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+   <bind pointcut="call(org.jboss.test.aop.basic.PrivateProtectedPOJO->new(java.lang.String))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+   <bind pointcut="call(* $instanceof{org.jboss.test.aop.basic.SuperInterface}->superInterfaceMethod())">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <interceptor name="SimpleInterceptor"
+      factory="org.jboss.test.aop.basic.SimpleInterceptorFactory"/>
+
+   <bind pointcut="all($instanceof{org.jboss.test.aop.basic.EmptyInterface})">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void $instanceof{org.jboss.test.aop.basic.SomeInterface}->someMethod())">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <cflow-stack name="recursive">
+      <called expr="void org.jboss.test.aop.basic.CFlowedPOJO->recursive(int)"/>
+      <not-called expr="void org.jboss.test.aop.basic.CFlowedPOJO->recursive(int)"/>
+   </cflow-stack>
+
+   <cflow-stack name="method3">
+      <called expr="void org.jboss.test.aop.basic.CFlowedPOJO->method1()"/>
+      <called expr="void org.jboss.test.aop.basic.CFlowedPOJO->method2()"/>
+   </cflow-stack>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.CFlowedPOJO->method3())" cflow="method3">
+      <interceptor class="org.jboss.test.aop.basic.InterceptorCounter"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.CFlowedPOJO->recursive(int))" cflow="recursive">
+      <interceptor class="org.jboss.test.aop.basic.InterceptorCounter"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.basic.POJO*->*(..))">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(private void org.jboss.test.aop.basic.PrivatePOJO->privateMethod())">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="get(* org.jboss.test.aop.basic.POJO*->*) OR set(* org.jboss.test.aop.basic.POJO*->*)">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="get(* org.jboss.test.aop.basic.NotAllAdvisedFieldsPOJO->thisisadvised) OR set(* org.jboss.test.aop.basic.NotAllAdvisedFieldsPOJO->thisisadvised)">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(org.jboss.test.aop.basic.POJO*->new(..))">
+      <interceptor-ref name="SimpleInterceptor"/>
+   </bind>
+
+   <introduction class="org.jboss.test.aop.basic.POJO">
+      <mixin>
+         <interfaces>
+            org.jboss.test.aop.basic.Introduction,
+            org.jboss.test.aop.basic.Introduction2
+         </interfaces>
+         <class>org.jboss.test.aop.basic.SomeIntroduction</class>
+         <construction>new org.jboss.test.aop.basic.SomeIntroduction(this)</construction>
+      </mixin>
+      <interfaces>
+         org.jboss.test.aop.basic.InterfaceMixin
+      </interfaces>
+   </introduction>
+
+   <introduction class="@introduction-tag">
+      <mixin>
+         <interfaces>
+            org.jboss.test.aop.basic.Introduction,
+            org.jboss.test.aop.basic.Introduction2
+         </interfaces>
+         <class>org.jboss.test.aop.basic.SomeIntroduction</class>
+         <construction>new org.jboss.test.aop.basic.SomeIntroduction(this)</construction>
+      </mixin>
+   </introduction>
+
+   <metadata tag="introduction-tag" class="org.jboss.test.aop.basic.NoInterceptorsPOJO">
+      <class/> <!-- just tagging the class -->
+   </metadata>
+
+
+   <introduction class="org.jboss.test.aop.basic.POJOChild">
+      <mixin>
+         <interfaces>
+            org.jboss.test.aop.basic.SubclassIntroduction
+         </interfaces>
+         <class>org.jboss.test.aop.basic.AnotherIntroduction</class>
+      </mixin>
+   </introduction>
+
+
+   <metadata tag="transaction" class="org.jboss.test.aop.basic.POJO*">
+      <default>
+         <trans-attribute>Required</trans-attribute>
+      </default>
+      <method name="someMethod*">
+         <trans-attribute>RequiresNew</trans-attribute>
+      </method>
+      <method name="someMethod3">
+         <trans-attribute>Supports</trans-attribute>
+      </method>
+      <field name="privateField">
+         <trans-attribute>NotSupported</trans-attribute>
+      </field>
+      <field name="protectedField">
+         <trans-attribute>Supports</trans-attribute>
+      </field>
+
+   </metadata>
+
+   <!-- has tests -->
+   <bind pointcut="execution(* $instanceof{org.jboss.test.aop.basic.InterfaceUsedInHas}->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <!-- typedef tests -->
+   <typedef name="ETD" expr="(class(org.jboss.test.aop.basic.ExecutionTypedefPOJO) AND has(* *->method(..))) OR class($instanceof{org.jboss.test.aop.basic.ExecutionTypedefInterface}) OR class(@executionTypedef)"/>
+   <typedef name="ETD1" expr="class(org.jboss.test.aop.basic.ExecutionTypedefPOJO)"/>
+
+   <!-- Annotate class, since could not figure out how to do this with jdk 1.4.2 -->
+   <metadata tag="executionTypedef" class="org.jboss.test.aop.basic.ExecutionTypedefPOJO3">
+      <class/>
+   </metadata>
+
+   <bind pointcut="execution($typedef{ETD}->new())">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* $typedef{ETD}->method())">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="field(* $typedef{ETD}->field1)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="set(* $typedef{ETD}->field2)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="get(* $typedef{ETD}->field2)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <introduction class="$typedef{ETD}">
+      <interfaces>
+         java.io.Serializable
+      </interfaces>
+   </introduction>
+
+   <introduction expr="class($typedef{ETD}) OR class($typedef{ETD1})">
+      <interfaces>
+         org.jboss.test.aop.basic.EmptyInterface
+      </interfaces>
+   </introduction>
+
+
+
+   <introduction class="$typedef{ETD1}">
+      <mixin>
+         <interfaces>
+            org.jboss.test.aop.basic.Introduction,
+            org.jboss.test.aop.basic.Introduction2
+         </interfaces>
+         <class>org.jboss.test.aop.basic.SomeIntroduction</class>
+         <construction>new org.jboss.test.aop.basic.SomeIntroduction(this)</construction>
+      </mixin>
+   </introduction>
+
+
+   <typedef name="CTD" expr="(class(org.jboss.test.aop.basic.CallerTypedefPOJO) AND has(* *->method(..))) OR class($instanceof{org.jboss.test.aop.basic.CallerTypedefInterface}) OR class(@callerTypedef)"/>
+
+   <!-- Annotate class, since could not figure out how to do this with jdk 1.4.2 -->
+   <metadata tag="callerTypedef" class="org.jboss.test.aop.basic.CallerTypedefPOJO3">
+      <class/>
+   </metadata>
+
+   <bind pointcut="execution($typedef{CTD}->new())">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* $typedef{CTD}->method())">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="field(* $typedef{CTD}->field1)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="set(* $typedef{CTD}->field2)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="get(* $typedef{CTD}->field2)">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+
+   <!-- TxTester -->
+
+   <prepare expr="all(org.jboss.test.aop.basic.TxPOJO)"/>
+
+   <metadata tag="transaction" class="org.jboss.test.aop.basic.TxPOJO">
+      <default>
+         <trans-attribute>NotSupported</trans-attribute>
+      </default>
+      <method name="never">
+         <trans-attribute>Never</trans-attribute>
+      </method>
+      <method name="supports">
+         <trans-attribute>Supports</trans-attribute>
+      </method>
+      <method name="required">
+         <trans-attribute>Required</trans-attribute>
+      </method>
+      <method name="requiresNew">
+         <trans-attribute>RequiresNew</trans-attribute>
+      </method>
+      <method name="mandatory">
+         <trans-attribute>Mandatory</trans-attribute>
+      </method>
+      <method name="hasActiveTransaction">
+         <trans-attribute>Supports</trans-attribute>
+      </method>
+   </metadata>
+
+
+   <prepare expr="all(org.jboss.test.aop.basic.Person)"/>
+
+   <prepare expr="all(org.jboss.test.aop.basic.Address)"/>
+
+   <metadata tag="transaction" class="org.jboss.test.aop.basic.Person">
+      <default>
+         <trans-attribute>Required</trans-attribute>
+      </default>
+      <method name="requiresNew">
+         <trans-attribute>RequiresNew</trans-attribute>
+      </method>
+      <method name="requiresNewForList">
+         <trans-attribute>RequiresNew</trans-attribute>
+      </method>
+      <method name="requiresNewForAddress">
+         <trans-attribute>RequiresNew</trans-attribute>
+      </method>
+      <method name="setName">
+         <trans-attribute>NotSupported</trans-attribute>
+      </method>
+   </metadata>
+
+
+   <metadata tag="transaction" class="org.jboss.test.aop.basic.Address">
+      <default>
+         <trans-attribute>Required</trans-attribute>
+      </default>
+   </metadata>
+
+   <bind pointcut="execution(org.jboss.test.aop.basic.POJO->new(..) throws org.jboss.test.aop.basic.SomeException)">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.POJO->withSomeException() throws org.jboss.test.aop.basic.SomeException)">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.POJO->withExceptionAndOthers(java.lang.String) throws java.lang.CloneNotSupportedException)">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(void org.jboss.test.aop.basic.POJO->withExceptionAndOthers(int) throws org.jboss.test.aop.basic.SomeException, java.io.NotSerializableException)">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.basic.POJO->*(..) throws java.lang.ClassCastException)">
+      <interceptor class="org.jboss.test.aop.basic.InstanceOfInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(org.jboss.test.aop.basic.NonadvisedPOJO->new(..) throws org.jboss.test.aop.basic.SomeException) AND withincode(* org.jboss.test.aop.basic.CallingPOJO->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(public java.lang.String org.jboss.test.aop.basic.NonadvisedPOJO->withException(java.lang.String, int) throws org.jboss.test.aop.basic.SomeException) AND withincode(* org.jboss.test.aop.basic.CallingPOJO->*(..))">
+      <interceptor class="org.jboss.test.aop.basic.CallerInterceptor"/>
+   </bind>
+
+   <!-- Mix .. and specified parameters -->
+   <interceptor name="NamedNotBound" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">NotBound</attribute>
+   </interceptor>
+   <interceptor name="NamedA" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">A</attribute>
+   </interceptor>
+   <interceptor name="NamedB" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">B</attribute>
+   </interceptor>
+   <interceptor name="NamedC" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">C</attribute>
+   </interceptor>
+   <interceptor name="NamedD" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">D</attribute>
+   </interceptor>
+   <interceptor name="NamedE" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">E</attribute>
+   </interceptor>
+   <interceptor name="NamedF" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">F</attribute>
+   </interceptor>
+   <interceptor name="NamedG" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">G</attribute>
+   </interceptor>
+   <interceptor name="NamedH" class="org.jboss.test.aop.basic.NamedInterceptor">
+   	<attribute name="name">H</attribute>
+   </interceptor>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(int,..))">
+      <interceptor-ref name="NamedA"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(int, java.lang.String, ..))">
+      <interceptor-ref name="NamedB"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(int, java.lang.String, long, ..))">
+      <interceptor-ref name="NamedC"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(.., int, java.lang.String, long, ..))">
+      <interceptor-ref name="NamedD"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(..,java.lang.String, long))">
+      <interceptor-ref name="NamedE"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(int, .., long))">
+      <interceptor-ref name="NamedF"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(long, ..))">
+      <interceptor-ref name="NamedNotBound"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(.., int))">
+      <interceptor-ref name="NamedNotBound"/>
+   </bind>
+   <bind pointcut="execution(org.jboss.test.aop.basic.MixedParametersPOJO->new(.., java.lang.Object, ..))">
+      <interceptor-ref name="NamedNotBound"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(..,int, ..))">
+      <interceptor-ref name="NamedA"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(int, ..))">
+      <interceptor-ref name="NamedB"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(..,java.lang.String, ..))">
+      <interceptor-ref name="NamedC"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(..,java.lang.String))">
+      <interceptor-ref name="NamedD"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(int, .., java.lang.String))">
+      <interceptor-ref name="NamedE"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(int, .., java.lang.String, ..))">
+      <interceptor-ref name="NamedF"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(int, .., int, java.lang.String))">
+      <interceptor-ref name="NamedG"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(int, .., int, $instanceof{java.lang.Object}))">
+      <interceptor-ref name="NamedH"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(.., java.lang.Object, ..))">
+      <interceptor-ref name="NamedNotBound"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(java.lang.String, ..))">
+      <interceptor-ref name="NamedNotBound"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.basic.MixedParametersPOJO->method(..,int))">
+      <interceptor-ref name="NamedNotBound"/>
+   </bind>
+</aop>

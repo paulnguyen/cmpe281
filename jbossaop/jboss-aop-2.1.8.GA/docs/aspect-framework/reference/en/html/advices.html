@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Chapter 4. Advices</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="prev" href="pointcuts-contextvalues.html" title="3.10.2. Context Values"/>
+      <link rel="next" href="adv-around.html" title="4.1. Around Advices"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-contextvalues.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-around.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="chapter" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="advices"/>Chapter 4. Advices</h2>
+               </div>
+            </div>
+         </div>
+         <div class="toc">
+            <dl>
+               <dt>
+                  <span class="sect1">
+                     <a href="adv-around.html">4.1. Around Advices</a>
+                  </span>
+               </dt>
+               <dt>
+                  <span class="sect1">
+                     <a href="adv-batf.html">4.2. Before/After/After-Throwing/Finally Advices</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-beforesignature.html">4.2.1. Before Advice Signature</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-aftersignature.html">4.2.2. After Advice Signature</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-throwingsignature.html">4.2.3. After-Throwing Advice Signature</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-finallysignature.html">4.2.4. Finally Advice Signature</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="sect1">
+                     <a href="adv-annotatedparameters.html">4.3. Annotated Advice Parameters</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-thrown.html">4.3.1. @Thrown annotated parameter</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-joinpointargs.html">4.3.2. JoinPoint Arguments</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="sect1">
+                     <a href="adv-overloaded.html">4.4. Overloaded Advices</a>
+                  </span>
+               </dt>
+               <dd>
+                  <dl>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-overlannotparam.html">4.4.1. Annotated-parameter Signature</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-overldefaultsignature.html">4.4.2. Default Signature</a>
+                        </span>
+                     </dt>
+                     <dt>
+                        <span class="sect2">
+                           <a href="adv-overldiffsign.html">4.4.3. Mixing Different Signatures</a>
+                        </span>
+                     </dt>
+                  </dl>
+               </dd>
+               <dt>
+                  <span class="sect1">
+                     <a href="adv-errors.html">4.5. Common Mistakes</a>
+                  </span>
+               </dt>
+            </dl>
+         </div>
+         <p>
+      Advices are aspect methods that are invoked during specific joinpoint executions.
+   </p>
+         <p>
+      JBoss AOP provides five types of advice.
+   </p>
+         <p>
+      The default one is the around advice, and it can be used on all execution modes.
+      This advice wraps the joinpoint, in a way that it replaces the joinpoint execution in
+      the base system, and is responsible for proceeding execution to the joinpoint.
+   </p>
+         <p>
+      Besides around advices, you can write advices that, instead of wrapping the joinpoint,
+      are executed before or after it. In this category, JBoss AOP provides before, after,
+      after-throwing and finally advices. These advices are available only when using the generated
+      advisor mode (this is the default mode in JBoss AOP, to learn how to select another weaving mode,
+      refer to Chapter X).
+   </p>
+         <p>
+      The next sections will explain in detail the binding and signature rules for JBoss AOP advices.
+   </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-contextvalues.html">
+               <strong>Prev</strong>3.10.2. Context Values</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-around.html">
+               <strong>Next</strong>4.1. Around Advices</a>
+         </li>
+      </ul>
+   </body>
+</html>

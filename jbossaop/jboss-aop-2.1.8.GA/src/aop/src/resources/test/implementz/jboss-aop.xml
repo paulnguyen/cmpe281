@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <!-- Implements -->
+   <bind pointcut="execution(* $instanceof{org.jboss.test.aop.implementz.ImplementsInterface1}->$implements{org.jboss.test.aop.implementz.ImplementsInterface1}(..)) OR execution(* $instanceof{org.jboss.test.aop.implementz.ImplementsPOJO}->$implements{org.jboss.test.aop.implementz.ImplementsInterface3}(java.lang.String)) OR execution(* org.jboss.test.aop.implementz.ImplementsPOJOGrandChild->$implements{org.jboss.test.aop.implementz.ImplementsPOJOChild}(..)) OR execution(* *->$implements{@org.jboss.test.aop.implementz.Annotated}(..))">
+      <interceptor class="org.jboss.test.aop.implementz.CallerInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.implementz.ImplementsPOJOChild->matchedUsingHas()) AND has(* $instanceof{org.jboss.test.aop.implementz.ImplementsInterface1}->$implements{org.jboss.test.aop.implementz.ImplementsInterface1}(..))">
+      <interceptor class="org.jboss.test.aop.implementz.CallerInterceptor"/>
+   </bind>
+
+   <!-- Implementing -->
+   <bind pointcut="execution(* $instanceof{org.jboss.test.aop.implementz.ImplementsInterface1}->$implementing{org.jboss.test.aop.implementz.ImplementsInterface1}(..)) OR execution(* $instanceof{org.jboss.test.aop.implementz.ImplementingPOJO}->$implementing{org.jboss.test.aop.implementz.ImplementsInterface3}(java.lang.String)) OR execution(* org.jboss.test.aop.implementz.ImplementingPOJOGrandChild->$implementing{org.jboss.test.aop.implementz.ImplementingPOJOChild}(..)) OR execution(* *->$implementing{@org.jboss.test.aop.implementz.Annotated}(..))">
+      <interceptor class="org.jboss.test.aop.implementz.CallerInterceptor"/>
+   </bind>
+
+</aop>

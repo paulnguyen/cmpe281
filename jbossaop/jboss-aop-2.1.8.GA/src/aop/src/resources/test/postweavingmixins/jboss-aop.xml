@@ -1,0 +1,5 @@
+<aop>
+   <bind pointcut="execution(* org.jboss.test.aop.postweavingmixins.WovenPOJO->method())">
+      <interceptor class="org.jboss.test.aop.postweavingmixins.SanityInterceptor"/>
+   </bind>
+</aop>

@@ -1,0 +1,1012 @@
+<html>
+<head>
+<title>Release Notes - JBoss AOP - Version 2.1.8.GA</title>
+</head>
+<body>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.1.8.GA</h2>
+            
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-768'>JBAOP-768</a>] -         AOPAnnotationMetaDataParserDeployer should be in POST_PARSE stage
+</li>
+</ul>
+                                
+
+<h2>Release Notes - JBoss AOP - Version 2.1.7.GA</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-756'>JBAOP-756</a>] -         JBossIntegrationWrapperMBean should not be in asintegration-jmx
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-763'>JBAOP-763</a>] -         AbstractAopMetaDataDeployer prematurely removes the MDR retrieval for the created beans
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-765'>JBAOP-765</a>] -         Make AOPDeployment a public class
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-766'>JBAOP-766</a>] -         Classes sometimes don't get found in the classpool cache
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-767'>JBAOP-767</a>] -         Remove the jrockit pluggable instrumentor from build distribution
+</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.1.6.GA</h2>
+            
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-754'>JBAOP-754</a>] -         Remove all dependencies on artifacts with groupId org.jboss.jbossas
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-755'>JBAOP-755</a>] -         No longer actively support anything apart from the currently targetted AS version
+</li>
+</ul>
+                                
+<h2>Release Notes - JBoss AOP - Version 2.1.5.GA</h2>
+
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-746'>JBAOP-746</a>] -         JBoss AS Install Scripts don't Overwrite Preexisting files
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-748'>JBAOP-748</a>] -         PrecedenceTester fails over openjdk
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-749'>JBAOP-749</a>] -         Advisor.hasAnnotation calls annotation repository twice
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-750'>JBAOP-750</a>] -         Advisor.hasAnnotation() calls AnnotationRepository.hasAnnotation() twice
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-752'>JBAOP-752</a>] -         serialVersionUID in SortedCFlowInterceptor anonymous class breaks serialization compatibility tests in AS
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-753'>JBAOP-753</a>] -         Occasional IllegalStateException cleaning up GeneratedClassAdvisor
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-751'>JBAOP-751</a>] -         Move things around to minimize AS dependencies
+</li>
+</ul>
+                    
+<h3>Task</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-747'>JBAOP-747</a>] -         Improve pointcut matching log
+</li>
+</ul>
+            
+
+<h2>Release Notes - JBoss AOP - Version 2.1.4.GA</h2>
+    
+<h3>Bug</h2>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-744'>JBAOP-744</a>] -         AbstractAopMetaDataDeployer.FakeComponentUnit.getScope() does not create a new scope
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-745'>JBAOP-745</a>] -         NPE in InstanceProviderDelegate under high memory usage conditions
+</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.1.3.GA</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-740'>JBAOP-740</a>] -         More workarounds for bug in IBM's Class.getDeclaringClass() implementation
+</li>
+</ul>
+                                        
+<h2>Release Notes - JBoss AOP - Version 2.1.2.GA</h2>
+                                
+<h3>        Task
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-735'>JBAOP-735</a>] -         Fix the 2.0.x-compliance-tests.xml script
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-736'>JBAOP-736</a>] -         Create workaround for IBM JVM's Clas.getDeclaringClass bug
+</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.1.1.GA</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-567'>JBAOP-567</a>] -         Ommitted Default constructors causes CannotCompileException
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-694'>JBAOP-694</a>] -         JBoss AOP AS5 Deployer Backup causes RuntimeException
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-717'>JBAOP-717</a>] -         AspectManager's synch blocks and AM's aop lock enter deadlock state
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-718'>JBAOP-718</a>] -         ArrayIndexOutOfBoundsException on Advisor.updateConstructorPointcutAfterRemove
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-722'>JBAOP-722</a>] -         Wrapper Generated for Inner Class Constructor May Not Invoke the Interceptor Chain
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-723'>JBAOP-723</a>] -         Calling advisor.hasAnnotation(Method m, Class annotation) is unnecessary slow 
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-724'>JBAOP-724</a>] -         NPE in AOPClassLoaderInitializer if Module attachment cannot be found in deploymentunit or its parents
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-726'>JBAOP-726</a>] -         Advice Invoked out of Expected Order
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-727'>JBAOP-727</a>] -         Advice Precedence Order is not enforced on Classic Mode
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-728'>JBAOP-728</a>] -         Precedence is not compatible with CFlow
+</li>
+</ul>
+        
+<h3>        Feature Request
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-686'>JBAOP-686</a>] -         Use the maven plugin to create the docbook based documentation
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-730'>JBAOP-730</a>] -         Rewrite CFlow Algorithm
+</li>
+</ul>
+                                
+<h2>Release Notes - JBoss AOP - Version 2.1.0.GA</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-688'>JBAOP-688</a>] -         Maven Aop plugin doesnt work with wildcards
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-713'>JBAOP-713</a>] -         Deadlock on Rebuildingchain test
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-715'>JBAOP-715</a>] -         AspectManager.getAdvisors() does not get the advisors for subDomainsPerClass
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-716'>JBAOP-716</a>] -         CopyOnWriteArraySet usage leads to a bottleneck in joinpoint processing
+</li>
+</ul>
+        
+<h3>        Feature Request
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-720'>JBAOP-720</a>] -         Replace CopyOnWriteArraySet with ConcurrentSet
+</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.1.0.CR3</h2>
+    
+<h3>        Bug
+</h3>
+<ul><li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-714'>JBAOP-714</a>] -         Classloader leaks in the new classpools
+</li></ul>
+  
+<h2>Release Notes - JBoss AOP - Version 2.1.0.CR2</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-690'>JBAOP-690</a>] -         Array access replacement generates invalid bytecode when padding is required
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-712'>JBAOP-712</a>] -         TCL used to load and deploy base-aspects.xml
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-708'>JBAOP-708</a>] -         Break out AOP deployers
+</li>
+</ul>
+                                        
+
+<h2>Release Notes - JBoss AOP - Version 2.1.0.CR1</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-506'>JBAOP-506</a>] -         jboss-aop-jdk50-client.jar missing classes
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-573'>JBAOP-573</a>] -         Created Interceptor name is assumed to not change for a given scenario
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-673'>JBAOP-673</a>] -         jboss-aop-single.jar structure is wrong
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-675'>JBAOP-675</a>] -         AOP weaved code needs to appropriately generate Privileged Blocks
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-679'>JBAOP-679</a>] -         Reference guide example explaining $implements{} is wrong
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-680'>JBAOP-680</a>] -         _setInstanceAdvisor method not synthetic
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-681'>JBAOP-681</a>] -         Bad error reporting in Instrumentor.convertReferences()
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-685'>JBAOP-685</a>] -         Install script needs to replace client jars
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-689'>JBAOP-689</a>] -         injboss example does not work with AS 4.0.4
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-696'>JBAOP-696</a>] -         Aspect Library Annotations are not Recognized on JBoss 4.0.4 and JBoss 4.0.5
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-697'>JBAOP-697</a>] -         Make sure AspectManager.getAdvisors()  check all subdomains for advisors
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-701'>JBAOP-701</a>] -         JBoss 4.0.5 installation causes classpath problems (NoSuchMethodError)
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-702'>JBAOP-702</a>] -         AspectServiceDelegate.(un)depeplyBaseXml() should use AspectServiceDelegate.manager
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-703'>JBAOP-703</a>] -         NPE in ScopedVFSClassLoaderDomain
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-704'>JBAOP-704</a>] -         Don't register an aopDomain against a classloader domain if loader has already been registered in VFSClassLoaderDomain
+</li>
+</ul>
+        
+<h3>        Feature Request
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-672'>JBAOP-672</a>] -         Allow access to Agent's Instrumentation so more ClassFileTransformers can be added 
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-674'>JBAOP-674</a>] -         Ensure compatibiity of classes woven with AOP 2.0.0.GA
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-687'>JBAOP-687</a>] -         Merge JBoss AS 40 and 42 install scripts
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-693'>JBAOP-693</a>] -         Use jarjar to rename classes in jboss-mdr and jboss-reflect for AS 4.2.x aop deployer
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-699'>JBAOP-699</a>] -         Enable passing in ClassLoader to ContainerProxyFactory via AOPProxyFactoryParameters
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-705'>JBAOP-705</a>] -         Remove support for -Djboss.aop.classicorder
+</li>
+</ul>
+                    
+<h3>        Task
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-666'>JBAOP-666</a>] -         Reimplement classpools for AS
+</li>
+</ul>
+    
+<h3>        Thirdparty Change
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-682'>JBAOP-682</a>] -         Upgrade to latest versions of dependencies
+</li>
+</ul>
+        
+<h3>        Sub-task
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-676'>JBAOP-676</a>] -         Fix calls to Class&lt;?&gt;.getClassLoader() that are outside a privileged block
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-677'>JBAOP-677</a>] -         VFSClassLoaderDomainRegistry calls ClassLoader.getParent() outside a PA block
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-691'>JBAOP-691</a>] -         Enable ClassLoaderWithHierarchicalDomainSanityTestCase and ClassPoolWithHierarchicalDomainTestCase once jboss-cl 2.0.2 is released
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-698'>JBAOP-698</a>] -         Generate proxies in org.jboss.aop.generatedproxies package rather than in default package
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-709'>JBAOP-709</a>] -         Get rid of reflection hacks in JBossClClassPoolDomain once jbcl-78 is released
+</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.1.GA</h2>
+    
+<h3>        Bug
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-573'>JBAOP-573</a>] -         Created Interceptor name is assumed to not change for a given scenario
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-673'>JBAOP-673</a>] -         jboss-aop-single.jar structure is wrong
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-679'>JBAOP-679</a>] -         Reference guide example explaining $implements{} is wrong
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-680'>JBAOP-680</a>] -         _setInstanceAdvisor method not synthetic
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-681'>JBAOP-681</a>] -         Bad error reporting in Instrumentor.convertReferences()
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-685'>JBAOP-685</a>] -         Install script needs to replace client jars
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-689'>JBAOP-689</a>] -         injboss example does not work with AS 4.0.4
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-696'>JBAOP-696</a>] -         Aspect Library Annotations are not Recognized on JBoss 4.0.4 and JBoss 4.0.5
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-697'>JBAOP-697</a>] -         Make sure AspectManager.getAdvisors()  check all subdomains for advisors
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-702'>JBAOP-702</a>] -         AspectServiceDelegate.(un)depeplyBaseXml() should use AspectServiceDelegate.manager
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-703'>JBAOP-703</a>] -         NPE in ScopedVFSClassLoaderDomain
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-704'>JBAOP-704</a>] -         Don't register an aopDomain against a classloader domain if loader has already been registered in VFSClassLoaderDomain
+</li>
+</ul>
+        
+<h3>        Feature Request
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-672'>JBAOP-672</a>] -         Allow access to Agent's Instrumentation so more ClassFileTransformers can be added 
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-674'>JBAOP-674</a>] -         Ensure compatibiity of classes woven with AOP 2.0.0.GA
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-687'>JBAOP-687</a>] -         Merge JBoss AS 40 and 42 install scripts
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-693'>JBAOP-693</a>] -         Use jarjar to rename classes in jboss-mdr and jboss-reflect for AS 4.2.x aop deployer
+</li>
+</ul>
+                        
+<h3>        Thirdparty Change
+</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-682'>JBAOP-682</a>] -         Upgrade to latest versions of dependencies
+</li>
+</ul>
+        
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.SP1</h2>
+    
+<h3> Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-675'>JBAOP-675</a>] -         AOP weaved code needs to appropriately generate Privileged Blocks
+</li>
+</ul>
+                                        
+<h3>Sub-task</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-676'>JBAOP-676</a>] -         Fix calls to Class&lt;?&gt;.getClassLoader() that are outside a privileged block
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-677'>JBAOP-677</a>] -         VFSClassLoaderDomainRegistry calls ClassLoader.getParent() outside a PA block
+</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.GA</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-669'>JBAOP-669</a>] -         Compiler report feature does not support paths pointing to directories
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-388'>JBAOP-388</a>] -         Allow specification of the exception type for after-throwing advice
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-668'>JBAOP-668</a>] -         Revisit release structure
+</li>
+</ul>
+                    
+<h3>Task</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-498'>JBAOP-498</a>] -         Improve JavaDoc comments
+</li>
+</ul>
+    
+<h3>Thirdparty Change</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-670'>JBAOP-670</a>] -         Upgrade to jboss-mdr 2.0.0.GA
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-671'>JBAOP-671</a>] -         Upgrade jboss-reflect to 2.0.0.GA
+</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR20</h2>
+            
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-667'>JBAOP-667</a>] -         Refactor how scoped classloaders are handled in AS5
+</li>
+</ul>
+                                
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR19</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-654'>JBAOP-654</a>] -         Hotswap tests are failing
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-659'>JBAOP-659</a>] -         Add all aop classes to aop client
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-660'>JBAOP-660</a>] -         VerifyError on Illegal bytecode generated with cross-package inheritence
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-636'>JBAOP-636</a>] -         Update javassist and get rid of hack in Instrumentor.addMixinMethod()
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-643'>JBAOP-643</a>] -         Document array interception
+</li>
+</ul>
+                        
+<h3>Thirdparty Change</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-661'>JBAOP-661</a>] -         Upgrade jboss cl to 2.0.0.CR3
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-662'>JBAOP-662</a>] -         Upgrade deployers to 2.0.0.CR2
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-663'>JBAOP-663</a>] -         Upgrade mdr to 2.0.0.CR3
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-664'>JBAOP-664</a>] -         Upgrade javassist to 3.9.0.GA
+</li>
+</ul>
+        
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR18</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-629'>JBAOP-629</a>] -         Synchronize addBinding and removeBinding to avoid duplicate operations
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-646'>JBAOP-646</a>] -         Advisor.updateXXXPoitncutAfterRemove methods don't add the advisor to binding's advisor list
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-655'>JBAOP-655</a>] -         ClassifiedBindingAndPointcutCollection creates PointcutInfos with null bindings
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-656'>JBAOP-656</a>] -         JoinPointClassifier.methodAccessor returns constructor execution pointcuts
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-657'>JBAOP-657</a>] -         The pointcut contained in a binding is not being removed when the binding gets removed
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-574'>JBAOP-574</a>] -         Doc requirement to write ClassLoaders that return class files as resources
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-603'>JBAOP-603</a>] -         Use Pointcut Classification during Instrumentation
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-644'>JBAOP-644</a>] -         Remove dependency of AOP on VFSDeploymentUnit
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-645'>JBAOP-645</a>] -         Remove dependency of AOP on ServiceMBeanSupport
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-647'>JBAOP-647</a>] -         Make deployment of base-aspects.xml configurable and undeploy on shutdown of aspectmanager service
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-650'>JBAOP-650</a>] -         Support use of system properties in created annotations
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-652'>JBAOP-652</a>] -         Break up asintegration module
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-653'>JBAOP-653</a>] -         Replace ClassifiedBindingAndPointcutCollection lock by AOPLock
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-658'>JBAOP-658</a>] -         Index InterceptionMarkers by classloader
+</li>
+</ul>
+                    
+<h3>Task</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-383'>JBAOP-383</a>] -         Document instrumentation modes
+</li>
+</ul>
+            
+<h3>Sub-task</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-638'>JBAOP-638</a>] -         Move pointcuts and pointcutInfos into ClassifiedBindingCollection, and rename to ClassifiedBindingAndPointcutCollection
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-639'>JBAOP-639</a>] -         Move AM.transformationStarted into WeaverStrategySupport
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-640'>JBAOP-640</a>] -         Honour inheritsBindings in DomainClassifiedBindingCollection, and rename to DomainClassifiedBindingAndPointcutCollection
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-641'>JBAOP-641</a>] -         Move the pointcutStats into ClassifiedBindingAndPointcutCollection
+</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR17</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-569'>JBAOP-569</a>] -         Deadlock when two threads are removing a binding
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-623'>JBAOP-623</a>] -         SystemOutLoggerPlugin dumps trace level to the console for ALL projects that log
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-628'>JBAOP-628</a>] -         ClassCastException when querying ConstructionInvocation meta data
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-630'>JBAOP-630</a>] -         Deadlock in beforeafter tutorial example
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-631'>JBAOP-631</a>] -         Transformation of generated joinpoint classes causes deadlock
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-632'>JBAOP-632</a>] -         Race condition when starting EJBContainer
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-634'>JBAOP-634</a>] -         UnmodifiableEmptyCollections$LockedArrayList is not truly unmodifiable
+</li>
+</ul>
+
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-635'>JBAOP-635</a>] -         Make woven in fields and wrapper methods synthetic
+</li>
+</ul>
+
+                                        
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR16</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-591'>JBAOP-591</a>] -         Metadata tutorial example is broken
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-617'>JBAOP-617</a>] -         Fix hotswap
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-618'>JBAOP-618</a>] -         AspectManager.getTempAdvisorIfNotExist causes infinite loop
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-620'>JBAOP-620</a>] -         ClassAdvisor.rebuildInterceptorsFor[Removed/Added]Binding methods do not update deprecated collections
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-622'>JBAOP-622</a>] -         ClassAdvisor.isAdvisable(Method) should ignore access$ methods
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-624'>JBAOP-624</a>] -         ScopedClassLoaderDomain should use its classloader to create aspects
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-626'>JBAOP-626</a>] -         Dynamic invocation of unadvised methods not supported on genadvisor mode
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-627'>JBAOP-627</a>] -         AspectManagerAnnotationLoaderStrategy.undeployPrecedence() tries to remove a pointcut rather than a precedence
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-625'>JBAOP-625</a>] -         Revisit ClassLoader handling
+</li>
+</ul>
+                                
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR15</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-605'>JBAOP-605</a>] -         InstanceDomain.addBinding does not update pointcut collection
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-606'>JBAOP-606</a>] -         JBoss AOP does not support multi-class loader standalone environments
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-612'>JBAOP-612</a>] -          GeneratedAOPProxyFactory should return a proxy when interface introductions apply, regardless of whether any aspects apply
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-613'>JBAOP-613</a>] -         AspectDeployer.deployAnnotations() unwind on error causes IndexOutOfBoundsException
+</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-607'>JBAOP-607</a>] -         Refactor AspectAnnotationLoader to have pluggable mechanism once annotations are read
+</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-610'>JBAOP-610</a>] -         Allow the use of &quot;this&quot; in annotated named pointcuts, typedefs etc.
+</li>
+</ul>
+                                
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR14</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-531'>JBAOP-531</a>] - Array replacement bytecode triggers VerifyError</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-590'>JBAOP-590</a>] - Implements tutorial test is broken</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-594'>JBAOP-594</a>] - Packaging tutorial example is not working</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-599'>JBAOP-599</a>] - Doc Section "4.2.2 Application Server XML Resolving" shouldn't talk about "outside of the application server"</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-600'>JBAOP-600</a>] - JRockitPluggableClassPreProcessor prevents jvmti agents from working with jrockit</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-604'>JBAOP-604</a>] - AccessControlException in class.debugWriteFile() when running with JRockit with -Djboss.aop.debug.classes=true</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-578'>JBAOP-578</a>] - Optimize removal of bindings</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-579'>JBAOP-579</a>] - Implement pointcut classification, and take into account when building chains</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-595'>JBAOP-595</a>] - AopC should validate the presence of mandatory attributes/inner elements</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-602'>JBAOP-602</a>] - Make install script copy pluggable-instrumentor.jar and jrockit-pluggable-instrumentor.jar to the AS bin folder</li>
+</ul>
+                        
+<h3>Thirdparty Change</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-601'>JBAOP-601</a>] - Upgrade Javassist to 3.8.0.GA</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR13</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-347'>JBAOP-347</a>] - ClassCastException in MarshalledValue.java</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-589'>JBAOP-589</a>] - Examples after-throwing and return-type are broken</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-597'>JBAOP-597</a>] - Util.checkIntroductions uses ContextClassLoader</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-598'>JBAOP-598</a>] - Instrumentor.convertReferences recreates Advisor</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR12</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-592'>JBAOP-592</a>] - Error shutting down AspectManagerService in AS 5</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-553'>JBAOP-553</a>] - Provide a single jar in the release</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-593'>JBAOP-593</a>] - Proxy Factory should only create a proxy if per instance container has metadata bringing in more aspects than exist at class level</li>
+<li>[<a href='https://jira.jboss.org/jira/browse/JBAOP-611'>JBAOP-611</a>] - AspectAnnotationLoader should deploy named pointcuts etc. before deploying the binding
+</ul>
+                    
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-596'>JBAOP-596</a>] - Ensure all requisite client classes are included in jboss-aop-jdk50-client.jar</li>
+</ul>
+    
+<h3>Thirdparty Change</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-588'>JBAOP-588</a>] - Upgrade to jboss-common-core 2.2.7.GA</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR11</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-587'>JBAOP-587</a>] - Advisors for classes belonging to bootstrap classloader should be updated when removing bindings</li>
+</ul>
+                            
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-586'>JBAOP-586</a>] - Switch dependency on org.jboss:javassist to javassist:javassist</li>
+</ul>
+    
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR10</h2>
+    
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-433'>JBAOP-433</a>] - Caller Interceptor Chains Are Not Rebuilt</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-572'>JBAOP-572</a>] - Class and Container proxy caches are not classloader aware</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-580'>JBAOP-580</a>] - Calls to Class.getDeclaredXXX() in org.jboss.aop.pointcut.Util need to happen inside privileged blocks</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-581'>JBAOP-581</a>] - Fix JmxIntrospectingMixin</li>
+</ul>
+        
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-560'>JBAOP-560</a>] - When an AspectFactory returns null no interceptor should be added to the chain</li>
+</ul>
+                    
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-575'>JBAOP-575</a>] - Optimize addition of AspectBindings to improve AS start time</li>
+</ul>
+    
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR9</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-256'>JBAOP-256</a>] - java.lang.RuntimeException: defrost(): org.jboss.jms.client.delegate.ClientBrowserDelegate$... was pruned</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-537'>JBAOP-537</a>] - JoinPointInfo synchronization is not working on wrappers</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-545'>JBAOP-545</a>] - Instrumented methods contained in the super class may be ignored</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-550'>JBAOP-550</a>] - Generated JoinPoint class cache ignores class loader</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-554'>JBAOP-554</a>] - Duplicated InterceptorFactories</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-562'>JBAOP-562</a>] - Cached GeneratedClassInfo objects are being gc'ed</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-565'>JBAOP-565</a>] - SuperClassesFirstWeavingStrategy instruments classes already loaded</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-521'>JBAOP-521</a>] - maven-jbossaop-plugin documentation</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-540'>JBAOP-540</a>] - Modify DuplicateTestCase to extend AOPTestWithSetup</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-551'>JBAOP-551</a>] - Create a Schema for jboss-aop.xml files</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-561'>JBAOP-561</a>] - Remove reference to AOP IDE from reference docs</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-568'>JBAOP-568</a>] - Avoid extra info from being kept in the generated jp cache</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-570'>JBAOP-570</a>] - Ignore the ClassLoader on the JoinPointGenerator.generatedJoinPointClassCache</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-395'>JBAOP-395</a>] - Release/Packaging  holder task</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-547'>JBAOP-547</a>] - Update microcontainer dependencies</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-555'>JBAOP-555</a>] - Remove support for jdk1.4</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR8</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-492'>JBAOP-492</a>] - Duplicate _getAdvisor</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-495'>JBAOP-495</a>] - run-precompiled refers wrong jar</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-496'>JBAOP-496</a>] - run-precompiled.bat never runs the class</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-499'>JBAOP-499</a>] - Deadlock on multi-threaded dynamic AOP scenarios</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-517'>JBAOP-517</a>] - Enable Advisor.methodInterceptors field</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-528'>JBAOP-528</a>] - Fix bug when double-weaving existing javaassist proxies</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-534'>JBAOP-534</a>] - JBoss AOP ignore classes packaged in org.jboss.aop, it should be org.jboss.aop.</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-536'>JBAOP-536</a>] - Generated invokeNext method should be synchronized</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-516'>JBAOP-516</a>] - Support exclude=* in order to just include some package in current project</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-520'>JBAOP-520</a>] - maven-jbossaop-plugin to run java with aop options</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-526'>JBAOP-526</a>] - Use MetaData.isMetaDataPresent() instead of MetaData.isAnnotationPresent()</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-529'>JBAOP-529</a>] - Document maven plugin and add pom.xml for most of the examples in the dist</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-532'>JBAOP-532</a>] - Increase performance of annotation parsing by making checking of RuntimeInvisible annotations optional</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-541'>JBAOP-541</a>] - Use simple synchronization rather than rw locks when initialising lazy collections</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-543'>JBAOP-543</a>] - Replace exception when undeploying non-existant domain with a log warning</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-530'>JBAOP-530</a>] - Missing classes in AOP-client JAR</li>
+</ul>
+
+<h3>Thirdparty Change</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-533'>JBAOP-533</a>] - Upgrade javassist to 3.7.1.GA</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR7</h2>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-524'>JBAOP-524</a>] - Annotation processing is slow</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-525'>JBAOP-525</a>] - Should be possible to serialize a ContainerProxyCacheKey containing (unserializable) MetaData</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR6</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-523'>JBAOP-523</a>] - NPE trying to read annotations when shutting down server</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR5</h2>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-522'>JBAOP-522</a>] - Pass in full VFSDeploymentUnit from AspectDeployer to DomainInitialiser</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR4</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-453'>JBAOP-453</a>] - maven-jbossaop-plugin requires artifact maven-jbossaop-plugin on compile classpath</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-514'>JBAOP-514</a>] - AbstractAspectManager.destroy() should be calling undeployXml() instead of deployXml()</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-518'>JBAOP-518</a>] - Post condition of InstanceAdvisorDelegate.initializeAspects is not aspect != null</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-519'>JBAOP-519</a>] - Duplicate methods in ContainerProxyFactory</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-467'>JBAOP-467</a>] - Serialize container proxies out of vm</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-513'>JBAOP-513</a>] - Delete the unused GeneratedAdvisedInterface</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-290'>JBAOP-290</a>] - Make src/build.xml work</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-511'>JBAOP-511</a>] - Add root dir to release file</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR3</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-200'>JBAOP-200</a>] - Make sure the batch and sh files work</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-497'>JBAOP-497</a>] - ClassNotFoundException on JBoss 5</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-505'>JBAOP-505</a>] - Parameter Matching Backtrack can break indexes</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-507'>JBAOP-507</a>] - Launcher classloader is not accepted as a valid classloader in jboss embedded</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR2</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-380'>JBAOP-380</a>] - JBoss AOP sets info field to null before rebuilding a chain</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-480'>JBAOP-480</a>] - NPE in concurrent join point generation</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-493'>JBAOP-493</a>] - Instrumentor.isBaseClass does not examine the whole hierarchy</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-494'>JBAOP-494</a>] - Generated adviceString should take into account Aspect/Interceptor scope</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.CR1</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-305'>JBAOP-305</a>] - annotations not found for non-generic implementations of generic interface methods</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-434'>JBAOP-434</a>] - StackOverflow error on ScopedJbossClassPool.getCached</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-483'>JBAOP-483</a>] - Class(Proxy)Container does not populate the metadata</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-484'>JBAOP-484</a>] - GeneratedAdvisor advised class with a super class that is a ContainerProxy gives CCE in JoinpointGenerator</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-489'>JBAOP-489</a>] - Undeploy does not work if path has space characters</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-366'>JBAOP-366</a>] - Ability to attach a .aop deployment to a particular scoped classloader</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-482'>JBAOP-482</a>] - AOP gives non-descriptive exception when annotation creation of an expression fails</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-488'>JBAOP-488</a>] - Improve AOPContainerProxy.toString()</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-490'>JBAOP-490</a>] - Advisor.resolveAnnotation() and hasAnnotation() should check the MetaData in all cases</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-107'>JBAOP-107</a>] - The different types of classloader integration for AOP belong in the related release not jboss-head</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-485'>JBAOP-485</a>] - Override Instrumentor.isBaseClass() in GeneratedAdvisorInstrumentor</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-486'>JBAOP-486</a>] - Get rid of SuperClassesWeavingStrategy$CtClassTransformationInfo</li>
+</ul>
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.beta2</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-415'>JBAOP-415</a>] - Advice Matching algorithm is ignoring generics</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-464'>JBAOP-464</a>] - Call.getClassName() and Call.getMethodName() must not be called after Call is edited</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-471'>JBAOP-471</a>] - Method enforceArgsConsistency() not found on field interception with @Arg-annotated param</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-472'>JBAOP-472</a>] - Wrappers lack the generic type information</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-265'>JBAOP-265</a>] - Aspectize Java array</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-469'>JBAOP-469</a>] - Make sure @Aspect works in older versions of AS</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-409'>JBAOP-409</a>] - Make a version of ScopedJbossClassPool that works with AS 5</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.beta1</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-450'>JBAOP-450</a>] - AOP/MC Proxies do not include original Annotation and Signature attributes</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-455'>JBAOP-455</a>] - Upgrade javassist to 3.6.0.GA</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-226'>JBAOP-226</a>] - Memory leaks (advanced)</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-376'>JBAOP-376</a>] - Optimize AOP (SuperTask)</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-382'>JBAOP-382</a>] - Remove Complex Advice Signatures from Classic Mode</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.alpha5</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-379'>JBAOP-379</a>] - Arguments array shouldn't be null when the joinpoint arguments list is empty</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-391'>JBAOP-391</a>] - Default instrumentation mode unexpected</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-398'>JBAOP-398</a>] - No such field: jboss</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-406'>JBAOP-406</a>] - Proxy Class is being transformed during AspectAnnotationLoader Execution</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-407'>JBAOP-407</a>] - Target is not available on Constructor Caller Interception (genadvisor mode)</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-408'>JBAOP-408</a>] - Advices with @Target should always be called</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-414'>JBAOP-414</a>] - Example implements is broken</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-381'>JBAOP-381</a>] - Finally Advices</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-410'>JBAOP-410</a>] - Upgrade javassist to 3.6.0.beta1</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-44'>JBAOP-44</a>] - document new ARGS features</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-310'>JBAOP-310</a>] - JBoss Retro packaging</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-313'>JBAOP-313</a>] - Better error messages in AspectXmlLoader</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-367'>JBAOP-367</a>] - Add JBoss EULA to aop 2.0 distribution</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-372'>JBAOP-372</a>] - AOP support for lifecycle callbacks</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-373'>JBAOP-373</a>] - Extract interfaces to be used for JoinPointInfo when used with Before/After/Throwing</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-384'>JBAOP-384</a>] - Add around xml tag</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-385'>JBAOP-385</a>] - Uniformize Advice Exception Treatment</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-394'>JBAOP-394</a>] - Replace EDU.oswego classes with their java.util.concurrent counterparts</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-397'>JBAOP-397</a>] - Make AOP independent of A/S version and split out aspect library as a separate A/S artifact</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-399'>JBAOP-399</a>] - Revisit the examples text</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-400'>JBAOP-400</a>] - Remove JDK 1.4 annotation examples from reference manual</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-412'>JBAOP-412</a>] - Upgrade common-core to 2.2.0.GA</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.alpha4</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-368'>JBAOP-368</a>] - TransformerCommon.toClass calls need to use the aspect ProtectionDomain</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-369'>JBAOP-369</a>] - AOPC should use -Djava.io.tmpdir instead of the default /tmp</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-374'>JBAOP-374</a>] - AspectDefinition is keeping a reference to advisors after undeployment</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-37'>JBAOP-37</a>] - Before, After, After Throwing support</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-314'>JBAOP-314</a>] - Modify JoinPointInfo hierarchy so that we can call resolveAnnotation/resolveClassAnnotation on the underlying advisor</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.alpha3</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-254'>JBAOP-254</a>] - IOException: Access is denied on creating temp.files</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-315'>JBAOP-315</a>] - set() and get() pointcuts do not work on fields with no other pointcuts with generated advisors</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-316'>JBAOP-316</a>] - For method execution annotations should only exist for the wrapper method, not in the copied original</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-329'>JBAOP-329</a>] - Parameter annotations do not get copied across</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-330'>JBAOP-330</a>] - Infinite loop in ScopedJBossClassPool/ClassPool if a class cannot be found in the discovered pool</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-331'>JBAOP-331</a>] - Ignore expressions for a (scoped) domain should be gotten from the main AspectManager</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-332'>JBAOP-332</a>] - Surpress transformation errors is ignored</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-336'>JBAOP-336</a>] - NPE using caller pointcuts with per instance interceptors from a constructor</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-342'>JBAOP-342</a>] - JavassistMethodHashing.getMethodMap() for an interface does not pick up methods from super interface</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-346'>JBAOP-346</a>] - FieldAccess for inherited field in subclass does not get replaced if intermediate superclasses has no advised fields</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-349'>JBAOP-349</a>] - $implements/$implementing do not work with classes in the default package</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-353'>JBAOP-353</a>] - NPE on _getInstanceAdvisor (inside constructor joinpoints)</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-354'>JBAOP-354</a>] - PerVMAdvice depends on optimized classes</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-357'>JBAOP-357</a>] - ClassNotFoundExceptions when running with JRockit</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-360'>JBAOP-360</a>] - DeadLock when multiple threads are loading aspects</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-362'>JBAOP-362</a>] - JBoss AOP does not bind interceptors to introduced interfaces consistently</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-365'>JBAOP-365</a>] - Compile-time woven class advisor initialization fails if mixins config is available at runtime</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-276'>JBAOP-276</a>] - Construct to only match classes within a package</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-338'>JBAOP-338</a>] - Expose getInstance on InstanceAdvisor</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-340'>JBAOP-340</a>] - Enable chain overriding for container proxies</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-361'>JBAOP-361</a>] - AOPContainerProxy fails on final methods</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-195'>JBAOP-195</a>] - Error running ArgsTestCase in Eclipse</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-317'>JBAOP-317</a>] - Verify mixin creator methods signature</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-343'>JBAOP-343</a>] - Upgrade javassist to 3.4.0.GA</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-344'>JBAOP-344</a>] - Add JBoss EULA to aop 2.0</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.alpha2</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-284'>JBAOP-284</a>] - Error accessing overridden fields</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-298'>JBAOP-298</a>] - Construction does not work when we have inheritance and generated advisors</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-300'>JBAOP-300</a>] - SecurityActions$PrincipalInfoAction missing from client jar</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-301'>JBAOP-301</a>] - FieldAccess for inherited fields does not get replaced</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-303'>JBAOP-303</a>] - Per instance aspects for construction joinpoints</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-306'>JBAOP-306</a>] - NullpointerException in AOP/MC proxies if ctor calls a method</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-307'>JBAOP-307</a>] - Instantiating a proxy for a class that has no default constructors throws NPE</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-308'>JBAOP-308</a>] - Default values for mc annotations not picked up when running in jboss</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-87'>JBAOP-87</a>] - Add @Depends to annotations that define dependencies</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-91'>JBAOP-91</a>] - Annotation interoperability</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-109'>JBAOP-109</a>] - AOP/MC integration tests</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-291'>JBAOP-291</a>] - Make AOP DTD available online</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-292'>JBAOP-292</a>] - Create AspectDeployer tying in with JBoss Microcontainer for AS 5</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-293'>JBAOP-293</a>] - Get scoped AOP working with AspectAnnotationLoader</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-294'>JBAOP-294</a>] - Use a JDK 5 codebase and use JBoss Retro for 1.4 compatibility</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-299'>JBAOP-299</a>] - Investigate failures using JRockit</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-304'>JBAOP-304</a>] - Add the AOP/MC integration to jboss 5 so that @JMX can be used</li>
+</ul>
+
+
+<h2>Release Notes - JBoss AOP - Version 2.0.0.alpha1</h2>
+
+<h3>Bug</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-95'>JBAOP-95</a>] - Missing priviledged actions for isolating caller from permission checks</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-137'>JBAOP-137</a>] - _instanceAdvisor incorrectly added to base class</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-152'>JBAOP-152</a>] - ClassMetaData should obey same inheritance rules as methods</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-154'>JBAOP-154</a>] - Should be able to have different advices for inherited method</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-155'>JBAOP-155</a>] - class metadata should be overridable for inherited methods</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-179'>JBAOP-179</a>] - GenerateInstrumentedClassLoader should pass class bytes in to ASpectManager.translate()</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-248'>JBAOP-248</a>] - ClassAdvisor.attachClass() does not populate annotation overrides</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-264'>JBAOP-264</a>] - underscore prefix on member variables will throw an ArrayIndexOutOfBoundsException</li>
+</ul>
+
+<h3>Feature Request</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-185'>JBAOP-185</a>] - Exception pointcut</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-260'>JBAOP-260</a>] - Make it possible to (un)deploy one aspect at a time using AspectAnnotationLoader</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-270'>JBAOP-270</a>] - Add invokeTarget() method to Invocation</li>
+</ul>
+
+<h3>Task</h3>
+<ul>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-81'>JBAOP-81</a>] - InstanceAdvisor needs all the features of the ClassAdvisor</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-86'>JBAOP-86</a>] - AOP implementation of the ClassAdapter plugins</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-90'>JBAOP-90</a>] - Validate that JBossAOP works in restricted environments</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-196'>JBAOP-196</a>] - System properties to configure how joinpoint classes are generated</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-204'>JBAOP-204</a>] - Make sure superclasses get instrumented first with loadtime weaving</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-211'>JBAOP-211</a>] - MetaData Repository access from Invocation</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-213'>JBAOP-213</a>] - ConcurrentModificationException when running with microcontainer</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-257'>JBAOP-257</a>] - Test extender test in a scoped environment</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-258'>JBAOP-258</a>] - Make AspectManager.instrumentor a managed attribute</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-269'>JBAOP-269</a>] - Contention point in MethodMetaData</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-272'>JBAOP-272</a>] - Get rid of JoinPointInfo.factories/factoryChain and use interceptors/interceptorChain</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-273'>JBAOP-273</a>] - Create jvm attribute for aopc</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-277'>JBAOP-277</a>] - Move AnnotationCreator into MC</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-282'>JBAOP-282</a>] - Update aspects dist target to use the zip created by the aop dist build</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-285'>JBAOP-285</a>] - overridden method super calls do not get intercepted with generated advisors</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-286'>JBAOP-286</a>] - Weaken dependencies on unreleased MC 2.0</li>
+<li>[<a href='http://jira.jboss.com/jira/browse/JBAOP-289'>JBAOP-289</a>] - Move AOP out of head and into its own svn repository</li>
+</ul>
+</body>
+</html>

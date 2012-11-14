@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.3.3. Loadtime transformation in JBoss AS Using Sun JDK</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="jboss.html" title="10.3. JBoss Application Server"/>
+      <link rel="prev" href="ch10s03s02s02.html" title="10.3.2.2. JBoss 4.x AspectManager Service"/>
+      <link rel="next" href="ch10s03s04.html" title="10.3.4. JBoss 5 and JRockit"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s03s02s02.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s04.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="running-as-sun-jdk"/>10.3.3. Loadtime transformation in JBoss AS Using Sun JDK</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            JBoss AS has special integration with JDK (from version 5.0 on) to do loadtime transformations.  This section explains how to use it.
+         </p>
+         <p>
+            If you want to do load-time
+            transformations with JBoss 5 and Sun JDK, these are the steps you must take.
+         </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+               Set the <code class="literal">enableLoadtimeWeaving</code> attribute/property to true.  
+               By default, JBoss application server will not do load-time bytecode manipulation
+               of AOP files unless this is set. If <code class="literal">suppressTransformationErrors</code>
+               is <code class="literal">true</code> failed bytecode transformation will only give an error warning. This flag is
+               needed because sometimes a JBoss deployment will not have all the classes a class references.
+		        </li>
+               <li>
+		         Copy the <code class="literal">pluggable-instrumentor.jar</code> from the <code class="literal">lib/</code> 
+		         directory of your JBoss AOP distribution to the <code class="literal">bin/</code> directory of your 
+		         JBoss AOP application server installation.  
+		       </li>
+               <li>
+		         Next edit <code class="literal">run.sh</code> or 
+		         <code class="literal">run.bat</code> (depending on what OS you're on) and add the following to the JAVA_OPTS environment
+		         variable:
+		            <pre class="programlisting">
+set JAVA_OPTS=%JAVA_OPTS% -Dprogram.name=%PROGNAME% -javaagent:pluggable-instrumentor.jar
+		            </pre>
+               </li>
+            </ul>
+         </div>
+         <p>
+            Note that the class of the AspectManager Service must be <code class="literal">org.jboss.aop.deployers.AspectManagerJDK5</code>
+            on JBoss 5, or <code class="literal">org.jboss.aop.deployment.AspectManagerServiceJDK5</code> as these are what work with the -javaagent weaver.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s03s02s02.html">
+               <strong>Prev</strong>10.3.2.2. JBoss 4.x AspectManager Service</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s04.html">
+               <strong>Next</strong>10.3.4. JBoss 5 and JRockit</a>
+         </li>
+      </ul>
+   </body>
+</html>

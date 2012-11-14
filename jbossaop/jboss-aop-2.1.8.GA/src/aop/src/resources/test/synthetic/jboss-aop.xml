@@ -1,0 +1,37 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   <bind pointcut="execution(org.jboss.test.aop.synthetic.POJO->new())">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.synthetic.POJO->someMethod())">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+   <bind pointcut="execution(* org.jboss.test.aop.synthetic.POJO->staticMethod())">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.synthetic.POJO->field)">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+   <bind pointcut="field(* org.jboss.test.aop.synthetic.POJO->staticField)">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+   <introduction class="org.jboss.test.aop.synthetic.POJO">
+      <mixin transient="false">
+         <interfaces>
+            org.jboss.test.aop.synthetic.MixinInterface
+         </interfaces>
+         <class>org.jboss.test.aop.synthetic.Mixin</class>
+      </mixin>
+   </introduction>
+   <introduction class="org.jboss.test.aop.synthetic.POJO">
+      <interfaces>
+         org.jboss.test.aop.synthetic.SomeInterface
+      </interfaces>
+   </introduction>
+   <bind pointcut="call(org.jboss.test.aop.synthetic.Called->new())">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+   <bind pointcut="call(* org.jboss.test.aop.synthetic.Called->called())">
+      <interceptor-ref name="org.jboss.test.aop.synthetic.SimpleInterceptor"/>
+   </bind>
+</aop>

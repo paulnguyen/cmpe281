@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+  <declare-warning expr="class($instanceof{org.jboss.test.aop.declare.datalayer.Vehicle}) AND !has(public boolean *->accept(org.jboss.test.aop.declare.datalayer.MyVisitor))">
+     This is an expected warning: TRUCK should be mentioned in msg
+  </declare-warning> 
+  <declare-warning expr="class($instanceof{org.jboss.test.aop.declare.datalayer.Vehicle}) AND !has(*->new(java.lang.String))">
+     This is an expected warning: CAR should be mentioned in msg
+  </declare-warning> 
+  <declare-warning expr="!class(org.jboss.test.aop.declare.datalayer.Vehicle) AND class($instanceof{org.jboss.test.aop.declare.datalayer.Vehicle}) AND !hasfield(org.jboss.test.aop.declare.Logger *->logger)">
+     This is an expected warning: FOURWHEELER should be mentioned in msg
+  </declare-warning> 
+  <declare-warning expr="(call(* org.jboss.test.aop.declare.businesslayer.*->*(..)) OR call(org.jboss.test.aop.declare.businesslayer.*->new(..))) AND within(org.jboss.test.aop.declare.datalayer.*)">
+     This is an expected warning: Cannot call business layer from datalayer.
+  </declare-warning>
+  <declare-warning expr="call(* org.jboss.test.aop.declare.businesslayer.*->*(..)) AND withincode(* org.jboss.test.aop.declare.datalayer.Car->badMethod())">
+     This is an expected warning: Cannot call business layer from Car.badMethod()
+  </declare-warning>
+  <declare-error expr="call(* org.jboss.test.aop.declare.businesslayer.*->*(..)) AND withincode(* org.jboss.test.aop.declare.datalayer.Car->accept())">
+     This should not have happened
+  </declare-error>
+</aop>

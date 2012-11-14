@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>9.2. Ant Integration</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="compiling.html" title="Chapter 9. Building and Compiling Aspectized Java"/>
+      <link rel="prev" href="modes.html" title="9.1. Instrumentation modes"/>
+      <link rel="next" href="commandline.html" title="9.3. Command Line"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="modes.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="commandline.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="ant"/>9.2. Ant Integration</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         JBoss AOP comes with an ant task that you can use for precompiling your
+         classes with the aop precompiler. An example build.xml file is the basis
+         for the explanation.
+      </p>
+         <p>
+         
+         </p>
+         <pre class="programlisting">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;project default="compile" name="JBoss/AOP"&gt;
+   &lt;target name="prepare"&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Define the source directory, and the directory to compile classes to.
+         </p>
+         <pre class="programlisting">
+         &lt;property name="src.dir" value="PATH TO YOUR SOURCE DIR"&gt;
+         &lt;property name="classes.dir" value="PATH TO YOUR DIR FOR COMPILED CLASSES"&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Define also the path of your JBoss AOP installation, as well as the path to
+         the lib directory:
+         </p>
+         <pre class="programlisting">
+          &lt;property name="jboss.aop.root" value="PATH TO JBOSS AOP HOME"/&gt;
+          &lt;property name="jboss.aop.lib" value="${jboss.aop.root}/lib"/&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Include the jboss-aop.jar and the jars it depends on in the classpath:
+         </p>
+         <pre class="programlisting">
+      &lt;path id="classpath"&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-aop.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/javassist.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/trove.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-common-core.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-logging-spi.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-logging-log4j.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-mdr.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-reflect.jar"/&gt;
+         &lt;pathelement path="${jboss.aop.lib}/log4j.jar"/&gt;
+      &lt;/path&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         As an alternative, you can use the single jar provided with JBoss AOP. This
+         jar bundles all the libraries used by JBoss AOP in a single unit. To use this
+         jar, just define:
+         </p>
+         <pre class="programlisting">
+      &lt;path id="classpath"&gt;
+         &lt;pathelement path="${jboss.aop.lib}/jboss-aop-single.jar"/&gt;
+      &lt;/path&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Now, define the
+         <code class="literal">org.jboss.aop.ant.AopC</code> ant aop precompiler task:
+         </p>
+         <pre class="programlisting">
+      &lt;taskdef name="aopc" classname="org.jboss.aop.ant.AopC"
+         classpathref="jboss.aop.classpath"/&gt;
+      &lt;/target&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         
+         </p>
+         <pre class="programlisting">
+   &lt;target name="compile" depends="prepare"&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Compile the files (from the source directory to the compiled classes directory):
+         </p>
+         <pre class="programlisting">
+      &lt;javac srcdir="${src.dir}"
+         destdir="${classes.dir}"
+         debug="on"
+         deprecation="on"
+         optimize="off"
+         includes="**"&gt;
+         &lt;classpath refid="classpath"/&gt;
+      &lt;/javac&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         Now use the ant aop precompiler task, it reads the files from the classes directory and weaves those classes,
+         ovewriting them with the corresponding weaved version.
+         </p>
+         <pre class="programlisting">
+      &lt;aopc compilerclasspathref="classpath" verbose="true"&gt;
+         &lt;classpath path="${classes.dir}"/&gt;
+         &lt;src path="${classes.dir}"/&gt;
+         &lt;include name="**/*.class"/&gt;
+         &lt;aoppath path="jboss-aop.xml"/&gt;
+         &lt;aopclasspath path="${classes.dir}"/&gt;
+      &lt;/aopc&gt;
+   &lt;/target&gt;
+&lt;/project&gt;
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         The last tag, <code class="literal">aopclasspath</code>, must be used only if you used annotations to configure aspects, bindings,
+         and the like. If this is the case and you are not using a jboss-aop.xml file, you can ommit the <code class="literal">aoppath</code>
+         tag. You can also use both annotations and XML to configure aspects. In this case, you must declare both tags.
+         The complete list of the parameters that 
+         <code class="literal">org.jboss.aop.ant.AopC</code> ant task takes follows:
+      </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <code class="literal">compilerclasspath</code> or
+            <code class="literal">compilerclasspathref</code> -
+               These are interchangable, and represent the jars needed for the aop precompiler
+               to work. The
+            <code class="literal">compilerclasspath</code> version takes the paths of the
+               jar files, and the
+            <code class="literal">compilerclasspathref</code> version takes the
+               name of a predefined ant path. They can be specified as attributes of
+            <code class="literal">aopc</code>, as shown above.
+            <code class="literal">compilerclasspath</code> can also be
+               specified as a child element of
+            <code class="literal">aopc</code>, in which case you can use
+               all the normal ant functionality for paths (e.g. fileset).
+         </li>
+               <li>
+                  <code class="literal">classpath</code> or
+            <code class="literal">classpathref</code> - Path to the
+               compiled classes to be instrumented. The
+            <code class="literal">classpath</code>
+               version takes the path of the directory, and the
+            <code class="literal">classpathref</code>
+               version takes the name of a predefined ant path. They both be specified as attributes
+               of
+            <code class="literal">aopc</code>.
+            <code class="literal">classpath</code> can also be
+               specified as a child element of
+            <code class="literal">aopc</code>, as shown above, in which case
+               you can use all the normal ant functionality for paths (e.g. fileset). The full classpath
+               of the underlying java process will be classpath + compilerclasspath.
+         </li>
+               <li>
+                  <code class="literal">src</code> - A directory containing files to be transformed.  You can use multiple src elements to specify more that one root directory for transformation.
+         </li>
+               <li>
+                  <code class="literal">include</code> - This is optional and it serves as a filter
+            to pick out which files within <code class="literal">src</code> should be transformed. You can use wildcards within the
+            <code class="literal">name</code> expression, and you can also use multiple <code class="literal">include</code> elements.
+         </li>
+               <li>
+                  <code class="literal">verbose</code> - Default is false. If true, verbose output
+               is generated, which comes in handy for diagnosing unexpected results.
+         </li>
+               <li>
+                  <code class="literal">report</code> - Default is false. If true, the classes are not
+               instrumented, but a report called
+            <code class="literal">aop-report.xml</code> is generated
+               which shows all classes that have been loaded that pertain to AOP, what interceptors
+               and advices that are attached, and also what metadata that has been attached. One
+               particularly useful thing is the unbounded section. It specifys all bindings
+               that are not bound. It allows you to debug when you might have a typo in one of your
+               XML deployment descriptors.
+               <p/>
+               Report generation works on the instrumented classes, so to get valid data in your
+               report, you have to to make two passes with <code class="literal">aopc</code>. First
+               you run <code class="literal">aopc</code> with <code class="literal">report="false"</code> to
+               instrument the classes, and then you run <code class="literal">aopc</code> with
+               <code class="literal">report="true"</code> to generate the report.
+         </li>
+               <li>
+                  <code class="literal">aoppath</code> - The path of the
+            <code class="literal">*-aop.xml</code> file containing
+               the xml configuration of your bindings. Files or Directories can be specified.
+            If it is a directory, JBoss AOP will take all
+            <code class="literal">aop.xml</code> files from that directory.
+               This gets used for the
+            <code class="literal">jboss.aop.path</code>
+               optional system property which is described in the "Command Line" section. If you have more
+               than one xml file, for example if you have both a "normal"
+            <code class="literal">jboss-aop.xml</code>
+               file, and a
+            <pre class="programlisting">
+               &lt;aoppath&gt;
+               &lt;pathelement path="jboss-aop.xml"/&gt;
+               &lt;pathelement path="xmldir"/&gt;
+               &lt;/aoppath&gt;
+            </pre>
+               </li>
+               <li>
+                  <code class="literal">aopclasspath</code> - This should mirror your class path and contain all JARs/directories
+               that may have annotated aspects (Ses Chapter "Annotated Bindings").  The AOPC compiler will browse
+               each class file in this path to determine if any of them are annotationed with
+            <code class="literal">@Aspect</code>.
+               This gets used for the
+            <code class="literal">jboss.aop.class.path</code>
+               optional system property which is described in the "Command Line" section. If you have more
+               than one jar file, you can specify these as follows:
+            <pre class="programlisting">
+               &lt;aopclasspath&gt;
+               &lt;pathelement path="aspects.jar"/&gt;
+               &lt;pathelement path="foo.jar"/&gt;
+               &lt;/aopclasspath&gt;
+            </pre>
+               </li>
+               <li>
+                  <code class="literal">maxsrc</code> - The ant task expands any directories in
+               <code class="literal">src</code> to list all class files, when creating the parameters
+               for the java command that actually performs the compilation. On some operating
+               systems there is a limit to the length of vaid command lines. The default value
+               for <code class="literal">maxsrc</code> is 1000. If the total length of all the files used
+               is greater than <code class="literal">maxsrc</code>, a temporary file listing the files
+               to be transformed is used and passed in to the java command instead. If you have
+               problems running the <code class="literal">aopc</code> task, try setting this value to
+               a value smaller than 1000.
+          </li>
+            </ul>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="modes.html">
+               <strong>Prev</strong>9.1. Instrumentation modes</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="commandline.html">
+               <strong>Next</strong>9.3. Command Line</a>
+         </li>
+      </ul>
+   </body>
+</html>

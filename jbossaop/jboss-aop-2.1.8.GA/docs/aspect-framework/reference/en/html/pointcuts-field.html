@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>3.5. Field Patterns</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="pointcuts.html" title="Chapter 3. Joinpoint and Pointcut Expressions"/>
+      <link rel="prev" href="pointcuts-con.html" title="3.4. Constructor Patterns"/>
+      <link rel="next" href="pointcuts-pointcut.html" title="3.6. Pointcuts"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-con.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-pointcut.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="pointcuts-field"/>3.5. Field Patterns</h2>
+               </div>
+            </div>
+         </div>
+         <pre class="programlisting">public java.lang.String org.acme.SomeClass-&gt;fieldname</pre>
+         <p>
+        Constructor expressions are made up of the type, the fully qualified classname where the field resides and the
+         field's name.
+        The attributes(
+         <code class="literal">public, static, private</code>) of the field are optional.  If the attribute
+         is left out then any attribute is assumed.  Attributes accept the
+         <code class="literal">!</code> modifier for negation.
+      </p>
+         <pre class="programlisting">!public java.lang.String org.acme.SomeClass-&gt;*</pre>
+         <p>
+         
+            <code class="literal">$instanceof{}</code> can be used in the class name.  The below expression matches any field
+         of any type or subtype of
+         <code class="literal">org.acme.SomeInterface</code>
+      
+         </p>
+         <pre class="programlisting">* $instanceof{org.acme.SomeInterface}-&gt;*</pre>
+         <p>
+         Annotations can be used in place of the class name.  The below example matches any field where the type class 
+         is tagged with
+         <code class="literal">@javax.ejb.Entity</code>.
+      </p>
+         <pre class="programlisting">* @javax.ejb.Entity-&gt;*</pre>
+         <p>
+         Annotations can be also be used in place of the field name.  The below examples matches any field tagged as
+         <code class="literal">@org.jboss.Injected.</code>
+      
+         </p>
+         <pre class="programlisting">* *-&gt;@org.jboss.Injected</pre>
+         <p>
+         In addition, you can use typedefs, <code class="literal">$instanceof{}</code>, annotations and wildcards for field types. 
+         The following matches all fields where the type class has been tagged with @javax.ejb.Entity.
+      </p>
+         <pre class="programlisting">@javax.ejb.Entity *-&gt;*</pre>
+         <p>
+         To pick out all fields annotated with <code class="literal">@org.foo.Transient</code> within the <code class="literal">org.acme</code>
+         package, we can use <code class="literal">org.acme..</code> in place of the class name, and <code class="literal">@org.foo.Transient</code>
+         in please of the field name
+      </p>
+         <pre class="programlisting">* org.acme..-&gt;@org.foo.Transient</pre>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="pointcuts-con.html">
+               <strong>Prev</strong>3.4. Constructor Patterns</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="pointcuts-pointcut.html">
+               <strong>Next</strong>3.6. Pointcuts</a>
+         </li>
+      </ul>
+   </body>
+</html>

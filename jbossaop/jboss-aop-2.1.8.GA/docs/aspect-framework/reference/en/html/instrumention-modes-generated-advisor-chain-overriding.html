@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>14.2.3. Chain Overriding of Inherited Methods</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="instrumention-modes-generated-advisor.html" title="14.2. Generated Advisor Weaving"/>
+      <link rel="prev" href="instrumention-modes-generated-advisor-instance-api.html" title="14.2.2. Improved Instance API"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="instrumention-modes-generated-advisor-instance-api.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next"/>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="instrumention-modes-generated-advisor-chain-overriding"/>14.2.3. Chain Overriding of Inherited Methods</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            This will be explained with an example. Consider the following case:
+         </p>
+         <pre class="programlisting">
+   public class Base{
+      void test(){}
+   }
+
+   public class Child{
+   }
+
+   public class ChildTest{
+      void test(){}
+   }
+               
+         </pre>
+         <pre class="programlisting">
+   &lt;aop&gt;
+      &lt;prepare expr="execution(* POJO-&gt;test())"/&gt;
+      &lt;bind pointcut="execution(* Base-&gt;test())"&gt;
+         &lt;interceptor class="BaseInterceptor"/&gt;
+      &lt;/bind&gt;
+      &lt;bind pointcut="execution(* Child*-&gt;test())"&gt;
+         &lt;interceptor class="ChildInterceptor"/&gt;
+      &lt;/bind&gt;
+   &lt;/aop&gt;
+   
+         </pre>
+         <pre class="programlisting">
+
+Base base = new Base();                  //1
+Child child = new Child();               //2
+ChildTest childTest = new ChildTest();   //3
+
+base.test();                             //4
+child.test();                            //5
+childTest.test();                        //6
+
+         </pre>
+         <p>
+            With the "old" weaving we needed an exact match on methods for advices to get bound, meaning that:
+            </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>Call 4 would get intercepted by BaseInterceptor</li>
+               <li>Call 5 would get intercepted by BaseInterceptor</li>
+               <li>Call 6 would get intercepted by ChildInterceptor</li>
+            </ul>
+         </div>
+         <p>
+            The discrepancy is between calls 5 and 6, we get different behaviour depending on if we have overridden 
+            the method or are just inheriting it, which in turn means we have to have some in-depth knowledge about 
+            our hierarchy of classes and who overrides/inherits what in order to have predictable interception.
+         </p>
+         <p>
+            The new weaving model matches differently, and treats inherited methods the same as overridden methods, so:
+            </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>Call 4 would get intercepted by BaseInterceptor</li>
+               <li>Call 5 would get intercepted by ChildInterceptor</li>
+               <li>Call 6 would get intercepted by ChildInterceptor</li>
+            </ul>
+         </div>
+         <p>
+         
+         </p>
+         <p>
+            Note that for this to work, the parent method <span class="emphasis">
+               <em>MUST</em>
+            </span> be woven. In the previous example
+            <code class="literal">Base.test()</code> has been prepared.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="instrumention-modes-generated-advisor-instance-api.html">
+               <strong>Prev</strong>14.2.2. Improved Instance API</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+  <bind pointcut="field(* org.jboss.test.aop.field.POJO->field)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  <bind pointcut="field(* org.jboss.test.aop.field.SubSubPOJO->field)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  <bind pointcut="field(* org.jboss.test.aop.field.POJO->pojoInherited)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  <bind pointcut="field(* org.jboss.test.aop.field.SubPOJO->subpojoInherited)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  <bind pointcut="field(* org.jboss.test.aop.field.SubSubPOJO->mine)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  <bind pointcut="field(* org.jboss.test.aop.field.POJO->privateField)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+
+
+  <interceptor name="field" class="org.jboss.test.aop.field.FieldPerJoinpointInterceptor" scope="PER_JOINPOINT"/>
+  <interceptor name="staticField" class="org.jboss.test.aop.field.FieldPerJoinpointInterceptor" scope="PER_CLASS_JOINPOINT"/>
+  <bind pointcut="field(* org.jboss.test.aop.field.ScopedPojo->field*)">                
+       <interceptor-ref name="field"/>
+  </bind>
+  <bind pointcut="field(* org.jboss.test.aop.field.ScopedPojo->staticField)">                
+       <interceptor-ref name="staticField"/>
+  </bind>
+  
+  <bind pointcut="set(* org.jboss.test.aop.field.SetOrGetOnlyPOJO->setOnly)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  <bind pointcut="get(* org.jboss.test.aop.field.SetOrGetOnlyPOJO->getOnly)">                
+       <interceptor class="org.jboss.test.aop.field.TraceInterceptor"/>
+  </bind>
+  	
+  	<bind pointcut="get(* *->inheritedFieldInSubClassFieldA)">
+  	  <interceptor class="org.jboss.test.aop.field.ReplaceReadInterceptor"/>
+  	</bind>
+</aop>

@@ -1,0 +1,260 @@
+<html>
+<body>
+<p>
+<h2> Reflection</h2>
+
+There are two issues with using the Reflection API with JBoss AOP
+</p><p>
+<ol>
+<li>Aspects applied to constructors, fields and methods are bypassed</li>
+
+<li>JBoss AOP adds a small amount of extra fields and methods</li>
+</ol>
+
+</p><p>
+As Java system classes in the java.lang.reflect package cannot be modified by JBoss AOP, the aspect org.jboss.aop.ReflectionAspect has been created to help with these issues. ReflectionAspect contains advices that can be bound with caller pointcuts where needed.
+</p><p>
+<h3> Aspects applied to constructors and fields are bypassed</h3>
+
+The advice org.jboss.aop.ReflectionAspect will intercept your calls if you set up the caller pointcuts properly, and attach to any defined interceptor chains so that the same interceptions will occur as if accessing the field, or calling the method or constructor normally, i.e. without reflection. If you want to do something additional on interception, you can subclass it and override the methods: interceptConstructor(), interceptFieldRead(), interceptFieldWrite() and interceptMethod().
+</p><p>
+An example subclass of ReflectionAspect:
+<pre>
+	package mypackage;
+
+	import java.lang.reflect.Constructor;
+	import java.lang.reflect.Field;
+
+	import org.jboss.aop.joinpoint.Invocation;
+	import org.jboss.aop.reflection.ReflectionAspect;
+
+	public class MyReflectionAspect extends ReflectionAspect {
+		protected Object interceptConstructor(
+		Invocation invocation,
+		Constructor constructor,
+		Object[] args)
+		throws Throwable {
+			//Do your stuff
+			return super.interceptConstructor(invocation, constructor, args);
+		}
+
+		protected Object interceptFieldRead(
+		Invocation invocation,
+		Field field,
+		Object instance)
+		throws Throwable {
+			//Do your stuff
+			return super.interceptFieldRead(invocation, field, instance);
+		}
+
+		protected Object interceptFieldWrite(
+		Invocation invocation,
+		Field field,
+		Object instance,
+		Object arg)
+		throws Throwable {
+			//Do your stuff
+			return super.interceptFieldWrite(invocation, field, instance, arg);
+		}
+
+		protected Object interceptMethod(
+		Invocation invocation,
+		Method method,
+		Object instance,
+		Object[] args)
+		throws Throwable {
+			//Do your stuff
+			return super.interceptFieldWrite(invocation, method, instance, arg);
+		}
+	}
+</pre>
+As shown below, you will have information about what is being intercepted, so you could do your own filtering on what you do by configuring your aspect (by implementing XmlLoadable or using the javabean style configuration). The default behaviour of these methods is to mount the original interceptor chains.
+</p><p>
+Declare the aspect example:
+<pre>
+  &lt;aspect class="mypackage.MyReflectionAspect" scope="PER_VM"/&gt;
+</pre>
+</p><p>
+<b>Intercepting Class.newInstance()</b>
+</p><p>
+Bind the interceptNewInstance advice to Class.newInstance() calls:
+</p><p>
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;newInstance())"&gt;
+       &lt;advice name="interceptNewInstance" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Calls to Class.newInstance() will end up in MyReflectionAspect.interceptConstructor(), and the arguments are:
+</p><p>
+invocation - The invocation driving the chain of advices.
+</p><p>
+constructor - The constructor being called
+</p><p>
+args - the arguments being passed in to the constructor (in this case a zero-length array since Class.newInstance() takes no parameters)
+</p><p>
+Without the ReflectionAspect, interceptors bound to both constructor calls and execution will be ignored.
+</p><p>
+<b>Constructor.newInstance()</b>
+</p><p>
+Bind the interceptNewInstance advice to Constructor.newInstance() calls:
+</p><p>
+<pre>
+   &lt;bind pointcut="call(* java.lang.reflect.Constructor-&gt;newInstance())"&gt;
+       &lt;advice name="interceptNewInstance" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Calls to Constructor.newInstance() will end up in MyReflectionAspect.interceptConstructor(), and the arguments are:
+</p><p>
+invocation - The invocation driving the chain of advices.
+</p><p>
+constructor - The constructor being called
+</p><p>
+args - the arguments being passed in to the constructor
+</p><p>
+Without the ReflectionAspect, interceptors bound to both constructor calls and execution will be ignored.
+</p><p>
+</p><p>
+<b>Intercepting Field.getXXX()</b>
+</p><p>
+Bind the interceptFieldGet advice to Field.get*() calls:
+</p><p>
+<pre>
+   &lt;bind pointcut="call(* java.lang.reflect.Field-&gt;get*(..))"&gt;
+          &lt;advice name="interceptFieldGet" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Calls to Field-&gt;getXXX() will end up in MyReflectionAspect.interceptFieldRead(), and the arguments are:
+</p><p>
+invocation - The invocation driving the chain of advices.
+</p><p>
+field - The field being read
+</p><p>
+instance - the instance on which we are reading a field
+</p><p>
+Without the ReflectionAspect, interceptors bound to field reads will be ignored.
+</p><p>
+<b>Intercepting Field.setXXX()</b>
+</p><p>
+Bind the interceptFieldGet advice to Field.set*() calls:
+   
+<pre>
+   &lt;bind pointcut="call(* java.lang.reflect.Field-&gt;set*(..))"&gt;
+       &lt;advice name="interceptFieldSet" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Calls to Field-&gt;getXXX() will end up in MyReflectionAspect.interceptFieldWrite(), and the arguments are:
+</p><p>
+invocation - The invocation driving the chain of advices.
+</p><p>
+field - The field being written
+</p><p>
+instance - the instance on which we are writing a field
+</p><p>
+arg - the value we are setting the field to
+</p><p>
+Without the ReflectionAspect, interceptors bound to field writes will be ignored.
+</p><p>
+</p><p>
+<b>Intercepting Method.invoke()</b>
+</p><p>
+Bind the interceptMethodInvoke advice to Field.set*() calls:
+   
+<pre>
+   &lt;bind pointcut="call(* java.lang.reflect.Method-&gt;invoke(java.lang.Object, java.lang.Object[]))"&gt;
+      &lt;advice name="interceptMethodInvoke" aspect="mypackage.MyReflectionAspect"/&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Calls to Method-&gt;invoke() will end up in MyReflectionAspect.interceptMethod(), and the arguments are:
+</p><p>
+invocation - The invocation driving the chain of advices.
+</p><p>
+method - The method being invoked
+</p><p>
+instance - the instance on which we are invoking a method
+</p><p>
+args - the arguments being passed in to the method
+</p><p>
+Without the ReflectionAspect, interceptors bound to method calls will be ignored. Interceptors bound to
+method execution will however ALWAYS be invoked.
+</p><p>
+</p><p>
+</p><p>
+<h3> Cleaning fields, interfaces and methods added to a class by JBoss AOP</h3>
+
+</p><p>
+<b>Interfaces</b>
+</p><p>
+JBoss AOP adds the org.jboss.aop.Advised interface to advised classes. If you intend to be calling Class.getInterfaces() on an advised class, you should bind the interceptGetInterfaces advice to Class.getInterfaces() calls:
+</p><p>
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getInterfaces())"&gt;
+       &lt;advice name="interceptGetInterfaces" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Class.getInterfaces() will now return exactly the same as if the class had not been advised (i.e. the original class). This means org.jboss.aop.Advised is not in the list of interfaces returned.
+</p><p>
+<b>Methods</b>
+</p><p>
+JBoss AOP adds some methods, both public and private to advised classes. 
+</p><p>
+Bind the interceptGetMethod advice to Class.getMethod() calls:
+</p><p>
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getMethod(..))"&gt;
+       &lt;advice name="interceptGetMethod" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Bind the interceptGetDeclaredMethod advice to Class.getMethod() calls:
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getDeclaredMethod(..))"&gt;
+       &lt;advice name="interceptGetDeclaredMethod" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Both the bindings above intercept the calls so that if you try to get any of the methods in the unadvised class the method is returned as normal. If you try to get one of the methods added by JBoss AOP, a NoSuchMethodException is thrown.
+</p><p>
+The following advices remove the methods added by JBoss AOP and return the same methods as if the class was unadvised.
+</p><p>
+Bind the interceptGetDeclaredMethods advice to Class.getDeclaredMethods() calls:
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getDeclaredMethods())"&gt;
+       &lt;advice name="interceptGetDeclaredMethods" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Bind the interceptGetMethods advice to Class.getDeclaredMethods() calls:
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getMethods())"&gt;
+       &lt;advice name="interceptGetMethods" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+</p><p>
+<b>Fields</b>
+</p><p>
+JBoss AOP adds only private fields to advised classes, no public ones, so we only need to intercept the "declared" versions of the get field methods i.e. Class.getDeclaredFields() and Class.getDeclaredField(). 
+</p><p>
+</p><p>
+Bind the interceptGetDeclaredFields advice to Class.getDeclaredFields() calls:
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getDeclaredFields())"&gt;
+       &lt;advice name="interceptGetDeclaredFields" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p><p>
+Bind the interceptGetDeclaredField advice to Class.getDeclaredField() calls:
+<pre>
+   &lt;bind pointcut="call(* java.lang.Class-&gt;getDeclaredField(..))"&gt;
+       &lt;advice name="interceptGetDeclaredField" aspect="mypackage.MyReflectionAspect" /&gt;
+   &lt;/bind&gt;
+</pre>
+</p>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>2.2. Aspect Class</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="implementing.html" title="Chapter 2. Implementing Aspects"/>
+      <link rel="prev" href="impl-overview.html" title="2.1. Overview"/>
+      <link rel="next" href="impl-advice.html" title="2.3. Advice Methods"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-overview.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="impl-advice.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="impl-aspect"/>2.2. Aspect Class</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         The Aspect Class is a plain Java class that can define zero or more advices, pointcuts, and/or mixins.
+      </p>
+         <pre class="programlisting">public class Aspect
+ {
+   public Object trace(Invocation invocation) throws Throwable {
+      try {
+         System.out.println("Entering anything");
+         return invocation.invokeNext(); // proceed to next advice or actual call
+      } finally {
+         System.out.println("Leaving anything");
+      }
+   }
+}</pre>
+         <p>
+         The example above is of an advice
+         <code class="literal">trace</code> that traces calls to any type of joinpoint.
+         Notice that <code class="literal">Invocation</code> objects are the runtime encapsulation of joinpoints.
+         The method <code class="literal">invocation.invokeNext()</code> is used to drive the advice chain.  It either calls
+         the next advice in the chain, or does the actual method or constructor invocation.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="impl-overview.html">
+               <strong>Prev</strong>2.1. Overview</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="impl-advice.html">
+               <strong>Next</strong>2.3. Advice Methods</a>
+         </li>
+      </ul>
+   </body>
+</html>

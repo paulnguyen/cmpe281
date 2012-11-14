@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <aspect class="Aspect" scope="PER_VM"/>
+
+   <bind pointcut="execution(int POJO->*())">
+      <around name="aroundDefaultSignature" aspect="Aspect"/>
+      <around name="aroundAnnotatedParam" aspect="Aspect"/>
+      <after name="afterOverwriteReturnValue" aspect="Aspect"/>
+      <after name="afterVoid" aspect="Aspect"/>
+   </bind>
+   
+   <bind pointcut="execution(java.util.List POJO->*())">
+      <around name="aroundDefaultSignature" aspect="Aspect"/>
+      <after name="afterUnmodifiableList" aspect="Aspect"/>
+      <after name="afterVoid" aspect="Aspect"/>
+   </bind>
+   
+   <bind pointcut="execution(void POJO->*())">
+      <around name="aroundDefaultSignature" aspect="Aspect"/>
+      <around name="aroundVoid" aspect="Aspect"/>
+      <after name="afterVoid" aspect="Aspect"/>
+   </bind>
+   
+</aop>

@@ -1,0 +1,19 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.callerargs.CallerInterceptor"/>
+   <interceptor class="org.jboss.test.aop.callerargs.ExecutionInterceptor"/>
+
+   <bind pointcut="execution(* org.jboss.test.aop.callerargs.AdvisedPOJO->*(..)) OR execution(org.jboss.test.aop.callerargs.AdvisedPOJO->new(..))">
+      <interceptor-ref name="org.jboss.test.aop.callerargs.ExecutionInterceptor"/>
+   </bind>
+
+   <bind pointcut="call(* org.jboss.test.aop.callerargs.AdvisedPOJO->*(..)) OR call(org.jboss.test.aop.callerargs.AdvisedPOJO->new(..)) AND within(org.jboss.test.aop.callerargs.AdvisedPOJOCaller)">
+      <interceptor-ref name="org.jboss.test.aop.callerargs.CallerInterceptor"/>
+   </bind>
+   
+   <bind pointcut="(call(* org.jboss.test.aop.callerargs.NotAdvisedPOJO->*(..)) OR call(org.jboss.test.aop.callerargs.NotAdvisedPOJO->new(..))) AND within(org.jboss.test.aop.callerargs.NotAdvisedPOJOCaller)"> 
+      <interceptor-ref name="org.jboss.test.aop.callerargs.CallerInterceptor"/>
+   </bind>
+   
+   <prepare expr="(call(* org.jboss.test.aop.callerargs.NotAdvisedPOJO->*(..)) OR call(org.jboss.test.aop.callerargs.NotAdvisedPOJO->new(..))) AND within(org.jboss.test.aop.callerargs.PreparedPOJOCaller)"/> 
+   
+</aop>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.3.2. JoinPoint Arguments</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="adv-annotatedparameters.html" title="4.3. Annotated Advice Parameters"/>
+      <link rel="prev" href="adv-thrown.html" title="4.3.1. @Thrown annotated parameter"/>
+      <link rel="next" href="adv-overloaded.html" title="4.4. Overloaded Advices"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-thrown.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-overloaded.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="adv-joinpointargs"/>4.3.2. JoinPoint Arguments</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            As we saw, an advice can receive the joinpoint arguments as annotated parameters. This can be achieved with the use of
+            two different annotations: <code class="literal">@Arg</code> and <code class="literal">@Args</code>.
+         </p>
+         <p>
+            There is a great difference between these two approaches, though. With <code class="literal">@Arg</code>, each parameter is equivalent
+            to a single joinpoint parameter. With <code class="literal">@Args</code>, one single parameter, of type <code class="literal">Object[]</code>,
+            receives an array containing all joinpoint arguments. This last possibility is more generic than the first one, since it can be
+            used independently of the joinpoint argument types. Plus, it allows changes to the argument values. Any changes performed on
+            the values of this array will be perpetuated to the joinpoint execution. However, the use of <code class="literal">@Args</code> parameters
+            on a join point interception means the arguments array needs creation. The same happens with the use of
+            <code class="literal">getArguments()</code> and <code class="literal">setArguments()</code> methods on <code class="literal">Invocation</code> classes. So the
+            use of <code class="literal">@Arg</code> annotated parameters is more lightweight, and should be used whenever there is no need to changing
+            the joinpoint arguments.
+         </p>
+         <p>
+            When using <code class="literal">@Arg</code> annotated parameters, the types of these parameters depend on the joinpoint being intercepted.
+            Not all the target joinpoint arguments need to be included as parameters to the advice method. An advice can receive only the
+            argument values that are relevant to its execution.
+         </p>
+         <p>
+            Given all the possibilities in the usage of <code class="literal">@Arg</code>, JBoss AOP will match the advice parameters with the
+            joinpoint ones, to infer to which joinpoint argument each advice parameter refers to. This matching process consists of
+            the following steps:
+         </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <p>
+               Each advice parameter will be matched to the first unmatched joinpoint argument that has the same type. This is done
+               in the order that the advice parameters appear in the advice method.
+            </p>
+               </li>
+               <li>
+                  <p>
+               If any advice parameter is left unmatched, we proceed to an additional step. Each advice parameter will be matched to
+               the first unmatched joinpoint argument that is assignable to it. This is done in the order that the advice parameters
+               appear in the advice method declaration.
+            </p>
+               </li>
+            </ul>
+         </div>
+         <p>
+            To illustrate this mechanism, consider the following scenario:
+         </p>
+         <pre class="programlisting">public class POJO
+{
+    void method(Collection arg0,  List arg1, int arg2, String arg3){}
+}
+
+
+&lt;aop&gt;
+   &lt;aspect class="MyAspect"/&gt;
+   &lt;bind pointcut="execution(* POJO-&gt;method(..))"&gt;
+      &lt;before aspect="MyAspect" name="advice"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;</pre>
+         <p>
+            The example above shows a xml-declared binding. We will use examples with those to illustrate
+            signature concepts from now on. Detailed syntax of xml bindings is shown in <a href="xml.html" title="Chapter 5. XML Bindings">Chapter 5, <i xmlns:xlink="http://www.w3.org/1999/xlink">XML Bindings</i>
+            </a>.
+         </p>
+         <p>
+            Class <code class="literal">POJO</code> is a plain java old object that contains only one method.
+            When calling this method, we want to trigger <code class="literal">MyAspet.advice()</code> before this
+            method is called. <code class="literal">POJO.method()</code> receives four distinct arguments, all of them
+            can be available to an advice by using <code class="literal">@Arg</code> annotated parameters. If
+            <code class="literal">MyAspect.advice()</code> has the following signature:
+         </p>
+         <pre class="programlisting">public class MyAspect
+{
+   public void advice(@Arg Collection param0, @Arg List param1, @Arg int param2, @Arg String param3)
+   {
+      ...
+   }
+}</pre>
+         <p>
+            
+            <code class="literal">MyAspect.advice()</code> parameters will be trivially matched to <code class="literal">POJO.method()</code> arguments
+            as follows:
+         </p>
+         <pre class="programlisting">
+param0 &lt;- arg0
+param1 &lt;- arg1
+param2 &lt;- arg2
+param3 &lt;- arg3
+         </pre>
+         <p>
+            The matching outcome will be the same if <code class="literal">MyAspect.advice()</code> signature changes slightly in the following
+            manner, since <code class="literal">Collection</code> is assignable from <code class="literal">List</code> for <code class="literal">param2</code>:
+         </p>
+         <pre class="programlisting">public class MyAspect
+{
+   public void advice (@Arg Collection param0, @Arg Collection param1, @Arg int param2, @Arg String param3)
+   {
+      ...
+   }
+}</pre>
+         <p>
+            If <code class="literal">MyAspect.advice()</code> receives only one parameter, of type <code class="literal">java.lang.Object</code>:
+         </p>
+         <pre class="programlisting">public class MyAspect
+{
+   public void advice(@Arg Object param0)
+   {
+      ...
+   }
+}</pre>
+         <p>
+            The parameter matching outcome will be:
+         </p>
+         <pre class="programlisting">
+param0 &lt;- arg0
+         </pre>
+         <p>
+            Since there is no joinpoint argument of type <code class="literal">Object</code>, we proceed to the additional
+            matching step in this case. Because <code class="literal">arg0</code> is the first unmatched argument that is assignable
+            to <code class="literal">Object</code>, we assign this argument to <code class="literal">param0</code>.
+         </p>
+         <p>
+            Notice that JBoss AOP will match all parameters correctly if we invert the order of parameters:
+         </p>
+         <pre class="programlisting">public class MyAspect
+{
+   public void advice(@Arg int param2, @Arg Collection param0, @Arg String param3, @Arg List param1)
+   {
+      ...
+   }
+}</pre>
+         <p>
+            If one writes an advice whose unique parameter is a <code class="literal">Collection</code>, and we want to refer
+            to the second joinpoint argument:
+         </p>
+         <pre class="programlisting">public class MyAspect
+{
+   public void advice (@Arg Collection param1)
+   {
+      ...
+   }
+}</pre>
+         <p>
+            It will not work as desired. JBoss AOP will assign <code class="literal">arg0</code> to <code class="literal">param1</code>:
+         </p>
+         <pre class="programlisting">
+param1 &lt;- arg0
+         </pre>
+         <p>
+            In cases like this, it is possible to enforce the correct matching of joinpoint arguments and
+            advice parameters. The annotation <code class="literal">@Arg</code> has an attribute, index, whose purpose
+            is to define the index of the argument to which that parameter refers.
+         </p>
+         <p>
+            So, in this case, the <code class="literal">MyAspect.advice()</code> parameter list below:
+         </p>
+         <pre class="programlisting">public class MyAspect
+{
+   public void advice (@Arg(index=1) Collection param1)
+   {
+      ...
+   }
+}</pre>
+         <p>
+            Will have the desired matching, which is:
+         </p>
+         <pre class="programlisting">
+param1 &lt;- arg1
+         </pre>
+         <p>
+            In the example just shown in this section, <code class="literal">MyAspect.advice()</code> was a before advice,
+            but the same rules are used for all advices using <code class="literal">@Arg</code> annotated parameters.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-thrown.html">
+               <strong>Prev</strong>4.3.1. @Thrown annotated parameter</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-overloaded.html">
+               <strong>Next</strong>4.4. Overloaded Advices</a>
+         </li>
+      </ul>
+   </body>
+</html>

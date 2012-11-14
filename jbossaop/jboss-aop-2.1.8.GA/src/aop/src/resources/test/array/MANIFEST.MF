@@ -1,0 +1,1 @@
+Premain-Class: org.jboss.test.aop.array.Agent

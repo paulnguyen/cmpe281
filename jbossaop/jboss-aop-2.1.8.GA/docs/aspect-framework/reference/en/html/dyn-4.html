@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>7.4. Improved Instance API</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="dynamic.html" title="Chapter 7. Dynamic AOP"/>
+      <link rel="prev" href="dyn-3.html" title="7.3. Preparation"/>
+      <link rel="next" href="dyn-5.html" title="7.5. DynamicAOP with HotSwap"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="dyn-3.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="dyn-5.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="dyn-4"/>7.4. Improved Instance API</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         As mentioned, you can add more aspects to a woven class using the 
+         <code class="literal">org.jboss.aop.InstanceAdvisor</code>. This API is limited to adding
+         interceptors to the existing intereptor chains, so it is a bit limited.
+      </p>
+         <p>
+         The new default weaving mode introduced in JBoss AOP 2.0.0 still allows you access to the 
+         <code class="literal">InstanceAdvisor</code> interface, but also offers a fuller instance API, which allows you to add bindings,
+         annotation overrides etc. via the normal dynamic AOP API. This is underdocumented,
+         but for a full overview of the capabilites take a look at how 
+         <code class="literal">org.jboss.aop.AspectXmlLoader</code> interacts with 
+         <code class="literal">org.jboss.aop.AspectManager</code>. We are working on a new tidier API for 
+         the next version of JBoss AOP. Normally, for dynamic AOP you add 
+         things to the top level <code class="literal">AspectManager</code>, which means that all instances
+         of all woven classes can be affected.
+      </p>
+         <p>
+         In JBoss AOP 2.0.0, each aspectized class has its own Domain. A domain is a sub-AspectManager. 
+         What is deployed in the main AspectManager is visible to the class's domain, but not vice versa. 
+         Furthermore each advised instance has its own Domain again which is a child of the class's domain. 
+         The Domain class is a sub-class of the AspectManager, meaning you can add ANYTHING supported by 
+         JBoss AOP to it, you are not limited to just interceptors. In the following example we prepare
+         all joinpoints of the POJO class and declare an aspect called <code class="literal">MyAspect</code>
+      
+         </p>
+         <pre class="programlisting">
+   &lt;!-- Weave in the hooks into our POJO class and add the interceptors --&gt;
+   &lt;aop&gt;
+      &lt;aspect class="MyAspect"/&gt;
+      &lt;prepare expr="all(POJO)"/&gt;
+   &lt;/aop&gt;
+   
+         </pre>
+         <pre class="programlisting">
+   POJO pojo1 = new POJO();
+   POJO pojo2 = new POJO();
+   
+      </pre>
+         <pre class="programlisting">
+   pojo1.someMethod();
+   
+      </pre>
+         <p>
+         At this stage, our <code class="literal">POJO</code> has the hooks woven in for AOP, but now bindings are deployed, so our call 
+         to <code class="literal">POJO.someMethod()</code> is not intercepted. Next let us add a binding to <code class="literal">POJO</code>'s class domain.
+      </p>
+         <pre class="programlisting">
+   //All woven classes implement the Advised interface
+   Advised classAdvisor = ((Advised)pojo1);
+   //Get the domain used by all instances of POJO
+   AspectManager pojoDomain = classAdvisor._getAdvisor().getManager();
+   //Add a binding with an aspect for that class this is similar to
+   AdviceBinding binding1 = new AdviceBinding("execution(* POJO-&gt;someMethod*(..))", null);
+   AspectDefinition myAspect = AspectManager.instance().getAspectDefinition("MyAspect");
+   binding1.addInterceptorFactory(new AdviceFactory(myAspect, "intercept"));
+
+   //Add the binding to POJO's domain
+   pojoDomain.addBinding(binding1);
+
+   pojo1.someMethod();
+   pojo2.someMethod();
+      
+      </pre>
+         <p>
+         Now we have added a binding to <code class="literal">POJO</code>'s class Domain. Both calls to 
+         <code class="literal">someMethod()</code> get intercepted by MyAspect
+      </p>
+         <pre class="programlisting">
+   //Create an annotation introduction
+   AnnotationIntroduction intro = AnnotationIntroduction.createMethodAnnotationIntroduction(
+         "* POJO-&gt;someMethod()",
+         "@MyAnnotation",
+         true);
+
+   //Create another binding
+   AdviceBinding binding2 = new AdviceBinding("execution(* POJO-&gt;@MyAnnotation)", null);
+   binding2.addInterceptor(MyInterceptor.class);
+
+   //All woven instances have an instance advisor
+   InstanceAdvisor instanceAdvisor1 = ((Advised)pojo1)._getInstanceAdvisor();
+
+   //The instance advisor has its own domain
+   Domain pojo1Domain = instanceAdvisor1.getDomain();
+
+   //Add the annotation override and binding to the domain
+   pojo1Domain.addAnnotationOverride(intro);
+   pojo1Domain.addBinding(binding2);
+
+   pojo1.someMethod();
+   pojo2.someMethod();
+   
+      </pre>
+         <p>
+         We have added an annotation override and a new binding matching on that annotaton to <code class="literal">pojo1</code>'s domain, so 
+         when calling <code class="literal">pojo1.someMethod()</code> this gets intercecpted by <code class="literal">MyAspect</code>
+         AND <code class="literal">MyInterceptor</code>. <code class="literal">pojo2.someMethod()</code> still gets intercepted by MyAspect only.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="dyn-3.html">
+               <strong>Prev</strong>7.3. Preparation</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="dyn-5.html">
+               <strong>Next</strong>7.5. DynamicAOP with HotSwap</a>
+         </li>
+      </ul>
+   </body>
+</html>

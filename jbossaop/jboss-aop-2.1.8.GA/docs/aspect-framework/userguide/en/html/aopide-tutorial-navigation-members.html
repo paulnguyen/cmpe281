@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>9.3.6.2. The Advised Members View</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="aopide-tutorial-navigation.html" title="9.3.6. Navigation"/>
+      <link rel="prev" href="aopide-tutorial-navigation-advised.html" title="9.3.6.1. Advised Markers"/>
+      <link rel="next" href="aopide-tutorial-navigation-aspect-manager.html" title="9.3.6.3. The Aspect Manager View"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="aopide-tutorial-navigation-advised.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide-tutorial-navigation-aspect-manager.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect3" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h4 class="title">
+                     <a id="aopide-tutorial-navigation-members"/>9.3.6.2. The Advised Members View</h4>
+               </div>
+            </div>
+         </div>
+         <p>
+               The Advised Members view gives the developer an overview of every single method and field in the current class that is 
+               advised by an Aspect or Interceptor. Let's have a look.
+               </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                     From the Eclipse main menu, click on Window &gt; Show View &gt; Other...
+                  </li>
+               <li>
+                     In the window that opens, you should see a folder called "JBoss AOP". 
+                     Press the "+" to expand it.
+                  </li>
+               <li>
+                     Double click on "Advised Members"
+                  </li>
+            </ul>
+         </div>
+         <p>
+            
+         </p>
+         <p>
+               Once you've done this, you should now make sure you are currently editing the <code class="literal">HelloAOP</code> class we 
+               created in the last tutorial. Once you have that class open in an editor, you should see something similar to this 
+               in the Advised Members view:
+            </p>
+         <div class="mediaobject" align="center">
+            <img src="../shared/images/advised-members-view.jpg" align="middle"/>
+         </div>
+         <p>
+                  Here we see that the method "callMe()" is intercepted by the interceptor <code class="literal">HelloInterceptor</code>. 
+                  Double clicking on <code class="literal">HelloInterceptor</code> will take you straight to it. This view is similar to 
+                  the Outline view, except it only shows members in your class which are intercepted. 
+            </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="aopide-tutorial-navigation-advised.html">
+               <strong>Prev</strong>9.3.6.1. Advised Markers</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide-tutorial-navigation-aspect-manager.html">
+               <strong>Next</strong>9.3.6.3. The Aspect Manager View</a>
+         </li>
+      </ul>
+   </body>
+</html>

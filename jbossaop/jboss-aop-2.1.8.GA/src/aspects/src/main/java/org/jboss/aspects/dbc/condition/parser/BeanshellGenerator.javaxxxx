@@ -1,0 +1,197 @@
+/*
+ * JBoss, the OpenSource J2EE webOS
+ *
+ * Distributable under LGPL license.
+ * See terms of license at gnu.org.
+ */
+package org.jboss.aspects.dbc.condition.parser;
+
+/**
+ *
+ * @author <a href="mailto:kabir.khan@jboss.org">Kabir Khan</a>
+ * @version $Revision: 1.1 $
+ */
+public class BeanshellGenerator implements ExpressionVisitor
+{
+   final static String RET_NAME = "bs_eval_ret_val";
+   Expression expr;
+   StringBuffer code;
+   StringBuffer methods;
+   int indent;
+   int newRet;
+   
+   public BeanshellGenerator(Expression expr)
+   {
+      this.expr = expr;
+   }
+   
+   public String createBeanshellCode()
+   {
+      code = new StringBuffer();
+      code.append("boolean " + RET_NAME + " = false;\n");
+      expr.accept(this);
+      return code.toString();
+   }
+   
+   public void visit(Expression expr)
+   {
+      expr.accept(this);
+   }
+
+   public void visit(BooleanExpression expr)
+   {
+      if (expr.isTopLevel())
+      {
+         code.append(getBsRetValName(newRet) + " = (" + expr.getExpression() + ");\n");
+      }
+      else
+      {
+         code.append(expr.getExpression());
+      }
+   }
+
+   public void visit(ForAllExpression expr)
+   {
+      createLoopCode(expr.getDeclaration(), expr.getCollection(), expr.getBody(), false);
+   }
+
+   public void visit(ExistsExpression expr)
+   {
+      createLoopCode(expr.getDeclaration(), expr.getCollection(), expr.getBody(), true);
+   }
+
+   public void visit(ImpliesExpression expr)
+   {
+      indent();
+      code.append(getBsRetValName(newRet) + " = true;\n");
+      indent();
+      code.append("if (");
+      expr.getLhs().accept(this);
+      code.append("){\n");
+      indent++;
+      indent();
+      code.append(getBsRetValName(newRet) + " = (");
+      expr.getRhs().accept(this);
+      code.append(");\n");
+
+      indent--;
+      indent();
+      code.append("}\n");
+   }
+   
+   public void visit(JavaExpression expr)
+   {
+      code.append(getBsRetValName(newRet) + " = true;");
+      code.append(expr.getJava());
+   }
+   
+   private void indent()
+   {
+      for (int i = 0 ; i < indent * 2 ; i++)
+      {
+         code.append(" ");
+      }
+   }
+   
+   private String getBsRetValName(int i)
+   {
+      if (i == 0)
+      {
+         return RET_NAME;
+      }
+      
+      return RET_NAME + i;
+   }
+
+   private void createLoopCode(String declaration, String collection, Expression body, boolean breakType)
+   {
+      if (newRet == 0)
+      {
+         indent();
+         code.append(getBsRetValName(newRet) + " = " + !breakType + ";\n");
+      }
+      indent();
+      code.append("for (" + declaration + " : " + collection + "){\n");
+      indent++;
+
+      if (body instanceof BooleanExpression)
+      {
+         code.append("if (");
+         
+         if (!breakType) 
+         {
+            code.append("!");
+         }
+
+         code.append("(");         
+       	body.accept(this);
+         code.append(")){\n");
+
+         indent++;
+         indent();
+         code.append(getBsRetValName(newRet) + " == " + breakType + ";\n");
+         
+         indent();
+         code.append("break;\n");
+         
+         indent--;
+         indent();         
+         code.append("}");
+      }
+      else if (body instanceof ImpliesExpression)
+      {
+         body.accept(this);
+         indent();
+         code.append("if (");
+         
+         if (!breakType) 
+         {
+            code.append("!");
+         }
+
+         code.append("(" + getBsRetValName(newRet) + ")){\n");
+
+         indent++;
+         indent();
+         code.append(getBsRetValName(newRet) + " == " + breakType + ";\n");
+         
+         indent();
+         code.append("break;\n");
+         
+         indent--;
+         indent();         
+         code.append("}");
+
+      }
+      else
+      {
+         newRet++;
+         code.append("boolean " + getBsRetValName(newRet) + " = " + !breakType + ";\n");
+       	body.accept(this);
+       	newRet--;
+      }
+      indent--;
+      
+      code.append("\n");
+      indent();
+      code.append("}\n");
+      
+      if (newRet > 0)
+      {
+         indent();
+         code.append(getBsRetValName(newRet - 1) + " = " + getBsRetValName(newRet) + ";\n");
+         indent();
+         code.append("if (" + getBsRetValName(newRet - 1) + " == " + breakType + "){\n");
+         indent++;
+         
+         indent();
+         code.append("break;\n");
+         
+         indent--;
+         indent();         
+         code.append("}");
+         indent--;
+         
+      }
+   }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <interceptor name="Int1" class="org.jboss.test.aop.stress.methodinvocation.PlainInterceptor"/>
+   <interceptor name="Int2" class="org.jboss.test.aop.stress.methodinvocation.PlainInterceptor"/>
+   <interceptor name="Int3" class="org.jboss.test.aop.stress.methodinvocation.PlainInterceptor"/>
+   <interceptor name="Int4" class="org.jboss.test.aop.stress.methodinvocation.PlainInterceptor"/>
+   <interceptor name="Int5" class="org.jboss.test.aop.stress.methodinvocation.PlainInterceptor"/>
+   
+   <aspect name="plain" class="org.jboss.test.aop.stress.methodinvocation.PlainAspect"/>
+   
+   <prepare expr="all(org.jboss.test.aop.stress.methodinvocation.POJO)"/>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.methodinvocation.POJO->oneInterceptor())">
+      <interceptor-ref name="Int1"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.methodinvocation.POJO->fiveInterceptors())">
+      <interceptor-ref name="Int1"/>
+      <interceptor-ref name="Int2"/>
+      <interceptor-ref name="Int3"/>
+      <interceptor-ref name="Int4"/>
+      <interceptor-ref name="Int5"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.methodinvocation.POJO->oneAdvice())">
+      <advice aspect="plain" name="one"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.methodinvocation.POJO->fiveAdvices())">
+      <advice aspect="plain" name="one"/>
+      <advice aspect="plain" name="two"/>
+      <advice aspect="plain" name="three"/>
+      <advice aspect="plain" name="four"/>
+      <advice aspect="plain" name="five"/>
+   </bind>
+   
+</aop>

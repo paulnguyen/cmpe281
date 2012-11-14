@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>5.9.1. Interface introductions</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="xml-introduction.html" title="5.9. introduction"/>
+      <link rel="prev" href="xml-introduction.html" title="5.9. introduction"/>
+      <link rel="next" href="xml-introduction2.html" title="5.9.2. Mixins"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="xml-introduction.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="xml-introduction2.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="xml-introduction1"/>5.9.1. Interface introductions</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+         The
+            <code class="literal">introduction</code> tag allows you to force an existing Java class to implement a particular
+         defined interface.
+         </p>
+         <pre class="programlisting">&lt;introduction class="org.acme.MyClass"&gt;
+    &lt;interfaces&gt;java.io.Serializable&lt;/interfaces&gt;
+&lt;/introduction&gt;</pre>
+         <p>
+            The above declaration says that the org.acme.MyClass class will be forced to implement java.io.Serializable.
+            The
+            <code class="literal">class</code> attribute can take wildcards but not boolean expressions.  If you need more
+            complex type expressions, you can use the
+            <code class="literal">expr</code> attribute instead.
+         </p>
+         <pre class="programlisting">&lt;introduction expr="has(* *-&gt;@test(..)) OR class(org.acme.*)"&gt;
+    &lt;interfaces&gt;java.io.Serializable&lt;/interfaces&gt;
+&lt;/introduction&gt;</pre>
+         <p>
+            The
+            <code class="literal">expr</code> can be any type expression allowed in a
+            <code class="literal">typedef</code> expression
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="xml-introduction.html">
+               <strong>Prev</strong>5.9. introduction</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="xml-introduction2.html">
+               <strong>Next</strong>5.9.2. Mixins</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xdoclet-module>
+
+    <taghandler namespace="JBossCollection"
+                class="xdoclet.modules.jboss.aop.JBossCollectionTagsHandler"/>
+
+    <taghandler namespace="JBossField"
+                class="xdoclet.modules.jboss.aop.JBossFieldTagsHandler"/>
+
+    <taghandler namespace="JBossAttribute"
+                class="xdoclet.modules.jboss.aop.JBossAttributeTagsHandler"/>
+
+    <taghandler namespace="JBossValue"
+                class="xdoclet.modules.jboss.aop.JBossValueTagsHandler"/>
+
+    <subtask name="jbossaop"
+             implementation-class="xdoclet.modules.jboss.aop.JBossAopSubTask"
+             parent-task-class="xdoclet.modules.jboss.aop.JBossAopTask"/>
+
+</xdoclet-module>
+

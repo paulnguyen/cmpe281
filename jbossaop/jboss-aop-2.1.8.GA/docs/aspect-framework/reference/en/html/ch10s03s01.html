@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.3.1. Packaging AOP Applications</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="jboss.html" title="10.3. JBoss Application Server"/>
+      <link rel="prev" href="jboss.html" title="10.3. JBoss Application Server"/>
+      <link rel="next" href="ch10s03s02.html" title="10.3.2. The JBoss AspectManager Service"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="jboss.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s02.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="d0e4567"/>10.3.1. Packaging AOP Applications</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            To deploy an AOP application in JBoss you need to package it. AOP is packaged similarly
+            to SARs(MBeans). You can either deploy an XML file directly in the deploy/ directory
+            with the signature *-aop.xml along with your package (this is how the base-aop.xml,
+            included in the
+            <code class="literal">jboss-aop.deployer</code> file works) or you can include it in
+            the jar file containing your classes. If you include your xml file in your jar,
+            it must have the file extension .aop and a jboss-aop.xml file must be contained
+            in a META-INF directory, i.e.
+            <code class="literal">META-INF/jboss-aop.xml</code>.
+         </p>
+         <p>
+            Note that in JBoss 5, you MUST specify the schema used, otherwise your information will not be
+            parsed correctly. You do this by adding the <code class="literal">xmlns="urn:jboss:aop-beans:1:0</code> 
+            attribute to the root <code class="literal">aop</code> element, as shown here: 
+            </p>
+         <pre class="programlisting">
+&lt;aop xmlns="urn:jboss:aop-beans:1.0"&gt;
+
+
+&lt;/aop&gt;
+            
+            </pre>
+         <p>
+         
+         </p>
+         <p>
+            If you want to create anything more than a non-trivial example, using the .aop jar
+            files, you can make any top-level deployment contain a .aop file containing the xml
+            binding configuration. That is you can have a .aop file in an .ear file, or a .aop
+            file in a war file etc. The bindings specified in the
+            <code class="literal">META-INF/jboss-aop.xml</code>
+            file contained in the .aop file will affect all the classes in the whole war!
+         </p>
+         <p>
+            To pick up a .aop file in an .ear file, it must be listed in the
+            <code class="literal">.ear/META-INF/application.xml</code> as a java module, e.g.:
+         </p>
+         <pre class="programlisting">
+
+&lt;?xml version='1.0'  encoding='UTF-8'?&gt;
+&lt;!DOCTYPE application PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application 1.2//EN'
+                             'http://java.sun.com/j2ee/dtds/application_1_2.dtd'&gt;
+
+&lt;application&gt;
+    &lt;display-name&gt;AOP in JBoss example&lt;/display-name&gt;
+    &lt;module&gt;
+        &lt;java&gt;example.aop&lt;/java&gt;
+    &lt;/module&gt;
+    &lt;module&gt;
+        &lt;ejb&gt;aopexampleejb.jar&lt;/ejb&gt;
+    &lt;/module&gt;
+    &lt;module&gt;
+        &lt;web&gt;
+           &lt;web-uri&gt;aopexample.war&lt;/web-uri&gt;
+          &lt;context-root&gt;/aopexample&lt;/context-root&gt;
+       &lt;/web&gt;
+   &lt;/module&gt;
+&lt;/application&gt;
+
+			</pre>
+         <p>
+			   Note that in newer versions of JBoss (&gt;= 4.0.5), the contents of the .ear file are deployed in the order they
+			   are listed in the application.xml. When using loadtime weaving the bindings listed in the example.aop file must be
+			   deployed before the classes being advised are deployed, so that the bindings exist in the system before the
+			   ejb, servlet etc. classes are loaded. This is acheived by listing the .aop file at the start of the application.xml.
+			   Older versions of JBoss did not have this issue since the contained .aop files were deployed before anything else, and
+			   this still holds true for other types of archives such as .sar and .war files.
+			</p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="jboss.html">
+               <strong>Prev</strong>10.3. JBoss Application Server</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s02.html">
+               <strong>Next</strong>10.3.2. The JBoss AspectManager Service</a>
+         </li>
+      </ul>
+   </body>
+</html>

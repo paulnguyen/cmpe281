@@ -1,0 +1,92 @@
+<html>
+<body>
+<p>
+<h2>Annotated Control Flow</h2>
+
+</p><p>
+<h4>Overview</h4>
+
+The principles behind CFlow when using annotations is exactly the same as when using <a href="cflow/cflow.html">XML</a>, all that is different is the way of defining it.
+</p><p>
+<h4>@CFlowStackDef and @CFlowDef</h4>
+
+MyAspect contains a few @CFlowStackDef annotated fields:
+</p><p>
+<pre>
+   @CFlowStackDef (cflows={@CFlowDef(expr = "void POJO-&gt;method1()", called=true), @CFlowDef(expr = "void POJO-&gt;method2()", called=true), @CFlowDef(expr = "void POJO-&gt;method3()", called=true)})
+   public static CFlowStack cf123Before;
+</pre>
+</p><p>
+The first one declares that method1, method2, and method3 should be in the call stack in that order.  The next
+<pre>
+   @CFlowStackDef (cflows={@CFlowDef(expr = "POJO-&gt;new()", called=true), @CFlowDef(expr = "void POJO-&gt;method3()", called=true)})
+   public static CFlowStack cf1ConAnd3;
+</pre>
+Says that the POJO constructor with an int parameter and method3 must be in the call stack in that order. As for <a href="../annotated-composition/annotated-composition.html">Annotated composition</a> and  <a href="../annotated-typedef/annotated-typedef.html">Annotated typedefs</a> the fully qualified name of the <tt>@CFlowStackDef</tt> annotated field is used when we reference the CFlowStackDef by name. Again, the type <tt>CFlowStack</tt> is used as the type of the field for clarity, even though the actual type of the field is irrelevant.
+</p><p>
+<h4>Apply a @CFlowStackDef</h4>
+
+You can reference the CFlowStackDef from within a <tt>@Bind</tt> annotation, by using the name of the field that was annotated. They can be compositional as well. The following binding in MyAspect uses the defined CFlowStackDefs
+</p><p>
+<pre>
+   @Bind (pointcut="execution(void POJO-&gt;method4())", cflow="(MyAspect.cf123Before OR MyAspect.cf123Before)")
+   public Object methodAdvice(MethodInvocation invocation) throws Throwable
+   {
+      ...
+   }
+
+</pre>
+This says to trigger the SimpleInterceptor on the execution of method4, but only when it is called within the context of method1, method2, and method3 OR contructor and method3.
+</p><p>
+The next example in MyAspect is for recursive methods.  The example CFlowStackDef says that two calls to the recursive method must be in the call stack, but no more
+<pre>
+   @CFlowStackDef (cflows={@CFlowDef(expr = "void POJO-&gt;recursive(int)", called=true), @CFlowDef(expr = "void POJO-&gt;recursive(int)", called=true), @CFlowDef(expr = "void POJO-&gt;recursive(int)", called=false)})
+   public static CFlowStack cf2Recursions;
+
+   @Bind (pointcut="execution(void POJO-&gt;recursive(int))", cflow="MyAspect.cf2Recursions")
+   public Object recursiveAdvice(MethodInvocation invocation) throws Throwable
+   {
+      ...
+   }
+</pre>
+</p><p>
+Combined with the execution binding, the SimpleInterceptor will only be triggered on the second call to the recursive method.
+</p><p>
+<h4>Run the example</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+
+     [java] --- pojo.method4(); ---
+     [java] method4
+     [java] --- pojo.method3(); ---
+     [java] method3
+     [java] method4
+     [java] --- pojo.method2(); ---
+     [java] method2
+     [java] method3
+     [java] method4
+     [java] --- pojo.method1(); ---
+     [java] method1
+     [java] method2
+     [java] method3
+     [java] &lt;&lt;&lt; MyAdvice.methodAdvice accessing: public void POJO.method4()
+     [java] method4
+     [java] &gt;&gt;&gt; Leaving MyAdvice.methodAdvice
+     [java] --- pojo.recursive(); ---
+     [java] recursive: 1
+     [java] recursive: 2
+     [java] recursive: 3
+     [java] --- new POJO(int); ---
+     [java] method3
+     [java] method4
+</pre>
+</p>
+</body>
+</html>

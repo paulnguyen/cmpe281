@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <declare-warning expr="class($instanceof{VehicleDAO}) AND !has(public void *->save())">
+      All VehicleDAO subclasses must override the save() method.
+   </declare-warning> 
+   <declare-warning expr="call(Driver->new(..)) AND within(*DAO)">
+      DAO classes should not access the Driver class
+   </declare-warning> 
+   <declare-warning expr="call(* Driver->*(..)) AND withincode(* *DAO->save())">
+      DAO classes should not access the Driver class
+   </declare-warning> 
+</aop>

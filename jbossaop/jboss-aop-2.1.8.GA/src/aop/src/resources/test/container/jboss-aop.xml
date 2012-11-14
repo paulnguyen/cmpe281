@@ -1,0 +1,6 @@
+<aop>
+   <interceptor class="org.jboss.test.aop.container.TestInterceptor"/>
+   <bind pointcut="execution(* @org.jboss.test.aop.container.Annotation->*(..))">
+   	<interceptor-ref name="org.jboss.test.aop.container.TestInterceptor"/>
+   </bind>
+</aop>

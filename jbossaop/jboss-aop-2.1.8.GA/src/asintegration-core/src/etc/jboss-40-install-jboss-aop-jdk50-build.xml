@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="install" name="JBoss/AOP Application Server installation">
+
+   <target name="init">
+      <!-- ========================================= -->
+      <!-- Set the jboss root and server config here -->
+      <!-- ========================================= -->
+      <property file="jboss.properties"/>
+
+      <!-- The rest are automatic -->
+      <property name="jboss.config.dir" value="${jboss.home}/server/${jboss.config}"/>
+      <property name="jboss.bin.dir" value="${jboss.home}/bin"/>
+      <property name="jboss.client.dir" value="${jboss.home}/client"/>
+      <property name="jboss.lib.dir" value="${jboss.home}/lib"/>
+      <property name="jboss.deploy.dir" value="${jboss.config.dir}/deploy"/>
+      
+      <available file="${jboss.home}" property="jboss.exists" type="dir"/>
+      <fail unless="jboss.exists" message="${jboss.home} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <available file="${jboss.config.dir}" property="config.exists" type="dir"/>
+      <fail unless="config.exists" message="${jboss.config.dir} does not exist. Modify 'jboss.config' in jboss.properties to be a valid server configuration"/>
+
+      <available file="${jboss.bin.dir}" property="bin.exists" type="dir"/>
+      <fail unless="bin.exists" message="${jboss.bin.dir} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <available file="${jboss.client.dir}" property="client.exists" type="dir"/>
+      <fail unless="client.exists" message="${jboss.client.dir} does not exist. Modify 'jboss.home' in jboss.properties to be a valid server configuration"/>
+
+      <available file="${jboss.lib.dir}" property="lib.exists" type="dir"/>
+      <fail unless="lib.exists" message="${jboss.lib.dir} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <available file="${jboss.deploy.dir}" property="deploy.exists" type="dir"/>
+      <fail unless="deploy.exists" message="${jboss.deploy.dir} does not exist. Modify 'jboss.config' in jboss.properties to be a valid server configuration"/>
+
+      <property name="lib.jboss-system" value="${jboss.lib.dir}/jboss-system.jar"/>
+      <available file="${lib.jboss-system}" property="lib.jboss-system.exists"/>
+      <fail unless="lib.jboss-system.exists" message="${lib.jboss-system} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <loadproperties>
+         <zipentry zipfile="${lib.jboss-system}" name="META-INF/MANIFEST.MF"/>
+         <!-- Add the prefix -->
+         <filterchain>
+            <linecontains>
+               <contains value="Version"/>
+            </linecontains>
+            <prefixlines prefix="AS-"/>
+         </filterchain>
+      </loadproperties>
+
+      <echo>JBoss AS Version is '${AS-Specification-Version}'</echo>
+
+      <condition property="AS-40">
+         <matches pattern="4.0.*" string="${AS-Specification-Version}"/>
+      </condition>
+
+      <condition property="enable.jarjar">
+         <or>
+            <isfalse value="${AS-40}"/>
+            <and>
+               <available file="${jboss.deploy.dir}/jboss-aop.deployer" type="dir"/>
+               <matches pattern="4.0.5.GA" string="${AS-Specification-Version}"/>
+            </and>
+         </or>
+      </condition>
+      
+      <condition property="dot" value="." else="-jdk50.">
+         <and>
+            <istrue value="${AS-40}"/>
+            <available file="${jboss.deploy.dir}/jboss-aop.deployer" type="dir"/>
+         </and>
+      </condition>
+
+      <property name="aspect.deployer" value="${jboss.deploy.dir}/jboss-aop${dot}deployer"/>
+      <available file="${aspect.deployer}" property="deployer.exists" type="dir"/>
+      <fail unless="deployer.exists" message="${aspect.deployer} does not exist."/>
+
+      <property name="aspect.library" value="${aspect.deployer}/jboss-aspect-library-jdk50.jar"/>
+      <available file="${aspect.library}" property="library.exists"/>
+      <!-- <fail unless="library.exists" message="${aspect.library} does not exist. If you are using the non-ejb3 versions of jboss-4.0.4.GA and jboss-4.0.5.GA, you should "/> -->
+
+      <property name="old.deployer" value="${jboss.config.dir}/deploy/jboss-aop${dot}deployer.bak"/>
+      <available file="${old.deployer}" property="old.deployer.exists"/>
+
+      <property name="lib.javassist" value="${jboss.config.dir}/lib/javassist.jar"/>
+      <available file="${lib.javassist}" property="jboss.post.4.0.4"/>
+      <property name="bak.javassist" value="${old.deployer}/javassist.bak"/>
+      <available file="${bak.javassist}" property="javassist.bak.exists"/>
+      
+      <condition property="backup.javassist" value="true">
+         <and>
+            <isset property="jboss.post.4.0.4"/>
+            <not>
+               <isset property="javassist.bak.exists"/>
+             </not>
+         </and>
+      </condition>
+
+      <property name="lib.jbossall-client" value="${jboss.client.dir}/jbossall-client.jar"/>
+      <available file="${lib.jbossall-client}" property="lib.jbossall-client.exists"/>
+      <fail unless="lib.jbossall-client.exists" message="${lib.jbossall-client} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <property name="bak.jbossall-client" value="${jboss.client.dir}/jbossall-client.bak"/>
+      <available file="${bak.jbossall-client}" property="jbossall-client.bak.exists"/>
+      <condition property="backup.jbossall-client" value="true">
+         <not>
+            <isset property="jbossall-client.bak.exists"/>
+         </not>
+      </condition>
+
+   </target>
+      
+   <target name="init-lib" depends="init" unless="AS-40">
+      
+      <property name="jboss.aop.lib" value="../../lib"/>
+      <available file="${jboss.aop.lib}" property="lib.jboss.aop.exists"/>
+      <fail unless="lib.jboss.aop.exists" message="${jboss.aop.lib} does not exist. Modify build.xml, setting the value of the property 'jboss.aop.lib' to be the path of the JBoss AOP lib installation directory."/>
+
+      <property name="lib.jbossaop-client" value="${jboss.aop.lib}/jboss-aop-client.jar"/>
+      <available file="${lib.jbossaop-client}" property="lib.jbossaop-client.exists"/>
+      <fail unless="lib.jbossaop-client.exists" message="${lib.jbossaop-client} does not exist. Modify build.xml, setting the value of the property 'jboss.aop.lib' to be the path of the JBoss AOP lib installation directory."/>
+
+      <property name="lib.jbossaop-client.injboss" value="${jboss.client.dir}/jboss-aop-jdk50-client.jar"/>
+      <available file="${lib.jbossaop-client.injboss}" property="lib.jbossaop-client.injboss.exists"/>
+      <fail unless="lib.jbossaop-client.injboss.exists" message="${lib.jbossaop-client.injboss} does not exist. Modify 'jboss.home' in jboss.properties to be a valid root of a jboss installation"/>
+
+      <property name="bak.jbossaop-client" value="${jboss.client.dir}/jboss-aop-jdk50-client.bak"/>
+      <available file="${bak.jbossaop-client}" property="jbossaop-client.bak.exists"/>
+      <condition property="backup.jbossaop-client" value="true">
+         <not>
+            <isset property="jbossaop-client.bak.exists"/>
+         </not>
+      </condition>
+
+   </target>
+
+   <target name="jarjar" depends="init" if="enable.jarjar" >
+      <path id="classpath">
+         <pathelement location="jarjar.jar"/>
+      </path>
+      <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpathref="classpath"/>
+      <jarjar destfile="jboss-reflect-aop.jar">
+         <zipfileset src="jboss-reflect.jar"/>
+         <rule pattern="org.jboss.beans.**" result="org.jboss.jbossaop4deployermc2.beans.@1"/>
+         <rule pattern="org.jboss.classadapter.**" result="org.jboss.jbossaop4deployermc2.classadapter.@1"/>
+         <rule pattern="org.jboss.config.**" result="org.jboss.org.jboss.jbossaop4deployermc2.config.@1"/>
+         <rule pattern="org.jboss.joinpoint.**" result="org.jboss.org.jboss.jbossaop4deployermc2.joinpoint.@1"/>
+         <rule pattern="org.jboss.reflect.**" result="org.jboss.org.jboss.jbossaop4deployermc2.reflect.@1"/> 
+         <rule pattern="org.jboss.annotation.**" result="org.jboss.org.jboss.jbossaop4deployermc2.annotation.@1"/>
+         <rule pattern="org.jboss.metadata.**" result="org.jboss.org.jboss.jbossaop4deployermc2.metadata.@1"/>
+      </jarjar>
+      <jarjar destfile="jboss-mdr-aop.jar">
+         <zipfileset src="jboss-mdr.jar"/>
+         <rule pattern="org.jboss.beans.**" result="org.jboss.jbossaop4deployermc2.beans.@1"/>
+         <rule pattern="org.jboss.classadapter.**" result="org.jboss.jbossaop4deployermc2.classadapter.@1"/>
+         <rule pattern="org.jboss.config.**" result="org.jboss.org.jboss.jbossaop4deployermc2.config.@1"/>
+         <rule pattern="org.jboss.joinpoint.**" result="org.jboss.org.jboss.jbossaop4deployermc2.joinpoint.@1"/>
+         <rule pattern="org.jboss.reflect.**" result="org.jboss.org.jboss.jbossaop4deployermc2.reflect.@1"/>
+         <rule pattern="org.jboss.annotation.**" result="org.jboss.org.jboss.jbossaop4deployermc2.annotation.@1"/>
+         <rule pattern="org.jboss.metadata.**" result="org.jboss.org.jboss.jbossaop4deployermc2.metadata.@1"/> 
+      </jarjar>
+      <jarjar destfile="jboss-aop-jarjar.jar">
+         <zipfileset src="jboss-aop-jdk50.jar"/>
+         <rule pattern="org.jboss.beans.**" result="org.jboss.jbossaop4deployermc2.beans.@1"/>
+         <rule pattern="org.jboss.classadapter.**" result="org.jboss.jbossaop4deployermc2.classadapter.@1"/>
+         <rule pattern="org.jboss.config.**" result="org.jboss.org.jboss.jbossaop4deployermc2.config.@1"/>
+         <rule pattern="org.jboss.joinpoint.**" result="org.jboss.org.jboss.jbossaop4deployermc2.joinpoint.@1"/>
+         <rule pattern="org.jboss.reflect.**" result="org.jboss.org.jboss.jbossaop4deployermc2.reflect.@1"/>
+         <rule pattern="org.jboss.annotation.**" result="org.jboss.org.jboss.jbossaop4deployermc2.annotation.@1"/>
+         <rule pattern="org.jboss.metadata.**" result="org.jboss.org.jboss.jbossaop4deployermc2.metadata.@1"/>
+      </jarjar>
+      <jarjar destfile="jboss-aop-asintegration-core-jarjar.jar">
+         <zipfileset src="jboss-aop-asintegration-core.jar"/>
+         <rule pattern="org.jboss.beans.**" result="org.jboss.jbossaop4deployermc2.beans.@1"/>
+         <rule pattern="org.jboss.classadapter.**" result="org.jboss.jbossaop4deployermc2.classadapter.@1"/>
+         <rule pattern="org.jboss.config.**" result="org.jboss.org.jboss.jbossaop4deployermc2.config.@1"/>
+         <rule pattern="org.jboss.joinpoint.**" result="org.jboss.org.jboss.jbossaop4deployermc2.joinpoint.@1"/>
+         <rule pattern="org.jboss.reflect.**" result="org.jboss.org.jboss.jbossaop4deployermc2.reflect.@1"/>
+         <rule pattern="org.jboss.annotation.**" result="org.jboss.org.jboss.jbossaop4deployermc2.annotation.@1"/>
+         <rule pattern="org.jboss.metadata.**" result="org.jboss.org.jboss.jbossaop4deployermc2.metadata.@1"/>
+      </jarjar>
+      <jarjar destfile="jboss-aop-asintegration-jmx-jarjar.jar">
+         <zipfileset src="jboss-aop-asintegration-jmx.jar"/>
+         <rule pattern="org.jboss.beans.**" result="org.jboss.jbossaop4deployermc2.beans.@1"/>
+         <rule pattern="org.jboss.classadapter.**" result="org.jboss.jbossaop4deployermc2.classadapter.@1"/>
+         <rule pattern="org.jboss.config.**" result="org.jboss.org.jboss.jbossaop4deployermc2.config.@1"/>
+         <rule pattern="org.jboss.joinpoint.**" result="org.jboss.org.jboss.jbossaop4deployermc2.joinpoint.@1"/>
+         <rule pattern="org.jboss.reflect.**" result="org.jboss.org.jboss.jbossaop4deployermc2.reflect.@1"/>
+         <rule pattern="org.jboss.annotation.**" result="org.jboss.org.jboss.jbossaop4deployermc2.annotation.@1"/>
+         <rule pattern="org.jboss.metadata.**" result="org.jboss.org.jboss.jbossaop4deployermc2.metadata.@1"/>
+      </jarjar>
+   </target>  
+
+   <target name="prepare-aspect-library" depends="init,download-aspect-library">
+      <!-- Unjar aspect library into a temp folder -->
+      <delete file="jboss-aspect-library-jdk50.jar"/>
+      <mkdir dir="aspect-library-temp"/>
+      <unjar src="${aspect.library}" dest="aspect-library-temp"/>
+
+      <!-- Get rid of the files that exist in jboss-aop-as4-deplyer.jar -->
+      <delete dir="aspect-library-temp/org/jboss/aop"/>
+
+      <!-- Get rid of the files that exist in jboss-standalone-aspect-library-jdk50.jar -->
+      <delete dir="aspect-library-temp/org/jboss/aspects/asynchronous"/>
+      <delete dir="aspect-library-temp/org/jboss/aspects/concurrent"/>
+      <delete dir="aspect-library-temp/org/jboss/aspects/dbc"/>
+      <delete dir="aspect-library-temp/org/jboss/aspects/jmx"/>
+      <delete dir="aspect-library-temp/org/jboss/aspects/logging"/>
+      <delete dir="aspect-library-temp/org/jboss/aspects/patterns"/>
+      <delete file="aspect-library-temp/org/jboss/aspects/*.class"/>
+
+      <jar destfile="jboss-aspect-library-jdk50.jar" basedir="aspect-library-temp" manifest="aspect-library-temp/META-INF/MANIFEST.MF"/>
+
+      <delete dir="aspect-library-temp"/>
+   </target>
+
+   <target name="download-aspect-library" depends="init" unless="library.exists">
+      <echo>The server ${jboss.home} lacks a jboss-aspect-library.jdk50.jar library. Downloading jar...</echo>
+      <get src="http://repository.jboss.com/jbossas/core-libs/4.2.2.GA/lib/jboss-aspect-library-jdk50.jar"
+         dest="${aspect.library}" 
+         verbose="true"
+         usetimestamp="true"/>
+   </target>
+   
+   <target name="update-jbossall-library" depends="init,backup-jbossall-library">
+      <!-- Unjar aspect library into a temp folder -->
+
+      <mkdir dir="jbossall-client-library-temp"/>
+      <unjar src="${lib.jbossall-client}" dest="jbossall-client-library-temp"/>
+      <delete file="${lib.jbossall-client}"/>
+      <!-- Get rid of the files that exist in jboss-aop-jdk50.jar -->
+      <delete dir="jbossall-client-library-temp/org/jboss/aop"/>
+      <unjar src="jboss-aop-jdk50.jar" dest="jbossall-client-library-temp">
+         <patternset>
+            <exclude name="META-INF/MANIFEST.MF"/>
+         </patternset>
+      </unjar>
+      <jar destfile="${lib.jbossall-client}" basedir="jbossall-client-library-temp" manifest="jbossall-client-library-temp/META-INF/MANIFEST.MF"/>
+
+      <delete dir="jbossall-client-library-temp"/>
+   </target>
+
+   <target name="backup-jbossall-library" if="backup.jbossall-client">
+      <echo>Backing up existing jbossall-client.jar to ${bak.jbossall-client}</echo>
+      <copy file="${lib.jbossall-client}" tofile="${bak.jbossall-client}"/>
+   </target>
+
+   <target name="update-jbossaop-library" depends="init-lib, backup-jbossaop-library" unless="AS-40">
+      <copy file="${lib.jbossaop-client}" tofile="${lib.jbossaop-client.injboss}" overwrite="true"/>
+   </target>   
+
+   <target name="backup-jbossaop-library" if="backup.jbossaop-client">
+      <echo>Backing up existing ${lib.jbossaop-client.injboss} to ${bak.jbossaop-client}</echo>
+      <copy file="${lib.jbossaop-client.injboss}" tofile="${bak.jbossaop-client}"/>
+   </target>
+
+   <target name="backup" depends="prepare-aspect-library" unless="old.deployer.exists">
+      <echo>Backing up existing aop deployer to ${old.deployer}</echo>
+      <copy todir="${old.deployer}">
+         <fileset dir="${aspect.deployer}"/>
+      </copy>
+      <delete dir="${aspect.deployer}"/>
+   </target>
+
+   <target name="install.deployer" depends="backup,jarjar">
+      
+      <!-- Indicates whether the jar files have been jarjarred -->
+      <condition property="jarjarred" value="NOT_JARJARRED" else="">
+         <isfalse value="${enable.jarjar}"/>
+      </condition>
+      
+      <copy todir="${jboss.deploy.dir}" overwrite="true">
+         <fileset dir="..">
+            <include name="jboss-aop-jdk50.deployer/**"/>
+            <exclude name="jboss-aop-jdk50.deployer/build.xml"/>
+            <exclude name="jboss-aop-jdk50.deployer/jboss.properties"/>
+            <exclude name="jboss-aop-jdk50.deployer/build_jboss4.0.xml"/>
+            <exclude name="jboss-aop-jdk50.deployer/ReadMe-AS4.txt"/>
+            <exclude name="jboss-aop-jdk50.deployer/jarjar.jar"/>
+            <!-- if the jar files have been jarjarred, we must not deploy the
+                 original jar files. If they haven't been jarjarred, we must deploy
+                 the original jar files. -->
+            <exclude name="${jarjarred}jboss-aop-jdk50.deployer/jboss-reflect.jar"/>
+            <exclude name="${jarjarred}jboss-aop-jdk50.deployer/jboss-mdr.jar"/>
+            <exclude name="${jarjarred}jboss-aop-jdk50.deployer/jboss-aop-jdk50.jar"/>
+            <exclude name="${jarjarred}jboss-aop-jdk50.deployer/jboss-asintegration-core.jar"/>
+            <exclude name="${jarjarred}jboss-aop-jdk50.deployer/jboss-asintegration-jmx.jar"/>
+         </fileset>
+      </copy>
+      <delete file="jboss-reflect-aop.jar"/>
+      <delete file="jboss-mdr-aop.jar"/>
+      <delete file="jboss-aop-jarjar.jar"/>
+      <delete file="jboss-aop-asintegration-core-jarjar.jar"/>
+      <delete file="jboss-aop-asintegration-jmx-jarjar.jar"/>
+      <move file="${jboss.deploy.dir}/jboss-aop-jdk50.deployer" tofile="${jboss.deploy.dir}/jboss-aop${dot}deployer"/>
+      <copy todir="${jboss.deploy.dir}/jboss-aop${dot}deployer" file="${old.deployer}/base-aop.xml"/>
+   </target>
+
+   <target name="backup.javassist.post.4.0.4" depends="init" if="backup.javassist">
+      <move file="${lib.javassist}" tofile="${bak.javassist}"/>
+   </target>
+
+   <target name="install.bin" depends="init, update-jbossall-library, update-jbossaop-library">
+      <copy todir="${jboss.bin.dir}" overwrite="true">
+         <fileset dir="../../lib">
+            <include name="pluggable-instrumentor.jar"/>
+         </fileset>
+      </copy>
+   </target>
+
+   <target name="install.post.4.0.4" depends="install.deployer, install.bin, backup.javassist.post.4.0.4" if="jboss.post.4.0.4">
+      <delete file="${aspect.deployer}/javassist.jar"/>
+      <copy file="javassist.jar" tofile="${lib.javassist}" overwrite="true"/>
+   </target>
+
+
+   <target name="install" depends="install.post.4.0.4"/>
+</project>

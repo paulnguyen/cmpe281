@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.2.4. Finally Advice Signature</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="adv-batf.html" title="4.2. Before/After/After-Throwing/Finally Advices"/>
+      <link rel="prev" href="adv-throwingsignature.html" title="4.2.3. After-Throwing Advice Signature"/>
+      <link rel="next" href="adv-annotatedparameters.html" title="4.3. Annotated Advice Parameters"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-throwingsignature.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-annotatedparameters.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="adv-finallysignature"/>4.2.4. Finally Advice Signature</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            Lastly, JBoss AOP provides the finally advice type. It is invoked from inside a finally block, after the joinpoint execution.
+         </p>
+         <p>
+            This advice is the only one that is called after a joinpoint execution in a deterministic way. Calls to after and after-throwing
+            advices take place depending on the joinpoint execution outcome. After advices are not called when the joinpoint execution
+            terminates abruptly with an exception. After-throwing ones, on the other hand, are not called when the joinpoint execution
+            returns normally, since no exception is thrown this time. So, if an advice needs to be run no matter what is the outcome
+            of the joinpoint, it should be a finally advice.
+         </p>
+         <p>
+            Pretty much as after advices, finally advices can follow one of the signatures below:
+         </p>
+         <pre class="programlisting">public void [advice name]([annotated parameter], [annotated parameter],...[annotated parameter])
+
+public [return type] [advice name]([annotated parameter], [annotated parameter],...[annotated parameter])</pre>
+         <p>
+            The last signature shows that finally advices can also overwrite the joinpoint execution return value by
+            returning a value themselves. But notice that this return value will not be received by the base system if
+            an exception has been thrown. However, it is easy to know whether this condition is met, by making use of annotated parameters.
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-throwingsignature.html">
+               <strong>Prev</strong>4.2.3. After-Throwing Advice Signature</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-annotatedparameters.html">
+               <strong>Next</strong>4.3. Annotated Advice Parameters</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="main" name="JBoss/AOP">
+
+  
+  <target name="init">
+
+      <property name="java.optimize" value="true"/>
+      <property name="java.debug" value="false"/>
+
+      <property name="source" value="src/aspect-framework/"/>
+      <property name="source.java" value="${source}/main"/>
+      <property name="source.tests.java" value="${source}/test"/>
+      <property name="source.res" value="${source}/resources"/>
+      <property name="source.etc" value="${source}/etc"/>
+
+      <!-- Where build generated files will go -->
+      <property name="output" value="output"/>
+      <property name="build.reports" value="${output}/reports"/>
+      <property name="build.stylesheets" value="${output}/stylesheets"/>
+      <property name="build.classes" value="${output}/classes"/>
+      <property name="build.classes.retro" value="${output}/classes-retro"/>
+      <property name="build.tests.classes" value="${output}/tests.classes"/>
+      <property name="build.lib" value="${output}/lib"/>
+      <property name="build.api" value="${output}/javadoc"/>
+      <property name="build.etc" value="etc"/>
+      <property name="build.gen-src" value="${output}/gen-src"/>
+      <property name="build.gen" value="${output}/gen"/>
+      <property name="build.bootclasspath" value="${output}/gen-bootclasspath"/>
+
+
+
+      <path id="javassist.classpath">
+         <pathelement path="lib/javassist.jar"/>
+      </path>
+
+      <path id="trove.classpath">
+         <pathelement path="lib/trove.jar"/>
+      </path>
+
+      <path id="apache.log4j.classpath">
+         <pathelement path="lib/log4j.jar"/>
+      </path>
+
+      <path id="jboss.core.classpath">
+         <pathelement path="lib/jboss-common-core.jar"/>
+      </path>
+
+      <path id="jboss.reflect.classpath">
+         <pathelement path="lib/jboss-reflect.jar"/>
+      </path>
+
+      <path id="jboss.mdr.classpath">
+         <pathelement path="lib/jboss-mdr.jar"/>
+      </path>
+
+      <path id="jboss.logging.log4j.classpath">
+         <pathelement path="lib/jboss-logging-log4j.jar"/>
+      </path>
+
+      <path id="jboss.logging.classpath">
+         <pathelement path="lib/jboss-logging-spi.jar"/>
+      </path>
+
+      <path id="library.classpath">
+         <path refid="apache.log4j.classpath"/>
+         <path refid="javassist.classpath"/>
+         <path refid="trove.classpath"/>
+         <!-- required by org.jboss.aop.annotation.compiler/** -->
+         <!-- <path refid="qdox.classpath"/> -->
+         <path refid="jboss.core.classpath"/>
+         <path refid="jboss.reflect.classpath"/>
+         <path refid="jboss.mdr.classpath"/>
+         <path refid="jboss.logging.log4j.classpath"/>
+         <path refid="jboss.logging.classpath"/>
+         <!--
+         <path refid="qdox.classpath"/>
+         <path refid="xdoclet.xdoclet.classpath"/>
+         <path refid="apache.ant.classpath"/>
+         <path refid="junit.junit.classpath"/>
+         <path refid="jboss.profiler.jvmti.classpath"/>
+         <path refid="jboss.common.core.classpath"/>
+         <path refid="jboss.common.logging.log4j.classpath"/>
+         <path refid="jboss.common.logging.jdk.classpath"/>
+         <path refid="jboss.common.logging.spi.classpath"/>
+         <path refid="jboss.microcontainer.classpath"/>
+         <path refid="jboss.test.classpath"/>
+         -->
+      </path>
+
+      <path id="test.classpath">
+         <path refid="library.classpath"/>
+         <pathelement path="${build.lib}/jboss-aop.jar"/>
+         <pathelement path="${build.classes}"/>
+         <pathelement path="lib-test/jboss-test.jar"/>  <!-- needs to be added -->
+         <pathelement path="lib-test/junit.jar"/>  <!-- needs to be added -->
+         <pathelement path="lib-test/jboss-profiler-jvmti.jar"/>  <!-- needs to be added -->
+      </path>
+
+  </target>
+
+  <target name="main" depends="compile-classes">
+
+
+  </target>
+
+
+   <target name="compile-classes" depends="init">
+      <mkdir dir="${build.classes}"/>
+      <javac destdir="${build.classes}"
+         optimize="${javac.optimize}"
+         target="1.5"
+         source="1.5"
+         debug= "${javac.debug}">
+         <src path="${source.java}"/>
+         <exclude name="org/jboss/aop/definition/**"/>
+         <exclude name="org/jboss/aop/hook/JRockit*"/>
+         <!-- requires qdox.jar -->
+         <exclude name="org/jboss/aop/annotation/compiler/**"/>
+         <classpath refid="library.classpath"/>
+      </javac>
+   </target>
+
+
+  <target name="compile-test-classes" depends="jars15">
+      <mkdir dir="${build.tests.classes}"/>
+      <javac destdir="${build.tests.classes}"
+         optimize="${javac.optimize}"
+         target="1.5"
+         source="1.5"
+         debug="${javac.debug}">
+         <src path="${source.tests.java}"/>
+         <classpath refid="test.classpath"/>
+         <include name="**/*.java"/>
+      </javac>
+   </target>
+
+
+
+   <target name="jars15" description="Builds all jar files." depends="compile-classes">
+
+      <mkdir dir="${build.lib}"/>
+
+      <!-- Build the jboss-aop.jar -->
+      <jar jarfile="${build.lib}/jboss-aop.jar"
+         manifest="${build.etc}/default.mf">
+         <fileset dir="${build.classes}">
+            <exclude name="org/jboss/aop/standalone/PluggableInstrumentor.class"/>
+         </fileset>
+         <fileset file="docs/jboss-aop_1_0.dtd"/>
+         <fileset file ="${build.etc}/jbossorg-eula.txt"/>
+      </jar>
+     <jar jarfile="${build.lib}/pluggable-instrumentor.jar"
+         manifest="${build.etc}/pluggable-instrumentor.mf">
+         <fileset dir="${build.classes}">
+            <!-- Include everything else -->
+            <include name="org/jboss/aop/standalone/PluggableInstrumentor.class"/>
+         </fileset>
+         <fileset file ="${build.etc}/jbossorg-eula.txt"/>
+      </jar>
+      <!-- Build the jboss-aop-client.jar needed for EJB 3-->
+      <jar jarfile="${build.lib}/jboss-aop-client.jar"
+         manifest="${build.etc}/default.mf">
+         <fileset dir="${build.classes}">
+            <!-- Include everything else -->
+            <include name="org/jboss/lang/**"/>
+            <include name="org/jboss/aop/Advisor.class"/>
+            <include name="org/jboss/aop/AspectManager.class"/>
+            <include name="org/jboss/aop/AspectManager$*.class"/>
+            <include name="org/jboss/aop/ClassAdvisor.class"/>
+            <include name="org/jboss/aop/ClassInstanceAdvisor.class"/>
+            <include name="org/jboss/aop/InstanceAdvisorDelegate.class"/>
+            <include name="org/jboss/aop/Domain.class"/>
+            <include name="org/jboss/aop/InstanceAdvisor.class"/>
+            <include name="org/jboss/aop/MethodInfo.class"/>
+            <include name="org/jboss/aop/InterceptorChainObserver.class"/>
+            <include name="org/jboss/aop/JoinPoint.class"/>
+            <include name="org/jboss/aop/JoinPointInfo.class"/>
+            <include name="org/jboss/aop/MethodJoinPoint.class"/>
+            <include name="org/jboss/aop/*Dispatcher*.class"/>
+            <include name="org/jboss/aop/*Advised.class"/>
+            <include name="org/jboss/aop/advice/AspectDefinition.class"/>
+            <include name="org/jboss/aop/advice/Interceptor.class"/>
+            <include name="org/jboss/aop/instrument/Untransformable.class"/>
+            <include name="org/jboss/aop/joinpoint/Invocation*.class"/>
+            <include name="org/jboss/aop/joinpoint/Joinpoint.class"/>
+            <include name="org/jboss/aop/joinpoint/JoinPointBean.class"/>
+            <include name="org/jboss/aop/joinpoint/MethodExecution.class"/>
+            <include name="org/jboss/aop/joinpoint/MethodInvocation*.class"/>
+            <include name="org/jboss/aop/joinpoint/MethodJoinpoint.class"/>
+         	<include name="org/jboss/aop/metadata/SimpleMetaData.class"/>
+            <include name="org/jboss/aop/metadata/SimpleMetaData$MetaDataValue.class"/>
+            <include name="org/jboss/aop/metadata/MetaDataResolver.class"/>
+            <include name="org/jboss/aop/metadata/ThreadMetaData.class"/>
+            <include name="org/jboss/aop/proxy/MarshalledInterfaceProxy.class"/>
+            <include name="org/jboss/aop/proxy/MethodMapped.class"/>
+            <include name="org/jboss/aop/proxy/Proxy.class"/>
+            <include name="org/jboss/aop/proxy/ProxyFactory.class"/>
+            <include name="org/jboss/aop/proxy/ProxyMixin.class"/>
+            <include name="org/jboss/aop/util/SecurityActions*.class"/>
+            <include name="org/jboss/aop/util/Marshalled*.class"/>
+            <include name="org/jboss/aop/util/MethodHashing*.class"/>
+            <include name="org/jboss/aop/util/PayloadKey*.class"/>
+         </fileset>
+         <fileset file ="${build.etc}/jbossorg-eula.txt"/>
+      </jar>
+   </target>
+
+
+   <target name="javadoc" depends="init">
+      <javadoc sourcepath="${source.java}"
+          packagenames="org.jboss.*"
+          destdir="${build.api}"
+          classpathref="library.classpath"
+          windowtitle="${javadoc.windowtitle}"
+          splitindex="${javadoc.splitindex}"
+          author="${javadoc.author}"
+          version="${javadoc.version}"
+          public="${javadoc.public}"
+          package="${javadoc.package}"
+          protected="${javadoc.protected}"
+          private="${javadoc.private}"
+          use="${javadoc.use}"
+          verbose="${javadoc.verbose}">
+          <doctitle><![CDATA[<h1>${module.Name} Final User API Documentation</h1>]]></doctitle>
+          <bottom><![CDATA[
+            <i>
+            <div align="center">
+              <font size="-1">Copyright &#169; 2004 JBoss Inc. All Rights Reserved.</font>
+            </div>
+            </i>
+          ]]></bottom>
+         
+         <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
+      </javadoc>
+   </target>
+
+   <target name="run-tests" depends="javaagent-genadvisor-tests">
+   </target>
+
+
+   <target name="javaagent-genadvisor-tests" depends="compile-test-classes">
+      <!-- Tests only applicable for this weaving mode -->
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="override"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+         <param name="exclude" value="**/OverrideTestCase.class"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="dynamicgenadvisor"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="nameddomain"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="inforesolve"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="typedAdvices"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="annotatedAdviceParams"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="beforeafterthrowingstack"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="beforeafterthrowingscoped"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+      </antcall>
+      <antcall target="_run-javaagent-test" inheritRefs="true">
+         <param name="test" value="beforeafterthrowingannotated"/>
+         <param name="caller" value="javaagent-genadvisor-tests"/>
+         <param name="no.xml" value="true"/>
+         <param name="use.annotations" value="true"/>
+      </antcall>
+
+   </target>
+
+   <!-- ==================================================================================== -->
+   <!-- JDK 5.0 JAVAAGENT TEST COMMONS                                                   -->
+   <!-- These targets should not be called directly, use bootclasspath-tests or              -->
+   <!-- bootclasspath-genadvisor-tests                                                       -->
+   <!-- ==================================================================================== -->
+
+   <target name="_run-javaagent-test">
+      <!-- Check for jboss-aop.xml override -->
+      <condition property="jboss.aop.path" value="${aop.xml}">
+         <isset property="aop.xml"/>
+      </condition>
+      <condition property="jboss.aop.path" value="">
+         <isset property="no.xml"/>
+      </condition>
+      <condition property="jboss.aop.path" value="${source.res}/test/${test}/jboss-aop.xml">
+         <not>
+            <isset property="aop.xml"/>
+         </not>
+      </condition>
+
+      <!-- Get -Djboss.aop.class.path from passed in parameters -->
+      <condition property="jboss.aop.class.path" value="${build.tests.classes}">
+         <isset property="use.annotations"/>
+      </condition>
+      <condition property="jboss.aop.class.path" value="">
+         <not>
+            <isset property="use.annotations"/>
+         </not>
+      </condition>
+
+      <!-- Set the weaving mode and instrumentor to use-->
+      <condition property="instrumentor" value="org.jboss.aop.instrument.ClassicInstrumentor">
+         <equals arg1="${caller}" arg2="javaagent-tests"/>
+      </condition>
+      <condition property="instrumentor" value="org.jboss.aop.instrument.GeneratedAdvisorInstrumentor">
+         <equals arg1="${caller}" arg2="javaagent-genadvisor-tests"/>
+      </condition>
+
+      <echo>Running ${test} with instrumentor ${instrumentor}</echo>
+
+      <mkdir dir="${build.reports}"/>
+      <junit printsummary="yes" fork="yes" haltonfailure="no">
+         <jvmarg value="-javaagent:${build.lib}/jboss-aop.jar"/>
+         <sysproperty key="jboss.aop.path" value="${jboss.aop.path}"/>
+         <sysproperty key="jboss.aop.class.path" value="${jboss.aop.class.path}"/>
+         <sysproperty key="jboss.aop.instrumentor" value="${instrumentor}"/>
+         <sysproperty key="jboss.aop.debug.classes" value="${jboss.aop.debug.classes}"/>
+         <!--sysproperty key="jboss.aop.verbose" value="true"/-->
+         <sysproperty key="jboss-junit-configuration" value="${caller}"/>
+         <formatter type="plain" extension="-${caller}.txt"/>
+         <classpath refid="test.classpath"/>
+         <formatter classname="org.jboss.ant.taskdefs.XMLJUnitMultipleResultFormatter" extension="-${caller}.xml"/>
+         <classpath>
+            <pathelement location="${build.tests.classes}"/>
+         </classpath>
+         <batchtest todir="${build.reports}"
+            haltonfailure="false"
+            fork="true">
+            <fileset dir="${build.tests.classes}">
+               <include name="org/jboss/test/aop/${test}/**/*TestCase.class"/>
+               <include name="org/jboss/test/aop/${test}/**/*Tester.class"/>
+               <exclude name="${exclude}"/>
+
+               <!-- These are not test cases, and so they will fail when junit tries to run them. Should really rename all tests to *TestCase -->
+               <exclude name="org/jboss/test/aop/reflection/ReflectionAspectTester.class"/>
+               <exclude name="org/jboss/test/aop/basic/POJOAspectTester.class"/>
+            </fileset>
+         </batchtest>
+      </junit>
+   </target>
+
+
+</project>

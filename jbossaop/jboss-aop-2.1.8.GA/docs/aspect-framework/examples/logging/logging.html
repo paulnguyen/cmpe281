@@ -1,0 +1,280 @@
+<html>
+<body>
+<p>
+<h2>Logging</h2>
+
+</p><p>
+<h3>Overview</h3>
+
+<p>JBoss AOP allows you to view important information during the weaving process. We will see how to turn logging on, 
+and have a look at how once turned on we can choose log4j or System.out as the underlying logging mechanism. The System.out 
+logging meschanism will print everything regardless of logging level, while the log4j mechanism allows for more 
+control of which classes you want to be output. If using log4j, the classes in the <tt>org.jboss.aop</tt> package and
+sub-packages are where the logging is done.</p> 
+
+<p>All the examples require <tt>jboss-logging-spi.jar</tt> to be on the classpath, whether run without logging, or with 
+System.out logging or log4j logging. We will see later how, once logging is turned on, the inclusion of 
+<tt>jboss-logging-log4j.jar</tt> and <tt>log4j.jar</tt> enable the log4j logging mechanism. When run in the JBoss 
+Application server, both <tt>jboss-logging-log4j.jar</tt> and <tt>log4j.jar</tt> will be available, so if logging is enabled
+it will happen via log4j.</p>
+
+<p>Example on how to do this with maven is shown on the bottom of this page.</p>
+
+<h3>Loadtime weaving</h3>
+<p>With loadtime weaving, classes are woven while the class is first loaded, so to see the logging of the weaving process we need 
+to turn on logging when the class is being loaded. We turn this on by passing in the value <tt>true</tt> for the <tt>jboss.aop.verbose</tt> 
+system property when running the application with the classloader hooks. The default value (i.e. if not passed in) is <tt>false</tt>.</p>
+
+<h4>Loadtime weaving with no logging</h4>
+<p>For this example, we explicitly pass in
+<pre>
+&lt;java ...&gt;
+   ...
+     &lt;!-- Include this for clarity, the default is false --&gt;
+     &lt;sysproperty key="jboss.aop.verbose" value="false"/&gt;
+   ...     
+&lt;/java&gt;
+</pre>
+when running the application, so we have turned off logging. If left out the result would have been exactly the same, it is 
+just there for clarity.</p>
+<p>To run the example with loadtime weaving and no logging turned on, you can run</P>
+<pre>
+$ ant  run.loadtime.nologging
+</pre>
+<p>This will run the application with no logging:</p>
+<pre>
+...
+run.loadtime.nologging:
+     [java] --- pojo.notwoven(); ---
+     [java] notwoven()
+     [java] --- pojo.boundMethod(); ---
+     [java] <<< Entering SimpleInterceptor
+     [java] boundMethod
+     [java] >>> Leaving SimpleInterceptor
+</pre>
+
+<h4>Loadtime weaving with Syetem.out logging</h4>
+<p>For this example we pass in
+<pre>
+&lt;java ...&gt;
+   ...
+     &lt;!-- Include this for clarity, the default is false --&gt;
+     &lt;sysproperty key="jboss.aop.verbose" value="true"/&gt;
+   ...     
+&lt;/java&gt;
+</pre>
+when running the application, so logging is now turned on. In this case neither <tt>jboss-logging-log4j.jar</tt> nor 
+<tt>log4j.jar</tt> are on the classpath, so JBoss AOP will default to use the System.out logging mechanism.</p>
+
+<p>To run the example with System.out logging, you  should run:</p>
+<pre>
+$ ant  run.loadtime.system.out.logging
+</pre>
+<p> This will generate quite a lot of output during the 'run' stage, the most important of which are outlined here:</p>
+<pre>
+run.loadtime.system.out.logging:
+...
+     [java] [aop-debug] org.jboss.aop.instrument.Instrumentor trying to transform POJO
+     [java] [aop-debug] org.jboss.aop.instrument.CallerTransformer There are no caller pointcuts!
+     [java] [aop-debug] org.jboss.aop.instrument.JoinpointSimpleClassifier javassist.CtMethod@ae60ead5[public notwoven ()V] matches no pointcuts
+     [java] [aop-debug] org.jboss.aop.instrument.JoinpointSimpleClassifier javassist.CtMethod@7c6e6140[public boundMethod ()V] matches pointcut: execution(public void POJO->boundMethod())
+     [java] [aop-debug] org.jboss.aop.instrument.JoinpointSimpleClassifier javassist.CtConstructor@64c34e[public POJO ()V] matches no pointcuts
+     [java] [aop-debug] org.jboss.aop.instrument.Instrumentor was POJO converted: true
+...
+     [java] --- pojo.notwoven(); ---
+     [java] notwoven()
+     [java] --- pojo.boundMethod(); ---
+...
+     [java] <<< Entering SimpleInterceptor
+     [java] boundMethod
+     [java] >>> Leaving SimpleInterceptor
+</pre>
+<p>We can see that the weaver attempts to transform <tt>POJO</tt>, and finds that <tt>POJO.boundMethod()</tt> matches the single pointcut we have
+in out jboss-aop.xml: <tt>execution(public void POJO->boundMethod()</tt>. The other methods in <tt>POJO</tt> do not match this pointcut.
+</p>
+
+<h4>Loadtime weaving with log4j logging</h4>
+<p>For this example, again, we pass in
+<pre>
+&lt;java ...&gt;
+   ...
+     &lt;!-- Include this for clarity, the default is false --&gt;
+     &lt;sysproperty key="jboss.aop.verbose" value="true"/&gt;
+   ...     
+&lt;/java&gt;
+</pre>
+when running the application, so logging is now turned on. In this case both <tt>jboss-logging-log4j.jar</tt> and 
+<tt>log4j.jar</tt> are on the classpath, so JBoss AOP will now use the log4j logging mechanism. To get any meaningful
+output, you need a <a href="log4j.properties">log4j.properties</a> on the classpath, with which you 
+can get more fine-grained control of logging levels for different classes during the JBoss AOP weaving process, as
+well as control of the output formats etc. See the Apache log4j documentation for more information about log4j.</p>
+<p>To run the example with log4j logging, run:</p>
+<pre>
+$ ant  run.loadtime.log4j.logging
+</pre>
+<p>Again, this will generate quite a lot of logging for each woven class during the weaving process, the most important bits show below:</p>
+<pre>
+run.loadtime.log4j.logging:
+...
+     [java] 2007-05-15 23:38:23,625 DEBUG org.jboss.aop.instrument.Instrumentor - trying to transform POJO
+     [java] 2007-05-15 23:38:23,625 DEBUG org.jboss.aop.instrument.CallerTransformer - There are no caller pointcuts!
+     [java] 2007-05-15 23:38:23,625 DEBUG org.jboss.aop.instrument.JoinpointSimpleClassifier - javassist.CtMethod@ae60ead5[public notwoven ()V] matches no pointcuts
+     [java] 2007-05-15 23:38:23,640 DEBUG org.jboss.aop.instrument.JoinpointSimpleClassifier - javassist.CtMethod@7c6e6140[public boundMethod ()V] matches pointcut: execution(public void POJO->boundMethod())
+     [java] 2007-05-15 23:38:24,015 DEBUG org.jboss.aop.instrument.JoinpointSimpleClassifier - javassist.CtConstructor@60991f[public POJO ()V] matches no pointcuts
+     [java] 2007-05-15 23:38:24,015 DEBUG org.jboss.aop.instrument.Instrumentor - was POJO converted: true
+...
+     [java] --- pojo.notwoven(); ---
+     [java] notwoven()
+     [java] --- pojo.boundMethod(); ---
+...
+     [java] <<< Entering SimpleInterceptor
+     [java] boundMethod
+     [java] >>> Leaving SimpleInterceptor
+
+BUILD SUCCESSFUL
+Total time: 3 seconds
+</pre>
+<p>Yet again we see that the <tt>POJO</tt> class was woven since the pointcut <tt>execution(public void POJO->boundMethod()</tt>
+matched our method <tt>POJO.boundMethod()</tt> </p>
+
+
+<h3>Compile-time weaving</h3>
+<p>With compile-time weaving, we execute the <tt>aopc</tt> task to weave the classe, so to see the logging of the weaving process 
+we need to turn on logging when the class is being aopc'ed. We turn this on by passing in the value <tt>true</tt> for the <tt>jboss.aop.verbose</tt> 
+system property when running the aopc post-compiler. The default value (i.e. if not passed in) is false.</p>
+
+<h4>Compile-time logging with no logging</h4>
+<p>For this example we pass in:
+<pre>
+&lt;aopc ...&gt;
+     &lt;!-- Include this for clarity, the default is false --&gt;
+     &lt;sysproperty key="jboss.aop.verbose" value="false"/&gt;
+&lt;/aopc&gt;
+</pre>
+when aopc'ing, so we have turned off logging. If left out the result would have been exactly the same, it is 
+just there for clarity.</p>
+<p>To run the example:</p>
+<pre>
+$ ant  run.aopc.nologging
+</pre>
+<p>This will aopc the application without logging enabled, and then run the application. As expected, we get no
+logging during the aopc process</p>
+<pre>
+aopc.no.logging:
+     [aopc] Build Successful: 609 ms
+</pre>
+
+<h4>Compile-time logging with System.out logging</h4>
+<p>To run aopc with logging turned on, but defaulting to the System.out logger, we run aopc with</p>
+<pre>
+&lt;aopc ...&gt;
+     &lt;!-- Turn on logging --&gt; 
+     &lt;sysproperty key="jboss.aop.verbose" value="false"/&gt;
+&lt;/aopc&gt;
+</pre>
+<p>since neither <tt>jboss-logging-log4j.jar</tt> nor <tt>log4j.jar</tt> are on the classpath, JBoss AOP
+defaults to the System.out logger. To run:</p>
+<pre>
+$ ant  run.aopc.system.out.logging
+</pre>
+<p>The output looks much the same as during the loadtime weaving, but this time
+it happens during the <tt>aopc</tt> stage:</p>
+<pre>
+aopc.system.out.logging:
+...
+     [aopc] [aop-debug] org.jboss.aop.instrument.Instrumentor trying to transform POJO
+     [aopc] [aop-debug] org.jboss.aop.instrument.CallerTransformer There are no caller pointcuts!
+     [aopc] [aop-debug] org.jboss.aop.instrument.JoinpointSimpleClassifier javassist.CtMethod@ae60ead5[public notwoven ()V] matches no pointcuts
+     [aopc] [aop-debug] org.jboss.aop.instrument.JoinpointSimpleClassifier javassist.CtMethod@7c6e6140[public boundMethod ()V] matches pointcut: execution(public void POJO->boundMethod())
+     [aopc] [aop-debug] org.jboss.aop.instrument.JoinpointSimpleClassifier javassist.CtConstructor@cb6009[public POJO ()V] matches no pointcuts
+     [aopc] [aop-debug] org.jboss.aop.instrument.Instrumentor was POJO converted: true
+...
+     [aopc] Build Successful: 781 ms
+</pre>
+<p>We also get some lugging when running the application, showing what happens when the aop information is processed at 
+runtime when running the application:</p>
+<pre>
+run.aopc.system.out.logging:
+...
+     [java] [aop-debug] org.jboss.aop.ClassAdvisor Creating chains for class POJO sun.misc.Launcher$AppClassLoader@a39137
+     [java] [aop-debug] org.jboss.aop.ClassAdvisor iterate binding file:/C:/cygwin/home/Kabir/sourcecontrol/jboss-aop/build/output/jboss-aop-snapshot/docs/aspect-framework/examples/logging/jboss-aop.xml0 execution(public void POJO->boundMethod())
+     [java] [debug] method matched binding: public void POJO.boundMethod()
+     [java] [aop-debug] org.jboss.aop.advice.AdviceBinding added advisor: POJO from binding: file:/C:/cygwin/home/Kabir/sourcecontrol/jboss-aop/build/output/jboss-aop-snapshot/docs/aspect-framework/examples/logging/jboss-aop.xml0
+     [java] [aop-debug] org.jboss.aop.MethodMatchInfo populate bindings for public void POJO.boundMethod() all bindings
+     [java] [aop-debug] org.jboss.aop.MethodMatchInfo 0 POJO execution(public void POJO->boundMethod()) : 1
+     [java] [aop-debug] org.jboss.aop.MethodMatchInfo populate bindings for public void POJO.boundMethod() actual bindings
+     [java] [aop-debug] org.jboss.aop.MethodMatchInfo 0 POJO execution(public void POJO->boundMethod()) : 1
+     [java] [aop-debug] org.jboss.aop.advice.AdviceBinding added advisor: POJO from binding: file:/C:/cygwin/home/Kabir/sourcecontrol/jboss-aop/build/output/jboss-aop-snapshot/docs/aspect-framework/examples/logging/jboss-aop.xml0
+     [java] --- pojo.notwoven(); ---
+     [java] notwoven()
+     [java] --- pojo.boundMethod(); ---
+     [java] [aop-debug] org.jboss.aop.advice.AspectFactoryWithClassLoaderSupport Using context classloader sun.misc.Launcher$AppClassLoader@a39137 to load aspect SimpleInterceptor
+     [java] <<< Entering SimpleInterceptor
+     [java] boundMethod
+     [java] >>> Leaving SimpleInterceptor
+</pre>
+<h4>Compile-time logging with log4j logging</h4>
+<p>To run aopc with logging turned on, but defaulting to the System.out logger, we run aopc with</p>
+<pre>
+&lt;aopc ...&gt;
+     &lt;!-- Turn on logging --&gt; 
+     &lt;sysproperty key="jboss.aop.verbose" value="false"/&gt;
+&lt;/aopc&gt;
+</pre>
+when running the aopc post-compiler, so logging of the weaving is now turned on. In this case both <tt>jboss-logging-log4j.jar</tt> and 
+<tt>log4j.jar</tt> are on the classpath, so JBoss AOP will now use the log4j logging mechanism. To get any meaningful
+output, you need a <a href="log4j.properties">log4j.properties</a> on the classpath as was the case when using loadtime weaving. To run:
+<pre>
+$ ant  run.aopc.log4j.logging
+</pre>
+<p>We get much the same output as we did in the <i>Compile-time logging with System.out logging</i> case, but this time formatted and 
+controllable using log4j. Here is the output from aopc:</p>
+<pre>
+aopc.log4j.logging:
+...
+     [aopc] 2007-05-16 00:03:58,468 DEBUG org.jboss.aop.instrument.Instrumentor - trying to transform POJO
+     [aopc] 2007-05-16 00:03:58,468 DEBUG org.jboss.aop.instrument.CallerTransformer - There are no caller pointcuts!
+     [aopc] 2007-05-16 00:03:58,468 DEBUG org.jboss.aop.instrument.JoinpointSimpleClassifier - javassist.CtMethod@ae60ead5[public notwoven ()V] matches no pointcuts
+     [aopc] 2007-05-16 00:03:58,468 DEBUG org.jboss.aop.instrument.JoinpointSimpleClassifier - javassist.CtMethod@7c6e6140[public boundMethod ()V] matches pointcut: execution(public void POJO->boundMethod())
+     [aopc] 2007-05-16 00:03:58,796 DEBUG org.jboss.aop.instrument.JoinpointSimpleClassifier - javassist.CtConstructor@4aa0ce[public POJO ()V] matches no pointcuts
+     [aopc] 2007-05-16 00:03:58,796 DEBUG org.jboss.aop.instrument.Instrumentor - was POJO converted: true
+...
+     [aopc] Build Successful: 828 ms
+</pre>
+<p>and here is the output from the runtime applicatiin of the aop information</p>
+<pre>
+run.aopc.log4j.logging:
+...
+     [java] 2007-05-16 00:03:59,343 DEBUG org.jboss.aop.ClassAdvisor - Creating chains for class POJO sun.misc.Launcher$AppClassLoader@92e78c
+     [java] 2007-05-16 00:03:59,343 DEBUG org.jboss.aop.ClassAdvisor - iterate binding file:/C:/cygwin/home/Kabir/sourcecontrol/jboss-aop/build/output/jboss-aop-snapshot/docs/aspect-framework/examples/logging/jboss-aop.xml0 execution(public void POJO->boundMethod())
+     [java] [debug] method matched binding: public void POJO.boundMethod()
+     [java] 2007-05-16 00:03:59,359 DEBUG org.jboss.aop.advice.AdviceBinding - added advisor: POJO from binding: file:/C:/cygwin/home/Kabir/sourcecontrol/jboss-aop/build/output/jboss-aop-snapshot/docs/aspect-framework/examples/logging/jboss-aop.xml0
+     [java] 2007-05-16 00:03:59,359 DEBUG org.jboss.aop.MethodMatchInfo - populate bindings for public void POJO.boundMethod() all bindings
+     [java] 2007-05-16 00:03:59,359 DEBUG org.jboss.aop.MethodMatchInfo - 0 POJO execution(public void POJO->boundMethod()) : 1
+     [java] 2007-05-16 00:03:59,359 DEBUG org.jboss.aop.MethodMatchInfo - populate bindings for public void POJO.boundMethod() actual bindings
+     [java] 2007-05-16 00:03:59,359 DEBUG org.jboss.aop.MethodMatchInfo - 0 POJO execution(public void POJO->boundMethod()) : 1
+     [java] 2007-05-16 00:03:59,359 DEBUG org.jboss.aop.advice.AdviceBinding - added advisor: POJO from binding: file:/C:/cygwin/home/Kabir/sourcecontrol/jboss-aop/build/output/jboss-aop-snapshot/docs/aspect-framework/examples/logging/jboss-aop.xml0
+     [java] --- pojo.notwoven(); ---
+     [java] notwoven()
+     [java] --- pojo.boundMethod(); ---
+     [java] 2007-05-16 00:03:59,562 DEBUG org.jboss.aop.advice.AspectFactoryWithClassLoaderSupport - Using context classloader sun.misc.Launcher$AppClassLoader@92e78c to load aspect SimpleInterceptor
+     [java] <<< Entering SimpleInterceptor
+     [java] boundMethod
+     [java] >>> Leaving SimpleInterceptor
+
+</pre>
+<h3>Running with Maven</h3>
+<p>Building and running with Maven is similar to Ant. The log4j packages are included with the <pre>&lt;includeProjectDependency&gt;true&lt;/includeProjectDependency&gt;</pre> and it is set up with adding the properties:
+<pre>
+&lt;properties&gt;
+  &lt;property&gt;
+    &lt;name&gt;log4j.configuration&lt;/name&gt;
+    &lt;value&gt;log4j.properties&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/properties&gt;
+</pre>
+To run the example with log4j enabled and loadtime weaving use <pre>mvn clean install -Prun-loadtime-log4j</pre> and with no log4j (just standard output) and loadtime weaving, use: <pre>mvn clean install -Prun-loadtime</pre>
+
+
+
+</html>

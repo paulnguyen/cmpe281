@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>13.3. Binding Advices to array element access</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="arrays.html" title="Chapter 13. Interception of Array Element Access"/>
+      <link rel="prev" href="array-preparing.html" title="13.2. Preparing Array Fields"/>
+      <link rel="next" href="array-invocations.html" title="13.4. Invocation types for array element access interception"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="array-preparing.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="array-invocations.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="array-binding"/>13.3. Binding Advices to array element access</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         To bind advices to the access of array elements, you use a <code class="literal">arraybind</code> element.
+         It binds advices to all arrays woven for array access. You can use the <code class="literal">type</code>
+         attribute to specify if you want the interception to take place when setting elements in the array, 
+         getting elements from the array, or both. Valid values for the <code class="literal">type</code> attribute are:
+         <code class="literal">READ_WRITE</code>, <code class="literal">READ_ONLY</code> and <code class="literal">WRITE_ONLY</code>. An 
+         example is shown below:
+      </p>
+         <p>
+         
+         </p>
+         <pre class="programlisting">
+    
+   &lt;interceptor class="org.acme.TestInterceptor"/&gt;
+   &lt;arraybind type="READ_ONLY"&gt;
+      &lt;interceptor-ref name="org.acme.TestInterceptor"/&gt;
+   &lt;/arraybind&gt;
+
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         
+            <code class="literal">arraybind</code> currently only supports <code class="literal">interceptor-ref</code> and
+         <code class="literal">advice</code> as child elements. <code class="literal">before</code>, <code class="literal">after</code>, 
+         <code class="literal">throwing</code> and <code class="literal">finally</code> are not yet supported for array interception.
+         for arrays.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="array-preparing.html">
+               <strong>Prev</strong>13.2. Preparing Array Fields</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="array-invocations.html">
+               <strong>Next</strong>13.4. Invocation types for array element access i...</a>
+         </li>
+      </ul>
+   </body>
+</html>

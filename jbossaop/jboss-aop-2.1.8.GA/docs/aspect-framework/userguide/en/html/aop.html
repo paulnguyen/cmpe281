@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>8.2.4. AOP with Mocks</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - User Guide"/>
+      <link rel="up" href="testing1.html" title="8.2. Injecting Mock Objects"/>
+      <link rel="prev" href="mock.html" title="8.2.3. Mock Objects"/>
+      <link rel="next" href="aopide.html" title="Chapter 9. JBoss AOP IDE"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="mock.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect2" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title">
+                     <a id="aop"/>8.2.4. AOP with Mocks</h3>
+               </div>
+            </div>
+         </div>
+         <p>
+            - and intercepting a method invocation is just what aop does best. Our jboss-aop.xml file:
+         </p>
+         <pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;aop&gt;
+   &lt;bind pointcut="execution(public static bank.BankAccountDAO bank.BankAccountDAOFactory-&gt;getBankAccountDAO*())"&gt;
+       &lt;interceptor class="bank.BankAccountDAOInterceptor"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;</pre>
+         <p>
+            The pointcut expression intercepts the factorycall bank.BankAccountDAOFactory.getBankAccountDAO*() and
+            calls the interceptor bank.BankAccountDAOInterceptor.
+         </p>
+         <pre class="programlisting">package bank;
+
+import org.jboss.aop.joinpoint.Invocation;
+import org.jboss.aop.joinpoint.MethodInvocation;
+import org.jboss.aop.advice.Interceptor;
+
+import util.MockService;
+
+public class BankAccountDAOInterceptor implements Interceptor {
+
+  public String getName() { return "BankAccountDAOInterceptor"; }
+
+  public Object invoke(Invocation invocation) throws Throwable {
+    try {
+      MockService mockService = MockService.getInstance();
+
+      Object mock = mockService.getMockForInterface( "BankAccountDAO");
+      if(mock == null) {
+        System.out.println("ERROR: BankAccountDAOInterceptor didnt find class!");
+        // this will probably fail, but its the sainest thing to do
+        return  invocation.invokeNext();
+      }
+
+      return mock;
+    }
+    finally {
+    }
+  }
+}</pre>
+         <p>
+            Instead of returning <code class="literal">invocation.invokeNext()</code>, we ignore the invocation stack since we want
+            to replace the invocation call with a mock implementation. The interceptor receives the invocation and get
+            an instance of the singleton MockService.  The use of MockService may not be clear, but we want the test to
+            instanciate the mock objects. That way, the test can easily modify the input to the methods we want to test.
+            The test creates an object of the mock and put it into the MockService with the interface name as the key.
+            The Interceptor then tries to get the mock from MockService and return it.
+         </p>
+         <pre class="programlisting">package util;
+
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class MockService {
+
+    private static MockService instance = new MockService();
+
+    private Map mockReferences = null;
+
+    protected MockService() {
+        mockReferences = new Hashtable();
+    }
+
+    public static MockService getInstance() {
+        return instance;
+    }
+
+    public void addMock(String c, Object mock) {
+        mockReferences.put(c, mock);
+    }
+
+    public Object getMockForInterface(String myKey) {
+      Set keys = mockReferences.keySet();
+
+      for (Iterator iter = keys.iterator(); iter.hasNext();) {
+        String key = (String) iter.next();
+        if(myKey.equals(key)) {
+          return mockReferences.get(key);
+        }
+      }
+      return null;
+    }
+
+}</pre>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="mock.html">
+               <strong>Prev</strong>8.2.3. Mock Objects</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="aopide.html">
+               <strong>Next</strong>Chapter 9. JBoss AOP IDE</a>
+         </li>
+      </ul>
+   </body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <bind pointcut="execution(* *->@org.jboss.aophelper.annotation.AopHelperAction(..))">
+       <interceptor class="org.jboss.aophelper.core.SettingInterceptor"/>
+   </bind>
+
+   <bind pointcut="execution(* *->@org.jboss.aophelper.annotation.Undoable(..))">
+       <interceptor class="org.jboss.aophelper.core.UndoableInterceptor"/>
+   </bind>
+</aop>

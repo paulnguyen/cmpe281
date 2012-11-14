@@ -1,0 +1,61 @@
+<html>
+<body>
+<p>
+<h2>Array Element Interception</h2>
+
+</p><p>
+<h4>Array Element Interception</h4>
+
+<p>To intercept when elements of an array is matched we add the following to our jboss-aop.xml:</p>
+<pre>
+   &lt;arrayreplacement class="Woven"/&gt;
+   &lt;prepare expr="field(* Woven->ints)"/&gt;
+   
+   &lt;arraybind type="READ_WRITE"&gt;
+       &lt;interceptor-ref name="ArrayInterceptor"/&gt;
+   &lt;/arraybind&gt;
+
+</pre>
+This first <code>arrayreplacement</code> says that whenever an array is being acessed in the class
+<code>Woven</code> we should delegate those accesses on to JBoss AOP. Next we have a 
+<code>prepare</prepare> statement that picks out an array field. Since that field belongs to a
+class picked out by <code>arrayreplacement</code>, that field gets registered for array element
+interception. Finally, we have a <code>arraybind</code> that says that whenever an array whose 
+access has been woven and intercepted intercepted
+we should apply <code>ArrayInterceptor</code>. 
+
+</p><p>
+<h4>Running</h4>
+
+<p>
+To compile and run (for further detail, refer to our <a href="../running_examples.html"/>Compiling and Running Examples Guide</a>):</p>
+<pre>
+  $ ant run.aopc
+</pre>
+<p>It will javac the files and then run the AOPC precompiler to manipulate the bytecode, then finally run the example.  The output should be similar to this:</p>
+<pre>
+_run.aopc:
+     [java] --- new Woven(); ---
+     [java] Initialising array
+     [java] --- woven.setInt(0, 100); ---
+     [java] <<< Entering ArrayInterceptor type: org.jboss.aop.array.IntArrayElementWriteInvocation
+     [java] <<< We have an array element write invocation of type: org.jboss.aop.array.IntArrayElementWriteInvocation
+     [java] New value for index 0 of [I@d9e5ad is 100
+     [java] Typed value is 100
+     [java] >>> Leaving ArrayInterceptor
+     [java] --- woven.getInt(0); ---
+     [java] <<< Entering ArrayInterceptor type: org.jboss.aop.array.IntArrayElementReadInvocation
+     [java] <<< We have an array element read invocation of type: org.jboss.aop.array.IntArrayElementReadInvocation
+     [java] >>> Returned value was 100
+     [java] >>> Leaving ArrayInterceptor
+     [java] --- woven.getInt(0) was 100 ---
+     [java] --- new NotWoven(); ---
+     [java] Initialising array
+     [java] --- notWoven.setInt(0, 100); ---
+     [java] --- notWoven.getInt(0); ---
+     [java] --- notWoven.getInt(0) was 100 ---
+</pre>
+</p><p>
+</p>
+</body>
+</html>

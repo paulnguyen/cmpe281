@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.12. @Precedence</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-annotationintro.html" title="6.11. @AnnotationIntroductionDef"/>
+      <link rel="next" href="annotated-declare.html" title="6.13. @DeclareError and @DeclareWarning"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-annotationintro.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-declare.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-precedence"/>6.12. @Precedence</h2>
+               </div>
+            </div>
+         </div>
+         <p>You can declare precedence by annotating a class with <code class="literal">@Precedence</code>, and then annotate
+      fields where the types are the various Interfaces/Aspects you want to sort. You annotate fields where the
+      type is an interceptor with <code class="literal">@PrecedenceInterceptor</code>. When the type is an
+      aspect class, you annotate the field with <code class="literal">@PrecedenceAdvice</code>. The definitions
+      of org.jboss.aop.Precedence, org.jboss.aop.PrecedenceInterceptor and
+      org.jboss.aop.PrecedenceAdvice are
+      </p>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.TYPE}) @Retention(RetentionPolicy.RUNTIME)
+   public @interface Precedence
+   {
+   }
+      </pre>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.FIELD}) @Retention(RetentionPolicy.RUNTIME)
+   public @interface PrecedenceInterceptor
+   {
+   }
+      </pre>
+         <pre class="programlisting">
+   package org.jboss.aop;
+
+   @Target({ElementType.FIELD}) @Retention(RetentionPolicy.RUNTIME)
+   public @interface PrecedenceAdvice
+   {
+      String value();
+   }
+      </pre>
+         <p>
+         The <code class="literal">value()</code> attribute of <code class="literal">PrecedenceAdvice</code> is the name of the
+         advice method to use.
+      </p>
+         <p>
+         The example shown below declares a relative sort order where <code class="literal">org.acme.Interceptor</code>
+         must always be invoked before <code class="literal">org.acme.Aspect.advice1()</code> which must be invoked before
+         <code class="literal">org.acme.Aspect.advice2()</code>:
+      </p>
+         <pre class="programlisting">
+   import org.jboss.aop.Precedence;
+   import org.jboss.aop.PrecedenceAdvice;
+
+   @Precedence
+   public class MyPrecedence
+   {
+      @PrecedenceInterceptor
+      org.acme.Interceptor intercept;
+
+      @PrecedenceAdvice ("advice1")
+      org.acme.Aspect precAdvice1;
+
+      @PrecedenceAdvice ("advice2")
+      org.acme.Aspect precAdvice2;
+   }
+      </pre>
+         <p>
+         The ordering of interceptors/advices defined via annotations that have no precedence defined, is arbitrary.
+      </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-annotationintro.html">
+               <strong>Prev</strong>6.11. @AnnotationIntroductionDef</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-declare.html">
+               <strong>Next</strong>6.13. @DeclareError and @DeclareWarning</a>
+         </li>
+      </ul>
+   </body>
+</html>

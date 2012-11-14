@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>6.8. @TypeDef</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="annotated.html" title="Chapter 6. Annotation Bindings"/>
+      <link rel="prev" href="annotated-prepare-pojo.html" title="6.7.1. @Prepare POJO"/>
+      <link rel="next" href="annotated-cflow.html" title="6.9. @CFlowDef"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-prepare-pojo.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-cflow.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="annotated-typedef"/>6.8. @TypeDef</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         To use a typedef, you annotate a field with
+         <code class="literal">@TypeDef</code>
+         in a class anotated with
+         <code class="literal">@Aspect</code> or
+         <code class="literal">@InterceptorDef</code>.
+      </p>
+         <p>
+         The declaration of
+         <code class="literal">org.jboss.aop.TypeDef</code>:
+         </p>
+         <pre class="programlisting">
+package org.jboss.aop;
+
+@Target({ElementType.FIELD}) @Retention(RetentionPolicy.RUNTIME)
+public @interface TypeDef {
+    String value();
+}
+         </pre>
+         <p>
+         The single
+         <code class="literal">value</code> field takes a type expression that
+         resolves to one or more classes. The name of the typedef used for reference
+         and internally is:
+         </p>
+         <pre class="programlisting">&lt;name of @Aspect/@InterceptorDef annotated class&gt;.&lt;name of @TypeDef annotated field&gt;</pre>
+         <p>
+      
+         </p>
+         <p>
+         Here's how to use it:
+         </p>
+         <pre class="programlisting">
+   package com.mypackage;
+
+   import org.jboss.aop.TypeDef;
+   import org.jboss.aop.pointcut.Typedef;
+   @Aspect (scope=org.jboss.aop.advice.Scope.PER_VM)
+   public class TypedefAspect
+   {
+      @TypeDef ("class(com.blah.POJO)")
+      public static Typedef myTypedef;
+
+       @Bind (pointcut="execution(* \
+             $typedef{com.mypackage.TypedefAspect.myTypedef}-&gt;methodWithTypedef())")
+       public Object typedefAdvice(Invocation invocation) throws Throwable
+      {
+         return invocation.invokeNext();
+      }
+   }
+         </pre>
+         <p>
+      
+         </p>
+         <p>
+         The equivalent using XML configuration would be:
+         </p>
+         <pre class="programlisting">
+            &lt;aop&gt;
+            &lt;aspect class="com.mypackage.TypedefAspect" scope="PER&gt;VM"/&gt;
+            &lt;typedef name="com.mypackage.TypedefAspect.myTypedef" expr="class(com.blah.POJO)"/&gt;
+            &lt;bind
+         pointcut="execution(* \
+            $typedef{com.mypackage.TypedefAspect.myTypedef}-&gt;methodWithTypedef())"
+            &gt;
+            &lt;advice name="typedefAdvice" aspect="com.mypackage.TypedefAspect"/&gt;
+            &lt;/bind&gt;
+            &lt;/aop&gt;
+         </pre>
+         <p>
+      
+         </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="annotated-prepare-pojo.html">
+               <strong>Prev</strong>6.7.1. @Prepare POJO</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="annotated-cflow.html">
+               <strong>Next</strong>6.9. @CFlowDef</a>
+         </li>
+      </ul>
+   </body>
+</html>

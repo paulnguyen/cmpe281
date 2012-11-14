@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>4.4.1.3. Return Types</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="adv-overlannotparam.html" title="4.4.1. Annotated-parameter Signature"/>
+      <link rel="prev" href="adv-overlannotparamdegree.html" title="4.4.1.2. Assignability Degree"/>
+      <link rel="next" href="adv-overlannotparammatch.html" title="4.4.1.4. A Match"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-overlannotparamdegree.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-overlannotparammatch.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect3" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h4 class="title">
+                     <a id="adv-overlannotparamreturn"/>4.4.1.3. Return Types</h4>
+               </div>
+            </div>
+         </div>
+         <p>
+               For annotated parameters typed around advices, there is a third rule, which is the return type. This rule
+               also applies to after and finally advices. If the joinpoint has a non-void return type, the assignability
+               degree of the advice return type is analyzed, pretty much in the same way we do with annotated parameters.
+               So, for overloaded around advices, these three criteria are applied:
+            </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <p>presence of annotated parameter</p>
+               </li>
+               <li>
+                  <p>assignability degree of annotated parameter</p>
+               </li>
+               <li>
+                  <p>assignability degree of return type</p>
+               </li>
+            </ul>
+         </div>
+         <p>
+               If two advices have the same ranking on the first two criteria, we check their return types
+               and pick the advice with the lowest assignability degree:
+            </p>
+         <pre class="programlisting">public class POJO
+{
+   public Collection method(int arg0, boolean arg1, short arg2) {…}
+}
+
+
+&lt;aop&gt;
+   &lt;aspect class="OneAspect"/&gt;
+   &lt;bind pointcut="execution(* POJO-&gt;method(..))"&gt;
+      &lt;advice aspect="OneAspect" name="around"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;
+
+
+public class OneAspect
+{
+   public Collection around(@JoinPoint Invocation inv, @Arg int param0) throws Throwable
+   {...} //1
+
+   public List around(@JoinPoint Invocation inv, @Arg boolean param1) throws Throwable
+   {...} //2
+
+}</pre>
+         <p>
+               In OneAspect above, we have two around advices. Both of them are equal when compared
+               using the presence criteria. When comparing them using the assignability of annotated
+               parameter, both of them have the same degrees on <code class="literal">@JoinPoint</code> and on
+               <code class="literal">@Arg</code> parameters. In this case, we will compare their return type
+               assignability degree.
+            </p>
+         <p>
+               Notice that, when it comes to return types, it is the return type that must be assignable
+               to the joinpoint type, and not the contrary. This is due to the fact that JBoss AOP will
+               assign the advice return value to the joinpoint return result in the base system. Hence,
+               in the example above, the caller of <code class="literal">POJO.method()</code> expects a
+               <code class="literal">Collection</code> return value. So, it is ok to receive either a
+               <code class="literal">Collection</code> from the first advice, as the more specific type
+               <code class="literal">List</code> from the second advice. But JBoss AOP will complain if your advice
+               returns an <code class="literal">Object</code> (<code class="literal">Object</code> return type is allowed only
+               in the default signature; here we are discussing the annotated-parameter signature), because
+               we can’t give an <code class="literal">Object</code> to the base system when it is expecting a
+               <code class="literal">Collection</code>.
+            </p>
+         <p>
+               So, in the above example, the first advice has an assignability degree of 0 on the return type,
+               becase it takes 0 steps in the hierarchy to go from Collection to <code class="literal">Collection</code>.
+               In the second advice, this value is 1, because it takes 1 step to go from <code class="literal">List</code>
+               to <code class="literal">Collection</code>. JBoss AOP would select the first advice.
+            </p>
+         <p>
+               On overloaded after and finally advices, we also have a return type rule. But, since the return type
+               is optional (these advices can return a value, but is not enforced to it), we have a total of four rules
+               for this advice:
+            </p>
+         <div class="itemizedlist">
+            <ul>
+               <li>
+                  <p>presence of annotated parameter</p>
+               </li>
+               <li>
+                  <p>assignability degree of annotated parameter</p>
+               </li>
+               <li>
+                  <p>presence of non-void return type</p>
+               </li>
+               <li>
+                  <p>assignability degree of return value type</p>
+               </li>
+            </ul>
+         </div>
+         <p>
+               The third rule, presence of non-void return type, states that JBoss AOP will give preference to an
+               after advice that returns a value:
+            </p>
+         <pre class="programlisting">&lt;aop&gt;
+   &lt;aspect class="OneAspect"/&gt;
+   &lt;bind pointcut="execution(* POJO-&gt;method(..))"&gt;
+      &lt;after aspect="OneAspect" name="around"/&gt;
+   &lt;/bind&gt;
+&lt;/aop&gt;
+
+
+public class OneAspect
+{
+   public Collection after(@Arg int param0) {...} //1
+   public List after(@Arg boolean param1) { ... } //2
+   public void after(@Arg short param2) { ... }   //3
+}</pre>
+         <p>
+               Considering the same <code class="literal">POJO</code> class defined previously (with
+               <code class="literal">public void method(int, boolean, short)</code>), all three overloade
+               versions of <code class="literal">OneAspect.after()</code> advice wil be considered equivalent
+               in the first two criteria. Hence, we move to the third rule, that states that
+               JBoss AOP prefers an after advice that returns a value over another one that is
+               <code class="literal">void</code>. So, in the example above, the third advice is ruled out,
+               and JBoss AOP still has two advices to select. Moving to the next rule, he assignability
+               degree of the return type, we have the same result as the
+               <code class="literal">OneAspect.around()</code> advice: the first one has a 0 degree, and the second
+               one, a 1 degree value. As a conclusion of these degrees, JBoss AOP will select the first
+               advice, with the lowest return assignability degree.
+            </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="adv-overlannotparamdegree.html">
+               <strong>Prev</strong>4.4.1.2. Assignability Degree</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="adv-overlannotparammatch.html">
+               <strong>Next</strong>4.4.1.4. A Match</a>
+         </li>
+      </ul>
+   </body>
+</html>

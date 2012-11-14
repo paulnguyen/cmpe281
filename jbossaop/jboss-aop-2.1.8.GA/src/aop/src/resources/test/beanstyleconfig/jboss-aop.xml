@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aop>
+   <interceptor class="org.jboss.test.aop.beanstyleconfig.InterceptorPerVm" scope="PER_VM">
+      <attribute name="IntAttr">11</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.InterceptorPerVm</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </interceptor>
+   
+   <interceptor class="org.jboss.test.aop.beanstyleconfig.InterceptorPerClass" scope="PER_CLASS">
+      <attribute name="IntAttr">12</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.InterceptorPerClass</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </interceptor>
+   
+   <interceptor class="org.jboss.test.aop.beanstyleconfig.InterceptorPerInstance" scope="PER_INSTANCE">
+      <attribute name="IntAttr">13</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.InterceptorPerInstance</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </interceptor>
+   
+   <interceptor class="org.jboss.test.aop.beanstyleconfig.InterceptorPerJoinpoint" scope="PER_JOINPOINT">
+      <attribute name="IntAttr">14</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.InterceptorPerJoinpoint</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </interceptor>
+
+   <aspect class="org.jboss.test.aop.beanstyleconfig.AdvicePerVm" scope="PER_VM">
+      <attribute name="IntAttr">21</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.AdvicePerVm</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </aspect>
+   
+   
+   <aspect class="org.jboss.test.aop.beanstyleconfig.AdvicePerClass" scope="PER_CLASS">
+      <attribute name="IntAttr">22</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.AdvicePerClass</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </aspect>
+   
+   <aspect class="org.jboss.test.aop.beanstyleconfig.AdvicePerInstance" scope="PER_INSTANCE">
+      <attribute name="IntAttr">23</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.AdvicePerInstance</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </aspect>
+   
+   <aspect class="org.jboss.test.aop.beanstyleconfig.AdvicePerJoinpoint" scope="PER_JOINPOINT">
+      <attribute name="IntAttr">24</attribute>
+      <attribute name="StringAttr">org.jboss.test.aop.beanstyleconfig.AdvicePerJoinpoint</attribute>
+      <advisor-attribute name="Advisor"/>
+      <instance-advisor-attribute name="InstanceAdvisor"/>
+      <joinpoint-attribute name="Joinpoint"/>
+   </aspect>
+   
+   <bind pointcut="execution(public void org.jboss.test.aop.beanstyleconfig.POJO->perVmMethod())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerVm"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerVm"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perVmMethodStatic())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerVm"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerVm"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perClassMethod())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerClass"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerClass"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perClassMethodStatic())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerClass"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerClass"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perInstanceMethod())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerInstance"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerInstance"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perInstanceMethodStatic())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerInstance"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerInstance"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perJoinpointMethod())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerJoinpoint"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerJoinpoint"/>
+   </bind>
+
+   <bind pointcut="execution(* org.jboss.test.aop.beanstyleconfig.POJO->perJoinpointMethodStatic())">
+      <interceptor-ref name="org.jboss.test.aop.beanstyleconfig.InterceptorPerJoinpoint"/>
+      <advice name="invoke" aspect="org.jboss.test.aop.beanstyleconfig.AdvicePerJoinpoint"/>
+   </bind>
+
+</aop>

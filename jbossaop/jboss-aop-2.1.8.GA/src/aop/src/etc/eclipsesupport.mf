@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Created-By: @java.vm.version@ (@java.vm.vendor@)
+Specification-Title: @aop.title@
+Specification-Version: @aop.version@
+Specification-Vendor: @specification.vendor@
+Implementation-Title: @aop.title@
+Implementation-URL: @implementation.url@
+Implementation-Version: @aop.version@
+Implementation-Vendor: @implementation.vendor@
+Implementation-Vendor-Id: @implementation.vendor.id@
+Premain-Class: org.jboss.aop.eclipsesupport.Agent
+Can-Redefine-Classes: true

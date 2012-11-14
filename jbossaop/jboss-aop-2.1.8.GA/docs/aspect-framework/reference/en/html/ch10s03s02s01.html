@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>10.3.2.1. JBoss 5 AspectManager Service</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="ch10s03s02.html" title="10.3.2. The JBoss AspectManager Service"/>
+      <link rel="prev" href="ch10s03s02.html" title="10.3.2. The JBoss AspectManager Service"/>
+      <link rel="next" href="ch10s03s02s02.html" title="10.3.2.2. JBoss 4.x AspectManager Service"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s03s02.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s02s02.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect3" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h4 class="title">
+                     <a id="d0e4614"/>10.3.2.1. JBoss 5 AspectManager Service</h4>
+               </div>
+            </div>
+         </div>
+         <p>
+               In JBoss 5 the AspectManager Service is configured using a JBoss Microcontainer bean. The configuration file
+               is <code class="literal">jboss-5.x.x.GA/server/xxx/conf/aop.xml</code>. The AspectManager Service is deployed with
+               the following xml:
+            </p>
+         <pre class="programlisting">
+
+   &lt;bean name="AspectManager" class="org.jboss.aop.deployers.AspectManagerJDK5"&gt;
+      ...
+      
+      &lt;property name="jbossIntegration"&gt;&lt;inject bean="AOPJBossIntegration"/&gt;&lt;/property&gt;
+
+      &lt;property name="enableLoadtimeWeaving"&gt;false&lt;/property&gt;
+      &lt;!-- only relevant when EnableLoadtimeWeaving is true.
+           When transformer is on, every loaded class gets
+           transformed.  If AOP can't find the class, then it
+           throws an exception.  Sometimes, classes may not have
+           all the classes they reference.  So, the Suppressing
+           is needed.  (i.e. Jboss cache in the default configuration --&gt;
+      &lt;property name="suppressTransformationErrors"&gt;true&lt;/property&gt;
+      &lt;property name="prune"&gt;true&lt;/property&gt;
+      &lt;property name="include"&gt;org.jboss.test., org.jboss.injbossaop.&lt;/property&gt;
+      &lt;property name="exclude"&gt;org.jboss.&lt;/property&gt;
+      &lt;!-- This avoids instrumentation of hibernate cglib enhanced proxies
+      &lt;property name="ignore"&gt;*$$EnhancerByCGLIB$$*&lt;/property&gt; --&gt;
+      &lt;property name="optimized"&gt;true&lt;/property&gt;
+      &lt;property name="verbose"&gt;false&lt;/property&gt;
+      &lt;!--
+         Available choices for this attribute are:
+            org.jboss.aop.instrument.ClassicInstrumentor (default)
+            org.jboss.aop.instrument.GeneratedAdvisorInstrumentor
+       &lt;property name="instrumentor"&gt;org.jboss.aop.instrument.ClassicInstrumentor&lt;/property&gt;
+      --&gt;
+          &lt;!-- 
+                By default the deployment of the aspects contained in 
+                ../deployers/jboss-aop-jboss5.deployer/base-aspects.xml
+                are not deployed. To turn on deployment uncomment this property
+          &lt;property name="useBaseXml"&gt;true&lt;/property&gt;
+          --&gt;
+   &lt;/bean&gt;
+
+               
+            </pre>
+         <p>
+               In later sections we will talk about changing the class of the AspectManager Service, to
+               do this replace the contents of the <code class="literal">class</code> attribute of the 
+               <code class="literal">bean</code> element.
+            </p>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="ch10s03s02.html">
+               <strong>Prev</strong>10.3.2. The JBoss AspectManager Service</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="ch10s03s02s02.html">
+               <strong>Next</strong>10.3.2.2. JBoss 4.x AspectManager Service</a>
+         </li>
+      </ul>
+   </body>
+</html>

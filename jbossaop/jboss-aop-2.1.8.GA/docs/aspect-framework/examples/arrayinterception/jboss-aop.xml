@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+   <interceptor class="ArrayInterceptor"/>
+   
+   <arrayreplacement class="Woven"/>
+   <prepare expr="field(* Woven->ints)"/>
+   <!-- Enabling this still will not cause interception for NotWoven since it does not match an arrayreplacement
+   <prepare expr="field(* NotWoven->ints)"/>
+   -->
+   <arraybind type="READ_WRITE">
+       <interceptor-ref name="ArrayInterceptor"/>
+   </arraybind>
+</aop>

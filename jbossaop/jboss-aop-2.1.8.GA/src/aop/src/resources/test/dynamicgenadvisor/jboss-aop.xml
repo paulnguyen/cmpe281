@@ -1,0 +1,9 @@
+<aop>
+   <aspect class="org.jboss.test.aop.dynamicgenadvisor.MyAspect"/>
+   <prepare expr="execution(org.jboss.test.aop.dynamicgenadvisor.POJO->new())"/>
+   <prepare expr="construction(org.jboss.test.aop.dynamicgenadvisor.POJO->new())"/>
+   <prepare expr="field(* org.jboss.test.aop.dynamicgenadvisor.POJO->i)"/>
+   <prepare expr="field(* org.jboss.test.aop.dynamicgenadvisor.POJO->j)"/>
+   <prepare expr="execution(* org.jboss.test.aop.dynamicgenadvisor.POJO->someMethod(..))"/>
+   <prepare expr="all(org.jboss.test.aop.dynamicgenadvisor.SubPOJO)"/>
+</aop>

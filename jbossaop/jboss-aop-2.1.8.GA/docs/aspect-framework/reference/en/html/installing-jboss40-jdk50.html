@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>8.2. Installing with JBoss 4.0.x and JBoss 4.2.x Application Server for JDK 5</title>
+      <link rel="stylesheet" href="css/jbossorg.css" type="text/css"/>
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0"/>
+      <link rel="start" href="index.html" title="JBoss AOP - Aspect-Oriented Framework for Java"/>
+      <link rel="up" href="installing.html" title="Chapter 8. Installing"/>
+      <link rel="prev" href="installing-standalone.html" title="8.1. Installing Standalone"/>
+      <link rel="next" href="installing-jboss5-jdk5.html" title="8.3. Installing with JBoss Application Server 5"/>
+   </head>
+   <body>
+      <p id="title">
+         <a href="http://www.jboss.org" class="jbossOrg_href">
+            <strong>
+						        JBoss.org	
+						</strong>
+         </a>
+         <a href="http://labs.jboss.com/projects/docs" class="commDoc_href">
+            <strong>
+						        Community Documentation	
+						</strong>
+         </a>
+      </p>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="installing-standalone.html">
+               <strong>Prev</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="installing-jboss5-jdk5.html">
+               <strong>Next</strong>
+            </a>
+         </li>
+      </ul>
+      <div class="sect1" lang="en">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title">
+                     <a id="installing-jboss40-jdk50"/>8.2. Installing with JBoss 4.0.x and JBoss 4.2.x Application Server for JDK 5</h2>
+               </div>
+            </div>
+         </div>
+         <p>
+         DISCLAIMER: We no longer actively test against JBoss Application Server 4.0.x or 4.2.x. If there are any
+         problems with the issues outlined below, please contact us on the JBoss AOP user forum at http://www.jboss.org.
+      </p>
+         <p>
+         To install JBoss AOP in JBoss 4.0.x or JBoss 4.2.x Application Server: with JDK 5, there is an ant build script to
+         install into the application server. It lives in <code class="literal">jboss-40-install/jboss-aop-jdk50.deployer/build.xml</code>.
+         Modify <code class="literal">jboss-40-install/jboss-aop-jdk50.deployer/jboss.properties</code>  to point to the the root of your
+         JBoss installation and specify the application server configuration you want to upgrade. These are the steps taken by
+         the ant script:
+      </p>
+         <div class="orderedlist">
+            <ol>
+               <li>
+             Back up the existing 
+            <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer</code> to
+            <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer.bak</code>
+               </li>
+               <li>
+             Copy the files from <code class="literal">jboss-40-install/jboss-aop-jdk50.deployer</code> over the files that already
+             exist in your existing JBoss Application Server distribution under
+            <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer</code>
+               </li>
+               <li>
+            In JBoss 4.0.4.GA and later, move <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer/javassist.jar</code>
+            to <code class="literal">${jboss.home}/server/&lt;config-name&gt;/lib/javassist.jar</code>. Any existing javassist.jar in that location is copied to
+            <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer.bak/lib/javassist.bak</code>
+               </li>
+               <li>
+            If you NOT upgrading from a previous AOP 2 distribution, open up
+            <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer/jboss-aspect-library-jdk50.jar</code> and
+            delete all classes and subpackages under <code class="literal">org.jboss.aop</code>. In AOP 2.0 we changed the packaging, these
+            classes now exist inside <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer/jboss-aop-as4-deployer.jar</code>. 
+            Also, we delete any files that also exist in 
+            <code class="literal">${jboss.home}/server/&lt;config-name&gt;/deploy/jboss-aop-jdk50.deployer/jboss-standalone-aspect-library.jar</code>
+               </li>
+            </ol>
+         </div>
+      </div>
+      <ul class="docnav">
+         <li class="previous">
+            <a accesskey="p" href="installing-standalone.html">
+               <strong>Prev</strong>8.1. Installing Standalone</a>
+         </li>
+         <li class="up">
+            <a accesskey="u" href="#">
+               <strong>Top of page</strong>
+            </a>
+         </li>
+         <li class="home">
+            <a accesskey="h" href="index.html">
+               <strong>Front page</strong>
+            </a>
+         </li>
+         <li class="next">
+            <a accesskey="n" href="installing-jboss5-jdk5.html">
+               <strong>Next</strong>8.3. Installing with JBoss Application Server 5</a>
+         </li>
+      </ul>
+   </body>
+</html>

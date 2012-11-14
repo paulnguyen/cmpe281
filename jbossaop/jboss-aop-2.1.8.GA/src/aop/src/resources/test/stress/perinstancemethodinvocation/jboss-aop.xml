@@ -1,0 +1,12 @@
+<aop>
+   <interceptor name="Int1" class="org.jboss.test.aop.stress.perinstancemethodinvocation.PerInstanceInterceptor" scope="PER_INSTANCE"/>
+   <aspect name="Aspect1" class="org.jboss.test.aop.stress.perinstancemethodinvocation.PerInstanceAspect" scope="PER_INSTANCE"/>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocation.POJO->method1())">
+      <interceptor-ref name="Int1"/>
+   </bind>
+   
+   <bind pointcut="execution(* org.jboss.test.aop.stress.perinstancemethodinvocation.POJO->method2())">
+      <advice aspect="Aspect1" name="invoke"/>
+   </bind>
+</aop>

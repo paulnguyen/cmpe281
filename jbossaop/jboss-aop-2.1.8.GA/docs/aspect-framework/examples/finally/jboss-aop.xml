@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+
+   <aspect class="MutexAspect" scope="PER_VM"/>
+   
+   <bind pointcut="execution(protected void $instanceof{Transaction}->execute())">
+      <before name="beforeAdvice" aspect="MutexAspect"/>
+      <finally name="finallyAdvice" aspect="MutexAspect"/>
+   </bind>
+
+   <aspect class="FinallyAspect" scope="PER_VM"/>
+   
+   <bind pointcut="execution(private Account Bank->getAccount(java.lang.String))">
+      <finally name="finallyAdvice1" aspect="FinallyAspect"/>
+      <finally name="finallyAdvice2" aspect="FinallyAspect"/>
+   </bind>
+   
+</aop>
