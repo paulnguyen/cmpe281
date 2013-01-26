@@ -1,3 +1,0 @@
-<aop>
-   <prepare expr="all(org.jboss.test.aop.benchmark.POJO)"/>
-</aop>

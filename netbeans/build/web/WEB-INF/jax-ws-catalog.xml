@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://www.webservicex.net/stockquote.asmx?WSDL" uri="wsdl/www.webservicex.net/stockquote.asmx.wsdl"/>
-    <system systemId="http://www.webservicex.net/WeatherForecast.asmx?WSDL" uri="wsdl/www.webservicex.net/WeatherForecast.asmx.wsdl"/>
-    <system systemId="http://wsf.cdyne.com/SpellChecker/check.asmx?wsdl" uri="wsdl/wsf.cdyne.com/SpellChecker/check.asmx.wsdl"/>
-</catalog>
