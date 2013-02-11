@@ -11,7 +11,7 @@ import java.util.Hashtable ;
 
 public class XmlRpcHelloHandler {
 
-	public String hello ( String name ) {
+	public String hello ( String name, String number ) {
 		return "XML-RPC Says Hello " + name ;
 	}
 
