@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Alien()
+comment1.params=msg
+comment1.target=void\ setMessage(java.lang.String)
+numComments=2

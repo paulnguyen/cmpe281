@@ -24,8 +24,7 @@ environments {
 			      dbCreate = "update"
 			      url = "jdbc:mysql://localhost:3306/GrailsGumball_test"
 		    }
-	  }
-	  
+	  }	  
 	  /**
 	  production {
 		    dataSource {
@@ -33,8 +32,7 @@ environments {
 			      url = "jdbc:mysql://localhost:3306/GrailsGumballAppFog"
 		    }
 	  }
-	  **/
-	  
+	  **/	  
 	  production {
 		  def envVar = System.env.VCAP_SERVICES
 		  def credentials = envVar?grails.converters.JSON.parse(envVar)["mysql-5.1"][0]["credentials"]:null

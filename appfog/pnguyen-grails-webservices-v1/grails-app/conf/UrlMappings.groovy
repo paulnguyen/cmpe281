@@ -7,7 +7,12 @@ class UrlMappings {
 			action = [GET: "show", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		*/
-				
+
+		"/api/$sku?"(controller: "api", parseRequest: true) {
+			action = [GET: "show", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+
+						
 		"/$controller/$action?/$id?"{
 			constraints {
 				// apply constraints here

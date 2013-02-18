@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=m
+comment0.target=Kid(IGumball)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Kid\n
+comment1.params=q
+comment1.target=void\ giveQuarters(int)
+comment2.params=
+comment2.target=void\ buyGumball()
+numComments=3

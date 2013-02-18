@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=m
+comment0.target=HasQuarterState(GumballMachinePattern)
+comment1.params=
+comment1.target=void\ insertQuarter()
+comment2.params=
+comment2.target=void\ turnCrank()
+numComments=3

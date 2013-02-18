@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=GumballMachinePattern()
+comment1.params=state
+comment1.target=void\ setState(GumballStates)
+comment2.params=
+comment2.target=void\ insertQuarter()
+comment3.params=
+comment3.target=void\ turnCrank()
+comment4.params=
+comment4.target=boolean\ hasGumball()
+comment5.params=
+comment5.target=java.lang.String\ takeGumball()
+numComments=6

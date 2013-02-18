@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ insertQuarter()
+comment1.params=
+comment1.target=void\ turnCrank()
+comment2.params=
+comment2.target=boolean\ hasGumball()
+comment3.params=
+comment3.target=java.lang.String\ takeGumball()
+numComments=4
