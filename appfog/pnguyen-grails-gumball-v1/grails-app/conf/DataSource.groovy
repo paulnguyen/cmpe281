@@ -12,7 +12,7 @@ hibernate {
 
 // environment specific settings
 environments {
-    development {
+      development {
 		    dataSource {
 			      dbCreate = "update" // one of 'create', 'create-drop','update'
 			      //url = "jdbc:mysql://localhost:3306/GrailsGumball_development"
