@@ -88,7 +88,7 @@ for (Merchandise__c[] tmp : [SELECT Id FROM Merchandise__c]) {
 }
 
 // Apex DML.  sObject ID is populated after insert.
-Invoice_Statement__c inv = new Invoice_Statement__c(Description__c='My New Invoice'); 
+Invoice_Statement__c inv = new Invoice_Statement__c(Description__c='My New Invoice2'); 
 System.debug(inv.id) ;
 insert inv;
 System.debug(inv.id) ;

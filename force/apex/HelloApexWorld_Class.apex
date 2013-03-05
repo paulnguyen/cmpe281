@@ -71,7 +71,7 @@ public class HelloApexWorld
 		// IDs - 18-character Force.com record identifier
 		ID myId = '00300000003T2PGAA0';
 		
-		// Blog - useful for encryption algorithms
+		// Blob - useful for encryption algorithms
 		DateTime now = System.now();
 	    String timestamp = ''+ now.year() + '-' +
 	    now.month() + '-' +
