@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebRole1" version="1.8.31004.1351" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <Startup>
+    <Task commandLine="DiagnosticsAgent.exe" taskType="background" relativePath="plugins\Diagnostics">
+      <Environment>
+        <Variable name="RdModuleName" value="Diagnostics" />
+        <Variable name="WaRoleType" value="IISWebRole" />
+      </Environment>
+    </Task>
+    <Task commandLine="DiagnosticsAgent.exe /blockStartup" relativePath="plugins\Diagnostics">
+      <Environment>
+        <Variable name="RdModuleName" value="Diagnostics" />
+        <Variable name="WaRoleType" value="IISWebRole" />
+      </Environment>
+    </Task>
+  </Startup>
+  <Runtime>
+    <EntryPoint>
+      <NetFxEntryPoint assemblyName="WebRole1.dll" targetFrameworkVersion="v3.5" />
+    </EntryPoint>
+  </Runtime>
+  <ConfigurationSettings>
+    <Setting name="ConnectionString" nameSpace="Microsoft.WindowsAzure.Plugins.Diagnostics" />
+  </ConfigurationSettings>
+  <Properties>
+    <Property name="TargetFrameworkVersion" value="v4.5" />
+    <Property name="RoleType" value="Web" />
+    <Property name="RoleName" value="WebRole1" />
+    <Property name="ProjectName" value="WebRole1" />
+    <Property name="Configuration" value="Debug" />
+    <Property name="Platform" value="AnyCPU" />
+    <Property name="RoleTargetFramework" value="v4.5" />
+    <Property name="OutputDir" value="C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2012\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\" />
+    <Property name="EntryPoint" value="WebRole1.dll" />
+    <Property name="SourceDir" value="C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2012\HelloWindowsAzure\WebRole1\" />
+    <Property name="SitePhysicalPath" value="C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2012\HelloWindowsAzure\WebRole1\" />
+    <Property name="TargetRuntimeVersion" value="v4.0" />
+  </Properties>
+  <Sites>
+    <Site name="Web" physicalDirectory="C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2012\HelloWindowsAzure\WebRole1\">
+      <Bindings>
+        <Binding name="Endpoint1" endpointName="Endpoint1" />
+      </Bindings>
+    </Site>
+  </Sites>
+</RoleModel>
