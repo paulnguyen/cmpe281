@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry sourcepath="M2_REPO/javax/validation/com.springsource.javax.validation/1.0.0.GA/com.springsource.javax.validation-1.0.0.GA-sources.jar" kind="var" path="M2_REPO/javax/validation/com.springsource.javax.validation/1.0.0.GA/com.springsource.javax.validation-1.0.0.GA.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/persistence/persistence-api/1.0/persistence-api-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.4/commons-lang-2.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/habuma/spitter/persistence/dao-common/1.0.0-SNAPSHOT/dao-common-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/easymock/easymock/2.5.1/easymock-2.5.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar"/>
+	<classpathentry sourcepath="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.0.1/jackson-core-asl-1.0.1-sources.jar" kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.0.1/jackson-core-asl-1.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/joda-time/joda-time/1.6/joda-time-1.6.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/habuma/spitter/domain/jpa-annotated/1.0.0-SNAPSHOT/jpa-annotated-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/4.6/junit-4.6.jar"/>
+	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/habuma/spitter/service/service-common/1.0.0-SNAPSHOT/service-common-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/3.0.5.RELEASE/spring-aop-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/3.0.5.RELEASE/spring-expression-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/3.0.5.RELEASE/spring-jdbc-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/3.0.5.RELEASE/spring-test-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/3.0.5.RELEASE/spring-tx-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/3.0.5.RELEASE/spring-web-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/spitter-domain-jpa" exported="true"/>
+	<classpathentry kind="src" path="/spitter-service-common" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-aop/sources/spring-aop-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/doug/.gradle/cache/javax.xml/jaxrpc-api/jars/jaxrpc-api-1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/log4j/log4j/sources/log4j-1.2.13-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/log4j/log4j/jars/log4j-1.2.13.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-beans/sources/spring-beans-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/commons-logging/commons-logging/sources/commons-logging-1.1.1-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-web/sources/spring-web-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/junit/junit/sources/junit-4.7-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/junit/junit/jars/junit-4.7.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-context/sources/spring-context-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-test/sources/spring-test-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-test/jars/spring-test-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-expression/sources/spring-expression-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-core/sources/spring-core-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.mockito/mockito-all/sources/mockito-all-1.8.5-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.mockito/mockito-all/jars/mockito-all-1.8.5.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-asm/sources/spring-asm-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/javax.inject/javax.inject/sources/javax.inject-1-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/javax.inject/javax.inject/jars/javax.inject-1.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/aopalliance/aopalliance/sources/aopalliance-1.0-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" exported="true"/>
+</classpath>

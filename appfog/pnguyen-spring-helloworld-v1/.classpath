@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/spring-core-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/spring-context-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/spring-aop-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/spring-aspects-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/spring-beans-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/commons-logging-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/pnguyen/Desktop/GIT/cmpe281/appfog/pnguyen-spring-helloworld-v1/libs/spring-expression-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

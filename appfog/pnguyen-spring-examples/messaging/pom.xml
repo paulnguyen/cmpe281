@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+ <parent>
+  <groupId>com.springinaction</groupId>
+  <artifactId>example-code</artifactId>
+  <version>3.0.0</version>
+ </parent>
+
+ <modelVersion>4.0.0</modelVersion>
+ <groupId>com.springinaction</groupId>
+ <artifactId>messaging</artifactId>
+ <version>3.0.0</version>
+ <packaging>jar</packaging>
+
+ <name>Spring in Action: Messaging Examples</name>
+ <url>http://www.manning.com/walls4</url>
+
+ <dependencies>
+  <dependency>
+   <groupId>${spring.group}</groupId>
+   <artifactId>spring-context</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>${spring.group}</groupId>
+   <artifactId>spring-jms</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+
+
+  <dependency>
+   <groupId>org.apache.activemq</groupId>
+   <artifactId>activemq-core</artifactId>
+   <version>5.3.0</version>
+  </dependency>
+  <dependency>
+   <groupId>org.apache.xbean</groupId>
+   <artifactId>xbean-spring</artifactId>
+   <version>3.5</version>
+  </dependency>
+
+  <dependency>
+   <groupId>junit</groupId>
+   <artifactId>junit</artifactId>
+   <version>4.5</version>
+   <scope>test</scope>
+  </dependency>
+ </dependencies>
+</project>

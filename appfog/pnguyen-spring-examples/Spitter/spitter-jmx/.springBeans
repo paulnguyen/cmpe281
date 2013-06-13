@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.3.1.201003090936-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/resources/jmx-context.xml</config>
+		<config>src/main/resources/mbean-exporter-context.xml</config>
+		<config>src/main/resources/method-exclusion-assembler.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
