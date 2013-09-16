@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe
+END
+DinerMenuIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/DinerMenuIterator.java
+END
+Waitress.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/Waitress.java
+END
+CafeMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/CafeMenu.java
+END
+MenuItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/MenuItem.java
+END
+Menu.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/Menu.java
+END
+DinerMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/DinerMenu.java
+END
+AlternatingDinerMenuIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/AlternatingDinerMenuIterator.java
+END
+PancakeHouseMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/PancakeHouseMenu.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/package.bluej
+END
+MenuTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermergercafe/MenuTestDrive.java
+END

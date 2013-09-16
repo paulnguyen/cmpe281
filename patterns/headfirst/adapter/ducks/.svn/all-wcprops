@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks
+END
+DuckTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/DuckTestDrive.java
+END
+MallardDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/MallardDuck.java
+END
+Turkey.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/Turkey.java
+END
+WildTurkey.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/WildTurkey.java
+END
+TurkeyAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/TurkeyAdapter.java
+END
+Duck.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/Duck.java
+END
+DuckAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/DuckAdapter.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/package.bluej
+END
+TurkeyTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/adapter/ducks/TurkeyTestDrive.java
+END

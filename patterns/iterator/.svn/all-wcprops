@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator
+END
+QueryResultsIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsIterator.java
+END
+QueryResultsIterator.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsIterator.ctxt
+END
+QueryTool.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryTool.java
+END
+QueryTool.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryTool.ctxt
+END
+QueryResultsIteratorImpl.class
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsIteratorImpl.class
+END
+QueryResultsImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsImpl.java
+END
+QueryResultsImpl.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsImpl.ctxt
+END
+QueryResults.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResults.class
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/package.bluej
+END
+QueryTool$Query.class
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryTool$Query.class
+END
+QueryResultsIteratorImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsIteratorImpl.java
+END
+QueryResultsIteratorImpl.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsIteratorImpl.ctxt
+END
+QueryResultsIterator.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsIterator.class
+END
+QueryTool.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryTool.class
+END
+QueryResults.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResults.java
+END
+QueryResults.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResults.ctxt
+END
+QueryResultsImpl.class
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/iterator/QueryResultsImpl.class
+END

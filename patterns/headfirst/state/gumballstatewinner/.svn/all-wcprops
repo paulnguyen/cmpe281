@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner
+END
+HasQuarterState.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/HasQuarterState.java
+END
+State.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/State.java
+END
+NoQuarterState.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/NoQuarterState.java
+END
+GumballMachineTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/GumballMachineTestDrive.java
+END
+SoldState.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/SoldState.java
+END
+WinnerState.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/WinnerState.java
+END
+GumballMachine.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/GumballMachine.java
+END
+SoldOutState.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/SoldOutState.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/state/gumballstatewinner/package.bluej
+END

@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger
+END
+DinerMenuIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/DinerMenuIterator.java
+END
+Waitress.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/Waitress.java
+END
+MenuItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/MenuItem.java
+END
+ArrayListIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/ArrayListIterator.java
+END
+Menu.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/Menu.java
+END
+PancakeHouseMenuIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/PancakeHouseMenuIterator.java
+END
+DinerMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/DinerMenu.java
+END
+ArrayIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/ArrayIterator.java
+END
+AlternatingDinerMenuIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/AlternatingDinerMenuIterator.java
+END
+Iterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/Iterator.java
+END
+PancakeHouseMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/PancakeHouseMenu.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/package.bluej
+END
+MenuTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/iterator/dinermerger/MenuTestDrive.java
+END

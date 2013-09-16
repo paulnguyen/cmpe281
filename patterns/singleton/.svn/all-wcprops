@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/singleton
+END
+Client.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/Client.ctxt
+END
+Client.class
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/Client.class
+END
+Singleton.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/Singleton.java
+END
+Singleton.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/Singleton.ctxt
+END
+SingletonDoubleCheckLock.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/SingletonDoubleCheckLock.java
+END
+SingletonDoubleCheckLock.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/SingletonDoubleCheckLock.ctxt
+END
+Singleton.class
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/Singleton.class
+END
+SingletonDoubleCheckLock.class
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/SingletonDoubleCheckLock.class
+END
+SingletonThreadSafe.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/SingletonThreadSafe.java
+END
+SingletonThreadSafe.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/SingletonThreadSafe.ctxt
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/singleton/package.bluej
+END
+SingletonThreadSafe.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/SingletonThreadSafe.class
+END
+Client.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/singleton/Client.java
+END

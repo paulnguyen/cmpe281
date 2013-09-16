@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory
+END
+AbstractDuckFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/AbstractDuckFactory.java
+END
+DuckCall.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/DuckCall.java
+END
+MallardDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/MallardDuck.java
+END
+RedheadDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/RedheadDuck.java
+END
+QuackCounter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/QuackCounter.java
+END
+CountingDuckFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/CountingDuckFactory.java
+END
+DuckSimulator.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/DuckSimulator.java
+END
+Quackable.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/Quackable.java
+END
+RubberDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/RubberDuck.java
+END
+DecoyDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/DecoyDuck.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/package.bluej
+END
+Goose.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/Goose.java
+END
+GooseAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/GooseAdapter.java
+END
+DuckFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/factory/DuckFactory.java
+END

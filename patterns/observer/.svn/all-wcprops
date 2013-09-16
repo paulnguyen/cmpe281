@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer
+END
+Subject.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Subject.java
+END
+Subject.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Subject.ctxt
+END
+Pessimist.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Pessimist.class
+END
+ConcreteSubject.class
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/ConcreteSubject.class
+END
+Optimist.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Optimist.java
+END
+Optimist.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Optimist.ctxt
+END
+ConcreteObserver.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/ConcreteObserver.java
+END
+TheEconomy.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/TheEconomy.java
+END
+Observer.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Observer.class
+END
+ConcreteObserver.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/ConcreteObserver.ctxt
+END
+TheEconomy.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/TheEconomy.ctxt
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/package.bluej
+END
+Pessimist.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Pessimist.java
+END
+Pessimist.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Pessimist.ctxt
+END
+ConcreteSubject.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/ConcreteSubject.java
+END
+ConcreteSubject.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/ConcreteSubject.ctxt
+END
+Subject.class
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Subject.class
+END
+Observer.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Observer.java
+END
+Observer.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Observer.ctxt
+END
+Optimist.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/Optimist.class
+END
+ConcreteObserver.class
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/ConcreteObserver.class
+END
+TheEconomy.class
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/observer/TheEconomy.class
+END

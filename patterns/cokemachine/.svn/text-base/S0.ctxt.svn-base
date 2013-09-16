@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=_m
+comment0.target=S0(CokeMachine)
+comment1.params=
+comment1.target=void\ insertNickel()
+comment2.params=
+comment2.target=void\ insertDime()
+comment3.params=
+comment3.target=void\ insertQuarter()
+comment4.params=
+comment4.target=void\ ejectCoke()
+numComments=5

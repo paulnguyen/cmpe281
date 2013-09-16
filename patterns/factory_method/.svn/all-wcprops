@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method
+END
+Creator.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Creator.java
+END
+Creator.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Creator.ctxt
+END
+TeslaFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/TeslaFactory.java
+END
+TeslaFactory.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/TeslaFactory.ctxt
+END
+Hybrid.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Hybrid.class
+END
+Engine.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Engine.java
+END
+Engine.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Engine.ctxt
+END
+Gas.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Gas.java
+END
+Gas.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Gas.ctxt
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/package.bluej
+END
+Electric.class
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Electric.class
+END
+PriusFactory.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/PriusFactory.class
+END
+Hybrid.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Hybrid.java
+END
+VolvoFactory.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/VolvoFactory.class
+END
+Hybrid.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Hybrid.ctxt
+END
+Creator.class
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Creator.class
+END
+TeslaFactory.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/TeslaFactory.class
+END
+Engine.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Engine.class
+END
+Electric.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Electric.java
+END
+PriusFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/PriusFactory.java
+END
+Electric.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Electric.ctxt
+END
+PriusFactory.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/PriusFactory.ctxt
+END
+VolvoFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/VolvoFactory.java
+END
+Gas.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/Gas.class
+END
+VolvoFactory.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/factory_method/VolvoFactory.ctxt
+END

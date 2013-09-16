@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball
+END
+HasQuarterState.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/HasQuarterState.java
+END
+State.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/State.java
+END
+NoQuarterState.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/NoQuarterState.java
+END
+GumballMachineTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/GumballMachineTestDrive.java
+END
+SoldState.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/SoldState.java
+END
+WinnerState.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/WinnerState.java
+END
+GumballMachineRemote.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/GumballMachineRemote.java
+END
+GumballMonitorTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/GumballMonitorTestDrive.java
+END
+GumballMachine.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/GumballMachine.java
+END
+SoldOutState.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/SoldOutState.java
+END
+GumballMonitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/GumballMonitor.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/proxy/gumball/package.bluej
+END

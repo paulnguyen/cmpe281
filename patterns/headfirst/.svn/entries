@@ -1,0 +1,107 @@
+10
+
+dir
+701
+http://paul@www.nguyenresearch.com/svn/patterns/gof/design-patterns-java/headfirst
+http://paul@www.nguyenresearch.com/svn
+
+
+
+2012-03-18T10:49:28.606397Z
+686
+paul
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7fccf8cd-2018-0410-bb61-c6f36f666642
+
+state
+dir
+
+combined
+dir
+
+adapter
+dir
+
+proxy
+dir
+
+decorator
+dir
+
+observer
+dir
+
+iterator
+dir
+
+package.bluej
+file
+
+
+
+
+2012-02-29T02:23:13.000000Z
+0907dfe98694fc7985f3e3ee23bacaf6
+2012-03-18T10:49:28.606397Z
+686
+paul
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1914
+
+strategy
+dir
+
+singleton
+dir
+
+composite
+dir
+
+facade
+dir
+
+combining
+dir
+
+factory
+dir
+
+templatemethod
+dir
+
+command
+dir
+

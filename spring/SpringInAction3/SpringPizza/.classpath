@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="output" path="build/classes/main"/>
+	<classpathentry output="build/classes/test" kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-aop/sources/spring-aop-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework.webflow/spring-js-resources/sources/spring-js-resources-2.2.1.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework.webflow/spring-js-resources/jars/spring-js-resources-2.2.1.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/log4j/log4j/sources/log4j-1.2.13-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/log4j/log4j/jars/log4j-1.2.13.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/doug/.gradle/cache/org.tuckey/urlrewritefilter/jars/urlrewritefilter-3.1.0.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.aspectj/aspectjweaver/sources/aspectjweaver-1.6.6-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.aspectj/aspectjweaver/jars/aspectjweaver-1.6.6.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-beans/sources/spring-beans-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-aspects/sources/spring-aspects-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-aspects/jars/spring-aspects-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/commons-logging/commons-logging/sources/commons-logging-1.1.1-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-context-support/sources/spring-context-support-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework.webflow/spring-webflow/sources/spring-webflow-2.2.1.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework.webflow/spring-webflow/jars/spring-webflow-2.2.1.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-webmvc/sources/spring-webmvc-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-webmvc/jars/spring-webmvc-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-web/sources/spring-web-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.mockito/mockito-all/sources/mockito-all-1.8.0-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.mockito/mockito-all/jars/mockito-all-1.8.0.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/commons-lang/commons-lang/sources/commons-lang-2.4-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/junit/junit/sources/junit-4.7-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/junit/junit/jars/junit-4.7.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework.webflow/spring-binding/sources/spring-binding-2.2.1.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework.webflow/spring-binding/jars/spring-binding-2.2.1.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-test/sources/spring-test-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-test/jars/spring-test-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-context/sources/spring-context-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-expression/sources/spring-expression-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-core/sources/spring-core-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework/spring-asm/sources/spring-asm-3.0.5.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.0.5.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/aopalliance/aopalliance/sources/aopalliance-1.0-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/doug/.gradle/cache/org.springframework.webflow/spring-js/sources/spring-js-2.2.1.RELEASE-sources.jar" kind="lib" path="/Users/doug/.gradle/cache/org.springframework.webflow/spring-js/jars/spring-js-2.2.1.RELEASE.jar" exported="true"/>
+</classpath>

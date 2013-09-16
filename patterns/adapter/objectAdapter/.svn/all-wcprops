@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/adapter/objectAdapter
+END
+TargetObject.class
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/TargetObject.class
+END
+Client.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/Client.class
+END
+Adaptee.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/objectAdapter/Adaptee.java
+END
+Adaptee.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/Adaptee.ctxt
+END
+Target.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/Target.class
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/adapter/objectAdapter/package.bluej
+END
+TargetObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/687/patterns/gof/design-patterns-java/adapter/objectAdapter/TargetObject.java
+END
+TargetObject.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/adapter/objectAdapter/TargetObject.ctxt
+END
+Client.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/687/patterns/gof/design-patterns-java/adapter/objectAdapter/Client.java
+END
+AdapteeObject.class
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/AdapteeObject.class
+END
+Client.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/adapter/objectAdapter/Client.ctxt
+END
+Target.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/objectAdapter/Target.java
+END
+Adaptee.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/Adaptee.class
+END
+Target.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/Target.ctxt
+END
+AdapteeObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/687/patterns/gof/design-patterns-java/adapter/objectAdapter/AdapteeObject.java
+END
+AdapteeObject.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/689/patterns/gof/design-patterns-java/adapter/objectAdapter/AdapteeObject.ctxt
+END

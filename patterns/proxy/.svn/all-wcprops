@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/proxy
+END
+RemotingProxy$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RemotingProxy$1.class
+END
+CachingProxy.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/CachingProxy.ctxt
+END
+SubjectProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/SubjectProxy.java
+END
+Client.class
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/proxy/Client.class
+END
+SubjectProxy.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/SubjectProxy.ctxt
+END
+RealSubject.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RealSubject.java
+END
+AccessProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/AccessProxy.java
+END
+RealSubject.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RealSubject.ctxt
+END
+AccessProxy.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/AccessProxy.ctxt
+END
+RemotingProxy.class
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/proxy/RemotingProxy.class
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/proxy/package.bluej
+END
+RemotingProxy$HttpClient.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RemotingProxy$HttpClient.class
+END
+Client.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/Client.java
+END
+Client.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/Client.ctxt
+END
+CachingProxy.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/proxy/CachingProxy.class
+END
+SubjectProxy.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/SubjectProxy.class
+END
+RemotingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RemotingProxy.java
+END
+RealSubject.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RealSubject.class
+END
+AccessProxy.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/AccessProxy.class
+END
+RemotingProxy.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/RemotingProxy.ctxt
+END
+CachingProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/688/patterns/gof/design-patterns-java/proxy/CachingProxy.java
+END

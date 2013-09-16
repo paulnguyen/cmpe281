@@ -1,0 +1,311 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine
+END
+CokeMachine.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachine.java
+END
+S0.class
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S0.class
+END
+CokeMachine.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachine.ctxt
+END
+CokeMachineState.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachineState.java
+END
+S15.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S15.java
+END
+CokeMachineState.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachineState.ctxt
+END
+S25.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S25.java
+END
+S15.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S15.ctxt
+END
+S25.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S25.ctxt
+END
+S35.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S35.java
+END
+S35.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S35.ctxt
+END
+S45.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S45.java
+END
+S5.class
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S5.class
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/package.bluej
+END
+S45.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S45.ctxt
+END
+CokeMachine$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachine$1.class
+END
+S0.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S0.java
+END
+S0.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S0.ctxt
+END
+S20.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S20.class
+END
+S40.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S40.class
+END
+coke-machine.asta
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/coke-machine.asta
+END
+CokeMachineState.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachineState.class
+END
+S25.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S25.class
+END
+CokeMachineTester.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachineTester.java
+END
+CokeMachineTester.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachineTester.ctxt
+END
+S45.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S45.class
+END
+CHG.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CHG.java
+END
+CHG.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CHG.ctxt
+END
+S10.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S10.java
+END
+S20.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S20.java
+END
+S10.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S10.ctxt
+END
+State.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/State.class
+END
+S30.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S30.java
+END
+S20.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S20.ctxt
+END
+S30.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S30.ctxt
+END
+S40.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S40.java
+END
+S40.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S40.ctxt
+END
+S50.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S50.java
+END
+S50.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S50.ctxt
+END
+State.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/State.java
+END
+CokeMachineTester.class
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachineTester.class
+END
+State.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/State.ctxt
+END
+CHG.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CHG.class
+END
+S10.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S10.class
+END
+S5.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S5.java
+END
+S5.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S5.ctxt
+END
+S30.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S30.class
+END
+CokeMachine.class
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/CokeMachine.class
+END
+S50.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S50.class
+END
+S15.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S15.class
+END
+S35.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/701/patterns/gof/design-patterns-java/cokemachine/S35.class
+END

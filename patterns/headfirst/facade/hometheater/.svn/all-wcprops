@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater
+END
+HomeTheaterTestDrive.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/HomeTheaterTestDrive.java
+END
+Screen.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/Screen.java
+END
+CdPlayer.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/CdPlayer.java
+END
+PopcornPopper.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/PopcornPopper.java
+END
+Projector.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/Projector.java
+END
+TheaterLights.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/TheaterLights.java
+END
+Amplifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/Amplifier.java
+END
+HomeTheaterFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/HomeTheaterFacade.java
+END
+DvdPlayer.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/DvdPlayer.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/package.bluej
+END
+Tuner.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/facade/hometheater/Tuner.java
+END

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator
+END
+DuckCall.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/DuckCall.java
+END
+MallardDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/MallardDuck.java
+END
+RedheadDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/RedheadDuck.java
+END
+QuackCounter.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/QuackCounter.java
+END
+DuckSimulator.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/DuckSimulator.java
+END
+Quackable.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/Quackable.java
+END
+RubberDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/RubberDuck.java
+END
+DecoyDuck.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/DecoyDuck.java
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/package.bluej
+END
+Goose.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/Goose.java
+END
+GooseAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/headfirst/combining/decorator/GooseAdapter.java
+END

@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/adapter/classAdapter
+END
+Client.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Client.ctxt
+END
+Adapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/687/patterns/gof/design-patterns-java/adapter/classAdapter/Adapter.java
+END
+AdapteeParent.class
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/AdapteeParent.class
+END
+Adapter.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Adapter.ctxt
+END
+Client.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Client.class
+END
+Adapter.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Adapter.class
+END
+Target.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Target.java
+END
+Target.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Target.ctxt
+END
+Target.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/Target.class
+END
+package.bluej
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/698/patterns/gof/design-patterns-java/adapter/classAdapter/package.bluej
+END
+AdapteeParent.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/687/patterns/gof/design-patterns-java/adapter/classAdapter/AdapteeParent.java
+END
+AdapteeParent.ctxt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/686/patterns/gof/design-patterns-java/adapter/classAdapter/AdapteeParent.ctxt
+END
+Client.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/687/patterns/gof/design-patterns-java/adapter/classAdapter/Client.java
+END
