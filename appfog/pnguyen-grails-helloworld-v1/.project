@@ -26,7 +26,7 @@
 		<link>
 			<name>.link_to_grails_plugins</name>
 			<type>2</type>
-			<locationURI>GRAILS_ROOT/2.1.1/projects/pnguyen-grails-helloworld/plugins</locationURI>
+			<locationURI>GRAILS_ROOT/2.1.1/projects/pnguyen-2013-grails-helloworld/plugins</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

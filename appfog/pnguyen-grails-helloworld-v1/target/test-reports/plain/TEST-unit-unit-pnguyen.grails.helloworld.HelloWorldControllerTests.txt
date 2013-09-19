@@ -1,0 +1,15 @@
+Testsuite: pnguyen.grails.helloworld.HelloWorldControllerTests
+Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 1.171 sec
+------------- Standard Output ---------------
+--Output from testSomething--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testSomething--
+------------- ---------------- ---------------
+
+Testcase: testSomething took 1.143 sec
+	FAILED
+junit.framework.AssertionFailedError: Implement me
+junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at pnguyen.grails.helloworld.HelloWorldControllerTests.testSomething(HelloWorldControllerTests.groovy:15)
+
