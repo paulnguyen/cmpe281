@@ -14,7 +14,7 @@
 // limitations under the License.
 
 // ============================================================================
-// catalina.policy - Security Policy Permissions for Tomcat 7
+// catalina.policy - Security Policy Permissions for tc Server Runtime 7.0
 //
 // This file contains a default set of security policies to be enforced (by the
 // JVM) when Catalina is executed with the "-security" option.  In addition
@@ -25,6 +25,8 @@
 // * Read, write and delete access to the web application's working directory
 //
 // $Id: catalina.policy 1088176 2011-04-02 23:09:37Z kkolinko $
+//
+// Modified to support tc Server classes and libs on 2012-12-10 jkonicki
 // ============================================================================
 
 
@@ -52,6 +54,14 @@ grant codeBase "file:${java.home}/lib/ext/-" {
         permission java.security.AllPermission;
 };
 
+// ========== tc Server Service Wrapper Permissions ===========================
+
+grant codeBase "file:${catalina.base}/bin/winx86_64/-" {
+        permission java.security.AllPermission; };
+}
+grant codeBase "file:${catalina.base}/bin/win32/-" {
+        permission java.security.AllPermission; };
+}
 
 // ========== CATALINA CODE PERMISSIONS =======================================
 
@@ -85,6 +95,13 @@ grant codeBase "file:${catalina.home}/bin/tomcat-juli.jar" {
         permission java.util.PropertyPermission "java.util.logging.config.class", "read";
         permission java.util.PropertyPermission "java.util.logging.config.file", "read";
         permission java.util.PropertyPermission "catalina.base", "read";
+
+        // tc Server specific permissions
+        permission java.util.PropertyPermission "com.springsource.tcserver.serviceability.logging.jmxdelay", "read";
+        permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+        permission javax.management.MBeanServerPermission "createMBeanServer";
+        permission javax.management.MBeanPermission "com.springsource.tcserver.serviceability.logging.TcServerLogManager#-[tcServer:name=LoggingManager,type=Serviceability]", "registerMBean";
+        permission javax.management.MBeanTrustPermission "register";
 
         // Note: To enable per context logging configuration, permit read access to
         // the appropriate file. Be sure that the logging configuration is
@@ -184,6 +201,9 @@ grant {
 
     // Applications using Comet need to be able to access this package
     permission java.lang.RuntimePermission "accessClassInPackage.org.apache.catalina.comet";
+
+    // Applications using WebSocket need to be able to access this package
+    permission java.lang.RuntimePermission "accessClassInPackage.org.apache.catalina.websocket";
 };
 
 
