@@ -1,0 +1,19 @@
+Tutorials:
+
+Pro Spring 3 Example:
+http://my.safaribooksonline.com/book/programming/java/9781430241072/chapter-16-using-spring-remoting/using_restfulws_in_spring
+
+Example Warehouse CRUD REST Service:
+http://xpadro.blogspot.com/2013/02/create-and-test-rest-services-with.html
+
+REST in Spring 3 (SpringSource.org):
+http://spring.io/blog/2009/03/08/rest-in-spring-3-mvc/
+
+Build RESTful Web Service with Spring 3.0 (IBM Example)
+http://www.ibm.com/developerworks/webservices/library/wa-spring3webserv/
+
+Spring MVC Easy REST:
+http://www.javacodegeeks.com/2013/04/spring-mvc-easy-rest-based-json-services-with-responsebody.html
+
+
+

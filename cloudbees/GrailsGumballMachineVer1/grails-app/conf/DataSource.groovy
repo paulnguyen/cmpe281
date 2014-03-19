@@ -17,28 +17,21 @@ environments {
     }
     test {
         dataSource {
-            dbCreate = "update"  // 'create', 'create-drop','update'
+            dbCreate = "create-drop"  // 'create', 'create-drop','update'
 			url = "jdbc:mysql://localhost:3306/cmpe281"
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = "cmpe281"
 			password = "cmpe281"
         }
     }
-    production {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-            pooled = true
-            properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=true
-               validationQuery="SELECT 1"
-            }
-        }
-    }
+	production {
+		dataSource {
+		   dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
+		   pooled = false
+		   dbCreate = 'create' // use 'update', 'validate', 'create' or 'create-drop'
+		   jndiName = 'java:comp/env/jdbc/gumball_db'
+		}
+	 }
 }
+
+

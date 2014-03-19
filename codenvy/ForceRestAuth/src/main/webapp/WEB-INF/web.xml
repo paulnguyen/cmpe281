@@ -1,0 +1,51 @@
+<!DOCTYPE web-app PUBLIC
+"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Web Application Created With eXo IDE</display-name>
+  <servlet>
+    <servlet-name>OAuth</servlet-name>
+    <servlet-class>
+      OAuthServlet
+    </servlet-class>
+    <init-param>
+      <param-name>clientId</param-name>
+      <param-value>3MVG9QDx8IX8nP5SN4c0kvhBvqqPgQ6yYed0dDIXEH.j4lLqeu8T9L.pWpG4E2eifAdb4vRl1RRz97V.3mIci</param-value>
+    </init-param>
+    <init-param>
+      <param-name>clientSecret</param-name>
+      <param-value>2454652236146152119</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redirectUri</param-name>
+      <param-value>https://pnguyen-sfdc-callback.aws.af.cm/oauth/_callback</param-value>
+    </init-param>
+    <init-param>
+      <param-name>environment</param-name>
+      <param-value>https://login.salesforce.com</param-value>
+    </init-param>
+  </servlet>
+  
+  
+  <servlet>
+    <servlet-name>DemoREST</servlet-name>
+    <servlet-class>
+      DemoREST
+    </servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OAuth</servlet-name>
+    <url-pattern>/oauth</url-pattern>
+    <url-pattern>/oauth/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>DemoREST</servlet-name>
+    <url-pattern>/DemoREST</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
+
+

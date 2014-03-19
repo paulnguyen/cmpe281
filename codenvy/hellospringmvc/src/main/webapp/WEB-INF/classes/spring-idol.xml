@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<beans    xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+  
+  <!-- constructor injection -->
+  <bean id="duke"
+  class="springidol.Juggler">
+    <constructor-arg value="15" />
+  </bean>
+  
+  <!-- bean reference injection -->          
+  <bean id="sonnet29"
+  class="springidol.Sonnet29" />               
+  <bean id="poeticDuke"
+  class="springidol.PoeticJuggler">
+    <constructor-arg value="15" />
+    <constructor-arg ref="sonnet29" />
+  </bean>          
+    
+    <!-- factory method injection -->
+    <bean id="theStage"
+    class="springidol.Stage"
+    factory-method="getInstance" />   
+    
+    <!-- bean scope 
+    1. singleton      Scopes the bean definition to a single instance 
+    per Spring container (default).
+    
+    2. prototype      Allows a bean to be instantiated any number of 
+    times (once per use).
+    
+    3. request        Scopes a bean definition to an HTTP request. Only valid 
+    when used with a web-capable Spring context 
+    (such as with Spring MVC).
+    
+    4. session        Scopes a bean definition to an HTTP session. Only valid 
+    when used with a web-capable Spring context 
+    (such as with Spring MVC).
+    
+    5. global-session Scopes a bean definition to a global HTTP session. Only 
+    valid when used in a portlet context.                        
+    -->
+    <bean id="ticket"
+    class="springidol.Ticket" scope="singleton" />          
+    
+    
+    <!-- intrument beans -->
+    <bean id="saxophone" class="springidol.Saxophone" />    
+    <bean id="piano" class="springidol.Piano" />    
+    
+    <!-- property injector - getter/setters -->
+    <bean id="kenny"
+    class="springidol.Instrumentalist">
+      <property name="song" value="Jingle Bells" />
+      <property name="age" value="37" />
+      <property name="instrument" ref="saxophone" />
+    </bean> 
+      
+    <!-- simple example of injection using SpEL - Spring Expression Language -->
+    <bean id="carl"
+    class="springidol.Instrumentalist">
+      <property name="song" value="#{kenny.song}" />
+      <property name="instrument" ref="piano" />
+    </bean>
+        
+</beans>
+        
+        
+        

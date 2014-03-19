@@ -1,0 +1,9 @@
+Updates:
+
+11/14/08 - version 1.1:
+	- Page Elements now automatically update after using the back button and changing quantities on a different page.
+	- Chomped the trailer comma and colon for item options in the cart
+	
+11/19/08 - version 1.2:
+	- Fixed rounding error for prices when adding items to the cart
+

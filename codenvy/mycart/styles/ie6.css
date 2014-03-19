@@ -1,0 +1,12 @@
+body{padding-top:90px}
+#content{	background:url(images/bg_content.gif) no-repeat;}
+#catalog,#header,#sidebar,#catalog li{display: inline}
+#catalog{width:750px}
+#sidebar a.simpleCart_checkout{margin:-25px 0 0 160px}
+#downloadContainer{margin-top:45px}
+#left .itemContainer{padding:10px 0}
+.totalItems{display: inline}
+#header{width:750px}
+#left .checkoutEmptyLinks{padding-left:248px}
+.alsoContainer{width:100%}
+#downloadContainer img{vertical-align: middle;}

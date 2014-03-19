@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <link href="styles/styles.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="js/script.js" type="text/javascript"></script>  <title>Hello Shopping Cart</title>
+<script src="js/jquery-2.0.3.min.js"></script><script src="js/simpleCart.js"></script><script>
+    simpleCart({
+      checkout: { 
+        type: "PayPal", 
+        email: "you@yours.com",
+        cartColumns: [
+          { attr: "name" , label: "Name" } ,
+          { attr: "price" , label: "Price", view: 'currency' } ,
+          { view: "decrement" , label: false , text: "-" } ,
+          { attr: "quantity" , label: "Qty" } ,
+          { view: "increment" , label: false , text: "+" } ,
+          { attr: "total" , label: "SubTotal", view: 'currency' } ,
+          { view: "remove" , text: "Remove" , label: false }
+        ] 
+      }
+    });    
+    </script> </head>
+ <body>
+  <div class="simpleCart_shelfItem">
+   <h2 class="item_name">
+    Awesome T-shirt</h2>
+   <p>
+    <input class="item_Quantity" type="text" value="1" /><br />
+    <span class="item_price">$35.99</span><br />
+    <a class="item_add" href="javascript:;">Add to Cart</a></p>
+   <div class="simpleCart_items">
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 100%;">
+     <tbody>
+      <tr>
+       <td>
+        <div class="simpleCart_items">
+         &nbsp;</div>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+   <table border="1">
+    <tbody>
+     <tr>
+      <td>
+       <span class="simpleCart_quantity">items</span></td>
+      <td>
+       <a class="simpleCart_checkout" href="javascript:;">Checkout</a></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </body>
+</html>
