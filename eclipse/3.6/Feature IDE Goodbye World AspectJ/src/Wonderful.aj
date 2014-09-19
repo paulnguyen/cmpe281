@@ -1,7 +1,7 @@
 public aspect Wonderful {
 
 	after(): call(void Main.print()) {
-		System.out.print(" wonderful");
+		System.out.print(" Wonderful");
 	}
 
 }

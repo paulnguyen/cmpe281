@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-	<featureModel>
+	<featureModel chosenLayoutAlgorithm="1">
 		<struct>
 			<and abstract="true" mandatory="true" name="HelloWorld">
-				<feature mandatory="true" name="Hello"/>
+				<alt abstract="true" mandatory="true" name="Greeting">
+					<feature mandatory="true" name="Hello"/>
+					<and mandatory="true" name="Goodbye">
+						<feature name="Terrible"/>
+					</and>
+				</alt>
 				<alt abstract="true" name="Feature">
 					<feature mandatory="true" name="Beautiful"/>
 					<feature mandatory="true" name="Wonderful"/>
@@ -12,4 +17,5 @@
 		</struct>
 		<constraints/>
 		<comments/>
+		<featureOrder userDefined="false"/>
 	</featureModel>

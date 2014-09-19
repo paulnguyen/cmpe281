@@ -1,7 +1,7 @@
 public aspect World {
 
 	after(): call(void Main.print()) {
-		System.out.print(" world!");
+		System.out.print(" World!");
 	}
 
 }
