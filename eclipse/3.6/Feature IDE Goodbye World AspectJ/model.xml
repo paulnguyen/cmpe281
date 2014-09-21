@@ -3,14 +3,15 @@
 		<struct>
 			<and abstract="true" mandatory="true" name="HelloWorld">
 				<alt abstract="true" mandatory="true" name="Greeting">
-					<feature mandatory="true" name="Hello"/>
+					<or mandatory="true" name="Hello">
+						<alt abstract="true" mandatory="true" name="Feature">
+							<feature mandatory="true" name="Beautiful"/>
+							<feature mandatory="true" name="Wonderful"/>
+						</alt>
+					</or>
 					<and mandatory="true" name="Goodbye">
 						<feature name="Terrible"/>
 					</and>
-				</alt>
-				<alt abstract="true" name="Feature">
-					<feature mandatory="true" name="Beautiful"/>
-					<feature mandatory="true" name="Wonderful"/>
 				</alt>
 				<feature mandatory="true" name="World"/>
 			</and>
