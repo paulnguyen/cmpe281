@@ -1,6 +1,4 @@
 
 public aspect Terrible {
-	after(): call(void Main.print()) {
-		System.out.print(" Terrible");
-	}
+	// TODO Auto-generated aspect
 }
