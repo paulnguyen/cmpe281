@@ -11,7 +11,7 @@
 			</and>
 		</struct>
 		<constraints/>
-		<calculations Auto="true" Constraints="true" Features="true" Redundant="true"/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
 		<comments/>
 		<featureOrder userDefined="false"/>
 	</featureModel>

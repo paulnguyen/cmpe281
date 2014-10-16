@@ -38,7 +38,8 @@ public aspect ObserverAspect {
     }
 
     // PointCut
-    after(Subject s): target(s) && call(void TheEconomy.setState(..)) {
+    after(Subject s, String state): target(s) && args(state) && call(void TheEconomy.setState(..)) {
+    	System.out.println( "Economy Changed to: " + state ) ;
         System.out.println( "Notifying Observers..." );
         s.notifyObservers() ;
     }

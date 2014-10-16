@@ -1,4 +1,3 @@
-
 import abstract_factory.* ;
 
 public aspect Prius {
