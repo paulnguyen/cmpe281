@@ -182,7 +182,14 @@ insert into contribs ( person_id, contrib_id, contribution ) values ( 10, 1, 'Sc
 
 
 
+/* Count Check */
 
+select (select count(*) from awards) cnt_awards,
+	   (select count(*) from contribs) cnt_contribs,
+	   (select count(*) from person) cnt_person,
+	   (select count(*) from person_awards) cnt_person_awards ;
+	
+	
 
 
 
