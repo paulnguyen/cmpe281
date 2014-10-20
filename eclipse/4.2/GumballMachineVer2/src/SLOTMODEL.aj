@@ -1,6 +1,6 @@
 
 
-public privileged aspect CRANKMODEL {
+public privileged aspect SLOTMODEL {
 
 	// Declarations
 	declare parents: GumballMachine implements IGumballMachineSlot;
