@@ -2,13 +2,14 @@ class UrlMappings {
 	
 	static mappings = {
 		
-		/* REST API - XML VERSION
+		/* REST API - XML VERSION 
 		"/api/$sku?"(controller: "ApiXML", parseRequest: true) {
 			action = [GET: "show", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		*/
+		
 	
-		/* REST API - JSON VERSION */
+		/* REST API -   VERSION 		*/
 		"/api/$sku?"(controller: "ApiJSON", parseRequest: true) {
 			action = [GET: "show", PUT: "update", DELETE: "delete", POST: "save"]
 		}

@@ -34,10 +34,10 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"  // 'create', 'create-drop','update'
-			url = "XXX"
+			url = "jdbc:mysql://b1a484021e4724:69ce939f@us-cdbr-iron-east-01.cleardb.net:3306/ad_5f54d5a266bf2a8"
 			driverClassName = "com.mysql.jdbc.Driver"
-			username = "XXX"
-			password = "XXX"
+			username = "b1a484021e4724"
+			password = "69ce939f"
 		}
 
 	}

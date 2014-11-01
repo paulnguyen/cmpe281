@@ -1,7 +1,7 @@
 ---
 applications:
 - name: GrailsHelloWorldVer1
-  memory: 1024M
+  memory: 512M
   host: pnguyen-grails-helloworld-v1
   domain: cfapps.io
   env: {

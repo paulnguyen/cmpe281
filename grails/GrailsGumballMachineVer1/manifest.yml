@@ -1,0 +1,10 @@
+---
+applications:
+- name: GrailsGumballMachineVer1
+  memory: 1024M
+  host: pnguyen-grails-gumballmachine-v1
+  domain: cfapps.io
+  env: {
+    }
+  services: {
+    }

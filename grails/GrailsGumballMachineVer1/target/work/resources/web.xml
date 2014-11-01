@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="true" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <display-name>/GrailsHelloWorldVer1-development-0.1</display-name>
+    <display-name>/GrailsGumballMachineVer1-development-0.1</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -9,7 +9,7 @@
 
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>GrailsHelloWorldVer1-development-0.1</param-value>
+        <param-value>GrailsGumballMachineVer1-development-0.1</param-value>
     </context-param>
   <context-param>
     <param-name>sample</param-name>
