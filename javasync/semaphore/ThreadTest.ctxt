@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=n\ s
+comment0.target=ThreadTest(java.lang.String,\ Semaphore)
+comment1.params=
+comment1.target=void\ run()
+comment2.params=digits
+comment2.target=java.math.BigDecimal\ computePi(int)
+comment2.text=\n\ Compute\ the\ value\ of\ pi\ to\ the\ specified\ number\ of\ \n\ digits\ after\ the\ decimal\ point.\ \ The\ value\ is\ \n\ computed\ using\ Machin's\ formula\:\n\n\ \ \ \ \ \ \ \ \ \ pi/4\ \=\ 4*arctan(1/5)\ -\ arctan(1/239)\n\n\ and\ a\ power\ series\ expansion\ of\ arctan(x)\ to\ \n\ sufficient\ precision.\n
+comment3.params=inverseX\ scale
+comment3.target=java.math.BigDecimal\ arctan(int,\ int)
+comment3.text=\n\ Compute\ the\ value,\ in\ radians,\ of\ the\ arctangent\ of\ \n\ the\ inverse\ of\ the\ supplied\ integer\ to\ the\ specified\n\ number\ of\ digits\ after\ the\ decimal\ point.\ \ The\ value\n\ is\ computed\ using\ the\ power\ series\ expansion\ for\ the\n\ arc\ tangent\:\n\n\ arctan(x)\ \=\ x\ -\ (x^3)/3\ +\ (x^5)/5\ -\ (x^7)/7\ +\ \n\ \ \ \ \ (x^9)/9\ ...\n
+numComments=4

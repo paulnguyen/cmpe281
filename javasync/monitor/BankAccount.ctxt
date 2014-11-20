@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=BankAccount()
+comment1.params=amount
+comment1.target=double\ Withdraw(double)
+comment2.params=amount
+comment2.target=double\ Deposit(double)
+comment3.target=void\ SignalFundsAvailable()
+comment4.target=void\ BroadcastFundsAvailable()
+numComments=5

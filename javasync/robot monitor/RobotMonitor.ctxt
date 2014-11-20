@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=RobotMonitor()
+comment1.target=boolean\ isHumanInDanger()
+comment2.target=boolean\ hasOrderFromHuman()
+comment3.target=boolean\ isSelfInDanger()
+comment4.target=void\ humansInDangerEvent()
+comment5.target=void\ selfInDangerAction()
+comment6.target=void\ walkIntoDangerOrder()
+numComments=7

@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=acct\ transAmt
+comment0.target=BankAccountJavaSyncThread(BankAccountJavaSync,\ double)
+comment1.target=void\ run()
+numComments=2

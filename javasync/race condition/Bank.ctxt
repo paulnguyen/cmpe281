@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=n\ initialBalance
+comment0.target=Bank(int,\ double)
+comment0.text=\n\ Constructs\ the\ bank.\n\ @param\ n\ the\ number\ of\ accounts\n\ @param\ initialBalance\ the\ initial\ balance\ for\ each\ account\n
+comment1.params=from\ to\ amount
+comment1.target=void\ transfer(int,\ int,\ double)
+comment1.text=\n\ Transfers\ money\ from\ one\ account\ to\ another.\n\ @param\ from\ the\ account\ to\ transfer\ from\n\ @param\ to\ the\ account\ to\ transfer\ to\n\ @param\ amount\ the\ amount\ to\ transfer\n
+comment2.params=
+comment2.target=double\ getTotalBalance()
+comment2.text=\n\ Gets\ the\ sum\ of\ all\ account\ balances.\n\ @return\ the\ total\ balance\n
+comment3.params=
+comment3.target=int\ size()
+comment3.text=\n\ Gets\ the\ number\ of\ accounts\ in\ the\ bank.\n\ @return\ the\ number\ of\ accounts\n
+numComments=4

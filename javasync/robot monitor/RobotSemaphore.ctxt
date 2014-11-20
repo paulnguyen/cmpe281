@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=RobotSemaphore()
+comment1.target=boolean\ isSelfInDanger()
+comment2.target=void\ humansInDangerEvent()
+comment3.target=void\ selfInDangerAction()
+comment4.target=void\ walkIntoDangerOrder()
+numComments=5

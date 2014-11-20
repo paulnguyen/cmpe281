@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=BoundedBuffer()
+comment1.params=max
+comment1.target=BoundedBuffer(int)
+comment2.params=data
+comment2.target=void\ write(String)
+comment3.target=String\ read()
+numComments=4

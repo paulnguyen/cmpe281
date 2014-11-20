@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=b\ from\ max
+comment0.target=TransferRunnable(unsynch.Bank,\ int,\ double)
+comment0.text=\n\ Constructs\ a\ transfer\ runnable.\n\ @param\ b\ the\ bank\ between\ whose\ account\ money\ is\ transferred\n\ @param\ from\ the\ account\ to\ transfer\ money\ from\n\ @param\ max\ the\ maximum\ amount\ of\ money\ in\ each\ transfer\n
+comment1.params=
+comment1.target=void\ run()
+numComments=2

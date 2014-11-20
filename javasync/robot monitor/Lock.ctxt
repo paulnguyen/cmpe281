@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Lock()
+comment1.target=void\ Acquire()
+comment2.target=void\ Release()
+numComments=3

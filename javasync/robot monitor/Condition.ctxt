@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=lck
+comment0.target=Condition(Lock)
+comment1.target=void\ Wait()
+comment2.target=void\ Signal()
+comment3.target=void\ Broadcast()
+numComments=4
