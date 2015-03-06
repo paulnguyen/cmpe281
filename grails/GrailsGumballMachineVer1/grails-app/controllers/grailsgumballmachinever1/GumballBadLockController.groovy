@@ -73,7 +73,7 @@ class GumballBadLockController {
 				if ( after != before )
 				{
 					def gumball = Gumball.findBySerialNumber( machineSerialNum )
-					//gumball.lock() // pessimistic lock
+					gumball.lock() // pessimistic lock
 					Thread.currentThread().sleep(4000)
 					if ( gumball )
 					{
