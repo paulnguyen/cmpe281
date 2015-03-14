@@ -1,5 +1,5 @@
 
-=== BASIC TYPES ===
+//=== BASIC TYPES ===
 
 var x ; // undefined
 x = null ; // defined as null
@@ -11,7 +11,7 @@ typeof "hello" ; // string
 typeof 123 ; // number
 
 
-=== NUMBERS ===
+//=== NUMBERS ===
 
 // numbers = 64-bit double precision floating point
 // http://en.wikipedia.org/wiki/Double-precision_floating-point_format
@@ -40,7 +40,7 @@ false ; // false, 0, "", NaN, null, undefined
 true ;  // all other values
 
 
-=== STRINGS ===
+//=== STRINGS ===
 
 // strings 16-bit unicode (ucs2)
 
@@ -62,7 +62,7 @@ x.length ; // 8
 "   ab   c  defg   ".trim() ; // 'ab   c  defg'
 
 
-=== REGULAR EXPRESSIONS ===
+//=== REGULAR EXPRESSIONS ===
 
 /[aA]{2,}/ // same as new RegExp("[aA]{2,}") ; -- search for 2 or more lower or upper A's
 "aaoo".search(/[aA]{2,}/) ;  // at index 0
@@ -72,7 +72,7 @@ x.length ; // 8
 
 
 
-=== OBJECTS ===
+//=== OBJECTS ===
 
 var obj1 = new Object() ;
 var obj2 = {} ; // literal notation
@@ -92,7 +92,7 @@ Object.keys(json).length ; // 2
 
 
 
-=== ARRAYS ===
+//=== ARRAYS ===
 
 var arr1 = new Array() ;   // new empty array
 var arr2 = [] ; // literal notation
@@ -320,7 +320,7 @@ zimbu
 
 
 
-=== FUNCTIONAL PROGRAMMING ===
+//=== FUNCTIONAL PROGRAMMING ===
 
 function hello(name) {
     console.log( "Hello there " + name ) ;
