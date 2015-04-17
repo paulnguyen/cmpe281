@@ -84,7 +84,7 @@ var page = function( req, res, state, ts, status ) {
 
     var client = new Client();
             var count = "";
-            client.get("http://pnguyen-grails-restservice-v2.cfapps.io/order/", 
+            client.get("http://pnguyen-gumball-v2.elasticbeanstalk.com/order/", 
                 function(data, response_raw){
                     console.log(data);
                     count = data.countGumballs
@@ -115,7 +115,7 @@ var order = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = 0;
-            client.post("http://pnguyen-grails-restservice-v2.cfapps.io/order/", 
+            client.post("http://pnguyen-gumball-v2.elasticbeanstalk.com/order/", 
                 function(data, response_raw) {
                     id = data.id ;
                     status = data.orderstatus ;

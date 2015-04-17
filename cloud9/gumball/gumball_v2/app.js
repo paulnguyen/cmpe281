@@ -73,7 +73,7 @@ var page = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = "";
-            client.get("http://pnguyen-grails-gumball-v2.cfapps.io/gumballs/1", 
+            client.get("http://pnguyen-gumball-v2.elasticbeanstalk.com/gumballs/1", 
                 function(data, response_raw){
                     console.log(data);
                     count = data.countGumballs
@@ -95,7 +95,7 @@ var order = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = 0;
-            client.get("http://pnguyen-grails-gumball-v2.cfapps.io/gumballs/1", 
+            client.get("http://pnguyen-gumball-v2.elasticbeanstalk.com/gumballs/1", 
                 function(data, response_raw) {
                     count = data.countGumballs ;
                     console.log( "count before = " + count ) ;

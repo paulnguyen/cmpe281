@@ -20,22 +20,24 @@ class GumballMachineController {
                 // create a default machine
                 gumballMachine = new GumballMachine(gumball.modelNumber, gumball.serialNumber)
                 System.out.println(gumballMachine.getAbout())
-            }
+				
+				// save in the session
+				session.machine = gumballMachine
+				
+				// report a message to user
+				flash.message = gumballMachine.getAbout()
+	
+				// display view
+				render(view: "index")
+	
+			}
             else
             {
                 flash.message = "Error! Gumball Machine Not Found!"
 				render(view: "index")
             }
 
-            // save in the session
-            session.machine = gumballMachine
-			
-            // report a message to user
-            flash.message = gumballMachine.getAbout() 
-
-            // display view
-            render(view: "index")
-
+  
         }
         else if (request.method == "POST") {
 

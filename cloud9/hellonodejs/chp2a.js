@@ -23,7 +23,7 @@ console.log(!true);          // false
 console.log(!false);         // true
 
 // 2.4  Arrays.  Zero based index as you would expect.
-var foo = [];
+var foo = [ ];
 foo.push(1);         // add at the end
 console.log(foo);    // prints [1]
 foo.unshift(2);      // add to the top
@@ -113,6 +113,17 @@ if (true) {
     })();
 }
 console.log(foo); // 123;
+
+// 2.14 Anonymous Functions + New Var Scope (alternate version)
+var foo = 123;
+if (true) {
+    var f = function () { // create a new scope
+        var foo = 456;
+    };
+    f() ;
+}
+console.log(foo); // 123;
+
 
 // 2.15 Anonymous Functions don't need Names
 var foo1 = function namedFunction() { // no use of name, just wasted characters
