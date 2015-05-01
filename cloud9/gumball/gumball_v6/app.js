@@ -63,7 +63,7 @@ var handle_get = function (req, res, next) {
     var orderid = req.params.orderid ;
     console.log( "GET: \n" + orderid ) ;
     GumballOrder.findOne( { OrdNum : orderid }, function (err, order) {
-        console.log( order.OrdStatus ) ;    
+        console.log( order ) ;    
         res.writeHead(200, {"Content-Type": "application/json"});
         var output = { orderid: order.OrdNum, status: order.OrdStatus };
         res.end(JSON.stringify(output) + "\n");
@@ -76,7 +76,10 @@ var handle_post = function (req, res, next) {
 
     var num = chance.natural().toString();
     var order = new GumballOrder( { OrdNum: num, OrdStatus: 'Submitted' } );
-    order.save() ;
+    order.save(function (err) {
+        if (err)
+        console.log('Save Error:' + err);
+    }) ;
     console.log( "POST: \n" + order ) ;
     res.writeHead(200, {"Content-Type": "application/json"});
     res.end(JSON.stringify(order) + "\n");
@@ -95,7 +98,7 @@ app.listen(8080);
 
 /**
 
-** Gumball Machine Inventory
+** Gumball Machine Inventory **
 
 db.gumball.find()
 
@@ -113,7 +116,25 @@ db.gumball.update(
     { multi : false } 
 )
 
-** Gumball Orders
+** Gumball Orders **
+
+db.gumballorders.insert( 
+	{ 	OrdNum: '6447451112210432',
+  		OrdStatus: 'Submitted',
+	}
+)
+
+db.gumballorders.find(
+	{
+    	"_id" : ObjectId("55439cea302ed2c804b0fe10")
+	}
+)
+
+db.gumballorders.find(
+	{
+    	"OrdNum" : "6737166575075328"
+	}
+)
 
 db.gumballorders.find()
 

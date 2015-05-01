@@ -122,7 +122,7 @@ var order = function( req, res, state, ts ) {
                             data: {  "countGumballs": count, },
                             headers:{"Content-Type": "application/json"} 
                         };
-                        client.put( "http://pnguyen-grails-gumball-v2.cfapps.io/gumballs/1", args,
+                        client.put( "http://pnguyen-gumball-v2.elasticbeanstalk.com/gumballs/1", args,
                             function(data, response_raw) {
                                 console.log(data);
                                 console.log( "count after = " + data.countGumballs ) ;
