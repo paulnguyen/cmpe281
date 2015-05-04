@@ -35,7 +35,7 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "create"  // 'create', 'create-drop','update'
-			url = "jdbc:mysql://aa3js8zammu34z.csbd8ml2tbxl.us-west-2.rds.amazonaws.com:3306/ebdb"
+			url = "jdbc:mysql://aa1ibhaasnw9192.c6ygfx17zfo1.us-west-2.rds.amazonaws.com:3306/ebdb"
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = "admin"
 			password = "awsrds123456"
