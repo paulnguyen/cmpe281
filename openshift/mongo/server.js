@@ -1,7 +1,84 @@
 #!/bin/env node
+
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+var mongoose = require('mongoose');
+var chance = require('chance').Chance();
+
+var db_host = process.env.OPENSHIFT_MONGODB_DB_HOST ;
+var db_port = process.env.OPENSHIFT_MONGODB_DB_PORT ;
+var db_user = process.env.OPENSHIFT_MONGODB_DB_USERNAME ;
+var db_pwd  = process.env.OPENSHIFT_MONGODB_DB_PASSWORD ;
+var db_name = "mongo" ;
+
+var node_ip = process.env.OPENSHIFT_NODEJS_IP
+var node_port = process.env.OPENSHIFT_NODEJS_PORT
+
+var db_connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+    process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+    process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+    process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+    process.env.OPENSHIFT_APP_NAME;
+    
+
+/* DB Connection for Mongoose */
+var dburi = "mongodb://"+db_host+":"+db_port+"/"+db_name+""
+mongoose.connect( dburi );
+
+/* Mongoose Data Model */
+var Schema = mongoose.Schema;
+var OrderSchema = new Schema({
+  OrdNum:  String,   /* 120981, Etc... */
+  OrdStatus: String  /* Backorder, Submitted, Shipped, Etc... */
+});   
+
+/* Mongoose Schema */
+var GumballOrder = mongoose.model('GumballOrder', OrderSchema);
+
+/* DB Connection for Direct API */
+var DB = require('mongodb').Db,
+    DB_Connection = require('mongodb').Connection,
+    DB_Server = require('mongodb').Server,
+    async = require('async') ;
+
+var db = new DB(db_name,
+                new DB_Server( db_host, db_port,
+                            { auto_reconnect: true,
+                             poolSize: 20}),
+                            { w: 1 } );    
+    
+/* DB Init for Direct API */
+var db_init = function (callback) {
+    async.waterfall([
+        // 1. open database 
+        function (cb) {
+            console.log("INIT: STEP 1. Open MongoDB...");
+            db.open(cb);
+        },
+        // 2. authenticate
+        function (result, cb) {
+            console.log("INIT: STEP 2. Authenticate...");
+            db.authenticate(db_user, db_pwd, function(err, res) {
+                        if(!err) {
+                            console.log("Authenticated");
+                            cb(null, callback) ;
+                        } else {
+                            console.log("Error in authentication.");
+                            console.log(err);
+                            process.exit(-1);
+                        }
+                    });
+        },
+        // 3. fetch collections
+        function (result, cb) {
+            console.log("INIT: STEP 3. Fetch Collections...");
+            db.collections(cb);
+        },
+
+    ], callback);
+};
+
 
 
 /**
@@ -100,6 +177,43 @@ var SampleApp = function() {
             res.send("<html><body><img src='" + link + "'></body></html>");
         };
 
+        self.routes['/hello'] = function(req, res) {
+            console.log("Node IP: " + node_ip ) ;
+            console.log("Node Port: " + node_port ) ;
+            console.log("MongoDB: " + db_connection_string);
+            var link = "http://i.imgur.com/kmbjB.png";
+            res.send("<html><body>Hello Node.js on OpenShift</body></html>");
+        };
+
+        self.routes['/mongo1'] = function(req, res) {
+            var num = chance.natural().toString();
+            var order = new GumballOrder( { OrdNum: num, OrdStatus: 'Submitted' } );
+            order.save(function (err) {
+                if (err)
+                console.log('Save Error:' + err);
+            }) ;
+            console.log( "POST: \n" + order ) ;
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(order) + "\n");
+        };
+
+        self.routes['/mongo2'] = function(req, res) {
+            var num = chance.natural().toString();
+            db.collection('gumballorders', function(err, collection) {
+                if (err) {
+                     res.end(err);
+                }
+                else {
+                    collection.insert( { OrdNum: num, OrdStatus: "Backorder" }, function(err, collection) {
+                        if (err)
+                            res.end(err) ;
+                        else
+                            res.end("Document Inserted: New Order Created!") ;
+                    }) ;
+                }
+            }) ;
+        } ;
+
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
@@ -134,6 +248,17 @@ var SampleApp = function() {
         self.initializeServer();
     };
 
+    self.dbInitialize = function () {
+        db_init(function (err, results) {
+            if (err) {
+                console.error("DB FATAL ERROR INIT:");
+                console.error(err);
+            } else {
+                console.log( "DB INIT SUCCESSFUL!" ) ;
+            }
+        });
+    };
+
 
     /**
      *  Start the server (starts up the sample application).
@@ -155,5 +280,6 @@ var SampleApp = function() {
  */
 var zapp = new SampleApp();
 zapp.initialize();
+zapp.dbInitialize();
 zapp.start();
 
