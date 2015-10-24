@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="true" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <display-name>/GrailsGumballMachineVer1-test-1.0</display-name>
+    <display-name>/GrailsGumballMachineVer1-development-1.0</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -9,7 +9,7 @@
 
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>GrailsGumballMachineVer1-test-1.0</param-value>
+        <param-value>GrailsGumballMachineVer1-development-1.0</param-value>
     </context-param>
   <context-param>
     <param-name>sample</param-name>
@@ -100,6 +100,19 @@
     <listener>
         <listener-class>org.codehaus.groovy.grails.web.context.GrailsContextLoaderListener</listener-class>
     </listener>
+  <servlet>
+    <servlet-name>H2Console</servlet-name>
+    <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+    <init-param>
+      <param-name>-webAllowOthers</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>H2Console</servlet-name>
+    <url-pattern>/dbconsole/*</url-pattern>
+  </servlet-mapping>
 
     <!-- Grails dispatcher servlet -->
     <servlet>
@@ -117,6 +130,11 @@
     <servlet>
         <servlet-name>gsp</servlet-name>
         <servlet-class>org.codehaus.groovy.grails.web.pages.GroovyPagesServlet</servlet-class>
+    <init-param>
+      <description>Allows developers to view the intermediate source code, when they pass a showSource argument in the URL.</description>
+      <param-name>showSource</param-name>
+      <param-value>1</param-value>
+    </init-param>
     </servlet>
   <servlet>
     <servlet-name>grails-errorhandler</servlet-name>

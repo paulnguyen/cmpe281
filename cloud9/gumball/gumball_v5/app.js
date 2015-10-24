@@ -15,6 +15,7 @@ Serial# 1234998871109
 
 **/
 
+var endpoint = "http://ec2-52-24-214-120.us-west-2.compute.amazonaws.com/GrailsRestServiceVer2-2.0/order/" ;
 
 // added in v3: handlebars
 // https://www.npmjs.org/package/express3-handlebars
@@ -84,7 +85,7 @@ var page = function( req, res, state, ts, status ) {
 
     var client = new Client();
             var count = "";
-            client.get("http://pnguyen-gumball-v2.elasticbeanstalk.com/order/", 
+            client.get( endpoint, 
                 function(data, response_raw){
                     console.log(data);
                     count = data.countGumballs
@@ -115,7 +116,7 @@ var order = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = 0;
-            client.post("http://pnguyen-gumball-v2.elasticbeanstalk.com/order/", 
+            client.post( endpoint, 
                 function(data, response_raw) {
                     id = data.id ;
                     status = data.orderstatus ;

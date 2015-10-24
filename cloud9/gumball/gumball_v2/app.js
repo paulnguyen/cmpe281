@@ -14,6 +14,9 @@ Serial# 1234998871109
 
 **/
 
+var endpoint = "http://ec2-52-24-214-120.us-west-2.compute.amazonaws.com/GrailsGumballMachineVer2-2.0/gumballs/1";
+
+
 // added in v2: crypto
 // crypto functions:  http://nodejs.org/api/crypto.html
 
@@ -73,7 +76,7 @@ var page = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = "";
-            client.get("http://pnguyen-gumball-v2.elasticbeanstalk.com/gumballs/1", 
+            client.get( endpoint, 
                 function(data, response_raw){
                     console.log(data);
                     count = data.countGumballs
@@ -95,7 +98,7 @@ var order = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = 0;
-            client.get("http://pnguyen-gumball-v2.elasticbeanstalk.com/gumballs/1", 
+            client.get( endpoint, 
                 function(data, response_raw) {
                     count = data.countGumballs ;
                     console.log( "count before = " + count ) ;
@@ -105,7 +108,7 @@ var order = function( req, res, state, ts ) {
                             data: {  "countGumballs": count, },
                             headers:{"Content-Type": "application/json"} 
                         };
-                        client.put( "http://pnguyen-grails-gumball-v2.cfapps.io/gumballs/1", args,
+                        client.put( endpoint, args,
                             function(data, response_raw) {
                                 console.log(data);
                                 console.log( "count after = " + data.countGumballs ) ;

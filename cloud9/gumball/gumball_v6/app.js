@@ -31,14 +31,15 @@ var chance = require('chance').Chance();
 /*
 var db_host = "ds043220.mongolab.com" ;
 var db_port = "43220" ;
-var db_user = "cmpe281" ;
-var db_pwd  = "cmpe281" ;
-var db_name = "cmpe281" ;
+var db_user = "user" ;
+var db_pwd  = "pwd" ;
+var db_name = "db" ;
 */
-
 
 var db_host = "localhost" ;
 var db_port = "27017" ;
+var db_user = "cmpe281" ;
+var db_pwd  = "cmpe281" ;
 var db_name = "test" ;
 
 
@@ -117,6 +118,8 @@ db.gumball.update(
 )
 
 ** Gumball Orders **
+
+db.gumballorders.insert( { OrdNum: '6447451112210432', OrdStatus: 'Submitted', } )
 
 db.gumballorders.insert( 
 	{ 	OrdNum: '6447451112210432',

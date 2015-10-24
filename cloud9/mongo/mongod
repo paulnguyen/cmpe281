@@ -1,2 +1,1 @@
-mongod --bind_ip=$IP --dbpath=/home/ubuntu/workspace/mongo/data --nojournal --rest "$@" &
-#mongod --bind_ip=$IP --nojournal
+mongod --bind_ip=$IP --dbpath=data --nojournal --rest "$@"

@@ -46,19 +46,21 @@ var DB = require('mongodb').Db,
     DB_Server = require('mongodb').Server,
     async = require('async') ;
 
+/*
 var db_host = "ds043220.mongolab.com" ;
 var db_port = "43220" ;
-var db_user = "cmpe281" ;
-var db_pwd  = "cmpe281" ;
-var db_name = "cmpe281" ;
+var db_user = "user" ;
+var db_pwd  = "pwd" ;
+var db_name = "db" ;
+*/
 
-/*
+
 var db_host = "localhost" ;
 var db_port = "27017" ;
 var db_user = "cmpe281" ;
 var db_pwd  = "cmpe281" ;
 var db_name = "test" ;
-*/
+
    
 
 var db = new DB(db_name,
@@ -294,11 +296,16 @@ Serial# 1234998871109
 
 Host:   ds043220.mongolab.com
 Port:   43220
-Login:  cmpe281
-Passwd: cmpe281
+Login:  user
+Passwd: pwd
 
 Host:   localhost
 Port:   27017
+
+-- Add Mongodb Admin User
+
+use admin
+db.addUser('cmpe281', 'cmpe281');
 
 -- Gumball MongoDB Collection (Create Document)
 
