@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="info" name="build for SM">
+    <!-- author: Denis Gefter -->
+    <!-- Properties to set the Relative Paths -->
+    <property name = "local.home"      value = "../local"/>
+    <property file = "${local.home}/local.properties"/>
+
+    <target name="initProps">
+    	<property name = "sm-source"                    value = "sm-source"/>
+     	<property name = "classes"                      value = "classes"/>
+     	<property name = "dist"                         value = "dist"/>        
+    </target>
+
+    <patternset id="jar.resources">
+        <include name="*.jar"/>
+    </patternset>
+
+    <!-- Sets the Classpath for the application - includes the resources from the Pattern Set -->
+    <path id="base.path">
+        <pathelement path="${classpath}"/>
+        <fileset dir="${lib.home}">
+            <patternset refid="jar.resources"/>
+        </fileset>
+    </path>
+
+    <!-- Default Info Target -->
+    <target name="info">
+        <echo message="Please use ant help to display targets."/>
+    </target>
+
+    <!-- Help Target-->
+    <target name="help">
+        <echo message=""/>
+        <echo message="Build assumes that you have the local.properties file configured properly"/>
+        <echo message="Build targets SM:"/>
+        <echo message="The following targets are available:"/>
+        <echo message="--------------------------------"/>
+        <echo message="compile           -> runs javac on sm code"/>
+        <echo message="recompile         -> cleans and compiles sm code"/>
+        <echo message="stage             -> creates sm jar file"/>
+        <echo message="clean             -> clean sm directory"/>
+        <echo message="run-ui            -> runs UI"/>
+    </target>
+
+    <!-- Initializes the Properties for the files -->
+    <target name="initialize" depends="initProps">
+        <property name="local_build" value="${build.home}/${build}/${classes}"/>
+        <property name="dist_dir"   value= "${build.home}/${build}/${dist}"/>
+    </target>
+
+    <!-- Cleans the build directories of sm   -->
+    <target name="clean" depends="initialize">
+        <delete dir="${build.home}/${classes}"/>
+        <delete dir="${build.home}/tmp"/>
+    </target>
+
+    <!-- Create the Directory Structure to be used by the Compile -->
+    <target name="prepare" depends="initialize">
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <mkdir dir="${build.home}"/>
+        <mkdir dir="${build.home}/tmp"/>
+        <mkdir dir="${build.home}/${dist}"/>
+        <mkdir dir="${build.home}/${classes}"/>
+    </target>
+
+    <!-- Compile the java code for sm-->
+    <target name="compile" depends="prepare">
+        <javac srcdir="${dev.home}/src"
+               includes="**/*.java"
+               destdir="${build.home}/${classes}"
+               debug="${build.prop.debug}"
+               optimize="${build.prop.optimize}"
+               deprecation="${build.prop.deprecation}">
+            <classpath refid="base.path"/>
+        </javac>
+    </target>
+
+    <!-- Compile the java code for sm-->
+    <target name="recompile" depends="clean,compile">        
+    </target>
+
+    <!-- Stages the sm in the stage area  -->
+    <target name="stage" depends="compile">
+        <jar jarfile="${build.home}/${dist}/sm.jar" basedir="${build.home}/${classes}">
+            <exclude name="config/"/>
+        </jar>
+    </target>
+    
+    <!-- Runs UI -->
+    <target name="run-ui" depends="compile">
+        <java fork="yes" classname="edu.sjsu.cs.db.sm.ui.RunMe" failonerror="true">
+        	<classpath>    		    
+        		<pathelement path="${build.home}/${classes}"/>
+                <fileset dir="${lib.home}">
+                    <patternset refid="jar.resources"/>
+                </fileset>
+    	    </classpath>
+        </java>
+    </target>
+
+
+    <!-- AspectJ Compiler Ant Task -->
+    <taskdef name="ajc"
+    	classname="org.aspectj.tools.ant.taskdefs.Ajc" >
+    	<!-- declare classes needed to run the tasks and tools -->
+    	<classpath>
+      		<pathelement location="${lib.home}/aspectj-ant.jar"/>
+      		<pathelement location="${lib.home}/aspectjtools.jar"/>
+    	</classpath>
+    </taskdef>
+
+    <!-- Compiles Java Code with Aspects for SM -->
+    <target name="aspects" depends="prepare">
+	<echo message="Please, make sure that you copy aspectjtools.jar to the lib directory"/>
+    	<ajc 	preprocess="false"
+		workingdir="${build.home}/tmp" 
+		destdir="${build.home}/classes" 
+		argfiles="aspects.lst" >
+      	  <!-- declare classes needed to compile the target files -->
+      	  <classpath>
+            <pathelement location="${lib.home}/jakarta-poi.jar"/>
+            <pathelement location="${lib.home}/aspectjrt.jar"/>
+	    <pathelement path="${build.home}/classes" />
+      	  </classpath>
+    	</ajc>
+    </target>
+
+    <!-- Runs AspectJ Preprocessor Only.  Pure Java Source Generated in WORKINGDIR -->
+    <target name="aspects-debug" depends="prepare">
+	<echo message="Please, make sure that you copy aspectjtools.jar to the lib directory"/>
+    	<ajc 	preprocess="true"
+		workingdir="${build.home}/tmp" 
+		destdir="${build.home}/classes" 
+		argfiles="aspects.lst" >
+      	  <!-- declare classes needed to compile the target files -->
+      	  <classpath>
+            <pathelement location="${lib.home}/aspectjrt.jar"/>
+	    <pathelement path="${build.home}/classes" />
+      	  </classpath>
+    	</ajc>
+	<echo message="AspectJ Compiler Output is in the build/tmp directory"/>
+    </target>
+
+
+</project>

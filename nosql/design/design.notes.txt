@@ -1,0 +1,56 @@
+- basic (still work in progress) version of data manager layer
+
+    Device.java = manages a file 
+    Volume.java = manages pages in the file    
+    Page = manages records (should match SM.java API)
+
+- Device uses a single Java.NIO MappedByteBuffer (for the whole file).
+  The other Classes organize blocks/bytes according to previous
+  disk layout design (i.e. the visio diagram) and use the slice() call
+  to create a "view" or buffer overlay on the MappedByteBuffer.  This
+  is also a Direct Buffer, so should be very fast.
+
+- Volume manages allocation of pages.
+  Record ID will be 8 bytes.  first 4 bytes is volume id, then 2 bytes for page id, and 2 bytes
+  for block offset within page.
+
+- SMImplVersion2.java is my test class. It currently just creates a single
+  Volume "master.db" to store basic records.  But, doesn't do much yet. 
+  I will work on Page.java some more tomorrow to get the SM methods working.
+
+- Page will manage record allocation and reorganization via a slot table (in the page header).
+  Slot tables is a array (on disk) of ints (4 byte elements) which will be the page and block
+  bits of a record id.  The slot offsets will determine which blocks the record data is in.  
+  Multi-block records will be marked in multiple slots with the record's page/block bit values.
+  No Record Linked Lists for now.  Basically, a full scan of the slot table is needed currently to
+  assemble a multi-block record.  I will fix this this weekend.
+
+- Record is not implemented yet, so all records currently take up at lease one block.
+  That is, many small records should fit into a block, but aren't now.  Furthermore,
+  the OID's are physical for now.  I will have to implement a Logical OID to Physical
+  OID mapping table when I work on the Record class.
+
+Page.java - A sample sequence of calls I'm currently thinking about is: 
+
+- Create Record
+1. Mount Volume (if not already mounted)
+2. Ask Volume for Free Page
+3. Ask Page to add record
+
+- Get Record
+1. Mount Volume (if not already mounted)
+2. Using OID, compute the volume, page, (block is not needed)
+   (Volume should be ZERO (hardcoded for now), until we have more than one.
+3. Ask Volume for the page (computed from OID/Rec ID)
+4. Ask Page for the Record (passing the entire OID).  Page will validate and search
+   slot table for blocks and assemble the record.
+
+- Update Record
+Need to compute the Page from OID, then use Page to update record
+
+- Delete Record
+Need to compute the Page from OID, then use Page to delete record
+
+
+- One last note, when the Volume is first created, it will format itself with header data and
+allocate one page for use.  The file size will be about 4MB.

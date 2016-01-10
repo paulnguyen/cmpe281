@@ -1,0 +1,46 @@
+
+=======================================================================================
+Team 1:
+=======================================================================================
+
+05/07/2003  10:23 PM             3,390 TestAcceptanceBasicTeam1.java
+05/05/2003  11:39 PM             3,402 TestAcceptanceCrossFunctionalTeam1.java
+04/21/2003  05:29 PM             2,849 TestAcceptanceOIDTeam1.java
+05/13/2003  10:40 PM             2,401 TestStressLargeRecordsTeam1.java
+05/16/2003  09:50 PM             3,657 TestXMLFileLoadTeam1.java
+
+
+E:\PROJECTS\SJSU\S03.CS.257\Tigris\sjsu-cs257-team1\cs257\test>ant run-team1
+Buildfile: build.xml
+
+initProps:
+
+initialize:
+
+prepare:
+
+compile-team1:
+
+run-team1:
+     [echo] Please, make sure that you copied junit.jar to you ant/lib directory
+    [junit] Running edu.sjsu.cs.db.sm.TestAcceptanceBasicTeam1
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 8.823 sec
+    [junit] Running edu.sjsu.cs.db.sm.TestAcceptanceCrossFunctionalTeam1
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 2.984 sec
+    [junit] Running edu.sjsu.cs.db.sm.TestAcceptanceOIDTeam1
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 3.455 sec
+    [junit] Running edu.sjsu.cs.db.sm.TestStressLargeRecordsTeam1
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 3.645 sec
+    [junit] Running edu.sjsu.cs.db.sm.TestXMLFileLoadTeam1
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 35.391 sec
+
+BUILD SUCCESSFUL
+Total time: 55 seconds
+E:\PROJECTS\SJSU\S03.CS.257\Tigris\sjsu-cs257-team1\cs257\test>
+
+
+
+
+
+
+
