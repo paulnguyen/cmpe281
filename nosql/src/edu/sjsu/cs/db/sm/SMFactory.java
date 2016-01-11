@@ -23,7 +23,7 @@ public class SMFactory
 				if ( s_smImplVersion == null )
 				{
 					//s_smImplVersion = new FileStorage();
-					s_smImplVersion = new SMImplVersion2();
+					s_smImplVersion = new SMImplVersion1();
 				}
 			}
 		}

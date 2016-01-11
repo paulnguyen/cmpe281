@@ -252,6 +252,7 @@ public class SMImplVersion2 implements SM {
         rec2_oid = (SM.OID) sm.store(rec2);
         found = sm.fetch(rec2_oid);
         System.out.write(found.getBytes(0,0));
+        System.out.println("") ;
         System.out.println("Record to be deleted stored!");
         sm.delete(rec2_oid);
         found = sm.fetch(rec2_oid);
@@ -269,6 +270,7 @@ public class SMImplVersion2 implements SM {
         found = sm.fetch(rec3_oid);
         System.out.println( "Search for updated record got: " + found ) ;
         System.out.write(found.getBytes(0,0));
+        System.out.println("") ;
         System.out.println("Update Completed.");
       } catch (NotFoundException nfe) {
         System.out.println("Update of rec1 with rec3 failed!");
@@ -278,6 +280,7 @@ public class SMImplVersion2 implements SM {
         found = sm.fetch(rec1_oid);
         System.out.println( "Search for rec1 record got: " + found ) ;
         System.out.write(found.getBytes(0,0));
+        System.out.println("") ;
         String rec1hex = Util.toHexString("This is a test #1".getBytes()) ;
         String foundhex = Util.toHexString(found.getBytes(0,0)) ;
         if ( rec1hex.equals( foundhex ) )  {

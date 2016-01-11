@@ -50,6 +50,7 @@ public class SMImplVersion1 implements SM {
       rec1_oid = (edu.sjsu.cs.db.sm.SMImplVersion1.OID) sm.store(rec1);
       found = sm.fetch(rec1_oid);
       System.out.write(found.getBytes(0, 0));
+      System.out.println( "" ) ;
       System.out.println("Fetch Successful!");
 
       // store & delete
@@ -57,6 +58,7 @@ public class SMImplVersion1 implements SM {
         rec2_oid = (edu.sjsu.cs.db.sm.SMImplVersion1.OID) sm.store(rec2);
         found = sm.fetch(rec2_oid);
         System.out.write(found.getBytes(0, 0));
+        System.out.println( "" ) ;
         System.out.println("Record to be deleted stored!");
         sm.delete(rec2_oid);
         found = sm.fetch(rec2_oid);
@@ -71,6 +73,7 @@ public class SMImplVersion1 implements SM {
         rec3_oid = (edu.sjsu.cs.db.sm.SMImplVersion1.OID) sm.update(rec1_oid, rec3);
         found = sm.fetch(rec3_oid);
         System.out.write(found.getBytes(0, 0));
+        System.out.println( "" ) ;
         System.out.println("Update Completed.");
       } catch (NotFoundException nfe) {
         System.out.println("Update of rec1 with rec3 failed!");
@@ -80,6 +83,7 @@ public class SMImplVersion1 implements SM {
         System.out.println("Trying to fetch rec1...");
         found = sm.fetch(rec1_oid);
         System.out.write(found.getBytes(0, 0));
+        System.out.println( "" ) ;
         System.out.println("Failed Update Check. Rec1 Found!");
       } catch (NotFoundException nfe) {
         System.out.println("Update of rec1 with rec3 Successful!");
