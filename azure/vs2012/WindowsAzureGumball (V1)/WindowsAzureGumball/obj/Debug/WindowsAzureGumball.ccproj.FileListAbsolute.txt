@@ -1,2 +1,0 @@
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2012\WindowsAzureGumball\WindowsAzureGumball\bin\Debug\ServiceConfiguration.cscfg
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2012\WindowsAzureGumball\WindowsAzureGumball\bin\Debug\ServiceDefinition.csdef

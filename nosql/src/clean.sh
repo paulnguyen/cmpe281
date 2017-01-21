@@ -1,3 +1,0 @@
-
-rm *.db
-rm *.properties

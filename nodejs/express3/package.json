@@ -1,9 +1,0 @@
-{
-  "name": "hello_express_form",
-  "description": "Simple Test Form",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "express" : "3.x"
-  }
-}

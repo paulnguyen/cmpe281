@@ -1,9 +1,0 @@
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\bin\Debug\ServiceConfiguration.cscfg
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\bin\Debug\ServiceDefinition.csdef
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\Microsoft.WindowsAzure.Configuration.dll
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\Microsoft.WindowsAzure.Diagnostics.dll
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\Microsoft.WindowsAzure.Diagnostics.xml
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\Microsoft.WindowsAzure.StorageClient.dll
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\System.Web.Providers.dll
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\WebRole1.dll
-C:\Users\Administrator\Documents\GitHub\cmpe281\azure\vs2010\HelloWindowsAzure\HelloWindowsAzure\obj\Debug\WebRole1\bin\WebRole1.pdb

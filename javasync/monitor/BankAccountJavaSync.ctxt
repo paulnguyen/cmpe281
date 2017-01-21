@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=BankAccountJavaSync()
-comment1.params=amount
-comment1.target=double\ Withdraw(double)
-comment2.params=amount
-comment2.target=double\ Deposit(double)
-numComments=3

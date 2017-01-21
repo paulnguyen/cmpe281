@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.params=name\ buf
-comment0.target=ConsumerThread(String,\ BoundedBuffer)
-comment1.target=void\ run()
-numComments=2

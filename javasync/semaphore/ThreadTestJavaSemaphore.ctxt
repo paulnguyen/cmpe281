@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.params=n\ s
-comment0.target=ThreadTestJavaSemaphore(java.lang.String,\ java.util.concurrent.Semaphore)
-comment1.params=
-comment1.target=void\ run()
-numComments=2

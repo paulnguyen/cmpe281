@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=void\ runTest1()
-comment1.target=void\ runTest2()
-comment2.params=acct
-comment2.target=void\ runTest3(BankAccount)
-comment3.params=acct
-comment3.target=void\ runTest4(BankAccountJavaSync)
-comment4.target=void\ runTest5()
-numComments=5

@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.params=obj
-comment0.target=void\ addPicker(Picker)
-comment1.params=obj
-comment1.target=void\ removePicker(Picker)
-comment2.params=coin
-comment2.target=void\ inspect(Coin)
-numComments=3

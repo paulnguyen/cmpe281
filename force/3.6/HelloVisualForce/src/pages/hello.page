@@ -1,7 +1,0 @@
-<apex:page controller="helloController">
-  <apex:form >
-    Your name: <apex:inputText value="{!name}" />
-    <apex:outputText value="{!message}" />
-    <apex:commandButton action="{!hello}" value="Say Hi" />
-  </apex:form>
-</apex:page>
