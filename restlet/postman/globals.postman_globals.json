@@ -1,0 +1,105 @@
+{
+  "id": "76b0cf6e-cf09-ed31-1764-630781488ecd",
+  "name": "Postman Globals",
+  "values": [
+    {
+      "key": "host",
+      "value": "localhost",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "port",
+      "value": "9090",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "aws_host",
+      "value": "aws.nguyenresearch.com",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "aws_port",
+      "value": "8181",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "local_host",
+      "value": "localhost",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "local_port",
+      "value": "8080",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "docker_host",
+      "value": "192.168.99.100",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "starbucks_host",
+      "value": "localhost",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "starbucks_port",
+      "value": "9090",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "starbucks_aws_host",
+      "value": "aws.nguyenresearch.com",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "starbucks_aws_port",
+      "value": "90",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "kong_host",
+      "value": "192.168.99.100",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "kong_port",
+      "value": "8001",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "kong_api_port",
+      "value": "8000",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "starbucks_api_key",
+      "value": "70ae00a93dcf471aa8d7e495c62a5dbe",
+      "enabled": true,
+      "type": "text"
+    },
+    {
+      "key": "starbucks_order_id",
+      "value": "20a417b0-c9f6-4047-a42b-5df7e1744553",
+      "enabled": true,
+      "type": "text"
+    }
+  ],
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2017-01-02T04:36:36.141Z",
+  "_postman_exported_using": "Postman/4.9.3"
+}
