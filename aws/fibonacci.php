@@ -7,6 +7,13 @@ if ( $_POST['button'] == "" )
 ?>
 
 	<H2> Fibonacci Load Test</H2>
+
+	<?php
+		echo "Server Name: " . $_SERVER['SERVER_NAME']  ;
+		echo "<br/>" ;
+		echo "Server IP:   " . $_SERVER['SERVER_ADDR'] ;
+	?>
+		
     <form action="fibonacci.php" method="post">
         Calculate a Series of Fibonacci Numbers to Stress CPU. 
         <br/>
