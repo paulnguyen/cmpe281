@@ -28,21 +28,17 @@
 
 ## Using a Load Balancer With an Auto Scaling Group	
 	DOC: http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-load-balancer.html
-  
-  	Create ELB (Classic Load Balancer):
-  	
-  		Name: 		aws-php-elb-classic 
-  		VPC: 		cmpe281 (select public subnet)
-  		SG:			cmpe281-dmz
-  		Port: 		80
-  		Health Check: Default path, Unhealthy Checks: 2, Healthy Checks: 4
-  		Add Instances: Select running instance (from aws-php-autoscale1)
-  		
-  		
-	Edit Auto Scale Group:	aws-php-autoscale
 	
+## Create ELB (Classic Load Balancer)
+
+		Name: 		aws-php-elb-classic 
+		VPC: 		cmpe281 (select public subnet)
+		SG:			cmpe281-dmz
+		Port: 		80
+		Health Check: Default path, Unhealthy Checks: 2, Healthy Checks: 4
+		Add Instances: Select running instance (from aws-php-autoscale1)		
+		Edit Auto Scale Group:	aws-php-autoscale
 		Select ELB: aws-php-elb-classic
-	
 
 
 # Create an HTTPS/SSL Load Balancer Using the Console
@@ -86,10 +82,10 @@
 	Availability Zones:			subnet-38805260 - us-west-1a, subnet-a2b73ac6 - us-west-1b
 	VPC:						vpc-4d2cd129
 	Port Configuration:			80 (HTTP) forwarding to 80 (HTTP) Stickiness: Disabled
- 	Source Security Group:		sg-742cd613, cmpe281-dmz
+	Source Security Group:		sg-742cd613, cmpe281-dmz
 	Idle timeout:				60 seconds
 	Access logs:				Enabled, 60 minutes, S3 location: aws-php-elb-logs
- 	Cross-Zone Load Balancing:	Enabled
+	Cross-Zone Load Balancing:	Enabled
 	Connection Draining:		Enabled, 300 seconds
 	Ping Target:				HTTP:80/index.html
 	Timeout: 					5 seconds
