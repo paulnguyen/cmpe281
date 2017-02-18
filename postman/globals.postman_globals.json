@@ -1,5 +1,5 @@
 {
-  "id": "76b0cf6e-cf09-ed31-1764-630781488ecd",
+  "id": "e81322a1-c6c7-e450-b98d-650b084e9bc9",
   "name": "Postman Globals",
   "values": [
     {
@@ -97,9 +97,15 @@
       "value": "20a417b0-c9f6-4047-a42b-5df7e1744553",
       "enabled": true,
       "type": "text"
+    },
+    {
+      "key": "order_id",
+      "value": "7",
+      "enabled": true,
+      "type": "text"
     }
   ],
   "_postman_variable_scope": "globals",
-  "_postman_exported_at": "2017-01-02T04:36:36.141Z",
-  "_postman_exported_using": "Postman/4.9.3"
+  "_postman_exported_at": "2017-02-18T03:44:00.508Z",
+  "_postman_exported_using": "Postman/4.10.2"
 }

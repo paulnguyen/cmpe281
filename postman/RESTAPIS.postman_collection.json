@@ -8,7 +8,503 @@
 	},
 	"item": [
 		{
-			"name": "Gumball Test",
+			"name": "Grails Books",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Books",
+					"request": {
+						"url": "http://localhost:8080/books/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book (JSON)",
+					"request": {
+						"url": "http://localhost:8080/books/1.json",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book (XML)",
+					"request": {
+						"url": "http://localhost:8080/books/1.xml",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Book",
+					"request": {
+						"url": "http://localhost:8080/books",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ISBN\": \"978-0-385-12168-2\",\n  \"authors\": [\n    {\n      \"name\" : \"Jone Doe\"\n    }\n  ],\n  \"releaseDate\": \"1978-01-01T08:00:00Z\",\n  \"title\": \"Along Came A Spider\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book",
+					"request": {
+						"url": "http://localhost:8080/books/4",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"url": "http://localhost:8080/books/4",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Authors",
+					"request": {
+						"url": "http://localhost:8080/authors/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Author",
+					"request": {
+						"url": "http://localhost:8080/authors/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Guillaume Laforge\",\n\t\"books\" : [\n\t\t{ \t\"title\": \"Groovy in Action\",\n\t\t\t \"releaseDate\": \"2007-12-31T08:00:00Z\",\n\t\t\t  \"ISBN\": \"978-1-932-39484-9\"\n\t\t}\n\t]\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author",
+					"request": {
+						"url": "http://localhost:8080/author/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author (Full)",
+					"request": {
+						"url": "http://localhost:8080/author/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Guillaume Laforge (the 2nd)\",\n\t\"books\" : [\n\t\t{ \t\"title\": \"Groovy in Action\",\n\t\t\t \"releaseDate\": \"2007-12-31T08:00:00Z\",\n\t\t\t  \"ISBN\": \"978-1-932-39484-9\"\n\t\t}\n\t]\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author (Partial)",
+					"request": {
+						"url": "http://localhost:8080/author/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Guillaume Laforge (the 3rd)\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author (Patch)",
+					"request": {
+						"url": "http://localhost:8080/author/2",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Guillaume Laforge (the 4th)\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author (Full ID)",
+					"request": {
+						"url": "http://localhost:8080/author/2",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"books\": [\n    {\n      \"id\": 6\n    }\n  ],\n  \"name\": \"Guillaume Laforge\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"url": "http://localhost:8080/author/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Grails REST",
+			"description": "",
+			"item": [
+				{
+					"name": "Load Sample Data",
+					"request": {
+						"url": "localhost:8080/api/data",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Orange\",\"price\":2.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"url": "localhost:8080/api/product",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Orange\",\"price\":2.0}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By SKU",
+					"request": {
+						"url": "localhost:8080/api/product?sku=AAPL123456789",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Orange\",\"price\":2.0}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Search Vendors",
+					"request": {
+						"url": "localhost:8080/api/vendor/search?q=Oracle&max=10",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Orange\",\"price\":2.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"url": "localhost:8080/api/product",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Oracle Database Cloud (6-Month)\",\n    \"price\": 1500,\n    \"sku\": \"ORCL8889878\",\n     \"vendor\": { \"id\": 2 }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"url": "localhost:8080/api/product/ORCL8889878",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"price\": 2500\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product (Invalid)",
+					"request": {
+						"url": "localhost:8080/api/product/ORCL8889878",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"price\": 20000.00\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"url": "localhost:8080/api/product/ORCL8889878",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gumball REST",
+			"description": "",
+			"item": [
+				{
+					"name": "Gumball Order Status (Not Found)",
+					"request": {
+						"url": "localhost:8080/order/1234",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Machine Status (Inventory)",
+					"request": {
+						"url": "localhost:8080/gumball/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Place New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.id );"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "localhost:8080/order/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Order Status",
+					"request": {
+						"url": "localhost:8080/order/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gumball Restlet",
 			"description": "",
 			"item": [
 				{
