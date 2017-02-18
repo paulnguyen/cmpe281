@@ -1,10 +1,10 @@
-/**
+/*
 
 http://www.groovy-tutorial.org/basic-json/
 
 WRITING JSON
 
-**/
+*/
 
 
 import groovy.json.JsonOutput

@@ -1,10 +1,10 @@
-/**
+/*
 
 http://www.groovy-tutorial.org/basic-json/
 
 READING JSON
 
-**/
+*/
 
 
 class Student {

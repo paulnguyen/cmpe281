@@ -1,10 +1,10 @@
-/**
+/*
 
 http://www.groovy-tutorial.org/basic-json/
 
 BUILDING JSON
 
-**/
+*/
 
 import groovy.json.JsonBuilder
 

@@ -1,4 +1,4 @@
-/**
+/*
 
 https://github.com/jgritman/httpbuilder/wiki/RESTClient
 
@@ -15,7 +15,7 @@ GET:  http://jsonplaceholder.typicode.com/posts/1
   "body": "quia et suscipit\nsuscipit recusandae consequuntur"
 }
 
-**/
+*/
 
 import static groovyx.net.http.ContentType.JSON
 import static groovyx.net.http.ContentType.XML
