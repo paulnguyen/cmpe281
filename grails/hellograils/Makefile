@@ -13,6 +13,9 @@ war: compile
 
 run: 
 	echo Starting Grails at:  http://localhost:8080
+	echo Make Controller at:  http://localhost:8080/make
+	echo Model Controller at:  http://localhost:8080/model
+	echo Vechicle Controller at:  http://localhost:8080/vechicle
 	grails run-app
 
 run-test: 
