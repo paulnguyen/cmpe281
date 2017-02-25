@@ -36,7 +36,7 @@
 	
 		build/libs (folder)
 		
-	Note: To Deploy, SCP War file to EC2 Instance and Copy into Tomcat's  "webapp" folder.  
+	Note: To Deploy, SCP War file to EC2 Instance and Copy into Tomcat's  "webapps" folder.  
 	
 	This should be in the folder:
 	
