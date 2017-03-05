@@ -11,6 +11,9 @@ compile:
 war: compile
 	grails war
 
+dev-war: compile
+	grails -Dgrails.env=development war
+
 run: 
 	echo Starting Grails at:  http://localhost:8080
 	echo Make Controller at:  http://localhost:8080/make
@@ -26,10 +29,19 @@ run-boot:
 	echo Starting Grails at:  http://localhost:8080
 	java -jar build/libs/hellograils-1.0.war
 
+build-image:
+	docker build -t hellograils .
+
 docker:
 	docker build -t hellograils .
-	docker run --name hellograils -td hellograils
+	docker run --name grails-mysql -e MYSQL_ROOT_PASSWORD=welcome -dt mysql
+	docker run --name hellograils --link grails-mysql:mysql -p 8080:8080 -dt hellograils 
+
+grails-shell:
 	docker exec -it hellograils bash 	
+
+mysql-shell:
+	docker exec -it grails-mysql bash 	
 
 docker-build: 
 	docker build -t hellograils .
@@ -39,6 +51,8 @@ docker-clean:
 	docker stop hellograils
 	docker rm hellograils
 	docker rmi hellograils
+	docker stop grails-mysql
+	docker rm grails-mysql
 
 docker-run:
 	docker run --name hellograils -td hellograils

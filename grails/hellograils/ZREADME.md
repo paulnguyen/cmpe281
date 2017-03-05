@@ -38,6 +38,40 @@
 	grails test-app -unit
 	grails test-app -integration
 
+## Grails Docker (Tomcat 7)
+
+	https://hub.docker.com/_/tomcat/
+	
+	FROM tomcat:7
+	EXPOSE 8080
+	ENV CATALINA_OPTS -Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms512m -Xmx1300m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC
+	ADD ./build/libs/hellograils-1.0.war /usr/local/tomcat/webapps/hellograils.war
+	ADD ./tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
+
+## Grails Docker (Grails 3)
+
+	https://hub.docker.com/r/mozart/grails/
+
+	FROM mozart/grails:3
+	COPY . /app
+	RUN grails dependency-report
+	ENTRYPOINT ["grails"]
+	CMD ["run"]
+
+## Grails Docker (Boot)
+
+	https://hub.docker.com/_/openjdk/
+
+	FROM openjdk:8
+	EXPOSE 8080
+	ADD ./build/libs/hellograils-1.0.war /srv/hellograils.war
+	CMD java -jar /srv/hellograils.war
+
+## Grails Docker (Start-Up)
+
+	docker build -t hellograils .
+	docker run --name grails-mysql -e MYSQL_ROOT_PASSWORD=welcome -dt mysql
+	docker run --name hellograils --link grails-mysql:mysql -p 8080:8080 -dt hellograils
 
 ## Grails H2 DB Console
 
