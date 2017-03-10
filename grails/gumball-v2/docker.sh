@@ -3,8 +3,8 @@
 # Container
 
 ACCOUNT=""
-CONTAINER=""gumball"
-VERSION="v2.0"
+CONTAINER="grails-gumball"
+VERSION="grails-v2.0"
 
 # Shell Variables
 

@@ -110,10 +110,23 @@ environments:
             url: jdbc:mysql://127.0.0.1:3306/cmpe281
     production:
         dataSource:
-            dbCreate: update
-            driverClassName: com.mysql.jdbc.Driver   
-            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-            username: root
-            password: welcome
-            url: jdbc:mysql://mysql:3306/mysql
- 
+            dbCreate: none
+            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            properties:
+                jmxEnabled: true
+                initialSize: 5
+                maxActive: 50
+                minIdle: 5
+                maxIdle: 25
+                maxWait: 10000
+                maxAge: 600000
+                timeBetweenEvictionRunsMillis: 5000
+                minEvictableIdleTimeMillis: 60000
+                validationQuery: SELECT 1
+                validationQueryTimeout: 3
+                validationInterval: 15000
+                testOnBorrow: true
+                testWhileIdle: true
+                testOnReturn: false
+                jdbcInterceptors: ConnectionState
+                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED

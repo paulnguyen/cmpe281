@@ -14,6 +14,9 @@ war: compile
 dev-war: compile
 	grails -Dgrails.env=development war
 
+test-war: compile
+	grails -Dgrails.env=test war
+
 run: 
 	echo Starting Grails at:  http://localhost:8080
 	echo Make Controller at:  http://localhost:8080/make

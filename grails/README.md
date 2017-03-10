@@ -44,6 +44,7 @@
 	
 	grails create-app hellorest -profile rest-api
 	grails create-app hellobooks -profile rest-api
+	grails create-app hellogorm -profile rest-api
 
 
 	 
