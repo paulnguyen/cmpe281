@@ -1,12 +1,12 @@
 
-all: clean compile app
+all: clean 
 
 clean:
 	rm -rf build/*
 	rm -f dist/app.jar
 	find . -name "*.class" -exec rm -rf {} \;
 
-app: compile
+jar: compile
 	cd build ; jar -cvfe ../dist/app.jar GumballServer .
 
 test: compile app

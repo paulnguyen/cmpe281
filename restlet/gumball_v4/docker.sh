@@ -4,7 +4,7 @@
 
 ACCOUNT=""
 CONTAINER="gumball"
-VERSION="v4.0"
+VERSION="restlet-v4.0"
 
 # Shell Variables
 
