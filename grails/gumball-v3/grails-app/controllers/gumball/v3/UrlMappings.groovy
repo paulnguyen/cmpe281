@@ -16,6 +16,7 @@ class UrlMappings {
         }
 
         get "/gumball"(controller: 'GumballRest', action:'machineStatus')
+        put "/gumball"(controller: 'GumballRest', action:'updateInventory')
 
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')

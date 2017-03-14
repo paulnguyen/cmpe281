@@ -410,9 +410,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Gumball Order Status (Not Found)",
+					"name": "Gumball Machine Status (Inventory Status)",
 					"request": {
-						"url": "localhost:8080/order/1234",
+						"url": "localhost:8080/gumball/",
 						"method": "GET",
 						"header": [
 							{
@@ -430,10 +430,10 @@
 					"response": []
 				},
 				{
-					"name": "Gumball Machine Status (Inventory)",
+					"name": "Gumball Machine Status (Inventory Update)",
 					"request": {
 						"url": "localhost:8080/gumball/",
-						"method": "GET",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -443,7 +443,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"countGumballs\": 990\n}"
 						},
 						"description": ""
 					},
@@ -484,7 +484,99 @@
 				{
 					"name": "Gumball Order Status",
 					"request": {
-						"url": "localhost:8080/order/1",
+						"url": "localhost:8080/order/9",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Machine Status (Inventory Status) | AWS RDS",
+					"request": {
+						"url": "api.paulnguyen.org:8181/gumball/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Machine Status (Inventory Update) AWS RDS",
+					"request": {
+						"url": "api.paulnguyen.org:8181/gumball/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"countGumballs\": 990\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Place New Order | AWS RDS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.id );"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "api.paulnguyen.org:8181/order/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Gumball Order Status | AWS RDS",
+					"request": {
+						"url": "api.paulnguyen.org:8181/order/1",
 						"method": "GET",
 						"header": [
 							{
@@ -2550,7 +2642,7 @@
 				{
 					"name": "Post Starbucks API |Docker Cloud (Host IP)",
 					"request": {
-						"url": "http://54.201.122.231:90/v1/starbucks/order",
+						"url": "http://54.190.57.200:90/v1/starbucks/order",
 						"method": "POST",
 						"header": [],
 						"body": {

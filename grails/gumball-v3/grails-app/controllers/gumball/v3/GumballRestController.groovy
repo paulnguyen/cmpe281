@@ -31,6 +31,32 @@ class GumballRestController extends RestfulController {
 
 	}
 
+    // HTTP PUT - Gumball Machine Inventory Update
+	def updateInventory() {
+
+		/* parse request using json slurper */
+		def json = request.JSON
+		println( json )
+		println( json.countGumballs )
+
+		def gumball = Gumball.findBySerialNumber( machineSerialNum )
+		if ( gumball )
+		{
+			gumball.countGumballs = json.countGumballs ;
+			gumball.save(flush:true) ;
+			render gumball as JSON ;
+		}
+		else
+		{
+			render(contentType: "application/json") {
+				Error( message: "Gumball Machine ${machineSerialNum} Not Configured." ) 
+			}
+
+		}
+
+	}
+
+
 	// HTTP GET -- Get Order Status
 	def orderStatus() {
 		

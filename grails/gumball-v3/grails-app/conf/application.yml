@@ -36,22 +36,28 @@ grails:
                         - Presto
                         - Trident
         types:
-            json:
-              - application/json
-              - text/json   
-            hal:
-              - application/hal+json
-              - application/hal+xml  
-            xml:
-              - text/xml
-              - application/xml                                 
+            all: '*/*'
             atom: application/atom+xml
             css: text/css
             csv: text/csv
+            form: application/x-www-form-urlencoded
+            html:
+              - text/html
+              - application/xhtml+xml
             js: text/javascript
+            json:
+              - application/json
+              - text/json
+            multipartForm: multipart/form-data
+            pdf: application/pdf
             rss: application/rss+xml
             text: text/plain
-            all: '*/*'            
+            hal:
+              - application/hal+json
+              - application/hal+xml
+            xml:
+              - text/xml
+              - application/xml
     urlmapping:
         cache:
             maxsize: 1000
@@ -59,6 +65,20 @@ grails:
         defaultScope: singleton
     converters:
         encoding: UTF-8
+    views:
+        default:
+            codec: html
+        gsp:
+            encoding: UTF-8
+            htmlcodec: xml
+            codecs:
+                expression: html
+                scriptlets: html
+                taglib: none
+                staticparts: none
+endpoints:
+    jmx:
+        unique-names: true
 
 ---
 hibernate:
@@ -90,23 +110,10 @@ environments:
             url: jdbc:mysql://127.0.0.1:3306/cmpe281
     production:
         dataSource:
-            dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-            properties:
-                jmxEnabled: true
-                initialSize: 5
-                maxActive: 50
-                minIdle: 5
-                maxIdle: 25
-                maxWait: 10000
-                maxAge: 600000
-                timeBetweenEvictionRunsMillis: 5000
-                minEvictableIdleTimeMillis: 60000
-                validationQuery: SELECT 1
-                validationQueryTimeout: 3
-                validationInterval: 15000
-                testOnBorrow: true
-                testWhileIdle: true
-                testOnReturn: false
-                jdbcInterceptors: ConnectionState
-                defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+            dbCreate: update
+            driverClassName: com.mysql.jdbc.Driver   
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            username: admin
+            password: cmpe281#2017
+            url: jdbc:mysql://cmpe281.cwtzpmqd6vss.us-west-1.rds.amazonaws.com:3306/CMPE281
+ 
