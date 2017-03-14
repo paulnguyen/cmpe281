@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "cmpe281": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "cmpe281",
+    "password": "cmpe281",
+    "name": "cmpe281",
+    "user": "cmpe281",
+    "connector": "mysql"
+  }
+}
