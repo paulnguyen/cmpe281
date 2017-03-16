@@ -15,7 +15,8 @@ Serial# 1234998871109
 
 **/
 
-var endpoint = "http://52.9.120.14:8080/GrailsRestServiceVer2-2.0/order/" ;
+var machine = "http://api.paulnguyen.org:8181/gumball/";
+var endpoint = "http://api.paulnguyen.org:8181/order/";
 
 // added in v3: handlebars
 // https://www.npmjs.org/package/express3-handlebars
@@ -85,7 +86,7 @@ var page = function( req, res, state, ts, status ) {
 
     var client = new Client();
             var count = "";
-            client.get( endpoint, 
+            client.get( machine, 
                 function(data, response_raw){
                     console.log(data);
                     count = data.countGumballs

@@ -1,1 +1,0 @@
-../../../LoopBack/SLRemoting/SLAdapter.h

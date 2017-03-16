@@ -99,6 +99,27 @@ app.listen(8080);
 
 /**
 
+-- Test REST API
+
+curl -X POST https://cloud-paulnguyen.c9users.io/gumball
+curl -X GET https://cloud-paulnguyen.c9users.io/gumball/<ordnum>
+
+-- Gumball MongoDB Collection (Create Document)
+
+db.gumball.insert(
+{ 
+  id: 1,
+  countGumballs: 8,
+  modelNumber: 'M102988',
+  serialNumber: '1234998871109' 
+}
+) ;
+
+-- Gumball MongoDB Collection - Find Gumball Document
+
+db.gumball.find( { id: 1 } ) ;
+
+
 ** Gumball Machine Inventory **
 
 db.gumball.find()

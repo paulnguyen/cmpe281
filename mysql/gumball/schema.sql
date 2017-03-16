@@ -9,6 +9,7 @@ CREATE TABLE gumball (
   UNIQUE KEY serial_number (serial_number)
 ) ;
 
-insert into gumball ( id, version, count_gumballs, model_number, serial_number ) values ( 1, 0, 1000, 'M102988', '1234998871109' ) ;
+insert into gumball ( id, version, count_gumballs, model_number, serial_number ) 
+values ( 1, 0, 1000, 'M102988', '1234998871109' ) ;
 
 select * from gumball ;

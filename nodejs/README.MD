@@ -5,7 +5,15 @@
      `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
     ----------------------------------------------------------------- 
 
+## Getting Started with Cloud9
 
+	https://docs.c9.io/docs/
+	
+## Cloud9 Web Frameworks
+
+    https://docs.c9.io/docs/running-and-debugging-code
+    https://docs.c9.io/docs/writing-a-nodejs-app
+    https://docs.c9.io/docs/installing-npm-modules
 
 ## Support & Documentation
 
@@ -27,17 +35,7 @@
 	https://docs.npmjs.com/getting-started/installing-npm-packages-locally
 	npm install async
 	npm install express
-	npm install (used package.json)
-
-## Cloud9 Web Frameworks
-
-    https://docs.c9.io/docs/running-and-debugging-code
-    https://docs.c9.io/docs/writing-a-nodejs-app
-    https://docs.c9.io/docs/installing-npm-modules
-
-## Getting Started with Cloud9
-
-	https://docs.c9.io/docs/
+	npm install (using package.json)
 
 ## A Simple Node.js HTTP Server
 

@@ -6,7 +6,7 @@ Mighty Gumball, Inc.
 Version 3.0
 
 - Migrated to Handlebars Page Templates
-- REST Client Calling Grails GORM Scaffolded REST Controller
+- REST Client Calling Grails REST API 
 - Client State Validation using HMAC Key-Based Hash 
 
 NodeJS-Enabled Standing Gumball
@@ -16,7 +16,7 @@ Serial# 1234998871109
 **/
 
 
-var endpoint = "http://52.9.120.14:8080/GrailsGumballMachineVer2-2.0/gumballs/1";
+var endpoint = "http://api.paulnguyen.org:8181/gumball/";
 
 
 // added in v3: handlebars
