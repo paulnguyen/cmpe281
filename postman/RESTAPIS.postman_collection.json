@@ -120,7 +120,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\" : \"Guillaume Laforge\",\n\t\"books\" : [\n\t\t{ \t\"title\": \"Groovy in Action\",\n\t\t\t \"releaseDate\": \"2007-12-31T08:00:00Z\",\n\t\t\t  \"ISBN\": \"978-1-932-39484-9\"\n\t\t}\n\t]\n}\n"
+							"raw": "{\n  \"name\" : \"Guillaume Laforge\",\n  \"books\" : [\n    {   \"title\": \"Groovy in Action\",\n       \"releaseDate\": \"2007-12-31T08:00:00Z\",\n        \"ISBN\": \"978-1-932-39484-9\"\n    }\n  ]\n}\n"
 						},
 						"description": ""
 					},
@@ -151,7 +151,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\" : \"Guillaume Laforge (the 2nd)\",\n\t\"books\" : [\n\t\t{ \t\"title\": \"Groovy in Action\",\n\t\t\t \"releaseDate\": \"2007-12-31T08:00:00Z\",\n\t\t\t  \"ISBN\": \"978-1-932-39484-9\"\n\t\t}\n\t]\n}\n"
+							"raw": "{\n  \"name\" : \"Guillaume Laforge (the 2nd)\",\n  \"books\" : [\n    {   \"title\": \"Groovy in Action\",\n       \"releaseDate\": \"2007-12-31T08:00:00Z\",\n        \"ISBN\": \"978-1-932-39484-9\"\n    }\n  ]\n}\n"
 						},
 						"description": ""
 					},
@@ -257,7 +257,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"Orange\",\"price\":2.0\n}"
+							"raw": "{\n  \"name\":\"Orange\",\"price\":2.0\n}"
 						},
 						"description": ""
 					},
@@ -317,7 +317,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"Orange\",\"price\":2.0\n}"
+							"raw": "{\n  \"name\":\"Orange\",\"price\":2.0\n}"
 						},
 						"description": ""
 					},
@@ -357,7 +357,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"price\": 2500\n}"
+							"raw": "{\n  \"price\": 2500\n}"
 						},
 						"description": ""
 					},
@@ -377,7 +377,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"price\": 20000.00\n}"
+							"raw": "{\n  \"price\": 20000.00\n}"
 						},
 						"description": ""
 					},
@@ -522,7 +522,7 @@
 					"response": []
 				},
 				{
-					"name": "Gumball Machine Status (Inventory Update) AWS RDS",
+					"name": "Gumball Machine Status (Inventory Update) | AWS RDS",
 					"request": {
 						"url": "api.paulnguyen.org:8181/gumball/",
 						"method": "PUT",
@@ -1148,7 +1148,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"option\" : { \"id\" : 1, \"value\" : \"New England Patriots\" }\n}"
+							"raw": "{\n  \"option\" : { \"id\" : 1, \"value\" : \"New England Patriots\" }\n}"
 						},
 						"description": ""
 					},
@@ -1168,7 +1168,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"option\" : { \"id\" : 1, \"value\" : \"New England Patriots\" }\n}"
+							"raw": "{\n  \"option\" : { \"id\" : 1, \"value\" : \"New England Patriots\" }\n}"
 						},
 						"description": ""
 					},
@@ -2071,6 +2071,185 @@
 						"body": {
 							"mode": "raw",
 							"raw": "Account #1"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Ping Starbucks Service (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Place Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/v3/starbucks/order",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/v3/starbucks/orders",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Pay For Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}/pay",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
 						},
 						"description": ""
 					},

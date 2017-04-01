@@ -21,6 +21,7 @@ public class StarbucksServer extends Application {
         router.attach( "/v3/starbucks/order/{order_id}/pay", PaymentResource.class ) ;        
         router.attach( "/v3/starbucks/order", OrderResource.class ) ;        
         router.attach( "/v3/starbucks/orders", OrdersResource.class ) ;        
+        router.attach( "/", PingResource.class ) ;        
         return router;
     }
 
