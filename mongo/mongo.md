@@ -1,13 +1,31 @@
+# MONGODB ON MAC OS X
 
-## MONGODB ON CLOUD9
+	https://docs.mongodb.com/
+	https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+	
+### Shell Startup Alias
+
+	alias mongo_start='mongod --dbpath /Users/pnguyen/Applications/MongoDB/data'
+	# Starts MongoDB using your default DB Data Directory
+
+### Increase Limits
+
+	launchctl limit maxfiles
+	> maxfiles    256    unlimited 
+	
+	sudo launchctl limit maxfiles 1024 unlimited
+	launchctl limit maxfiles
+	> maxfiles    1024   10240         
+
+# MONGODB ON CLOUD9
 
     https://docs.c9.io/v1.0/docs/setup-a-database
     
-## First, install MongoDB by running the following command from the Terminal:
+### First, install MongoDB by running the following command from the Terminal:
 
     sudo apt-get install -y mongodb-org
 
-## Then, from the terminal, run the following command to start Mongo:
+### Then, from the terminal, run the following command to start Mongo:
 
     mongod --bind_ip=$IP --nojournal
 
@@ -15,19 +33,17 @@
     ...
     waiting for connections on port 27017
 
-## Now you can open the mongo shell in a new Terminal, running following command:
+### Now you can open the mongo shell in a new Terminal, running following command:
 
     mongo
 
-## To stop the MongoDB instance press Control + C in the Terminal where mongod 
-## is running. Now have a look at the currently used database:
+### To stop the MongoDB instance press Control + C in the Terminal where mongod is running. Now have a look at the currently used database:
 
     $ mongo
     mongo> db
     test
 
-
-## Mongo DB Shell
+### Mongo DB Shell
 
     https://docs.mongodb.com/manual/reference/mongo-shell/
     
