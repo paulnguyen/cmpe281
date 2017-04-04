@@ -1,6 +1,12 @@
 
-// Create "book" Database
-mongo book
+// Hello Mongo
+mongo                       // connect to default db
+db.test.find()              // find docs in test collection
+db.test.save( { a : 1 } )   // save simple document
+db.test.find()              // find docs again
+
+// Create "hello" Database
+mongo hello
 
 // Display current Database
 db
@@ -9,7 +15,8 @@ db
 show dbs
 
 // Switch to Database
-use book
+use hello
+
 
 // Create a "towns" Collection
 db.towns.insert(
@@ -38,6 +45,11 @@ db.towns.find()
 // Display Help
 db.help()
 db.towns.help()
+
+// Object Reflection | typeof Operator
+typeof db
+typeof db.towns
+typeof db.towns.insert
 
 // Call a Method without params to see the source code
 db.towns.insert
