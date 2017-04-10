@@ -60,6 +60,9 @@ CREATE TABLE IF NOT EXISTS `cmpe281`.`TENANT_DATA` (
 ENGINE = InnoDB;
 
 
+-- LP_TASK Record Example
+insert into LP_TASK values ( 1001, 'Design Data Models', 'Paul', '2014-09-01', '2014-10-01', 'FALSE' ) ;
+
 -- TENANT TABLE
 insert into TENANT_TABLE( TENANT_ID, TABLE_NAME, TABLE_DESC )
 values ( 'TA', 'LP_TASK', 'Task Table for LiquidPlanner' ) ;
