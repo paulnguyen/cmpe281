@@ -106,7 +106,7 @@ db.bios.insert(
             "by" : " British Computer Society"
         },
         {
-            "award" : "W. W. McDowell Award",
+            "award" : "W.W. McDowell Award",
             "year" : 1976,
             "by" : "IEEE Computer Society"
         },
