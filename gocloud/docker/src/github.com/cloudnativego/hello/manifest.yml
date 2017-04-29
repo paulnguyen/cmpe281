@@ -1,0 +1,5 @@
+---
+applications:
+- name: hello
+  memory: 8M
+  host: cng-hello
