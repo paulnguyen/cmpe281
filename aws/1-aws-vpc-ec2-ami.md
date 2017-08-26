@@ -2,8 +2,13 @@
 # Setup PHP on AWS EC2 Instance
 
     http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
+
+## Create Key Pair: ec2php.pem
+
+    Download                ec2php.pem
+    openssl x509 -text -in ec2php.pem
     
-## Setup Key Pair for EC2 and Download PEM file
+## Setup Key Pair for EC2 and Download PEM file (key pair name = ec2php)
 
     $ ls -l ec2php.pem 
     -rw-r--r--@ 1 pnguyen  staff  1692 Feb 21 18:01 ec2php.pem
@@ -12,6 +17,7 @@
 
     $ ls -l ec2php.pem 
     -rw-------@ 1 pnguyen  staff  1692 Feb 21 18:01 ec2php.pem
+
 
 ## PEM Usage on Mac OS X
     
@@ -51,11 +57,13 @@
     Netmask =               	255.255.255.0
     Wildcard Mask =         	0.0.0.255
 
+    ** Important *** 
 
-## Create Key Pair: pnguyen-us-west-1
+    In "Specify the details of your NAT gateway" Section,
+    Select "Use NAT Instance Instead".  
 
-    Download                pnguyen-us-west-1.pem
-    openssl x509 -text -in pnguyen-us-west-1.pem
+    NAT Instance Type:          t2.micro
+    NAT Instance Keypair:       ec2php
 
     
 ## Launch EC2 Instance:
@@ -67,16 +75,18 @@
     Auto Assign Public IP
     Security Group: cmpe281-dmz (create new)
         Open Ports: 22, 80, 443
-    Select Key Pair: pnguyen-us-west-1
+    Select Key Pair: ec2php.pem
     AWS Instance Name:  aws-php
 
 ## Connect to EC2 Instance:
-
-    chmod 400 pnguyen-us-west-1.pem
     
     Connect to your instance using its Public DNS (For Example):
     
-    ssh -i "pnguyen-us-west-1.pem" ec2-user@ec2-54-67-49-23.us-west-1.compute.amazonaws.com
+    ssh -i "ec2php.pem" ec2-user@ec2-54-67-49-23.us-west-1.compute.amazonaws.com
+
+    Or, just (using Shell Script and Public IP):
+
+    ssh.sh 52.52.243.123
 
     
 ## PHP Setup on EC2 Linux AMI:
