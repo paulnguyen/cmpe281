@@ -19,9 +19,9 @@ public class Message extends Actor
     public void setText( String msg )
     {
         gi.clear();
-        gi.setColor( java.awt.Color.YELLOW ) ;
+        gi.setColor( greenfoot.Color.YELLOW ) ;
         gi.fill() ;
-        gi.setColor( java.awt.Color.BLACK ) ;
+        gi.setColor( greenfoot.Color.BLACK ) ;
         gi.drawString( msg, 0, 25 );  
     }
 

@@ -9,7 +9,7 @@ app: compile
 	cd build ; jar -cvfe ../dist/app.jar HelloWorldServer .
 
 test: compile app
-	java -cp dist/restlet.jar:dist/restlet-json.jar:dist/app.jar helloworld.HelloWorldServer
+	java -cp dist/restlet.jar:dist/restlet-json.jar:dist/json.jar:dist/app.jar helloworld.HelloWorldServer
 
 compile: 
 	javac -cp \

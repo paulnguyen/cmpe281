@@ -1,6 +1,6 @@
 
 // Hello World JavaScript
-alert( "Hello JavaScript" ) ;
+// alert( "Hello JavaScript" ) ;
 console.log( "Hello JavaScript" ) ;
 
 // JS Arrays
