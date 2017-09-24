@@ -4,7 +4,7 @@
 
 ACCOUNT=""
 CONTAINER="gumball"
-VERSION="v1.0 (Go)"
+VERSION="Go-v1.0"
 
 # Shell Variables
 
