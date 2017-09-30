@@ -48,7 +48,7 @@ func handle(r *http.Request) {
     <-sem       // Done; enable next request to run.
 }
 
-func process( *http.Request ) {
+func process(r *http.Request ) {
 	 time.Sleep( 10000000000 * time.Nanosecond ) 
 }
 
@@ -79,10 +79,10 @@ func Serve2(queue chan *http.Request) {
 // Here's one way to do that, passing the value of req as an argument to the
 // closure in the goroutine:
 
-func Serve3(queue chan *Request) {
+func Serve3(queue chan *http.Request) {
     for req := range queue {
         sem <- 1
-        go func(req *Request) {
+        go func(req *http.Request) {
             process(req)
             <-sem
         }(req)
@@ -93,7 +93,7 @@ func Serve3(queue chan *Request) {
 // closure is declared and run. Another solution is just to create a new
 // variable with the same name, as in this example:
 
-func Serve4(queue chan *Request) {
+func Serve4(queue chan *http.Request) {
     for req := range queue {
         req := req // Create new instance of req for the goroutine.
         sem <- 1
