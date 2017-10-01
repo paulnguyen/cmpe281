@@ -51,9 +51,14 @@ docker-stop:
 docker-shell:
 	docker exec -it starbucks bash 
 
+kong-shell:
+	docker exec -it kong bash 
+
 run-app:
 	docker run -d --name starbucks -td starbucks
 	docker run -d --name kong-database -p 9042:9042 cassandra:2.2
+
+run-kong:
 	docker run -d --name kong \
 			  --link starbucks:starbucks \
               --link kong-database:kong-database \
@@ -65,8 +70,7 @@ run-app:
               -p 8001:8001 \
               -p 7946:7946 \
               -p 7946:7946/udp \
-              kong
-
+              kong:0.9.9
 
 
 	
