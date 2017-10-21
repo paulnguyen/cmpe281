@@ -4,7 +4,7 @@
 
 ACCOUNT=""
 CONTAINER="gumball"
-VERSION="gumball-v3.0"
+VERSION="goapi-v1.0"
 
 # Shell Variables
 
@@ -36,7 +36,7 @@ docker_auth () {
    echo "" ;
    #docker login -u $user -p $pass
    #TMP=`cat ~/.docker/config.json | grep  \"auth\": | wc -l | sed -e 's/^[ \t]*//'`
-   TMP=`docker login -u $user -p $pass 2>/dev/null | grep Succeeded | wc -l | sed -e 's/^[ \t]*//'`
+   TMP=`docker login -u $user -p $pass | grep Succeeded | wc -l | sed -e 's/^[ \t]*//'`
    #echo ".${TMP}."
    if [ "$TMP" == "1" ] ; 
    then 

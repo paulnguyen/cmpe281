@@ -4,5 +4,5 @@ RUN mkdir /app
 ADD . /app/ 
 WORKDIR /app 
 ENV GOPATH /app
-RUN cd /app ; go install goapi
-CMD ["/app/bin/goapi"]
+RUN cd /app ; go install gumball
+CMD ["/app/bin/gumball"]
