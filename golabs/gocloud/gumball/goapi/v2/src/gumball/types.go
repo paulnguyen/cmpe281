@@ -23,4 +23,4 @@ type order struct {
 
 var mutex = &sync.Mutex{}
 var orders map[string]order
-var order_queue = make(chan string)
+var order_queue = make(chan string, 10)

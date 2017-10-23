@@ -26,6 +26,7 @@ func main() {
     // concurrent receive.
     messages <- "buffered"
     messages <- "channel"
+    //messages <- "extra"
 
     // Later we can receive these two values as usual.
     fmt.Println(<-messages)
