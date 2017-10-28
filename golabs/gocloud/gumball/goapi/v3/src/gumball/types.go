@@ -1,7 +1,5 @@
 package main
 
-import "sync"
-
 type gumballMachine struct {
 	Id            int
 	CountGumballs int
@@ -21,6 +19,6 @@ type order struct {
 	OrderStatus string
 }
 
-var mutex = &sync.Mutex{}
 var orders map[string]order
-var order_queue = make(chan string)
+var order_queue = make(chan string, 10)
+var order_update = make(chan int, 1000)
