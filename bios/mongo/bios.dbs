@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MongoDb" id="Project_586a0a8" template="Default" database="MongoDb" >
+	<schema name="bios" catalogname="bios" >
+		<table name="bios" >
+			<column name="_id" type="oid" length="800" decimal="0" jt="-8" mandatory="y" autoincrement="y" />
+			<column name="name" type="map" length="800" decimal="0" jt="4999544" mandatory="y" >
+				<column name="first" type="string" length="800" decimal="0" jt="12" mandatory="y" />
+				<column name="last" type="string" length="800" decimal="0" jt="12" mandatory="y" />
+				<column name="aka" type="string" length="800" decimal="0" jt="12" />
+			</column>
+			<column name="birth" type="date" length="800" decimal="0" jt="91" />
+			<column name="death" type="date" length="800" decimal="0" jt="91" />
+			<column name="contribs" type="array" length="800" decimal="0" jt="2003" />
+			<column name="awards" type="list" length="800" decimal="0" jt="4999545" >
+				<column name="award" type="string" length="800" decimal="0" jt="12" />
+				<column name="year" type="double" length="800" decimal="0" jt="8" />
+				<column name="by" type="string" length="800" decimal="0" jt="12" />
+			</column>
+			<column name="title" type="string" length="800" decimal="0" jt="12" />
+			<index name="_id_" unique="PRIMARY_KEY" >
+				<column name="_id" />
+			</index>
+		</table>
+	</schema>
+	<connector name="MongoDb" database="MongoDb" driver_class="com.dbschema.MongoJdbcDriver" driver_jar="mongojdbc1.2.jar" driver_desc="No Authentication &lt;/span&gt;&lt;br&gt;&lt;b&gt;Connect using MongoDb URI using the Advanced tab/enforce custom URI. Details in Help.&lt;br&gt;Connectivity logs are available in Help / Output Log.&lt;/b&gt;" host="localhost" port="27017" instance="bios" />
+	<layout name="Default Layout" id="Layout_3ea2c3e" show_relation="columns" >
+		<entity schema="bios" name="bios" column="name" color="bfd4f5" x="180" y="45" />
+		<entity schema="bios" name="bios" column="awards" color="bfd4f5" x="180" y="165" />
+		<entity schema="bios" name="bios" color="bfd4f5" x="45" y="165" />
+		<browser id="Browse_3983c54" name="bios" confirm_updates="y" >
+			<browse_table schema="bios" entity="bios" x="20" y="20" width="557" height="269" />
+		</browser>
+	</layout>
+</project>
