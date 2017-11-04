@@ -33,8 +33,18 @@ docker-build:
 	docker build -t gumball .
 	docker images
 
+rabbitmq-run:
+	docker run --name rabbitmq \
+			   -p 8080:15672 -p 4369:4369 -p 5672:5672 \
+			   -d rabbitmq:3-management
+mongodb-run:
+	docker run --name mongodb -p 27017:27017 -d mongo
+
 docker-run:
-	docker run --name gumball -td -p 3000:3000 gumball
+	docker run \
+	  		--link mongodb:mongodb \
+            --link rabbitmq:rabbitmq \
+			--name gumball -p 3000:3000 -td gumball
 	docker ps
 
 docker-network:
@@ -47,6 +57,10 @@ docker-shell:
 	docker exec -it gumball bash 
 
 docker-clean:
+	docker stop mongodb
+	docker stop rabbitmq
+	docker rm mongodb
+	docker rm rabbitmq
 	docker stop gumball
 	docker rm gumball
 	docker rmi gumball

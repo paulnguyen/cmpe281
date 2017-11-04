@@ -1,3 +1,8 @@
+/*
+	Gumball API in Go (Version 2)
+	Process Order with Go Channels and Mutex
+*/
+
 package main
 
 import "sync"

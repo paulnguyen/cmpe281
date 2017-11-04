@@ -1,3 +1,8 @@
+/*
+	Gumball API in Go (Version 1)
+	Basic Version with no Backend Services
+*/
+	
 package main
 
 type gumballMachine struct {

@@ -1,3 +1,8 @@
+/*
+	Gumball API in Go (Version 2)
+	Uses MongoDB and RabbitMQ 
+*/
+
 package main
 
 import (
@@ -290,6 +295,20 @@ func queue_receive() []string {
 
 
 /*
+
+	-- RabbitMQ Setup
+
+	http://localhost:8080
+
+	-- RabbitMQ Create Queue:  
+
+		Queue Name: gumball
+		Durable:	no
+
+	-- Gumball MongoDB Create Database
+
+		Database Name: cmpe281
+		Collection Name: gumball
 
   	-- Gumball MongoDB Collection (Create Document) --
 

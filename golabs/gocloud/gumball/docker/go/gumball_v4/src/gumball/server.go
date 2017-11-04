@@ -1,3 +1,8 @@
+/*
+	Gumball API in Go (Version 4)
+	Uses MySQL
+*/
+
 package main
 
 import (
@@ -234,20 +239,30 @@ func gumballProcessOrdersHandler(formatter *render.Render) http.HandlerFunc {
 
 /*
 
-	CREATE TABLE gumball (
-	  id bigint(20) NOT NULL AUTO_INCREMENT,
-	  version bigint(20) NOT NULL,
-	  count_gumballs int(11) NOT NULL,
-	  model_number varchar(255) NOT NULL,
-	  serial_number varchar(255) NOT NULL,
-	  PRIMARY KEY (id),
-	  UNIQUE KEY serial_number (serial_number)
-	) ;
+	-- Create Database Schema (DB User: root, DB Pass: cmpe281)
 
-	insert into gumball ( id, version, count_gumballs, model_number, serial_number ) 
-	values ( 1, 0, 1000, 'M102988', '1234998871109' ) ;
+		Database Schema: cmpe281
 
-	select * from gumball ;
+	-- Create Database Table 
+
+		CREATE TABLE gumball (
+		  id bigint(20) NOT NULL AUTO_INCREMENT,
+		  version bigint(20) NOT NULL,
+		  count_gumballs int(11) NOT NULL,
+		  model_number varchar(255) NOT NULL,
+		  serial_number varchar(255) NOT NULL,
+		  PRIMARY KEY (id),
+		  UNIQUE KEY serial_number (serial_number)
+		) ;
+
+	-- Load Data
+
+		insert into gumball ( id, version, count_gumballs, model_number, serial_number ) 
+		values ( 1, 0, 1000, 'M102988', '1234998871109' ) ;
+
+	-- Verify Data 
+
+		select * from gumball ;
 
 
 */

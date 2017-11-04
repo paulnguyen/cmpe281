@@ -1,3 +1,9 @@
+/*
+	Gumball API in Go (Version 3)
+	Uses MongoDB and RabbitMQ 
+	(For use with Kong API Key)
+*/
+
 package main
 
 import (

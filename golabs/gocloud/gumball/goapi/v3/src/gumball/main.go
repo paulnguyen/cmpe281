@@ -1,3 +1,9 @@
+/*
+	Gumball API in Go (Version 3)
+	Process Order with Go Channels
+	Removed Use of Mutex
+*/
+
 package main
 
 import (

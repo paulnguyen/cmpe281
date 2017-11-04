@@ -1,3 +1,8 @@
+/*
+	Gumball API in Go (Version 4)
+	Uses MySQL
+*/
+
 package main
 
 import (
