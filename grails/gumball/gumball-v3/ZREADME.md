@@ -18,18 +18,7 @@
 		| JVM Version: 1.8.0_112
 		
 	    
-## Grails Commands
-	 
-	grails create-domain-class Gumball
-	grails create-domain-class GumballOrder
-	
-	grails create-controller GumballMachine
-
-	grails create-restful-controller GumballRest
-	grails create-unit-test GumballRestController
-
-	grails run-app
-	grails run-app --port=8090
+frfwffrt=8090
 	grails test run-app
 	
 	grails test-app
