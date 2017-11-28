@@ -4,8 +4,8 @@
 run-restart:
 	docker run -d --restart=always ubuntu echo done
 
-## Run with Restart on Failure (non-zero return) Max 5 Times
-run-restart-5:
+## Run with Restart on Failure (non-zero return) Max 10 Times
+run-restart-10:
 	docker run -d --restart=on-failure:5 ubuntu /bin/false
 
 ## SHow all Containers

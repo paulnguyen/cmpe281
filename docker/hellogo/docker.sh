@@ -3,8 +3,8 @@
 # Container
 
 ACCOUNT=""
-CONTAINER="helloworld"
-VERSION="latest"
+CONTAINER="hellogo"
+VERSION="v1.0"
 
 # Shell Variables
 
@@ -34,7 +34,8 @@ docker_auth () {
    $PROMPT "Docker Userid:   \c" ; read user ;
    $PROMPT "Docker Password: \c" ; read -s pass ; 
    echo "" ;
-   docker login -u $user -p $pass
+   #docker login -u $user -p $pass
+   #TMP=`cat ~/.docker/config.json | grep  \"auth\": | wc -l | sed -e 's/^[ \t]*//'`
    TMP=`docker login -u $user -p $pass | grep Succeeded | wc -l | sed -e 's/^[ \t]*//'`
    #echo ".${TMP}."
    if [ "$TMP" == "1" ] ; 
@@ -87,7 +88,7 @@ docker_run() {
 	if [ "$AUTH" != "TRUE" ] ; 
     then echo "Login Required!" ; 
     else 
-		docker run -dt --name $CONTAINER $ACCOUNT/$CONTAINER:$VERSION ; 
+		docker run -td --net=host --name $CONTAINER $ACCOUNT/$CONTAINER:$VERSION ; 
     fi ; 
 }
 

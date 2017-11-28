@@ -34,8 +34,7 @@ docker_auth () {
    $PROMPT "Docker Userid:   \c" ; read user ;
    $PROMPT "Docker Password: \c" ; read -s pass ; 
    echo "" ;
-   #docker login -u $user -p $pass
-   #TMP=`cat ~/.docker/config.json | grep  \"auth\": | wc -l | sed -e 's/^[ \t]*//'`
+   docker login -u $user -p $pass
    TMP=`docker login -u $user -p $pass | grep Succeeded | wc -l | sed -e 's/^[ \t]*//'`
    #echo ".${TMP}."
    if [ "$TMP" == "1" ] ; 

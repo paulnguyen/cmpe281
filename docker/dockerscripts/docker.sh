@@ -3,7 +3,7 @@
 # Container
 
 ACCOUNT=""
-CONTAINER="helloworld"
+CONTAINER="<Container Name>"
 VERSION="latest"
 
 # Shell Variables
@@ -34,8 +34,9 @@ docker_auth () {
    $PROMPT "Docker Userid:   \c" ; read user ;
    $PROMPT "Docker Password: \c" ; read -s pass ; 
    echo "" ;
-   docker login -u $user -p $pass
-   TMP=`docker login -u $user -p $pass | grep Succeeded | wc -l | sed -e 's/^[ \t]*//'`
+   #docker login -u $user -p $pass
+   #TMP=`cat ~/.docker/config.json | grep  \"auth\": | wc -l | sed -e 's/^[ \t]*//'`
+   TMP=`docker login -u $user -p $pass 2>/dev/null | grep Succeeded | wc -l | sed -e 's/^[ \t]*//'`
    #echo ".${TMP}."
    if [ "$TMP" == "1" ] ; 
    then 
@@ -60,6 +61,18 @@ docker_build() {
     then echo "Login Required!" ; 
     else 
  	  	docker build -t $ACCOUNT/$CONTAINER:$VERSION .
+    fi ; 
+}
+
+docker_beta() {
+	if [ "$AUTH" != "TRUE" ] ; 
+    then echo "Login Required!" ; 
+    else 
+  		echo "Building Versions: beta and $VERSION"
+ 	  	docker build -t $ACCOUNT/$CONTAINER:beta -t $ACCOUNT/$CONTAINER:$VERSION .
+ 	  	echo "Pushing Builds to Docker Hub"
+ 	  	docker push $ACCOUNT/$CONTAINER:beta ; 
+ 	  	docker push $ACCOUNT/$CONTAINER:$VERSION ; 
     fi ; 
 }
 
@@ -119,6 +132,9 @@ docker_rmi_all() {
 	done
 }
 
+docker_rmi_all_2 () {
+	docker rmi -f $(docker images -q)
+}
 
 docker_ps() {
 	echo "Running Containers:"
@@ -144,6 +160,11 @@ docker_stop_all () {
  		docker rm $INST_ID > /dev/null 2>&1
 		INST_ID=`docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t" | tr -s ' ' | tr ' ' '|' | cut -f 2 -d '|' | tail -n +2 | head -1`
 	done	
+}
+
+docker_stop_all_2 () {
+	docker stop $(docker ps -a -q)
+	docker rm -f $(docker ps -a -q)	
 }
 
 
@@ -209,12 +230,13 @@ do
 	echo "[6] push       - Push Build to Docker Hub   " ;
 	echo "[7] ps         - Show Running Containers    " ;
 	echo "[8] rmi        - Remove Container Image     " ;
-	echo "[9] release    - Release to Docker Hub      " ;	
 	if [ "$XMENU" = "N" ] ; then
 		echo " "
 		echo "[+] More Options                        " ;
 	else
 		echo " "
+		echo "[b] beta       - Beta push Docker Hub      " ;	
+		echo "[r] release    - Release to Docker Hub     " ;	
 		echo "[i] install    - Install Container         " ;
 		echo "[u] uninstall  - Uninstall Container       " ;
 		echo "[r] restart    - Restart Container         " ;
@@ -239,12 +261,13 @@ do
 		6|push) 		echo " " ; docker_push ; okay_pause ;;
 		7|ps) 			echo " " ; docker_ps ; okay_pause ;;
 		8|rmi) 			echo " " ; docker_stop ; docker_rmi ; okay_pause ;;
-		9|release)		echo " " ; docker_release ;	okay_pause ;;
+		b|beta)			echo " " ; docker_beta ; okay_pause ;;
+		r|release)		echo " " ; docker_release ;	okay_pause ;;
 		i|I|install) 	echo " " ; docker_install ; okay_pause ;;
 		u|U|uninstall)	echo " " ; docker_uninstall ; okay_pause ;;
 		r|R|restart) 	echo " " ; docker_restart ; echo "Container Restarted!" ; okay_pause ;;
 		s|S|stop) 		echo " " ; docker_stop ; echo "Container Stopped!" ; okay_pause ;;
-		c|C|cleanup) 	echo " " ; docker_stop_all; docker_rmi_all ; okay_pause ;;
+		c|C|cleanup) 	echo " " ; docker_stop_all ; docker_rmi_all ; okay_pause ;;
 		v|V|version) 	echo " " ; set_version ; okay_pause ;;
 		a|A|account) 	echo " " ; set_account ; okay_pause ;;
 		cmd)			echo " " ; docker_cmd ; okay_pause ;;

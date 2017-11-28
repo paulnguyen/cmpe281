@@ -3,8 +3,8 @@
 # Container
 
 ACCOUNT=""
-CONTAINER="<Container Name>"
-VERSION="latest"
+CONTAINER="hellograils"
+VERSION="v1.0"
 
 # Shell Variables
 
@@ -87,7 +87,7 @@ docker_run() {
 	if [ "$AUTH" != "TRUE" ] ; 
     then echo "Login Required!" ; 
     else 
-		docker run -dt --name $CONTAINER $ACCOUNT/$CONTAINER:$VERSION ; 
+		docker run -td --net=host --name $CONTAINER $ACCOUNT/$CONTAINER:$VERSION ; 
     fi ; 
 }
 
@@ -119,9 +119,6 @@ docker_rmi_all() {
 	done
 }
 
-docker_rmi_all_2 () {
-	docker rmi -f $(docker images -q)
-}
 
 docker_ps() {
 	echo "Running Containers:"
@@ -147,11 +144,6 @@ docker_stop_all () {
  		docker rm $INST_ID > /dev/null 2>&1
 		INST_ID=`docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t" | tr -s ' ' | tr ' ' '|' | cut -f 2 -d '|' | tail -n +2 | head -1`
 	done	
-}
-
-docker_stop_all_2 () {
-	docker stop $(docker ps -a -q)
-	docker rm -f $(docker ps -a -q)	
 }
 
 
@@ -252,7 +244,7 @@ do
 		u|U|uninstall)	echo " " ; docker_uninstall ; okay_pause ;;
 		r|R|restart) 	echo " " ; docker_restart ; echo "Container Restarted!" ; okay_pause ;;
 		s|S|stop) 		echo " " ; docker_stop ; echo "Container Stopped!" ; okay_pause ;;
-		c|C|cleanup) 	echo " " ; docker_stop_all ; docker_rmi_all ; okay_pause ;;
+		c|C|cleanup) 	echo " " ; docker_stop_all; docker_rmi_all ; okay_pause ;;
 		v|V|version) 	echo " " ; set_version ; okay_pause ;;
 		a|A|account) 	echo " " ; set_account ; okay_pause ;;
 		cmd)			echo " " ; docker_cmd ; okay_pause ;;

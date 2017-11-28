@@ -56,6 +56,12 @@
 	docker run paulnguyen/helloworld
 
 
+## Step 6 - SSH Into Docker Machine (Mac)
+
+	docker-machine ip
+	ssh docker@<host ip>
+	Password: tcuser
+
 # References
     https://www.docker.com/
     https://www.tutum.co/
