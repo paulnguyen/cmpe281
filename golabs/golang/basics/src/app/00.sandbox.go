@@ -1,4 +1,3 @@
-
 // https://tour.golang.org/welcome/4
 
 package main
