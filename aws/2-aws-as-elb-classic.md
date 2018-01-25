@@ -1,10 +1,13 @@
 	
 # Tutorial: Set Up a Scaled and Load-Balanced Application
 
+```
 	DOC:  http://docs.aws.amazon.com/autoscaling/latest/userguide/as-register-lbs-with-asg.html
-	
+```
+
 ## Create or Select a Launch Configuration
 
+```
 	Select My AMI: 					aws-php-ami
 	Instance Type: 					T2-Micro (Free Tier)
 	Launch Configuration Name:		aws-php-autoscale
@@ -13,10 +16,11 @@
 	Security Group:			 		cmpe281-dmz (SG)
 	Select Key Pair:					cmpe281-us-west-1
 	Select VPC:						cmpe281 (VPC) & Public Subnet
-	
+```	
 
 ## Create an Auto Scaling Group
 
+```
 	Create Auto Scale Group:		aws-php-autoscale
 	Group Size (Starts with):		1
 	Network:							cmpe281 (VPC) | Public Subnet
@@ -26,14 +30,17 @@
 	Scale between:					1 - 3 instances
 	Increase when:					AVG CPU >= 40% (for at lease 1 minute)
 	Decrease when:					AVG CPU <= 15% (for at lease 1 minute)
-
+```
 
 ## Using a Load Balancer With an Auto Scaling Group	
+
+```
 	DOC: http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-load-balancer.html
-	
+```	
 	
 ## Create ELB (Classic Load Balancer)
 
+```
 		Name: 		aws-php-elb-classic 
 		VPC: 		cmpe281 (select public subnet)
 		SG:			cmpe281-dmz
@@ -42,18 +49,21 @@
 		Add Instances: Select running instance (from aws-php-autoscale)		
 		Edit Auto Scale Group:	aws-php-autoscale
 		Select ELB: aws-php-elb-classic
-	
+```	
 	
 ## Expanding Your Scaled and Load-Balanced Application to an Additional Availability Zone
 
+```
 	DOC:  http://docs.aws.amazon.com/autoscaling/latest/userguide/as-add-availability-zone.html#as-add-az-console
 	
 	Select Auto Scale Group:		aws-php-autoscale
 	Select Edit / Details / AZs:	Select two Public Subnets (in us-west-1a and us-west-1b)
 	Set the Desired and Min to:	two instances	
-	
+```
+
 ## Elastic Load Balancer (Classic)
 
+```
 	Name:							aws-php-elb-classic
 	DNS name:						aws-php-elb-classic-1441705822.us-west-1.elb.amazonaws.com (A Record)
 	Scheme:						internet-facing
@@ -70,10 +80,11 @@
 	Interval: 					30 seconds
 	Unhealthy threshold: 		2
 	Healthy threshold: 			10
-
+```
 
 # Create an HTTPS/SSL Load Balancer Using the Console
 
+```
 	http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html
 	
 	VPC ID: 					vpc-4d2cd129 | cmpe281
@@ -104,7 +115,7 @@
 	VPC ID:					vpc-4d2cd129
 	Inbound:					Allow All on 80, 22, 443
 	Outbound:					Allow All
-	
+```	
 	
 	
 

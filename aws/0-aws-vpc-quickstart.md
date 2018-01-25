@@ -1,13 +1,16 @@
 
 # Amazon VPC: Quick Start Reference Deployment
 
+```
     DOC:    http://docs.aws.amazon.com/quickstart/latest/vpc/welcome.html
             http://docs.aws.amazon.com/quickstart/latest/vpc/architecture.html
 
     TOOLS:  http://www.ipaddressguide.com/cidr
+```
 
 ## Cloud Formation Quick Start Template
 
+```
     S3 Template:  https://s3.amazonaws.com/quickstart-reference/aws/vpc/latest/templates/aws-vpc.template
 
     Stack Name:                 production
@@ -34,17 +37,23 @@
 
     Tags:                       None
     IAM Role:                   None (Defaults to Account)
+```
 
 ## Security Groups
 
+```
     DMZ (Public SG):            dmz-sec-group
+```
 
 ## Linux AMI Image
 
+```
     AMI Image:                  aws-linux-template
+```
 
 ## ELB / Launch Config / Auto Scale Group
 
+```
     ELB:                        elb-classic     (Classic AWS ELB)
                                 elb-gateway     (New Application ELB)
 
@@ -65,9 +74,11 @@
                                 Listener Rules:     aws-linux-1 (/loadtest.php) | us-west-2a
                                                     aws-linux-2 (/fibonacci.php) | us-west-2b
 
+```
 
 ## AWS DNS (Route 53) | Creating Sub Domain
 
+```
     http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html
 
     Subdomain:                  aws.nguyenresearch.com
@@ -83,7 +94,7 @@
 
     Update Primany DNS Zone adding NS records for Subdomain.
 
-                                
+```                                
 
 
 

@@ -1,21 +1,25 @@
 # Tutorial: Use Path-Based Routing with Your Application Load Balancer
 
+```
 	DOC:  http://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-load-balancer-routing.html
-
+```
 
 # Tutorial: Use Microservices as Targets with Your Application Load Balancer
 
+```
 	DOC:  http://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-target-ecs-containers.html
-
+```
 
 ## Create Target Groups
 
+```
 	aws-linux-1	Port 80	Protocol HTTP (Register one or more Instances)
 	aws-linux-2	Port 80	Protocol HTTP (Register one or more Instances)
-	
+```	
 	
 ## Create Application Load Balancer
 
+```
 	Name:				elb-gateway
 	DNS name:			elb-gateway-1149191633.us-west-2.elb.amazonaws.com
 	VPC:				vpc-d73698b0
@@ -35,6 +39,4 @@
 						
 	Route 53:			Host Name:  			www.sample.net
 						Alias Target:			elb-gateway
-						
-	
-					
+```						

@@ -1,9 +1,10 @@
 ### AWS CLI
 
- 	https://aws.amazon.com/cli/
+```
+	https://aws.amazon.com/cli/
 	http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
 	http://docs.aws.amazon.com/cli/latest/userguide/installing.html
-	
+
 	pip install --upgrade --user awscli
 	pip uninstall awscli
 	
@@ -21,10 +22,11 @@
 	
 	cat ~/.aws/config 
 	cat ~/.aws/credentials
-	
+```	
 
 ### AWS EC2 Containers
 
+```
 	https://aws.amazon.com/documentation/ecs/
 	http://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html
 	https://github.com/paulnguyen/cmpe281/tree/master/restlet/starbucks_v3
@@ -32,10 +34,11 @@
 	http://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html
 	http://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html
 	http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html#ecs-config-s3
-
+```
 	
 ### AWS Container Getting Started
 
+```
 	http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted.html
 	https://us-west-1.console.aws.amazon.com/ecs/home?region=us-west-1#/firstRun
 	
@@ -105,11 +108,7 @@
 			
 	7. View Service
 
-			ELB DNS Name:					C2Contai-EcsElast-190K4W5MPZM6I-154655402.us-west-1.elb.amazonaws.com 			
-			
-			
-			
+			ELB DNS Name:					C2Contai-EcsElast-190K4W5MPZM6I-154655402.us-west-1.elb.amazonaws.com 	
 
+```		
 			
-				
-				
