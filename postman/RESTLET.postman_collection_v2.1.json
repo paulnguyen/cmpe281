@@ -1,0 +1,3320 @@
+{
+	"info": {
+		"name": "RESTLET",
+		"_postman_id": "baae9c1f-d53a-2841-5d30-fbcb75849954",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gumball Test",
+			"description": "",
+			"item": [
+				{
+					"name": "Restlet Gumball Machine | Get Banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Insert Quarter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Turn Crank",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"turn-crank\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Insert Quarter (V1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Turn Crank (V1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"turn-crank\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V2)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Insert Quarter (V2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Turn Crank (V2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"turn-crank\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V3)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Place Order (V3)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"payment\" : \"quarter\",   \n  \"action\": \"place-order\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V4)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v4/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v4",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Place Order (V4)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"payment\" : \"quarter\",   \n  \"action\": \"place-order\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v4/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v4",
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hello Restlet",
+			"description": "",
+			"item": [
+				{
+					"name": "Restlet | Hello World",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Echo Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/test/abcd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"test",
+								"abcd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Trace (Tracer Filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								""
+							]
+						},
+						"description": "Trace results are displayed."
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Trace (Blocked Filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								"123"
+							]
+						},
+						"description": "Trace results are displayed."
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Trace (With Query String)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/?param=value",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "param",
+									"value": "value"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Trace (Error, No Route!)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Trace (Method Tunneling)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/?method=options",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "method",
+									"value": "options"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Root | Get)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Root | Options)",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Accounts | Post)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Accounts | Get)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Account | Get)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								"0"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Account | Put)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1 (Modified)"
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								"0"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server Resource (Account | Delete)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/accounts/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"accounts",
+								"0"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JSON | Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JSON | Put",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There! Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Get (Localhost)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://localhost:9000/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Put (Localhost)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There!\",\n  \"status\": \"Received\",\n  \"message\": \"Great!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Get (Docker Local)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://192.168.99.100:9000/mail",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"port": "9000",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Put (Docker Local)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://192.168.99.100:9000/mail",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"port": "9000",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restlet Tutorial",
+			"description": "",
+			"item": [
+				{
+					"name": "Hello | Get Hello Message",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8111/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "First App | Get Contacts API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "First App | Update Contacts API",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"homeAddress\": {\n    \"line1\": \"10 bd Google\",\n    \"line2\": null,\n    \"zipCode\": \"20010\",\n    \"city\": \"Mountain View\",\n    \"country\": \"USA\"\n  },\n  \"age\": 40\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "First App | Delete Contacts API",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Auth | Basic Auth Test",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "scott",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "tiger",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic c2NvdHQ6dGlnZXI="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8182",
+							"host": [
+								"localhost"
+							],
+							"port": "8182"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Auth | Digest Auth Test",
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "scott",
+									"type": "string"
+								},
+								{
+									"key": "realm",
+									"value": "TestRealm",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "tiger",
+									"type": "string"
+								},
+								{
+									"key": "nonce",
+									"value": "MTQ3ODkzMTA5NTM0NDo0YTI5ZGJhZjJhMzRiNTJiNzQzNjZmY2I1ZjZjMDQ2Mg==",
+									"type": "string"
+								},
+								{
+									"key": "nonceCount",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "clientNonce",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "opaque",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "qop",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "disableRetryRequest",
+									"type": "any"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Digest username=\"scott\", realm=\"TestRealm\", nonce=\"MTQ3ODkzMTA5NTM0NDo0YTI5ZGJhZjJhMzRiNTJiNzQzNjZmY2I1ZjZjMDQ2Mg==\", uri=\"/\", response=\"bf484dfbd07d659773d1dec08706da32\", opaque=\"\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8182",
+							"host": [
+								"localhost"
+							],
+							"port": "8182"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mail | Get SSL Content (No Auth)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8183",
+							"path": [
+								"accounts",
+								"chunkylover53",
+								"mails",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mail | Get SSL Mail (Basic Auth)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "chunkylover53",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pwd",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8183",
+							"path": [
+								"accounts",
+								"chunkylover53",
+								"mails",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mail | Get SSL Mail (Digest Auth)",
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "chunkylover53",
+									"type": "string"
+								},
+								{
+									"key": "realm",
+									"value": "My Realm",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pwd",
+									"type": "string"
+								},
+								{
+									"key": "nonce",
+									"value": "MTQ3ODkzODE4MzA1MjpmODExMDU0NzEzYjYwOTZhYTM5NTY3ZjQ4MTQ5MTU1Zg==",
+									"type": "string"
+								},
+								{
+									"key": "nonceCount",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "clientNonce",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "opaque",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "qop",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "disableRetryRequest",
+									"type": "any"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Digest username=\"chunkylover53\", realm=\"My Realm\", nonce=\"MTQ3ODkzODE4MzA1MjpmODExMDU0NzEzYjYwOTZhYTM5NTY3ZjQ4MTQ5MTU1Zg==\", uri=\"/accounts/chunkylover53/mails/123\", response=\"98c673e16b9fd81560eeff8eb46f5304\", opaque=\"\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8183",
+							"path": [
+								"accounts",
+								"chunkylover53",
+								"mails",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mail | Get SSL Mail (Secret Auth)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "chunkylover53",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pwd",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8183",
+							"path": [
+								"accounts",
+								"chunkylover53",
+								"mails",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mail | Get SSL Mail (Cert Auth)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8183",
+							"path": [
+								"accounts",
+								"chunkylover53",
+								"mails",
+								"123"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service Test",
+			"description": "",
+			"item": [
+				{
+					"name": "Restlet | Hello World (Cloud 9)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://design-paulnguyen.c9users.io/restlet/hello",
+							"protocol": "https",
+							"host": [
+								"design-paulnguyen",
+								"c9users",
+								"io"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (Docker Cloud)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://restapi-hello-1.c2247b6d.cont.dockerapp.io/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"restapi-hello-1",
+								"c2247b6d",
+								"cont",
+								"dockerapp",
+								"io"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (AWS EC2)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://ec2-54-153-1-207.us-west-1.compute.amazonaws.com/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"ec2-54-153-1-207",
+								"us-west-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (AWS IP)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://54.153.1.207/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"54",
+								"153",
+								"1",
+								"207"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (AWS DNS)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (Localhost)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (Docker Local | 8080)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://192.168.99.100:8080/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"port": "8080",
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (Docker Local | 80)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://192.168.99.100/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JSON | Get (AWS DNS)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:8080/mail",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JSON | Put (AWS DNS)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:8080/mail",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Get (AWS DNS)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:81/mail",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "81",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Put (AWS DNS)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:81/mail",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "81",
+							"path": [
+								"mail"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Cart API | Get Order (Localhost | 8080)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Cart API | Get Order (AWS | 8080)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:8080/cart",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"cart"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Starbucks API",
+			"description": "",
+			"item": [
+				{
+					"name": "Place Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Pay For Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Place Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order - ETAG (V2)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "If-None-Match",
+								"value": "W/\"73c2bec219458beb267e7e7587f1b7bb\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Pay For Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Starbucks Kong",
+			"description": "",
+			"item": [
+				{
+					"name": "Kong Server Status (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/status",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"status"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Cluster Status (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/cluster",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"cluster"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Node Information (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong List APIs (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Add API (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"starbucks\",\n    \"request_path\": \"/starbucks\",\n    \"strip_request_path\": \"false\",\n    \"preserve_host\": \"true\",\n    \"upstream_url\": \"http://starbucks:9090/v3/\"\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Add Logfile (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "file-log",
+									"type": "text"
+								},
+								{
+									"key": "config.path",
+									"value": "/tmp/kong.log",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Add Resp Transformer (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "response-transformer",
+									"type": "text"
+								},
+								{
+									"key": "config.remove.json",
+									"value": "links",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Add API Key Auth (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "key-auth",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong API Client Add (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "apiclient",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers/",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong  API Client Add Key (Docker)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_api_key\", response.key);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers/apiclient/key-auth",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers",
+								"apiclient",
+								"key-auth"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong API Client Delete (Docker)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "apiclient",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers/apiclient",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers",
+								"apiclient"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong API Clients List (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Get API Details (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Delete API (Docker)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Get List of API Plugins (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Remove from API (Docker)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins/12cc3fd7-c07e-4c3b-bc0f-465e311bf948",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins",
+								"12cc3fd7-c07e-4c3b-bc0f-465e311bf948"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Place Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Cancel Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Update Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Order - ETAG (V3)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "If-None-Match",
+								"value": "W/\"35883c054313ac9f0ab39736dce6701a\""
+							},
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Pay For Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Orders (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Orders (No API Key)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Starbucks Test",
+			"description": "",
+			"item": [
+				{
+					"name": "Post Starbucks API | Localhost",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9090/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Post Starbucks API |Docker Local",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://192.168.99.100:9090/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"port": "9090",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Post Starbucks API |Docker Cloud (DNS)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:90/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "90",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Post Starbucks API |Docker Cloud (Host IP)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://54.201.122.231:90/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"54",
+								"201",
+								"122",
+								"231"
+							],
+							"port": "90",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
