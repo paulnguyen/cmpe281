@@ -61,7 +61,7 @@ setTimeout(function () {
 }, 2000);
 
 // 2.17 Higer-Order Functions (Define Function first)
-function foo() {
+var foo = function foo() {
     console.log('2000 milliseconds have passed since this demo started');
 }
 setTimeout(foo, 2000);
