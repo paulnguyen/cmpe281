@@ -361,6 +361,204 @@
 			]
 		},
 		{
+			"name": "Gumball Go AWS",
+			"description": "",
+			"item": [
+				{
+					"name": "GO | Gumball Ping API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api.nguyenresearch.com:8080/ping",
+							"host": [
+								"api",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"ping"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GO | Gumball Get Machine Inventory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api.nguyenresearch.com:8080/gumball",
+							"host": [
+								"api",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GO | Gumball Update Machine Inventory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"CountGumballs\": 1000\n}"
+						},
+						"url": {
+							"raw": "api.nguyenresearch.com:8080/gumball",
+							"host": [
+								"api",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GO | Gumball Place New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.id );"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api.nguyenresearch.com:8080/order",
+							"host": [
+								"api",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GO | Gumball Get Order Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api.nguyenresearch.com:8080/order",
+							"host": [
+								"api",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GO | Gumball Process Orders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api.nguyenresearch.com:8080/orders",
+							"host": [
+								"api",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Gumball Heroku",
 			"description": "",
 			"item": [
@@ -1851,14 +2049,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/order/9",
+							"raw": "localhost:8080/order/6",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"order",
-								"9"
+								"6"
 							]
 						},
 						"description": ""
