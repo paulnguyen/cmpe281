@@ -38,7 +38,7 @@
 	
 	Listener:			HTTPS (Port 443)
 					443 (HTTPS, 
-					ACM Certificate: 2d826bbb-7e63-4a78-9db6-51003ce4a83f) 
+					     ACM Certificate: 2d826bbb-7e63-4a78-9db6-51003ce4a83f) 
 					forwarding to 80 (HTTP)
 						
 	Route 53:			Host Name:  		www.sample.net
