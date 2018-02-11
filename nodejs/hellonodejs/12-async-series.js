@@ -16,6 +16,7 @@ async.series({
     }
 },
 function(err, results) {
+    console.log( err ) ;
     console.log( results ) ;
 }
 );
