@@ -7,9 +7,9 @@
 ### Install Groovy & Grails Locally
 
 ```
-	Note: assuming you already have Java JDK 7 or 8 Installed
+    Note: assuming you already have Java JDK 7 or 8 Installed
 	
-	sdk ls groovy
+    sdk ls groovy
     sdk ls grails
     sdk install groovy 2.4.7
     sdk install grails 3.2.5
