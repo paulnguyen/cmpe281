@@ -5,7 +5,7 @@ Mighty Gumball, Inc.
 Version 2.0
 
 - Rudimentary Page Templates using RegEx
-- REST Client Calling Grails REST API 
+- REST Client Calling Go REST API 
 - Client State Validation using HMAC Key-Based Hash 
 
 NodeJS-Enabled Standing Gumball
@@ -14,7 +14,8 @@ Serial# 1234998871109
 
 **/
 
-var endpoint = "http://api.paulnguyen.org:8181/gumball/";
+var machine = "http://api.nguyenresearch.com:8080/gumball";
+var endpoint = "http://api.nguyenresearch.com:8080/order";
 
 
 // added in v2: crypto
@@ -76,14 +77,15 @@ var page = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = "";
-            client.get( endpoint, 
+            client.get( machine, 
                 function(data, response_raw){
                     console.log(data);
-                    count = data.countGumballs
+                    jsdata = JSON.parse(data)
+                    count = jsdata.CountGumballs
                     console.log( "count = " + count ) ;
                     var msg =   "\n\nMighty Gumball, Inc.\n\nNodeJS-Enabled Standing Gumball\nModel# " + 
-                                data.modelNumber + "\n" +
-                                "Serial# " + data.serialNumber + "\n" +
+                                jsdata.ModelNumber + "\n" +
+                                "Serial# " + jsdata.SerialNumber + "\n" +
                                 "\n" + state +"\n\n" ;
                     var html_body = "" + body ;
                     var html_body = html_body.replace("{message}", msg );
@@ -98,20 +100,22 @@ var order = function( req, res, state, ts ) {
 
     var client = new Client();
             var count = 0;
-            client.get( endpoint, 
+            client.get( machine, 
                 function(data, response_raw) {
-                    count = data.countGumballs ;
+                    jsdata = JSON.parse(data)
+                    count = jsdata.CountGumballs ;
                     console.log( "count before = " + count ) ;
                     if ( count > 0 ) {
                         count-- ;
                         var args = {
-                            data: {  "countGumballs": count, },
+                            data: {  "CountGumballs": count, },
                             headers:{"Content-Type": "application/json"} 
                         };
-                        client.put( endpoint, args,
+                        client.put( machine, args,
                             function(data, response_raw) {
                                 console.log(data);
-                                console.log( "count after = " + data.countGumballs ) ;
+                                jsdata = JSON.parse(data)
+                                console.log( "count after = " + jsdata.CountGumballs ) ;
                                 page( req, res, state, ts ) ;
                             } 
                         );
@@ -168,10 +172,15 @@ var handle_get = function (req, res) {
     page( req, res, state, ts ) ;
 }
 
+
+app.set('port', (process.env.PORT || 8080));
+
 app.post("*", handle_post );
 app.get( "*", handle_get ) ;
 
 console.log( "Server running on Port 8080..." ) ;
 
-app.listen(8080);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 

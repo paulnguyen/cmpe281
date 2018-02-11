@@ -91,11 +91,11 @@ var handle_post = function (req, res, next) {
 app.get(  '/gumball/:orderid', handle_get ) ;
 app.post( '/gumball', handle_post ) ;
 
-console.log( "Server running on Port 8080..." ) ;
+app.set('port', (process.env.PORT || 8080));
 
-app.listen(8080);
-
-
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 /**
 

@@ -5,7 +5,6 @@ Mighty Gumball, Inc.
 Version 5.0
 
 - Refactored Previous REST Client Approach to Transaction Based REST API
-- (i.e. instead of the Scaffolded REST API based on Domain Object Annotation) 
 - Handlebars Page Templates
 - Client State Validation using HMAC Key-Based Hash
 
@@ -15,8 +14,11 @@ Serial# 1234998871109
 
 **/
 
-var machine = "http://api.paulnguyen.org:8181/gumball/";
-var endpoint = "http://api.paulnguyen.org:8181/order/";
+
+var machine = "http://api.nguyenresearch.com:8080/gumball";
+var endpoint = "http://api.nguyenresearch.com:8080/order";
+
+
 
 // added in v3: handlebars
 // https://www.npmjs.org/package/express3-handlebars
@@ -89,11 +91,12 @@ var page = function( req, res, state, ts, status ) {
             client.get( machine, 
                 function(data, response_raw){
                     console.log(data);
-                    count = data.countGumballs
+                    jsdata = JSON.parse(data)
+                    count = jsdata.CountGumballs
                     console.log( "count = " + count ) ;
                     var msg =   "\n\nMighty Gumball, Inc.\n\nNodeJS-Enabled Standing Gumball\nModel# " + 
-                                data.modelNumber + "\n" +
-                                "Serial# " + data.serialNumber + "\n" +
+                                jsdata.ModelNumber + "\n" +
+                                "Serial# " + jsdata.SerialNumber + "\n" +
                                 "\n" + state +"\n" ;
                     if ( status ) {
                         msg = msg + "\n" + status + "\n\n" ;
@@ -119,8 +122,9 @@ var order = function( req, res, state, ts ) {
             var count = 0;
             client.post( endpoint, 
                 function(data, response_raw) {
-                    id = data.id ;
-                    status = data.orderstatus ;
+                    jsdata = JSON.parse(data)
+                    id = jsdata.Id ;
+                    status = jsdata.OrderStatus ;
                     console.log( "order id: " + id ) ;
                     console.log( "order status: " + status ) ;
                     status_msg = "order id: " + id + " order status: " + status ;
@@ -190,11 +194,11 @@ app.get('/', function (req, res, next) {
 app.get('/', handle_get ) ;
 app.post('/', handle_post ) ;
 
+app.set('port', (process.env.PORT || 8080));
 
-console.log( "Server running on Port 8080..." ) ;
-
-app.listen(8080);
-
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 /**
 

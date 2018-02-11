@@ -361,6 +361,81 @@
 			]
 		},
 		{
+			"name": "Gumball Node API",
+			"description": "",
+			"item": [
+				{
+					"name": "Node API | Gumball Place New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.id );"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/gumball",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Node API | Gumball Get Order Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/gumball/8734151882571776",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gumball",
+								"8734151882571776"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Gumball Go AWS",
 			"description": "",
 			"item": [
@@ -436,7 +511,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"CountGumballs\": 1000\n}"
+							"raw": "{\n  \"CountGumballs\": 10000\n}"
 						},
 						"url": {
 							"raw": "api.nguyenresearch.com:8080/gumball",
