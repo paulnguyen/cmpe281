@@ -46,23 +46,23 @@
     (Hourly charges for NAT devices apply.)
 
     CIDR block          		10.0.0.0/16 
-    IP range    				0.0.0.0 - 10.0.255.255   
+    IP range    			0.0.0.0 - 10.0.255.255   
     Subnet Mask        			255.255.0.0  
     IP Quantity       			65536   
 
-    Public Subnet:				10.0.0.0/24
-    Network =               	10.0.0.0
-    Usable IPs =            	10.0.0.1 to 10.0.0.254 for 254
-    Broadcast =             	10.0.0.255
-    Netmask =               	255.255.255.0
-    Wildcard Mask =         	0.0.0.255
+    Public Subnet:			10.0.0.0/24
+    Network =               		10.0.0.0
+    Usable IPs =            		10.0.0.1 to 10.0.0.254 for 254
+    Broadcast =             		10.0.0.255
+    Netmask =               		255.255.255.0
+    Wildcard Mask =         		0.0.0.255
 
-    Private Subnet:         	10.0.1.0/24
-    Network =               	10.0.1.0
-    Usable IPs =            	10.0.1.1 to 10.0.1.254 for 254
-    Broadcast =             	10.0.1.255
-    Netmask =               	255.255.255.0
-    Wildcard Mask =         	0.0.0.255
+    Private Subnet:         		10.0.1.0/24
+    Network =               		10.0.1.0
+    Usable IPs =            		10.0.1.1 to 10.0.1.254 for 254
+    Broadcast =             		10.0.1.255
+    Netmask =               		255.255.255.0
+    Wildcard Mask =         		0.0.0.255
 ```
 
     
