@@ -45,24 +45,24 @@
     Private subnet instances access the Internet via Network Address Translation (NAT).  
     (Hourly charges for NAT devices apply.)
 
-    CIDR block          		10.0.0.0/16 
-    IP range    			0.0.0.0 - 10.0.255.255   
-    Subnet Mask        			255.255.0.0  
-    IP Quantity       			65536   
+    CIDR block                  10.0.0.0/16 
+    IP range                    0.0.0.0 - 10.0.255.255   
+    Subnet Mask                 255.255.0.0  
+    IP Quantity                 65536   
 
-    Public Subnet:			10.0.0.0/24
-    Network =               		10.0.0.0
-    Usable IPs =            		10.0.0.1 to 10.0.0.254 for 254
-    Broadcast =             		10.0.0.255
-    Netmask =               		255.255.255.0
-    Wildcard Mask =         		0.0.0.255
+    Public Subnet:              10.0.0.0/24
+    Network =                   10.0.0.0
+    Usable IPs =                10.0.0.1 to 10.0.0.254 for 254
+    Broadcast =                 10.0.0.255
+    Netmask =                   255.255.255.0
+    Wildcard Mask =             0.0.0.255
 
-    Private Subnet:         		10.0.1.0/24
-    Network =               		10.0.1.0
-    Usable IPs =            		10.0.1.1 to 10.0.1.254 for 254
-    Broadcast =             		10.0.1.255
-    Netmask =               		255.255.255.0
-    Wildcard Mask =         		0.0.0.255
+    Private Subnet:             10.0.1.0/24
+    Network =                   10.0.1.0
+    Usable IPs =                10.0.1.1 to 10.0.1.254 for 254
+    Broadcast =                 10.0.1.255
+    Netmask =                   255.255.255.0
+    Wildcard Mask =             0.0.0.255
 ```
 
     
@@ -124,15 +124,15 @@
 
     2. Go to:  http://<public dns or ip>/phpinfo.php
 
-	 3. sudo yum install stress
+     3. sudo yum install stress
 
-	 stress [OPTION]
-	 
-	 ## Stress using CPU-bound task
-	 stress -c 4
-	 
-	 ## Stress using IO-bound task 
-	 stress -i 2
+     stress [OPTION]
+     
+     ## Stress using CPU-bound task
+     stress -c 4
+     
+     ## Stress using IO-bound task 
+     stress -i 2
     
      ## Example Test
 
@@ -151,10 +151,10 @@
 ## Create PHP AMI Image
 
 ```
-	1. Create aws-php-ami
-	2. From aws-php (EC2 instance)
+    1. Create aws-php-ami
+    2. From aws-php (EC2 instance)
 ```
-	
+    
 
 
 

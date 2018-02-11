@@ -15,11 +15,14 @@
 
     1. Create an IAM Group Named:  AWSCloud9Group
     2. Attach the following Policies to the Group:
+
         AWSCloud9Administrator
         AWSCloud9EnvironmentMember
         AWSCloud9User
-    3. Create an IAM User Named:  cloud9
-    4. User Access Type should be:  AWS Management Console Access with Password
+
+    3. Create an IAM User Named:          cloud9
+    4. User Access Type should be:        AWS Management Console Access with Password
+
     5. Make sure to assign the group AWSCloud9Group to this user
     6. Amazon will display a URL to login to your Account.  Make a note of this URL.
 
@@ -32,12 +35,13 @@
     To create your AWS Cloud9 Environment.
 
     1. Find the AWS Cloud9 Service
-    2. Select option to Create a New AWS Cloud9 Environment
-    3. Name your Cloud9 Environment as: CMPE281
-    4. Selct Environment Type:          EC2
-    5. Select EC2 Instance Type:        t2.micro
-    6. Network Settings:                Use Defaults
-    7. Cost Savings Setting:            Use Defaults
+    2. Select option to Create a 
+       New AWS Cloud9 Environment
+    3. Name your Cloud9 Environment as:   CMPE281
+    4. Selct Environment Type:            EC2
+    5. Select EC2 Instance Type:          t2.micro
+    6. Network Settings:                  Use Defaults
+    7. Cost Savings Setting:              Use Defaults
     
     It make take some time for the Environment to come up
 ```
