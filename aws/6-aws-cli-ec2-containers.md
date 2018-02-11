@@ -77,38 +77,38 @@
 
 	4. Create a task definition
 
-			Task Definition Name:  	starbucks-api
+			Task Definition Name:  		starbucks-api
 			Container Name:			starbucks-api
-			Image:						060340690398.dkr.ecr.us-west-1.amazonaws.com/cmpe281:latest
+			Image:				060340690398.dkr.ecr.us-west-1.amazonaws.com/cmpe281:latest
 			Memory Limits (Hard):		300 (MBs)
 			Port Mappings:
-				Host Port				9090
-				Container Port			9090
-				Protocol				TCP
+				Host Port		9090
+				Container Port		9090
+				Protocol		TCP
 				
 	5.	Configure Service
 
-			Service Name:					starbucks-api
-			Desired number of tasks:		2
+			Service Name:			starbucks-api
+			Desired number of tasks:	2
 			Container name (host port):	starbucks-api:9090
 			ELB listener protocol:		http
-			ELB listener port:			9090
-			ELB health check:				http:9090/
-			Service IAM role:				ecsServiceRole
+			ELB listener port:		9090
+			ELB health check:		http:9090/
+			Service IAM role:		ecsServiceRole
 			
 	6.	Configure Cluster
 
-			Cluster Name:					starbucks-api
-			EC2 instance type:			t2.micro
-			Number of instances:			2
-			Key Pair:						cmpe281-us-west-1
-			Security Group:				Allowed ingress source: Select "Anywhere"
-			Container instance IAM role: Create New Role (ecsServiceRole)
+			Cluster Name:			starbucks-api
+			EC2 instance type:		t2.micro
+			Number of instances:		2
+			Key Pair:			cmpe281-us-west-1
+			Security Group:			Allowed ingress source: Select "Anywhere"
+			Container instance IAM role: 	Create New Role (ecsServiceRole)
 			
 			
 	7. View Service
 
-			ELB DNS Name:					C2Contai-EcsElast-190K4W5MPZM6I-154655402.us-west-1.elb.amazonaws.com 	
+			ELB DNS Name:			C2Contai-EcsElast-190K4W5MPZM6I-154655402.us-west-1.elb.amazonaws.com 	
 
 ```		
 			
