@@ -104,6 +104,3 @@ var outer = function() {
 
 r = outer() ;
 r() ;
-
-
-
