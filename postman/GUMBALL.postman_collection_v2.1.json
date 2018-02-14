@@ -511,7 +511,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"CountGumballs\": 10000\n}"
+							"raw": "{\n  \"CountGumballs\": 100000\n}"
 						},
 						"url": {
 							"raw": "api.nguyenresearch.com:8080/gumball",
@@ -637,6 +637,79 @@
 			"name": "Gumball Heroku",
 			"description": "",
 			"item": [
+				{
+					"name": "Node API | Gumball Place New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.id );"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://pnguyen-gumball.herokuapp.com/gumball",
+							"protocol": "https",
+							"host": [
+								"pnguyen-gumball",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"gumball"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Node API | Gumball Get Order Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://pnguyen-gumball.herokuapp.com/gumball/8734151882571776",
+							"protocol": "https",
+							"host": [
+								"pnguyen-gumball",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"gumball",
+								"8734151882571776"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
 				{
 					"name": "GO | Gumball Ping API",
 					"request": {

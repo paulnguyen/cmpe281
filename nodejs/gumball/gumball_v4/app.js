@@ -76,8 +76,7 @@ db_init = function (callback) {
             console.log("INIT: STEP 1. Open MongoDB...");
             db.open(cb);
         },
-        // 2. authenticate
-        /*        
+        // 2. authenticate       
         function (result, cb) {
             console.log("INIT: STEP 2. Authenticate...");
             db.authenticate(db_user, db_pwd, function(err, res) {
@@ -91,7 +90,6 @@ db_init = function (callback) {
                         }
                     });
         },
-        */
         // 3. fetch collections
         function (result, cb) {
             console.log("INIT: STEP 3. Fetch Collections...");
