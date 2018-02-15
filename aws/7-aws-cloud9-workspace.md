@@ -87,7 +87,42 @@
     Sample Outputs of the Running App is shown as follows (see included images).
 ```
 
-                             
+## AWS Cloud9 Additional Workspace Setup
+
+```
+
+update-cloud9:
+    sudo yum -y update
+
+install-nvm:   
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+
+install-node:   
+    nvm install v8.9.4
+    node --version
+
+node-use:
+    nvm use v8.9.4
+    nvm ls
+
+node-default:   
+    nvm alias default 8.9.4 
+
+install-heroku:   
+    npm install -g heroku-cli
+    heroku --version
+
+heroku-login:   
+    heroku login
+
+heroku-apps:   
+    heroku apps
+
+heroku-tail:
+    heroku logs --tail --app pnguyen-gumball
+
+```
+
 
 
 

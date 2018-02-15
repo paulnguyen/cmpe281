@@ -80,10 +80,6 @@ and T.TENANT_ID = 'TA'
 order by F.FIELD_COLUMN
 
 
-
--- LP_TASK Record Example
-insert into LP_TASK values ( 1001, 'Design Data Models', 'Paul', '2014-09-01', '2014-10-01', 'FALSE' ) ;
-
 -- TENANT_DATA Record Example
 insert into TENANT_DATA (RECORD_ID, TENANT_ID, TENANT_TABLE, COLUMN_1, COLUMN_2, COLUMN_3, COLUMN_4, COLUMN_5, COLUMN_6  ) 
 values ( '1001', 'TA', 'LP_TASK', '1001', 'Design Data Models', 'Paul', '2014-09-01', '2014-10-01', 'FALSE' ) ;

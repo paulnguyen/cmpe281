@@ -1,4 +1,7 @@
 
+create database cmpe281 ;
+use cmpe281 ;
+
 CREATE TABLE gumball (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   version bigint(20) NOT NULL,
