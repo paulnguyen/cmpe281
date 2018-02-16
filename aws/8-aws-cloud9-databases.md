@@ -63,9 +63,13 @@
     sudo yum update -y
     sudo yum install -y mysql55-server
     sudo service mysqld start
+
+## Set password for root (and disable default settings)
+
     /usr/libexec/mysql55/mysql_secure_installation
 
-### Set password for root to XXX (i.e. cmpe281)
+### Login as root (i.e. cmpe281)
+
     mysql --user=root --password
 
 
