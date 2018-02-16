@@ -101,8 +101,8 @@ app.listen(app.get('port'), function() {
 
 -- Test REST API
 
-curl -X POST https://cloud-paulnguyen.c9users.io/gumball
-curl -X GET https://cloud-paulnguyen.c9users.io/gumball/<ordnum>
+curl -X POST http://localhost:8080/gumball
+curl -X GET https://localhost:8080/gumball/<ordnum>
 
 
 -- MongoDB (Mongo Labs) Connection
