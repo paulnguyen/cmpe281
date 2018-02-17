@@ -123,7 +123,7 @@ REF: https://devcenter.heroku.com/articles/heroku-cli
 
 	heroku login
 
-## List Heroku Apps (in your account)   
+## List Heroku Apps (in your account).  Create a new App with Node.js Build Pack.   
 
 	heroku apps
 
