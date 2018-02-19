@@ -61,11 +61,15 @@
             git config --global user.name "USER_NAME"
             git config --global user.email EMAIL_ADDRESS
 
-    6. Clone the following GitHub Repo into your Cloud9 Workspace:
+    6. Fork the following GitHub Repo into your GitHub Account from Instructor's Repo:
+            
+            https://github.com/paulnguyen/nodejs
 
-            git clone https://github.com/paulnguyen/nodejs
+    7. Clone the above Repo from your GitHub Repo into your Cloud9 Workspace:
+            
+            git clone https://github.com/<your account>/nodejs
 
-    7. Once git clone completes, you should have a folder named "nodejs" in your Workspace
+    8. Once git clone completes, you should have a folder named "nodejs" in your Workspace
 ```
 
 ## Running a Node.js Application in Cloud9
