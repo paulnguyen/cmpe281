@@ -1,5 +1,5 @@
 
-all: clean compile 
+all: clean  
 
 clean:
 	rm -rf build/*
