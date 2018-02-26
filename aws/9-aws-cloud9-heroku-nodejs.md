@@ -6,7 +6,7 @@
 
 # Clone the Forked Repo into your AWS Cloud9 Workspace from a Terminal Window
 
-	git clone https://github.com/paulnguyen/nodejs.git
+	git clone https://github.com/<your account>/nodejs.git
 
 # Install MongoDB in your AWS Cloud9 Workspace
 
