@@ -1,0 +1,21 @@
+
+lb:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - gumball
+  ports:
+    - '80:80'
+  roles:
+    - global
+gumball:
+  image: paulnguyen/gumball
+  links:
+    - rabbitmq
+    - mongodb
+  target_num_containers: 2
+rabbitmq:
+  image: rabbitmq:3-management
+  ports:
+    - "8080:15672" 
+mongodb:
+  image: mongo

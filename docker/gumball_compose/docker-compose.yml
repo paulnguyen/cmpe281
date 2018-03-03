@@ -1,0 +1,21 @@
+
+version: "3"
+services:
+  gumball:
+    image: paulnguyen/gumball
+    ports:
+      - "3000:3000"
+    networks:
+      - webnet
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "8080:15672" 
+    networks:
+      - webnet
+  mongodb:
+    image: mongo
+    networks:
+      - webnet
+networks:
+  webnet:
