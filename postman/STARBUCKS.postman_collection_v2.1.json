@@ -473,6 +473,38 @@
 					"response": []
 				},
 				{
+					"name": "Get Starbucks Order - ETAG (V2)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "If-None-Match",
+								"value": "W/\"7f53c3961842e16bfc174c07179abf49\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Account #1"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Ping Starbucks Service (V3)",
 					"event": [
 						{
@@ -540,38 +572,6 @@
 								"v3",
 								"starbucks",
 								"order"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get Starbucks Order - ETAG (V2)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "If-None-Match",
-								"value": "W/\"7f53c3961842e16bfc174c07179abf49\""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "Account #1"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v2",
-								"starbucks",
-								"order",
-								"{{starbucks_order_id}}"
 							]
 						},
 						"description": ""
@@ -904,7 +904,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"location\": \"takeAway\",\n    \"item\": {\n        \"name : \"cappuccino\",\n        \"quantity\" : 1,\n        \"milk\" : \"skim\",\n        \"size\" : \"large\"\n    }\n}"
+							"raw": "{\n    \"location\": \"takeAway\",\n    \"item\": {\n        \"name\" : \"cappuccino\",\n        \"quantity\" : 1,\n        \"milk\" : \"skim\",\n        \"size\" : \"large\"\n    }\n}"
 						},
 						"url": {
 							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/id",
