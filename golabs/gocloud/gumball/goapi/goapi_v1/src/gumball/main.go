@@ -1,6 +1,6 @@
 /*
-	Gumball API in Go (Version 2)
-	Process Order with Go Channels and Mutex
+	Gumball API in Go (Version 1)
+	Basic Version with no Backend Services
 */
 	
 package main
