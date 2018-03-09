@@ -708,6 +708,11 @@ test-order-status:
 	curl -X GET \
   	http://dockerhost/order \
   	-H 'Content-Type: application/json'
+
+test-order-status:
+	curl -X GET \
+  	http://dockerhost/order \
+  	-H 'Content-Type: application/json'  	
 ```
 
 
