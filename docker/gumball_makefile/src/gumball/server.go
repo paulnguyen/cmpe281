@@ -340,7 +340,7 @@ func queue_receive() []string {
     -- Gumball MongoDB Collection - Update Gumball Document --
 
     db.gumball.update( 
-        { Dd: 1 }, 
+        { Id: 1 }, 
         { $set : { CountGumballs : NumberInt(10) } },
         { multi : false } 
     )
