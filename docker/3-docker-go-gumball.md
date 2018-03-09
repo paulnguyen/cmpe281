@@ -472,6 +472,12 @@ test-process-order:
   	-H 'Content-Type: application/json'
 ```
 
+## Clean Up
+
+```
+make docker-clean
+```
+
 # Running Go API and Backing Services in Docker (Using Docker Compose)
 
 * https://github.com/paulnguyen/cmpe281/tree/master/docker/gumball_compose
@@ -590,6 +596,13 @@ test-process-order:
   	http://localhost:9000/orders \
   	-H 'Content-Type: application/json'
 ```
+
+## Clean Up
+
+```
+docker-compose down
+```
+
 
 # Running Go API and Backing Services in Docker Cloud (Using Docker Stack)
 
@@ -715,6 +728,10 @@ test-order-status:
   	-H 'Content-Type: application/json'  	
 ```
 
+## Clean Up
 
+```
+Terminate your Cloud Stack
+```
 
 
