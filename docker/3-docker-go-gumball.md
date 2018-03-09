@@ -642,7 +642,7 @@ mongodb:
 
 ## Startup Docker Containers in Docker Cloud
 
-* notes
+![Example](./3-cloudstack-run.png)
 
 ## Configure RabbitMQ and MongoDB Backing Services
 
