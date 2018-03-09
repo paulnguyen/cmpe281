@@ -4,7 +4,7 @@
 
 ACCOUNT=""
 CONTAINER="gumball"
-VERSION="goapi-v1.0"
+VERSION="goapi-v4.0"
 
 # Shell Variables
 
