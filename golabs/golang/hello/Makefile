@@ -4,11 +4,11 @@
 all: clean
 
 clean: 
-	find . -name 'main' -type f -exec rm -f {} \; 
+	find . -name 'hello' -type f -exec rm -f {} \; 
 	go clean
 
 build:
-	go build main
+	go build hello
 
 run:
 	go run src/main/hello.go
