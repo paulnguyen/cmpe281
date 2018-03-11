@@ -11,16 +11,16 @@ build:
 	go build hello
 
 run:
-	go run src/main/hello.go
+	go run src/hello/hello.go
 
 playground:
 	go run src/playground/main.go
 
 format:
-	go fmt main
+	go fmt hello
 
 install:
-	go install main
+	go install hello
 
 echo1:
 	go run src/main/echo1.go arg1 arg2 arg3 arg4

@@ -2,8 +2,28 @@
 package main
 
 import "fmt"
+//import "time"
 
 func main() {
+
+ i := 1
+ zeroval(i)
+ fmt.Println(i)
+
+ zeroptr(&i)
+ fmt.Println(i)
+
+}
+
+func zeroval(ival int) {
+    ival = 0
+}
+
+func zeroptr(iptr *int) {
+    *iptr = 0
+}
+
+func test2() {
 
     b := [5] int {1, 2, 3, 4, 5}
     fmt.Println("Array:", b)
