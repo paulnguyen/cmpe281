@@ -29,4 +29,5 @@ func main() {
     // we sent above and print it out.
     msg := <-messages
     fmt.Println(msg)
+    fmt.Println( "Done!" )
 }
