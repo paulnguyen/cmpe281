@@ -1,6 +1,7 @@
 /*
 
 	https://gobyexample.com/slices
+    https://tour.golang.org/moretypes/7
 
 	Slices are a key data type in Go, giving a more
 	powerful interface to sequences than arrays.
@@ -13,6 +14,13 @@ package main
 import "fmt"
 
 func main() {
+
+    // An array has a fixed size. A slice, on the other hand, is a
+    // dynamically-sized, flexible view into the elements of an array. In
+    // practice, slices are much more common than arrays.
+    primes := [6]int{2, 3, 5, 7, 11, 13}
+    var s []int = primes[1:4]
+    fmt.Println(s)
 
     // Unlike arrays, slices are typed only by the
     // elements they contain (not the number of elements).

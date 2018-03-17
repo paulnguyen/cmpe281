@@ -1,20 +1,21 @@
-
 /* 
-
 	https://gobyexample.com/goroutines
-
-	A _goroutine_ is a lightweight thread of execution.
-	
+	A _goroutine_ is a lightweight thread of execution.	
 */
 
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "time"
+)
 
 func f(from string) {
     for i := 0; i < 3; i++ {
         fmt.Println(from, ":", i)
+        time.Sleep(5000 * time.Millisecond)
     }
+    fmt.Println("func f() done!")
 }
 
 func main() {
@@ -32,7 +33,9 @@ func main() {
     // You can also start a goroutine for an anonymous
     // function call.
     go func(msg string) {
-        fmt.Println(msg)
+        fmt.Println("Anonymous: " + msg)
+        time.Sleep(5000 * time.Millisecond)
+        fmt.Println("Anonymous: done")
     }("going")
 
     // Our two function calls are running asynchronously in
@@ -40,8 +43,9 @@ func main() {
     // to here. This `Scanln` code requires we press a key
     // before the program exits.
     var input string
+    fmt.Println("Waiting for key...")
     fmt.Scanln(&input)
-    fmt.Println("done")
+    fmt.Println("Got Key!")
 }
 
 

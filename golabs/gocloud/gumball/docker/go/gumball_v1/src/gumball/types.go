@@ -14,7 +14,7 @@ type gumballMachine struct {
 
 var machine gumballMachine = gumballMachine {
   	Id: 1,
-	CountGumballs: 989,
+	CountGumballs: 10000,
 	ModelNumber: "M102988",
 	SerialNumber: "1234998871109",
 }
