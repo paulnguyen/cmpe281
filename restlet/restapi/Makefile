@@ -1,4 +1,4 @@
-all: clean  
+all: clean 
 
 clean:
 	rm -rf build/*

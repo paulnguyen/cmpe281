@@ -1,0 +1,44 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'quickpoll'
+	version = '1.0.0'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('javax.inject:javax.inject:1')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	// H2 Embedded DB Option (with Dev Tools/DB Console)
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile("com.h2database:h2")
+
+	// HSQL EMBEDDED DB OPTION
+	//compile('org.hsqldb:hsqldb')
+
+}
