@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+
+# NB: must happen before get_scriptpath
+unset CDPATH
+
+# NB: can't put this in common.bash since finding
+# common.bash depends on it
+# http://www.ostricher.com/2014/10/the-right-way-to-get-the-directory-of-a-bash-script/
+function get_scriptpath
+{
+    local sdir='unset'
+    local target='unset'
+    local bsrc="${BASH_SOURCE[0]}"
+    while [[ -h $bsrc ]]
+    do
+        target="$(readlink $bsrc)"
+        if [[ $target == /* ]]
+        then
+            bsrc="$target"
+        else
+            sdir="$(dirname $bsrc)"
+            bsrc="$sdir/$target"
+        fi
+    done
+    echo "$(cd -P $(dirname $bsrc) && pwd)"
+}
+declare -r script_path="$(get_scriptpath)"
+
+source "$script_path/lib/strong_consistency_conf.bash"
+
+strong_consistency_conf "$@"

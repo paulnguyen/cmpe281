@@ -1,0 +1,552 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+
+# NB: must happen before get_scriptpath
+unset CDPATH
+
+# NB: can't put this in common.bash since finding
+# common.bash depends on it
+# http://www.ostricher.com/2014/10/the-right-way-to-get-the-directory-of-a-bash-script/
+function get_scriptpath
+{
+    local sdir='unset'
+    local target='unset'
+    local bsrc="${BASH_SOURCE[0]}"
+    while [[ -h $bsrc ]]
+    do
+        target="$(readlink $bsrc)"
+        if [[ $target == /* ]]
+        then
+            bsrc="$target"
+        else
+            sdir="$(dirname $bsrc)"
+            bsrc="$sdir/$target"
+        fi
+    done
+    echo "$(cd -P $(dirname $bsrc) && pwd)"
+}
+declare -r script_path="$(get_scriptpath)"
+
+source "$script_path/lib/common.bash"
+source "$script_path/lib/gen_adv_conf.bash"
+source "$script_path/lib/gen_riak_conf.bash"
+source "$script_path/lib/legacy_search_conf.bash"
+source "$script_path/lib/riak_cluster_config.bash"
+source "$script_path/lib/strong_consistency_conf.bash"
+
+# Defaults
+declare -i i=0
+declare riak_admin='riak-admin' # NB: will be set below
+declare -r default_cluster_path="$HOME/basho/riak/rel"
+declare -ir default_pb_port=8087
+declare -ir default_http_port=8098
+
+set +o nounset
+if [[ -n $RIAK_CONF ]]
+then
+    declare -r default_riak_conf="$RIAK_CONF"
+else
+    declare -r default_riak_conf='/etc/riak/riak.conf'
+fi
+set -o nounset
+
+# Option vars
+opt_cleanup_only='false'
+declare -i opt_delay_riak_ops=0
+opt_ports=''
+opt_riak_conf=''
+opt_search='on' # NB: yz search on / off
+opt_strong_consistency='false'
+opt_setup_only='false'
+opt_use_security='false'
+
+function pinfo_options
+{
+    if [[ $opt_strong_consistency == 'true' ]]
+    then
+        pinfo 'Setting up cluster with Strong Consistency'
+    fi
+    if [[ $opt_search == 'off' ]]
+    then
+        pinfo 'Setting up cluster WITHOUT Yokozuna Search'
+    fi
+}
+
+function commit_cluster
+{
+    local -r riak_admin="$1"
+    $riak_admin cluster plan
+    $riak_admin cluster commit
+    $riak_admin transfer-limit 16
+    wait_for_transfers
+}
+
+function wait_for_service
+{
+    local svc="$1"
+    local svc_out="$($riak_admin services 2>&1)"
+    local -i i=0
+
+    while [[ $svc_out != *$svc* ]]
+    do
+        if [[ $svc_out == *not\ responding* ]]
+        then
+            perr 'Riak did not start! (not responding)'
+            return 1
+        fi
+
+        sleep 5
+        if (( i > 24 ))
+        then
+            perr 'Riak did not start in time!'
+            return 1
+        else
+            pinfo "($i) waiting for service: $svc"
+            (( i = i + 1 ))
+        fi
+
+        svc_out="$($riak_admin services 2>&1)"
+    done
+
+    return 0
+}
+
+function wait_for_services
+{
+    local node_name="$1"
+    local riak="$2"
+    local riak_admin="$3"
+    local opt_search="$4"
+
+    pinfo "Waiting for Riak services to start on $node_name"
+
+    maybe_sleep
+
+    for svc in 'riak_kv' 'riak_pipe'
+    do
+        if ! wait_for_service "$svc"
+        then
+            return 1
+        fi
+    done
+
+    if [[ $opt_search == 'on' ]]
+    then
+        if ! wait_for_service 'yokozuna'
+        then
+            return 1
+        fi
+    fi
+}
+
+function setup_cluster
+{
+    pushd $cluster_path > /dev/null
+    get_node_count
+
+    pinfo "Setting up cluster in $cluster_path"
+
+    pinfo_options
+
+    pinfo 'Stopping Riak'
+
+    set +o errexit
+
+    for dir in $riak_dir_glob
+    do
+        pinfo "Stopping $dir"
+        $dir/bin/riak stop > /dev/null &
+    done
+
+    wait
+
+    pinfo 'Removing old Riak data'
+
+    for datadir in $riak_dir_glob/data/*
+    do
+        find $datadir -type f -delete
+    done
+
+    for logdir in $riak_dir_glob/log
+    do
+        find $logdir -type f -delete
+    done
+
+    for yz_temp in $riak_dir_glob/data/yz_temp
+    do
+        rm -rf $yz_temp
+    done
+
+    set -o errexit
+
+    if [[ $opt_cleanup_only == 'true' ]]
+    then
+        exit 0
+    fi
+
+    # NB: not readonly since vals are incremented
+    local -i pb_port="${opt_pb_port:-$default_pb_port}"
+    local -i http_port="${opt_http_port:-$default_http_port}"
+    local -ir starting_http_port="$http_port"
+
+    if [[ $opt_use_security == 'true' ]]
+    then
+        local -i https_port="$((http_port + 400))"
+    else
+        local -i https_port=0
+    fi
+
+    local adv_conf=''
+    local riak_conf=''
+    local riak_conf_orig=''
+    for dir in $riak_dir_glob
+    do
+        adv_conf="$dir/etc/advanced.config"
+        riak_conf="$dir/etc/riak.conf"
+        riak_conf_orig="$dir/etc/riak.conf.orig"
+        pinfo "Configuring $riak_conf"
+        if [[ -f $riak_conf_orig ]]
+        then
+            cp -f "$riak_conf_orig" "$riak_conf"
+        else
+            cp -f "$riak_conf" "$riak_conf_orig"
+        fi
+
+        gen_riak_conf "$riak_conf" $http_port $pb_port $https_port \
+            "$security_cacert_file" "$security_cert_file" "$security_key_file" \
+            "$node_count" "$opt_search"
+
+        gen_adv_conf "$adv_conf"
+
+        if [[ $opt_strong_consistency == 'true' ]]
+        then
+            strong_consistency_conf "$riak_conf"
+        fi
+
+        (( pb_port += 10 ))
+        (( http_port += 10 ))
+
+        if [[ $opt_use_security == 'true' ]]
+        then
+            (( https_port += 10 ))
+        else
+            https_port=0
+        fi
+    done
+
+    pinfo 'Starting Riak'
+
+    for dir in $riak_dir_glob
+    do
+        pinfo "Starting Riak in $PWD/$dir"
+        ($dir/bin/riak start; maybe_sleep) &
+    done
+
+    wait
+
+    local is_first='true'
+    local first_node_name='dev1@127.0.0.1'
+    for dir in $riak_dir_glob
+    do
+        if [[ $is_first == 'true' ]]
+        then
+            pdebug "Skipping join for $dir"
+            first_node_name="$dir@127.0.0.1"
+            local -r riak="$dir/bin/riak"
+            local -r riak_admin="$dir/bin/riak-admin"
+            local -r riak_logs="$dir/log"
+            is_first='false'
+
+            # NB: wait for services to come up prior to join
+            set +o errexit
+            wait_for_services "$first_node_name" "$riak" "$riak_admin" "$opt_search"
+            if [[ $? != 0 ]]
+            then
+                cat $riak_logs/*.log*
+                return 1
+            fi
+            set -o errexit
+        else
+            pinfo "Joining $dir"
+            pdebug "$dir/bin/riak-admin cluster join \"$first_node_name\""
+            ($dir/bin/riak-admin cluster join "$first_node_name"; maybe_sleep) &
+        fi
+    done
+
+    wait
+
+    commit_cluster "$riak_admin"
+    if [[ $opt_setup_only == 'false' ]]
+    then
+        riak_cluster_config "$riak_admin" "$starting_http_port" "$opt_strong_consistency" "$opt_use_security"
+    fi
+    return 0
+}
+
+function setup_riak
+{
+    if [[ -f /etc/riak/riak.conf ]] && hash riak && hash riak-admin
+    then
+        pinfo 'Riak appears to be installed via package, setting up one-node (singleton) cluster'
+    else
+        errexit 'Riak is not installed, exiting (could not find /etc/riak/riak.conf, or riak and riak-admin executables)'
+    fi
+
+    local -ri id_u="$(id -u)"
+    if (( id_u != 0 ))
+    then
+        pinfo 'You are not root, if the following steps fail, re-run script as root or use sudo'
+    fi
+
+    # NB: we only set up singleton nodes from packages using this script
+    node_count=1
+
+    pinfo_options
+
+    pinfo 'Stopping Riak'
+
+    set +o errexit
+
+    riak stop
+
+    local platform_data_dir=$(awk -F= '/^platform_data_dir/ { gsub(/[[:space:]]/, "", $2); print $2 }' /etc/riak/riak.conf)
+    local platform_log_dir=$(awk -F= '/^platform_log_dir/ { gsub(/[[:space:]]/, "", $2); print $2 }' /etc/riak/riak.conf)
+
+    pinfo "Removing old Riak data from $platform_data_dir, $platform_log_dir"
+
+    for datadir in $platform_data_dir/*
+    do
+        find $datadir -type f -delete
+    done
+
+    rm -f $platform_log_dir/*
+
+    rm -rf $platform_data_dir/yz_temp
+
+    set -o errexit
+
+    if [[ $opt_cleanup_only == 'true' ]]
+    then
+        exit 0
+    fi
+
+    local -ir pb_port="${opt_pb_port:-$default_pb_port}"
+    local -ir http_port="${opt_http_port:-$default_http_port}"
+
+    if [[ $opt_use_security == 'true' ]]
+    then
+        local -ir https_port="$((http_port + 400))"
+    else
+        local -ir https_port=0
+    fi
+
+    local -r adv_conf='/etc/riak/advanced.config'
+    local -r riak_conf_orig='/etc/riak/riak.conf.orig'
+
+    pinfo "Configuring $package_riak_conf"
+
+    if [[ -f $riak_conf_orig ]]
+    then
+        cp -f "$riak_conf_orig" "$package_riak_conf"
+    else
+        cp -f "$package_riak_conf" "$riak_conf_orig"
+    fi
+
+    gen_riak_conf "$package_riak_conf" $http_port $pb_port $https_port \
+        "$security_cacert_file" "$security_cert_file" "$security_key_file" \
+        "$node_count" "$opt_search"
+
+    gen_adv_conf "$adv_conf"
+
+    if [[ $opt_strong_consistency == 'true' ]]
+    then
+        strong_consistency_conf "$package_riak_conf"
+    fi
+
+    pinfo 'Starting Riak'
+
+    set +o errexit
+    riak start
+    if [[ $? != 0 ]]
+    then
+        cat $platform_log_dir/*.log*
+        return 1
+    fi
+    set -o errexit
+
+    local -r riak="$(which riak)"
+    local -r riak_admin="$(which riak-admin)"
+
+    set +o errexit
+    wait_for_services "riak@127.0.0.1" "$riak" "$riak_admin" "$opt_search"
+    if [[ $? != 0 ]]
+    then
+        cat $platform_log_dir/*
+        return 1
+    fi
+    set -o errexit
+
+    commit_cluster "$riak_admin"
+    if [[ $opt_setup_only == 'false' ]]
+    then
+        riak_cluster_config "$riak_admin" "$http_port" "$opt_strong_consistency" "$opt_use_security"
+    fi
+    return 0
+}
+
+function usage
+{
+    echo "
+$0: set up a Riak cluster (one or several nodes)
+
+Usage:
+
+setup-riak [-p <riak rel or devrel path>]
+           [-f <riak.conf from installed pkg>]
+           [-l PB:HTTP] [-d <secs>] [-closxz]
+
+-p  Riak devrel or rel path (Default: \"$default_cluster_path\")
+-f  riak.conf from package (Default: \"$default_riak_conf\")
+-d  Delay Riak operations (Default: $opt_delay_riak_ops seconds)
+-c  Set up cluster for Strong Consistency (NB: use at least 5 nodes)
+-s  Set up cluster to use Riak Security
+-x  Shut down any nodes and clean up directories.
+-z  Set up cluster WITHOUT Yokozuna Search (Default: $opt_search)
+-o  Only start cluster, do not configure bucket types
+
+-l  PB:HTTP Use PB as PB port (Default: $default_pb_port),
+            HTTP as HTTP port (Default: $default_http_port)
+"
+    exit 0
+}
+
+while getopts "hcosxzp:f:d:l:" opt; do
+    case $opt in
+        p)
+            opt_cluster_path="$OPTARG";;
+        f)
+            opt_riak_conf="$OPTARG";;
+        d)
+            opt_delay_riak_ops="$OPTARG";;
+        l)
+            opt_ports="$OPTARG";;
+        c)
+            opt_strong_consistency='true';;
+        o)
+            opt_setup_only='true';;
+        s)
+            opt_use_security='true';;
+        x)
+            opt_cleanup_only='true';;
+        z)
+            opt_search='off';;
+        *)
+            usage;;
+    esac
+done
+
+if (( opt_delay_riak_ops > 0 ))
+then
+    delay_riak_ops="$opt_delay_riak_ops"
+fi
+
+riak_package='false'
+if [[ -n $opt_riak_conf ]]
+then
+    if [[ -s $opt_riak_conf ]]
+    then
+        riak_package='true'
+        declare -r package_riak_conf="$opt_riak_conf"
+    else
+        errexit "-f option points to non-existent or empty riak.conf file (\"$opt_riak_conf\")"
+    fi
+else
+    if [[ -s $default_riak_conf ]]
+    then
+        riak_package='true'
+        declare -r package_riak_conf="$default_riak_conf"
+    fi
+fi
+
+if [[ -n $opt_ports ]]
+then
+    opt_err='false'
+    declare -i opt_pb_port="${opt_ports%:*}"
+    declare -i opt_http_port="${opt_ports#*:}"
+    if (( opt_pb_port < 1024 ))
+    then
+        opt_err='true'
+        perr 'the PB argument to -l must be greater than 1024'
+    fi
+    if (( opt_http_port < 1024 ))
+    then
+        opt_err='true'
+        perr 'the HTTP argument to -l must be greater than 1024'
+    fi
+    if (( opt_pb_port == opt_http_port ))
+    then
+        opt_err='true'
+        perr 'the PB and HTTP ports can not be the same value'
+    fi
+    if [[ $opt_err == 'true' ]]
+    then
+        exit 1
+    fi
+fi
+
+# NB: these are passed to scripts as args so they should be
+# zero-length strings unless set to a path
+security_cacert_file=''
+security_cert_file=''
+security_key_file=''
+if [[ $opt_use_security == 'true' ]]
+then
+    pinfo 'NOTE: using Riak Security. This will require HTTPS and TLS connections.'
+    declare -r ca_path="$(cd -P "$script_path/test-ca" && pwd)";
+    if [[ -d $ca_path ]]
+    then
+        security_cacert_file="$ca_path/certs/cacert.pem"
+        security_cert_file="$ca_path/certs/riak-test-cert.pem"
+        security_key_file="$ca_path/private/riak-test-key.pem"
+
+        for file in $security_cacert_file $security_cert_file $security_key_file
+        do
+            if [[ ! -f $file  ]]
+            then
+                errexit "missing security file: $file"
+            fi
+        done
+
+        declare -r tmp_ca_path="$(make_temp_dir)"
+
+        cp -f "$security_cacert_file" "$tmp_ca_path"
+        security_cacert_file="$tmp_ca_path/cacert.pem"
+
+        cp -f "$security_cert_file" "$tmp_ca_path"
+        security_cert_file="$tmp_ca_path/riak-test-cert.pem"
+
+        cp -f "$security_key_file" "$tmp_ca_path"
+        security_key_file="$tmp_ca_path/riak-test-key.pem"
+
+        chmod 755 "$tmp_ca_path"
+        chmod 644 "$tmp_ca_path"/*
+        pinfo "Using certificates in $tmp_ca_path"
+    else
+        errexit 'missing CA directory'
+    fi
+fi
+
+if [[ $riak_package == 'true' ]]
+then
+    setup_riak
+else
+    declare -r cluster_path="${opt_cluster_path:-$default_cluster_path}"
+    if [[ -d $cluster_path ]]
+    then
+        setup_cluster "$cluster_path"
+    else
+        errexit "Riak rel or devrel not found at \"$cluster_path\". Please use -p argument to specify full path."
+    fi
+fi

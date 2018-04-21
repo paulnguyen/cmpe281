@@ -1,0 +1,51 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Java
+*.class
+
+# Ruby
+Gemfile.lock
+
+# C#
+[Bb][Ii][Nn]
+[Oo][Bb][Jj]
+[Dd]ebug
+[Rr]elease
+packages
+[Hh]elp
+[Dd]oc
+*.orig
+*.out
+*.err
+*.ncb
+*.obj
+*.suo
+*.user
+*.swp
+*.log
+*.*~
+_Re*
+\.DS_Store
+*.userprefs
+*.pidb
+*.zip
+*.dotCover
+*.nupkg
+*.nuspec
+*.VisualState.xml
+

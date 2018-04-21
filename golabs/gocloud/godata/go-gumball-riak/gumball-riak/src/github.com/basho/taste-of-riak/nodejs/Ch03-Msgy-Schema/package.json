@@ -1,0 +1,16 @@
+{
+  "name": "Ch03-Msgy-Schema",
+  "description": "Taste of Riak Ch03",
+  "version": "1.0.0",
+  "author": "Luke Bakken <lbakken@basho.com>",
+  "license": "Apache-2.0",
+  "dependencies" : {
+      "basho-riak-client" : "latest",
+      "winston" : "latest",
+      "async" : "latest"
+  },
+  "engines": {
+    "node": "~0.12"
+  }
+}
+

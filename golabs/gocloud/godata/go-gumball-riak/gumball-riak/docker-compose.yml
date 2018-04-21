@@ -1,0 +1,41 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.5
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=cmpe281   
+  cassandra:
+    image: cassandra:2.2
+  coordinator:
+    image: basho/riak-kv
+    ports:
+      - "8097:8087"
+      - "8098:8098"
+    environment:
+      - CLUSTER_NAME=riakkv
+    labels:
+      - "com.basho.riak.cluster.name=riakkv"
+    volumes:
+      - schemas:/etc/riak/schemas
+  member:
+    image: basho/riak-kv
+    ports:
+      - "8000-8003:8087"
+      - "9000-9003:8098"
+    labels:
+      - "com.basho.riak.cluster.name=riakkv"
+    links:
+      - coordinator
+    depends_on:
+      - coordinator
+    environment:
+      - CLUSTER_NAME=riakkv
+      - COORDINATOR_NODE=coordinator
+
+volumes:
+  schemas:
+    external: false
+

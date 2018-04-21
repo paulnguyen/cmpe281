@@ -1,0 +1,199 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+
+# NB: can't put this in common.bash since finding
+# common.bash depends on it
+# http://www.ostricher.com/2014/10/the-right-way-to-get-the-directory-of-a-bash-script/
+function get_scriptpath
+{
+    local sdir='unset'
+    local target='unset'
+    local bsrc="${BASH_SOURCE[0]}"
+    while [[ -h $bsrc ]]
+    do
+        target="$(readlink $bsrc)"
+        if [[ $target == /* ]]
+        then
+            bsrc="$target"
+        else
+            sdir="$(dirname $bsrc)"
+            bsrc="$sdir/$target"
+        fi
+    done
+    echo "$(cd -P $(dirname $bsrc) && pwd)"
+}
+
+function do_sleep
+{
+    local -ri s="$1"
+    echo "Sleeping for $s seconds..."
+    sleep $s
+}
+
+unset CDPATH
+declare -r script_path="$(get_scriptpath)"
+export PATH="$PATH:$script_path"
+source "$script_path/lib/common.bash"
+
+declare -r default_dev_cluster_path="$HOME/Projects/basho/riak/dev"
+declare -ri default_monkey_count=1
+declare -ri default_iteration_count=1
+
+opt_use_signals='false'
+opt_wait_xfers='false'
+declare -i opt_sleep_interval=30
+
+function usage
+{
+    echo "
+chaos-monkey: Monkey with your devrel
+
+Usage: chaos-monkey
+    [-p <riak_dev_path>] [-m <monkey_count>] [-s <sleep_interval>] [-kw]
+
+-i    Iteration count (Default: \"$default_iteration_count\")
+-m    Monkey count, i.e. number of nodes to take down at any given time
+      (Default: \"$default_monkey_count\")
+-p    Riak dev path (Default: \"$default_dev_cluster_path\")
+-s    Sleep interval (Default: \"$opt_sleep_interval\")
+-k    Use SIGSTOP/SIGCONT signals in addition to
+      'riak stop' / 'riak start'
+-w    Just wait for transfers and exit
+"
+    exit 0
+}
+
+while getopts "hkwi:m:p:s:" opt; do
+    case $opt in
+        k)
+            opt_use_signals='true';;
+        i)
+            declare -ri opt_iteration_count="$OPTARG";;
+        m)
+            declare -ri opt_monkey_count="$OPTARG";;
+        p)
+            declare -r opt_dev_cluster_path="$OPTARG";;
+        s)
+            opt_sleep_interval="$OPTARG";;
+        w)
+            opt_wait_xfers='true';;
+        *)
+            usage;;
+    esac
+done
+
+declare -r dev_cluster_path="${opt_dev_cluster_path:-$default_dev_cluster_path}"
+declare -ri monkey_count="${opt_monkey_count:-$default_monkey_count}"
+declare -ri iteration_count="${opt_iteration_count:-$default_iteration_count}"
+
+if [[ ! -d $dev_cluster_path ]]
+then
+    errexit "Dev cluster path $dev_cluster_path does not exist!"
+fi
+
+pushd $dev_cluster_path > /dev/null
+declare -i node_count=0
+get_node_count
+
+if (( monkey_count >= node_count ))
+then
+    errexit "Maximum monkey count is $(( node_count - 1 ))"
+fi
+
+function get_riak_pid
+{
+    local -r devn="$1"
+    local -r run_erl="$devn/log/run_erl.log"
+    if [[ -s $run_erl ]]
+    then
+        declare -ri pid=$(awk '/run_erl \[[[:digit:]]+\]/ { l=length($2)-2; print substr($2,2,l); exit }' "$devn/log/run_erl.log")
+        if (( pid > 0 ))
+        then
+            echo "$pid"
+        else
+            errexit "Could not get PID for $devn"
+        fi
+    else
+        errexit "Expected run_erl.log at $run_erl"
+    fi
+}
+
+declare -i i=0
+declare -i j=0
+declare -i pid=0
+while (( j < iteration_count ))
+do
+    use_kill='false'
+    if [[ $opt_use_signals == 'true' ]] && (( j % 2 == 0 ))
+    then
+        use_kill='true'
+    fi
+
+    # NB: don't sleep the first interval
+    if (( j > 0 ))
+    then
+        do_sleep $opt_sleep_interval
+    fi
+
+    (( j = j + 1 ))
+
+    declare -a nodes
+    for (( i = 0; i < monkey_count; i++ ))
+    do
+        devn="dev$(((RANDOM % node_count) + 1))"
+        riak_admin="$devn/bin/riak-admin"
+        if [[ ! -x $riak_admin ]]
+        then
+            errexit "riak-admin not found in $riak_admin"
+        fi
+
+        if [[ $opt_wait_xfers == 'true' ]]
+        then
+            pinfo 'waiting for transfers to finish, then exiting'
+            wait_for_transfers
+            exit 0
+        fi
+
+        if $devn/bin/riak ping
+        then
+            pinfo "monkeying around with $devn in $dev_cluster_path"
+
+            if [[ $use_kill == 'true' ]]
+            then
+                pid="$(get_riak_pid $devn)"
+                echo "Stopping $devn ($pid) via SIGSTOP..."
+                kill -STOP $pid
+            else
+                echo "Stopping $devn via 'riak stop'..."
+                "$devn/bin/riak" stop
+            fi
+
+            nodes[$i]="$devn"
+        else
+            # Re-do
+            (( i = i - 1 ))
+        fi
+    done
+
+    do_sleep $opt_sleep_interval
+
+    for devn in ${nodes[@]}
+    do
+        if [[ $use_kill == 'true' ]]
+        then
+            pid="$(get_riak_pid $devn)"
+            echo "Starting $devn ($pid) via SIGCONT..."
+            kill -CONT $pid
+        else
+            echo "Starting $devn via 'riak start'..."
+            "$devn/bin/riak" start
+        fi
+    done
+    
+    echo Setting transfer-limit 16...
+    "$devn/bin/riak-admin" transfer-limit 16
+
+    wait_for_transfers
+done

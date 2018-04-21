@@ -1,0 +1,4 @@
+* text=auto
+
+# Files that must be LF ending
+devrel/*	text eol=lf
