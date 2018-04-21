@@ -124,7 +124,7 @@ order by F.FIELD_COLUMN
 
 -- TASK TABLE Record Example
 insert into TASK( ID, `DESC`, OWNER, PLAN_START,  PLAN_FINISH, DONE)
-values ( 1, 'Task Table for Waterfall', 'Paul', '2014-09-01', '2014-10-01', 'FALSE' ) ;
+values ( 1, 'Task Table for Waterfall', 'Paul', '2014-09-01', '2014-10-01', 'F' ) ;
 
 -- TENANT_DATA Record Example
 insert into TENANT_DATA (RECORD_ID, TENANT_ID, TENANT_TABLE, 
