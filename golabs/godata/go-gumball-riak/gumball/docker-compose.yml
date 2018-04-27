@@ -3,22 +3,25 @@ services:
   nodejs:
     image: nodejs
     ports:
-      - 8080:8080    
+      - 8080:8080   
+    networks:
+      - front       
     restart: always
     links:
       - kong
     depends_on:
-      - kong     
+      - kong   
   gumball:
     image: gumball
-    ports:
-      - 3000:3000
+    networks:
+      - app 
+      - db   
     restart: always
     environment:
       - MYSQL="root:cmpe281@tcp(mysql:3306)/cmpe281"
-      - RIAK1="http://gumballriak_member_1:8098"
-      - RIAK2="http://gumballriak_member_2:8098"
-      - RIAK3="http://gumballriak_member_3:8098"
+      - RIAK1="http://gumball_member_1:8098"
+      - RIAK2="http://gumball_member_2:8098"
+      - RIAK3="http://gumball_member_3:8098"    
     links:
       - member
       - mysql
@@ -27,18 +30,22 @@ services:
       - mysql 
   mysql:
     image: mysql:5.5
-    ports:
-      - 3306:3306
+    networks:
+      - db    
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=cmpe281   
   cassandra:
     image: cassandra:2.2
+    networks:
+      - front
   kong:
     image: kong:0.9.9
     ports:
       - 8888:8000
-      - 8001:8001
+    networks:
+      - front
+      - app
     links:
       - gumball
       - cassandra
@@ -51,9 +58,8 @@ services:
       - KONG_PG_HOST=cassandra
   coordinator:
     image: basho/riak-kv
-    ports:
-      - 8097:8087
-      - 8098:8098
+    networks:
+      - db    
     environment:
       - CLUSTER_NAME=riakkv
     labels:
@@ -62,8 +68,8 @@ services:
       - schemas:/etc/riak/schemas
   member:
     image: basho/riak-kv
-    ports:
-      - 9000-9003:8098
+    networks:
+      - db   
     labels:
       - "com.basho.riak.cluster.name=riakkv"
     links:
@@ -77,4 +83,12 @@ services:
 volumes:
   schemas:
     external: false
+
+networks:
+  front:
+    driver: bridge
+  app:
+    driver: bridge
+  db:
+    driver: bridge
 

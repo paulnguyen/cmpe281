@@ -1,379 +1,10 @@
 {
 	"info": {
-		"name": "RESTLET",
 		"_postman_id": "baae9c1f-d53a-2841-5d30-fbcb75849954",
-		"description": "",
+		"name": "RESTLET",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Gumball Test",
-			"description": "",
-			"item": [
-				{
-					"name": "Restlet Gumball Machine | Get Banner",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Insert Quarter",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Turn Crank",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"turn-crank\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Get Banner (V1)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v1/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v1",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Insert Quarter (V1)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v1/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v1",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Turn Crank (V1)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"turn-crank\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v1/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v1",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Get Banner (V2)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v2/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v2",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Insert Quarter (V2)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v2/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v2",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Turn Crank (V2)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"turn-crank\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v2/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v2",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Get Banner (V3)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v3/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v3",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Place Order (V3)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"payment\" : \"quarter\",   \n  \"action\": \"place-order\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v3/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v3",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Get Banner (V4)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v4/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v4",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet Gumball Machine | Place Order (V4)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"payment\" : \"quarter\",   \n  \"action\": \"place-order\"\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/v4/gumball",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"v4",
-								"gumball"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
 		{
 			"name": "Hello Restlet",
 			"description": "",
@@ -383,10 +14,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8080/restlet/hello",
 							"protocol": "http",
@@ -398,8 +26,7 @@
 								"restlet",
 								"hello"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -408,10 +35,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/test/abcd",
 							"protocol": "http",
@@ -423,8 +47,7 @@
 								"test",
 								"abcd"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -433,10 +56,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/accounts/",
 							"protocol": "http",
@@ -458,10 +78,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/accounts/123",
 							"protocol": "http",
@@ -483,10 +100,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/?param=value",
 							"protocol": "http",
@@ -503,8 +117,7 @@
 									"value": "value"
 								}
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -513,10 +126,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/123",
 							"protocol": "http",
@@ -527,8 +137,7 @@
 							"path": [
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -537,10 +146,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/?method=options",
 							"protocol": "http",
@@ -557,8 +163,7 @@
 									"value": "options"
 								}
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -567,10 +172,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/",
 							"protocol": "http",
@@ -581,8 +183,7 @@
 							"path": [
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -591,10 +192,7 @@
 					"request": {
 						"method": "OPTIONS",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/",
 							"protocol": "http",
@@ -605,8 +203,7 @@
 							"path": [
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -630,8 +227,7 @@
 								"accounts",
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -640,10 +236,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/accounts/",
 							"protocol": "http",
@@ -655,8 +248,7 @@
 								"accounts",
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -680,8 +272,7 @@
 								"accounts",
 								"0"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -705,8 +296,7 @@
 								"accounts",
 								"0"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -730,8 +320,7 @@
 								"accounts",
 								"0"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -754,8 +343,7 @@
 							"path": [
 								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -783,8 +371,7 @@
 							"path": [
 								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -807,8 +394,7 @@
 							"path": [
 								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -836,8 +422,7 @@
 							"path": [
 								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -863,8 +448,7 @@
 							"path": [
 								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -895,8 +479,7 @@
 							"path": [
 								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
@@ -911,10 +494,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8111/hello",
 							"protocol": "http",
@@ -925,8 +505,7 @@
 							"path": [
 								"hello"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -935,10 +514,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8080/contacts/123",
 							"protocol": "http",
@@ -950,8 +526,7 @@
 								"contacts",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -980,8 +555,7 @@
 								"contacts",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1010,8 +584,7 @@
 								"contacts",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1050,18 +623,14 @@
 								"value": "Basic c2NvdHQ6dGlnZXI="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "localhost:8182",
 							"host": [
 								"localhost"
 							],
 							"port": "8182"
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1129,18 +698,14 @@
 								"value": "Digest username=\"scott\", realm=\"TestRealm\", nonce=\"MTQ3ODkzMTA5NTM0NDo0YTI5ZGJhZjJhMzRiNTJiNzQzNjZmY2I1ZjZjMDQ2Mg==\", uri=\"/\", response=\"bf484dfbd07d659773d1dec08706da32\", opaque=\"\""
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "localhost:8182",
 							"host": [
 								"localhost"
 							],
 							"port": "8182"
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1149,10 +714,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -1166,8 +728,7 @@
 								"mails",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1206,10 +767,7 @@
 								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -1223,8 +781,7 @@
 								"mails",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1292,10 +849,7 @@
 								"value": "Digest username=\"chunkylover53\", realm=\"My Realm\", nonce=\"MTQ3ODkzODE4MzA1MjpmODExMDU0NzEzYjYwOTZhYTM5NTY3ZjQ4MTQ5MTU1Zg==\", uri=\"/accounts/chunkylover53/mails/123\", response=\"98c673e16b9fd81560eeff8eb46f5304\", opaque=\"\""
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -1309,8 +863,7 @@
 								"mails",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1349,10 +902,7 @@
 								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -1366,8 +916,7 @@
 								"mails",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1381,10 +930,7 @@
 								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -1398,508 +944,121 @@
 								"mails",
 								"123"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "Service Test",
+			"name": "Starbucks Test",
 			"description": "",
 			"item": [
 				{
-					"name": "Restlet | Hello World (Cloud 9)",
+					"name": "Post Starbucks API | Localhost",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "aw-tenant-code",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "_api-key",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "_tenant-code",
-								"value": "1DKHA4AAAAG5A5BQADQA"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "https://design-paulnguyen.c9users.io/restlet/hello",
-							"protocol": "https",
+							"raw": "http://localhost:9090/v1/starbucks/order",
+							"protocol": "http",
 							"host": [
-								"design-paulnguyen",
-								"c9users",
-								"io"
+								"localhost"
 							],
+							"port": "9090",
 							"path": [
-								"restlet",
-								"hello"
+								"v1",
+								"starbucks",
+								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Restlet | Hello World (Docker Cloud)",
+					"name": "Post Starbucks API |Docker Local",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "aw-tenant-code",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "_api-key",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "_tenant-code",
-								"value": "1DKHA4AAAAG5A5BQADQA"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://restapi-hello-1.c2247b6d.cont.dockerapp.io/restlet/hello",
+							"raw": "http://192.168.99.100:9090/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"restapi-hello-1",
-								"c2247b6d",
-								"cont",
-								"dockerapp",
-								"io"
+								"192",
+								"168",
+								"99",
+								"100"
 							],
+							"port": "9090",
 							"path": [
-								"restlet",
-								"hello"
+								"v1",
+								"starbucks",
+								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Restlet | Hello World (AWS EC2)",
+					"name": "Post Starbucks API |Docker Cloud (DNS)",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "aw-tenant-code",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "_api-key",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "_tenant-code",
-								"value": "1DKHA4AAAAG5A5BQADQA"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://ec2-54-153-1-207.us-west-1.compute.amazonaws.com/restlet/hello",
+							"raw": "http://aws.nguyenresearch.com:90/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"ec2-54-153-1-207",
-								"us-west-1",
-								"compute",
-								"amazonaws",
+								"aws",
+								"nguyenresearch",
 								"com"
 							],
+							"port": "90",
 							"path": [
-								"restlet",
-								"hello"
+								"v1",
+								"starbucks",
+								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Restlet | Hello World (AWS IP)",
+					"name": "Post Starbucks API |Docker Cloud (Host IP)",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "aw-tenant-code",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "_api-key",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "_tenant-code",
-								"value": "1DKHA4AAAAG5A5BQADQA"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://54.153.1.207/restlet/hello",
+							"raw": "http://54.201.122.231:90/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
 								"54",
-								"153",
-								"1",
-								"207"
+								"201",
+								"122",
+								"231"
 							],
+							"port": "90",
 							"path": [
-								"restlet",
-								"hello"
+								"v1",
+								"starbucks",
+								"order"
 							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Hello World (AWS DNS)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "aw-tenant-code",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "_api-key",
-								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
-							},
-							{
-								"key": "_tenant-code",
-								"value": "1DKHA4AAAAG5A5BQADQA"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://aws.nguyenresearch.com/restlet/hello",
-							"protocol": "http",
-							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
-							],
-							"path": [
-								"restlet",
-								"hello"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Hello World (Localhost)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/restlet/hello",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restlet",
-								"hello"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Hello World (Docker Local | 8080)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://192.168.99.100:8080/restlet/hello",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
-							],
-							"port": "8080",
-							"path": [
-								"restlet",
-								"hello"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Hello World (Docker Local | 80)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://192.168.99.100/restlet/hello",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
-							],
-							"path": [
-								"restlet",
-								"hello"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Mail Server JSON | Get (AWS DNS)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Account #1"
-						},
-						"url": {
-							"raw": "http://aws.nguyenresearch.com:8080/mail",
-							"protocol": "http",
-							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
-							],
-							"port": "8080",
-							"path": [
-								"mail"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Mail Server JSON | Put (AWS DNS)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
-						},
-						"url": {
-							"raw": "http://aws.nguyenresearch.com:8080/mail",
-							"protocol": "http",
-							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
-							],
-							"port": "8080",
-							"path": [
-								"mail"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Mail Server JACKSON | Get (AWS DNS)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Account #1"
-						},
-						"url": {
-							"raw": "http://aws.nguyenresearch.com:81/mail",
-							"protocol": "http",
-							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
-							],
-							"port": "81",
-							"path": [
-								"mail"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Mail Server JACKSON | Put (AWS DNS)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
-						},
-						"url": {
-							"raw": "http://aws.nguyenresearch.com:81/mail",
-							"protocol": "http",
-							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
-							],
-							"port": "81",
-							"path": [
-								"mail"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Cart API | Get Order (Localhost | 8080)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/cart",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cart"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Restlet | Cart API | Get Order (AWS | 8080)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
-						},
-						"url": {
-							"raw": "http://aws.nguyenresearch.com:8080/cart",
-							"protocol": "http",
-							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
-							],
-							"port": "8080",
-							"path": [
-								"cart"
-							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
@@ -1943,8 +1102,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1981,8 +1139,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2019,8 +1176,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2057,8 +1213,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2098,8 +1253,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2135,8 +1289,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2174,8 +1327,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2212,8 +1364,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2250,8 +1401,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2288,8 +1438,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2320,8 +1469,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2361,8 +1509,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2398,8 +1545,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
@@ -2414,10 +1560,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/status",
 							"protocol": "http",
@@ -2428,8 +1571,7 @@
 							"path": [
 								"status"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2438,10 +1580,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/cluster",
 							"protocol": "http",
@@ -2452,8 +1591,7 @@
 							"path": [
 								"cluster"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2462,10 +1600,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}",
 							"protocol": "http",
@@ -2473,8 +1608,7 @@
 								"{{kong_host}}"
 							],
 							"port": "{{kong_port}}"
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2483,10 +1617,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
 							"protocol": "http",
@@ -2497,8 +1628,7 @@
 							"path": [
 								"apis"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2526,8 +1656,7 @@
 							"path": [
 								"apis"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2563,8 +1692,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2600,8 +1728,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2632,8 +1759,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2663,8 +1789,7 @@
 								"consumers",
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2707,8 +1832,7 @@
 								"apiclient",
 								"key-auth"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2738,8 +1862,7 @@
 								"consumers",
 								"apiclient"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2748,10 +1871,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/consumers",
 							"protocol": "http",
@@ -2762,8 +1882,7 @@
 							"path": [
 								"consumers"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2772,10 +1891,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -2787,8 +1903,7 @@
 								"apis",
 								"starbucks"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2797,10 +1912,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -2812,8 +1924,7 @@
 								"apis",
 								"starbucks"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2822,10 +1933,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
 							"protocol": "http",
@@ -2838,8 +1946,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2848,10 +1955,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins/12cc3fd7-c07e-4c3b-bc0f-465e311bf948",
 							"protocol": "http",
@@ -2865,8 +1969,7 @@
 								"plugins",
 								"12cc3fd7-c07e-4c3b-bc0f-465e311bf948"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2908,8 +2011,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2950,8 +2052,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -2992,8 +2093,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -3034,8 +2134,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -3069,8 +2168,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -3114,8 +2212,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -3155,8 +2252,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -3191,54 +2287,265 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "Starbucks Test",
+			"name": "Service Test",
 			"description": "",
 			"item": [
 				{
-					"name": "Post Starbucks API | Localhost",
+					"name": "Restlet | Hello World (Cloud 9)",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
-						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {},
 						"url": {
-							"raw": "http://localhost:9090/v1/starbucks/order",
-							"protocol": "http",
+							"raw": "https://design-paulnguyen.c9users.io/restlet/hello",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"design-paulnguyen",
+								"c9users",
+								"io"
 							],
-							"port": "9090",
 							"path": [
-								"v1",
-								"starbucks",
-								"order"
+								"restlet",
+								"hello"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Post Starbucks API |Docker Local",
+					"name": "Restlet | Hello World (Docker Cloud)",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
-						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {},
 						"url": {
-							"raw": "http://192.168.99.100:9090/v1/starbucks/order",
+							"raw": "http://restapi-hello-1.c2247b6d.cont.dockerapp.io/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"restapi-hello-1",
+								"c2247b6d",
+								"cont",
+								"dockerapp",
+								"io"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (AWS EC2)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://ec2-54-153-1-207.us-west-1.compute.amazonaws.com/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"ec2-54-153-1-207",
+								"us-west-1",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (AWS IP)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://54.153.1.207/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"54",
+								"153",
+								"1",
+								"207"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (AWS DNS)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "aw-tenant-code",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic ZGNhc3Blcjo0cHB0aDByaXR5ITIwMTY="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "_api-key",
+								"value": "CYE3KZb6pnsrZp9wgwwTriT5EKBLHEZL5njbNRZ0sCw="
+							},
+							{
+								"key": "_tenant-code",
+								"value": "1DKHA4AAAAG5A5BQADQA"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (Localhost)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restlet",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Hello World (Docker Local | 8080)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://192.168.99.100:8080/restlet/hello",
 							"protocol": "http",
 							"host": [
 								"192",
@@ -3246,71 +2553,543 @@
 								"99",
 								"100"
 							],
-							"port": "9090",
+							"port": "8080",
 							"path": [
-								"v1",
-								"starbucks",
-								"order"
+								"restlet",
+								"hello"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Post Starbucks API |Docker Cloud (DNS)",
+					"name": "Restlet | Hello World (Docker Local | 80)",
 					"request": {
-						"method": "POST",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://192.168.99.100/restlet/hello",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"path": [
+								"restlet",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JSON | Get (AWS DNS)",
+					"request": {
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+							"raw": "Account #1"
 						},
 						"url": {
-							"raw": "http://aws.nguyenresearch.com:90/v1/starbucks/order",
+							"raw": "http://aws.nguyenresearch.com:8080/mail",
 							"protocol": "http",
 							"host": [
 								"aws",
 								"nguyenresearch",
 								"com"
 							],
-							"port": "90",
+							"port": "8080",
 							"path": [
-								"v1",
-								"starbucks",
-								"order"
+								"mail"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Post Starbucks API |Docker Cloud (Host IP)",
+					"name": "Restlet | Mail Server JSON | Put (AWS DNS)",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:8080/mail",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Get (AWS DNS)",
+					"request": {
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+							"raw": "Account #1"
 						},
 						"url": {
-							"raw": "http://54.201.122.231:90/v1/starbucks/order",
+							"raw": "http://aws.nguyenresearch.com:81/mail",
 							"protocol": "http",
 							"host": [
-								"54",
-								"201",
-								"122",
-								"231"
+								"aws",
+								"nguyenresearch",
+								"com"
 							],
-							"port": "90",
+							"port": "81",
+							"path": [
+								"mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Mail Server JACKSON | Put (AWS DNS)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:81/mail",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "81",
+							"path": [
+								"mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Cart API | Get Order (Localhost | 8080)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet | Cart API | Get Order (AWS | 8080)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+						},
+						"url": {
+							"raw": "http://aws.nguyenresearch.com:8080/cart",
+							"protocol": "http",
+							"host": [
+								"aws",
+								"nguyenresearch",
+								"com"
+							],
+							"port": "8080",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gumball Test",
+			"description": "",
+			"item": [
+				{
+					"name": "Restlet Gumball Machine | Get Banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Insert Quarter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Turn Crank",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"turn-crank\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
 							"path": [
 								"v1",
-								"starbucks",
-								"order"
+								"gumball"
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Insert Quarter (V1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Turn Crank (V1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"turn-crank\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V2)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Insert Quarter (V2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"insert-quarter\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Turn Crank (V2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"turn-crank\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V3)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Place Order (V3)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"payment\" : \"quarter\",   \n  \"action\": \"place-order\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Get Banner (V4)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v4/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v4",
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restlet Gumball Machine | Place Order (V4)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"payment\" : \"quarter\",   \n  \"action\": \"place-order\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v4/gumball",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v4",
+								"gumball"
+							]
+						}
 					},
 					"response": []
 				}

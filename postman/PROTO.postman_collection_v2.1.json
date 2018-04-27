@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "697b1964-d31d-7b45-8aba-a84f58d24784",
+		"name": "PROTO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Localhost (Proto)",
+			"description": "",
+			"item": [
+				{
+					"name": "Ping API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/ping",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List of Epics API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/epic",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"epic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Epic Details API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/epic/epic-1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"epic",
+								"epic-1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

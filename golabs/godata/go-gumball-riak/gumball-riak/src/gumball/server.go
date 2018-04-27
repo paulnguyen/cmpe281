@@ -9,6 +9,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"io/ioutil"
+	"time"
+	"os"
+	"strings"
 	"encoding/json"
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
@@ -16,7 +20,6 @@ import (
 	"github.com/satori/go.uuid"
     "database/sql"
 	_ "github.com/go-sql-driver/mysql"
-  	riak "github.com/basho/riak-go-client"
 )
 
 /*
@@ -24,20 +27,128 @@ import (
 		Tutorial: http://go-database-sql.org/index.html
 		Reference: https://golang.org/pkg/database/sql/
 
-	Go's Riak Client:
-		Tutorial:  	http://docs.basho.com/riak/kv/2.2.3/developing/getting-started/golang/
-		Reference: 	https://godoc.org/github.com/basho/riak-go-client#pkg-examples
-		Examples: 	https://github.com/basho/riak-go-client/blob/master/examples/dev/using/basics/main.go
-					http://docs.basho.com/riak/kv/2.2.3/developing/getting-started/golang/crud-operations/
-					http://docs.basho.com/riak/kv/2.2.3/developing/usage/creating-objects/
-					http://docs.basho.com/riak/kv/2.2.3/developing/usage/reading-objects/
-					http://docs.basho.com/riak/kv/2.2.3/developing/usage/updating-objects/
-					http://docs.basho.com/riak/kv/2.2.3/developing/usage/deleting-objects/
+		var mysql_connect = "root:cmpe281@tcp(127.0.0.1:3306)/cmpe281"
+		var mysql_connect = "root:cmpe281@tcp(mysql:3306)/cmpe281"
+
+	Go Rest Client:
+		Tutorial:	https://medium.com/@marcus.olsson/writing-a-go-client-for-your-restful-api-c193a2f4998c
+		Reference:	https://golang.org/pkg/net/http/
+
+		var server1 = "http://localhost:9000"
+		var server2 = "http://localhost:9001"
+		var server3 = "http://localhost:9002"
+		var server1 = "http://gumballriak_member_1:8098"
+		var server2 = "http://gumballriak_member_2:8098"
+		var server3 = "http://gumballriak_member_3:8098"
+
 */
 
-var mysql_connect = "root:cmpe281@tcp(127.0.0.1:3306)/cmpe281"
-//var mysql_connect = "root:cmpe281@tcp(mysql:3306)/cmpe281"
-var cluster riak.Cluster
+/* MySQL */
+var mysql_connect = "" // set in environment
+
+/* Riak REST Client */
+var debug = true
+var server1 = "" // set in environment
+var server2 = "" // set in environment
+var server3 = "" // set in environment
+
+type Client struct {
+	Endpoint string
+	*http.Client
+}
+
+var tr = &http.Transport{
+	MaxIdleConns:       10,
+	IdleConnTimeout:    30 * time.Second,
+	DisableCompression: true,
+}
+
+func NewClient(server string) *Client {
+	return &Client{
+		Endpoint:  	server,
+		Client: 	&http.Client{Transport: tr},
+	}
+}
+
+func (c *Client) Ping() (string, error) {
+	resp, err := c.Get(c.Endpoint + "/ping" )
+	if err != nil {
+		fmt.Println("[RIAK DEBUG] " + err.Error())
+		return "Ping Error!", err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if debug { fmt.Println("[RIAK DEBUG] GET: " + c.Endpoint + "/ping => " + string(body)) }
+	return string(body), nil
+}
+
+func (c *Client) CreateOrder(key, value string) (order, error) {
+   	var ord_nil = order {}
+	reqbody := "{\"Id\": \"" + 
+		key + 
+		"\",\"OrderStatus\": \"" +
+		 value + 
+		 "\"}"
+	resp, err := c.Post(c.Endpoint + "/buckets/orders/keys/"+key+"?returnbody=true", 
+						"application/json", strings.NewReader(reqbody) )
+	if err != nil {
+		fmt.Println("[RIAK DEBUG] " + err.Error())
+		return ord_nil, err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if debug { fmt.Println("[RIAK DEBUG] POST: " + c.Endpoint + "/buckets/orders/keys/"+key+"?returnbody=true => " + string(body)) }
+	var ord = order {
+		Id: key,            		
+		OrderStatus: value,
+	}
+	return ord, nil
+}
+
+func (c *Client) GetOrder(key string) (order, error) {
+	var ord_nil = order {}
+	resp, err := c.Get(c.Endpoint + "/buckets/orders/keys/"+key )
+	if err != nil {
+		fmt.Println("[RIAK DEBUG] " + err.Error())
+		return ord_nil, err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if debug { fmt.Println("[RIAK DEBUG] GET: " + c.Endpoint + "/buckets/orders/keys/"+key +" => " + string(body)) }
+	var ord = order { }
+	if err := json.Unmarshal(body, &ord); err != nil {
+		fmt.Println("RIAK DEBUG] JSON unmarshaling failed: %s", err)
+		return ord_nil, err
+	}
+	return ord, nil
+}
+
+func (c *Client) UpdateOrder(key, value string) (order, error) {
+	var ord_nil = order {}
+	reqbody := "{\"Id\": \"" + 
+		key + 
+		"\",\"OrderStatus\": \"" +
+		 value + 
+		 "\"}"
+	req, _  := http.NewRequest("PUT", c.Endpoint + "/buckets/orders/keys/"+key+"?returnbody=true", strings.NewReader(reqbody) )
+	req.Header.Add("Content-Type", "application/json")
+	//fmt.Println( req )
+	resp, err := c.Do(req)	
+	if err != nil {
+		fmt.Println("[RIAK DEBUG] " + err.Error())
+		return ord_nil, err
+	}	
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if debug { fmt.Println("[RIAK DEBUG] PUT: " + c.Endpoint + "/buckets/orders/keys/"+key+"?returnbody=true => " + string(body)) }
+	var ord = order { }
+	if err := json.Unmarshal(body, &ord); err != nil {
+		fmt.Println("RIAK DEBUG] JSON unmarshaling failed: %s", err)
+		return ord_nil, err
+	}
+	return ord, nil
+}
+
 
 // NewServer configures and returns a Server.
 func NewServer() *negroni.Negroni {
@@ -55,7 +166,13 @@ func NewServer() *negroni.Negroni {
 
 func init() {
 
-	// MySQL Setup
+	// Get Environment Config
+	mysql_connect = os.Getenv("MYSQL")
+	server1 = os.Getenv("RIAK1")
+	server2 = os.Getenv("RIAK2")
+	server3 = os.Getenv("RIAK3")
+
+	// MySQL Setup	
 	db, err := sql.Open("mysql", mysql_connect)
 	if err != nil {
 		log.Fatal(err)
@@ -76,7 +193,7 @@ func init() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			log.Println(id, count, model, serial)
+			log.Println("MySQL Ping: ", id, count, model, serial)
 		}
 		err = rows.Err()
 		if err != nil {
@@ -85,66 +202,31 @@ func init() {
 	}
 	defer db.Close()
 
-
-	// Riak KV Setup
-	nodeOpts1 := &riak.NodeOptions{
-		RemoteAddress: "localhost:8000",
-	}
-
-	nodeOpts2 := &riak.NodeOptions{
-		RemoteAddress: "localhost:8001",
-	}
-
-	nodeOpts3 := &riak.NodeOptions{
-		RemoteAddress: "localhost:8002",
-	}
-
-	var node1 *riak.Node
-	var node2 *riak.Node
-	var node3 *riak.Node
-	var err2 error
-
-	if node1, err2 = riak.NewNode(nodeOpts1); err2 != nil {
-		fmt.Println(err.Error())
-	}
-
-	if node2, err2 = riak.NewNode(nodeOpts2); err2 != nil {
-		fmt.Println(err.Error())
-	}
-
-	if node3, err2 = riak.NewNode(nodeOpts3); err2 != nil {
-		fmt.Println(err.Error())
-	}
-
-	nodes := []*riak.Node{node1, node2, node3}
-	opts := &riak.ClusterOptions{
-		Nodes: nodes,
-	}
-
-	fmt.Println( nodes ) 
-
-	cluster, err2 := riak.NewCluster(opts)
-	if err2 != nil {
-		fmt.Println(err.Error())
-	}
-
-	defer func() {
-		if err2 = cluster.Stop(); err != nil {
-			fmt.Println(err.Error())
-		}
-	}()
-
-	if err2 = cluster.Start(); err != nil {
-		fmt.Println(err.Error())
-	}
-
-	// ping
-	ping := &riak.PingCommand{}
-	if err2 = cluster.Execute(ping); err != nil {
-		fmt.Println(err.Error())
+	// Riak KV Setup	
+	c1 := NewClient(server1)
+	msg, err := c1.Ping( )
+	if err != nil {
+		log.Fatal(err)
 	} else {
-		fmt.Println("ping passed")
-	}	
+		log.Println("Riak Ping Server1: ", msg)		
+	}
+
+	c2 := NewClient(server2)
+	msg, err = c2.Ping( )
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		log.Println("Riak Ping Server2: ", msg)		
+	}
+
+	c3 := NewClient(server3)
+	msg, err = c3.Ping( )
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		log.Println("Riak Ping Server3: ", msg)		
+	}
+
 }
 
 
@@ -154,9 +236,8 @@ func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/gumball", gumballHandler(formatter)).Methods("GET")
 	mx.HandleFunc("/gumball", gumballUpdateHandler(formatter)).Methods("PUT")
 	mx.HandleFunc("/order", gumballNewOrderHandler(formatter)).Methods("POST")
-	mx.HandleFunc("/order/{id}", gumballOrderStatusHandler(formatter)).Methods("GET")
-	mx.HandleFunc("/order", gumballOrderStatusHandler(formatter)).Methods("GET")
-	mx.HandleFunc("/orders", gumballProcessOrdersHandler(formatter)).Methods("POST")
+	mx.HandleFunc("/order/{id}", gumballOrderStatusHandlerAny(formatter)).Methods("GET")
+	mx.HandleFunc("/order/{id}", gumballProcessOrdersHandler(formatter)).Methods("POST")
 }
 
 // Helper Functions
@@ -257,53 +338,154 @@ func gumballUpdateHandler(formatter *render.Render) http.HandlerFunc {
 // API Create New Gumball Order
 func gumballNewOrderHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
+
 		uuid := uuid.NewV4()
-    	var ord = order {
-					Id: uuid.String(),            		
-					OrderStatus: "Order Placed",
+		value := "Order Placed"
+
+		c1 := NewClient(server1)
+		ord, err := c1.CreateOrder(uuid.String(), value)
+		if err != nil {
+			log.Fatal(err)
+			formatter.JSON(w, http.StatusBadRequest, err)
+		} else {
+			formatter.JSON(w, http.StatusOK, ord)
 		}
-		if orders == nil {
-			orders = make(map[string]order)
-		}
-		orders[uuid.String()] = ord
-		fmt.Println( "Orders: ", orders )
-		formatter.JSON(w, http.StatusOK, ord)
 	}
 }
 
 // API Get Order Status
 func gumballOrderStatusHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
+		
 		params := mux.Vars(req)
 		var uuid string = params["id"]
-		fmt.Println( "Order ID: ", uuid )
+		fmt.Println( "Order Params ID: ", uuid )
+
 		if uuid == ""  {
-			fmt.Println( "Orders:", orders )
-			var orders_array [] order
-			for key, value := range orders {
-    			fmt.Println("Key:", key, "Value:", value)
-    			orders_array = append(orders_array, value)
-			}
-			formatter.JSON(w, http.StatusOK, orders_array)
+			formatter.JSON(w, http.StatusBadRequest, "Invalid Request. Order ID Missing.")
 		} else {
-			var ord = orders[uuid]
-			fmt.Println( "Order: ", ord )
-			formatter.JSON(w, http.StatusOK, ord)
+			ord := getOrder(server1, uuid)
+			if ord == (order{}) {
+				formatter.JSON(w, http.StatusBadRequest, "")
+			} else {
+				fmt.Println( "Order: ", ord )
+				formatter.JSON(w, http.StatusOK, ord)
+			}
 		}
 	}
 }
 
-// API Process Orders 
+func getOrder(server, uuid string) order {
+	var ord_nil = order {}
+	c := NewClient(server)
+	ord, err := c.GetOrder(uuid)
+	if err != nil {
+		log.Fatal(err)
+		return ord_nil
+	} else {
+		return ord
+	}
+}
+
+
+// API Get Order Status - Concurrent - Get One
+func gumballOrderStatusHandlerAny(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+		
+		params := mux.Vars(req)
+		var uuid string = params["id"]
+		fmt.Println( "Order Params ID: ", uuid )
+
+		c1 := make(chan order)
+    	c2 := make(chan order)
+    	c3 := make(chan order)
+
+		if uuid == ""  {
+			formatter.JSON(w, http.StatusBadRequest, "Invalid Request. Order ID Missing.")
+		} else {
+
+			go getOrderServer1(uuid, c1) 
+			go getOrderServer2(uuid, c2) 
+			go getOrderServer3(uuid, c3) 
+
+			var ord order
+		  	select {
+			    case ord = <-c1:
+			        fmt.Println("Received Server1: ", ord)
+			    case ord = <-c2:
+			        fmt.Println("Received Server2: ", ord)
+			    case ord = <-c3:
+			        fmt.Println("Received Server3: ", ord)
+		    }
+
+			if ord == (order{}) {
+				formatter.JSON(w, http.StatusBadRequest, "")
+			} else {
+				fmt.Println( "Order: ", ord )
+				formatter.JSON(w, http.StatusOK, ord)
+			}
+		}
+	}
+}
+
+func getOrderServer1(uuid string, chn chan<- order) {
+	var ord_nil = order {}
+	c := NewClient(server1)
+	ord, err := c.GetOrder(uuid)
+	if err != nil {
+		chn <- ord_nil
+	} else {
+		fmt.Println( "Server1: ", ord)
+		chn <- ord
+	}
+}
+
+func getOrderServer2(uuid string, chn chan<- order) {
+	var ord_nil = order {}
+	c := NewClient(server2)
+	ord, err := c.GetOrder(uuid)
+	if err != nil {
+		chn <- ord_nil
+	} else {
+		fmt.Println( "Server2: ", ord)
+		chn <- ord
+	}
+}
+
+func getOrderServer3(uuid string, chn chan<- order) {
+	var ord_nil = order {}
+	c := NewClient(server3)
+	ord, err := c.GetOrder(uuid)
+	if err != nil {
+		chn <- ord_nil
+	} else {
+		fmt.Println( "Server3: ", ord)
+		chn <- ord
+	}
+}
+
+
+// API Process Order
 func gumballProcessOrdersHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
-		for key, value := range orders {
-    			fmt.Println("Key:", key, "Value:", value)
-    			var ord = orders[key] 
-    			ord.OrderStatus = "Order Processed"
-    			orders[key] = ord
+
+		params := mux.Vars(req)
+		var uuid string = params["id"]
+		fmt.Println( "Order Params ID: ", uuid )
+		value := "Order Processed"
+
+		if uuid == ""  {
+			formatter.JSON(w, http.StatusBadRequest, "Invalid Request. Order ID Missing.")
+		} else {
+			c1 := NewClient(server1)
+			ord, err := c1.UpdateOrder(uuid, value)
+			if err != nil {
+				log.Fatal(err)
+				formatter.JSON(w, http.StatusBadRequest, err)
+			} else {
+				formatter.JSON(w, http.StatusOK, ord)
 			}
-		fmt.Println( "Orders: ", orders )
-		formatter.JSON(w, http.StatusOK, "Orders Processed!")
+		}
 	}
 }
 

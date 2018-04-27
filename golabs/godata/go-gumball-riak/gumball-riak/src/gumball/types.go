@@ -17,4 +17,4 @@ type order struct {
 	OrderStatus 	string	
 }
 
-var orders map[string] order
+

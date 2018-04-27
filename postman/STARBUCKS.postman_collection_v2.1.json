@@ -1,8 +1,7 @@
 {
 	"info": {
-		"name": "STARBUCKS",
 		"_postman_id": "f76a83dd-d521-055e-4d06-fa3d2e07d05e",
-		"description": "",
+		"name": "STARBUCKS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -44,8 +43,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -82,8 +80,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -120,8 +117,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -158,8 +154,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -199,8 +194,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -236,8 +230,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -275,8 +268,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -313,8 +305,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -351,8 +342,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -389,8 +379,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -430,8 +419,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -467,8 +455,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -479,7 +466,7 @@
 						"header": [
 							{
 								"key": "If-None-Match",
-								"value": "W/\"7f53c3961842e16bfc174c07179abf49\""
+								"value": "{{starbucks_order_etag}}"
 							}
 						],
 						"body": {
@@ -499,8 +486,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -534,8 +520,7 @@
 							"path": [
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -573,8 +558,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -611,8 +595,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -648,8 +631,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -686,8 +668,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -724,8 +705,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -765,8 +745,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -803,8 +782,7 @@
 							"path": [
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -839,8 +817,7 @@
 							"path": [
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -865,7 +842,7 @@
 							"raw": "Account #1"
 						},
 						"url": {
-							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/id",
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/1",
 							"protocol": "https",
 							"host": [
 								"private-849760-restbucksapi",
@@ -874,10 +851,9 @@
 							],
 							"path": [
 								"order",
-								"id"
+								"1"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -918,8 +894,7 @@
 								"order",
 								"id"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -944,7 +919,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/id",
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/1",
 							"protocol": "https",
 							"host": [
 								"private-849760-restbucksapi",
@@ -953,10 +928,9 @@
 							],
 							"path": [
 								"order",
-								"id"
+								"1"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
@@ -971,10 +945,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/status",
 							"protocol": "http",
@@ -985,8 +956,7 @@
 							"path": [
 								"status"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -995,10 +965,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/cluster",
 							"protocol": "http",
@@ -1009,8 +976,7 @@
 							"path": [
 								"cluster"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1019,10 +985,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}",
 							"protocol": "http",
@@ -1030,8 +993,7 @@
 								"{{kong_host}}"
 							],
 							"port": "{{kong_port}}"
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1040,10 +1002,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
 							"protocol": "http",
@@ -1054,8 +1013,7 @@
 							"path": [
 								"apis"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1083,8 +1041,7 @@
 							"path": [
 								"apis"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1120,8 +1077,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1157,8 +1113,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1189,8 +1144,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1220,8 +1174,7 @@
 								"consumers",
 								""
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1264,8 +1217,7 @@
 								"apiclient",
 								"key-auth"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1295,8 +1247,7 @@
 								"consumers",
 								"apiclient"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1305,10 +1256,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/consumers",
 							"protocol": "http",
@@ -1319,8 +1267,7 @@
 							"path": [
 								"consumers"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1329,10 +1276,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -1344,8 +1288,7 @@
 								"apis",
 								"starbucks"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1354,10 +1297,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -1369,8 +1309,7 @@
 								"apis",
 								"starbucks"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1379,10 +1318,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
 							"protocol": "http",
@@ -1395,8 +1331,7 @@
 								"starbucks",
 								"plugins"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1405,10 +1340,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins/12cc3fd7-c07e-4c3b-bc0f-465e311bf948",
 							"protocol": "http",
@@ -1422,8 +1354,7 @@
 								"plugins",
 								"12cc3fd7-c07e-4c3b-bc0f-465e311bf948"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1465,8 +1396,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1507,8 +1437,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1549,8 +1478,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1568,7 +1496,7 @@
 						}
 					],
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "apikey",
@@ -1577,7 +1505,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
@@ -1591,8 +1519,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1626,8 +1553,7 @@
 								"order",
 								"{{starbucks_order_id}}"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1671,8 +1597,7 @@
 								"{{starbucks_order_id}}",
 								"pay"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1690,7 +1615,7 @@
 						}
 					],
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "apikey",
@@ -1699,7 +1624,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
@@ -1712,8 +1637,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1731,11 +1655,11 @@
 						}
 					],
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
@@ -1748,8 +1672,7 @@
 								"starbucks",
 								"orders"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
@@ -1780,8 +1703,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1809,8 +1731,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1824,10 +1745,10 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://aws.nguyenresearch.com:90/v1/starbucks/order",
+							"raw": "http://api.nguyenresearch.com:90/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"aws",
+								"api",
 								"nguyenresearch",
 								"com"
 							],
@@ -1837,8 +1758,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				},
@@ -1866,8 +1786,7 @@
 								"starbucks",
 								"order"
 							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
