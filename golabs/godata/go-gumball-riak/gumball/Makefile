@@ -25,11 +25,15 @@ compose-up:
 compose-down:
 	docker-compose down 	
 
+app-up:
+	docker-compose scale coordinator=1 member=3 mysql=1 gumball=1
+
+
 mysql-up:
 	docker-compose scale mysql=1
 
 riak-up:
-	docker-compose scale coordinator=1 member=2
+	docker-compose scale coordinator=1 member=3
 
 riak-up-node1:
 	docker-compose scale coordinator=1 

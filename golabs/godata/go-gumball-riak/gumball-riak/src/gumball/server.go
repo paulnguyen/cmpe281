@@ -498,6 +498,16 @@ func gumballProcessOrdersHandler(formatter *render.Render) http.HandlerFunc {
 create database cmpe281 ;
 use cmpe281 ;
 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.20.0.7' IDENTIFIED BY 'cmpe281' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON * . * TO 'root'@'%';
+FLUSH PRIVILEGES;
+show grants for root;
+
+GRANT ALL PRIVILEGES on cmpe281.* to root@'%'; 
+FLUSH PRIVILEGES;
+
+
 -- Create Database Table 
 
 CREATE TABLE gumball (
