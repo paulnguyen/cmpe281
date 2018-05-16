@@ -18,10 +18,10 @@ services:
       - db   
     restart: always
     environment:
-      - MYSQL="root:cmpe281@tcp(gumball_mysql_1:3306)/cmpe281"
-      - RIAK1="http://gumball_member_1:8098"
-      - RIAK2="http://gumball_member_2:8098"
-      - RIAK3="http://gumball_member_3:8098"    
+      - MYSQL=root:cmpe281@tcp(gumball_mysql_1:3306)/cmpe281
+      - RIAK1=http://gumball_member_1:8098
+      - RIAK2=http://gumball_member_2:8098
+      - RIAK3=http://gumball_member_3:8098
     links:
       - member
       - mysql
