@@ -107,7 +107,7 @@ environments:
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             username: admin
             password: mysql
-            url: jdbc:mysql://127.0.0.1:3306/cmpe281
+            url: jdbc:mysql://127.0.0.1:3306/cmpe281?useSSL=false
     production:
         dataSource:
             dbCreate: none
