@@ -2,7 +2,7 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: gumball.v2
+        defaultPackage: gumball.v1
     spring:
         transactionManagement:
             proxies: false
@@ -108,12 +108,12 @@ environments:
             username: admin
             password: mysql
             url: jdbc:mysql://127.0.0.1:3306/cmpe281?useSSL=false
-   production:
+    production:
         dataSource:
             dbCreate: update
             driverClassName: com.mysql.jdbc.Driver   
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-            username: admin
-            password: mysql
-            url: jdbc:mysql://127.0.0.1:3306/cmpe281?useSSL=false
+            username: cmpe281
+            password: cmpe281
+            url: jdbc:mysql://10.0.1.157:3306/cmpe281?useSSL=false
  

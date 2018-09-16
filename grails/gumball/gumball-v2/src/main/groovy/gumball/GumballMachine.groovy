@@ -43,8 +43,10 @@ class GumballMachine {
 		if (state.equals("gumball.HasCoinState")) { setHasCoin() ; }
 	}
 
-	
+		
 def String getAbout() {
+	def localhost = InetAddress.getLocalHost()
+	def local_ip = localhost.getHostAddress()
 		return """
 --------------------------------------------------
 Mighty Gumball, Inc.
@@ -54,6 +56,7 @@ Serial# ${_serial_number}
 --------------------------------------------------
 Gumball Machine: ${this.toString()}
 Current State: ${_current_state.toString()}
+Server Name/IP: ${local_ip}
 """		
 }
 	

@@ -115,5 +115,5 @@ environments:
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             username: cmpe281
             password: cmpe281
-            url: jdbc:mysql://10.0.1.93:3306/cmpe281?useSSL=false
+            url: jdbc:mysql://10.0.1.157:3306/cmpe281?useSSL=false
  

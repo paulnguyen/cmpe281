@@ -100,6 +100,10 @@ public class GumballMachine {
 		}
 		result.append("\n");
 		result.append("Machine is " + state + "\n");
+        try { 
+            String host = java.net.InetAddress.getLocalHost().getHostName();
+            result.append("Server Name is " + host );
+        } catch ( Exception e ) {}        
 		return result.toString();
 	}
 }
