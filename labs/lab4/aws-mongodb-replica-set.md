@@ -141,28 +141,28 @@
     from person
     where birth_date < date('1950-01-01')
     
-## #3 - Get a Unique Listing of all the Awards (in DB/Collection) granted
+### 3 - Get a Unique Listing of all the Awards (in DB/Collection) granted
 
     select distinct(a.award_name)
     from person_awards pa, awards a
     where pa.award_id = a.award_id
 
     
-## #4 - Get a Sorted Listing of all the First Names (ascending order)
+### 4 - Get a Sorted Listing of all the First Names (ascending order)
 
     select first_name
     from person
     order by 1
     
 
-#5 - Get a Sorted Listing of all the First Names (descending order)
+### 5 - Get a Sorted Listing of all the First Names (descending order)
 
     select first_name
     from person
     order by 1 desc
     
 
-## #6 - Count the number of BIOS that don't yet have an award  
+### 6 - Count the number of BIOS that don't yet have an award  
 
     select count(*) from person p
     where not exists 
@@ -170,14 +170,14 @@
          where person_id = p.person_id)
 
 
-### 7 - Display the System ID (Primary Key) for the BIO in Query #6
+### 7 - Display the System ID (Primary Key) for the BIO in Query 6
 
     select p.person_id from person p
     where not exists 
         (select 1 from person_awards 
          where person_id = p.person_id)
 
-## #8 - Display names (first and last) from BIOS with 1 Contribution AND 2 Awards
+### 8 - Display names (first and last) from BIOS with 1 Contribution AND 2 Awards
 
     select p.first_name, p.last_name
     from person p
