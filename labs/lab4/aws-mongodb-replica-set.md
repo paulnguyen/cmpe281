@@ -123,7 +123,81 @@
     See Steps in:  https://gist.github.com/calvinh8/c99e198ce5df3d8b1f1e42c1b984d7a4   
 
 
+## Setup Bios MySQL and MongoDB Data
+
+    See:  https://github.com/paulnguyen/cmpe281/tree/master/labs/lab4
 
 
+## Write the Equivalent Mongo Queries for the following MySQL Queries:
+
+### 1 - Count of Records/Documents
+
+    select count(*) from person
+
+        
+### 2 - Find Bios with Birth Date before 1950
+
+    select first_name, last_name, birth_date 
+    from person
+    where birth_date < date('1950-01-01')
+    
+## #3 - Get a Unique Listing of all the Awards (in DB/Collection) granted
+
+    select distinct(a.award_name)
+    from person_awards pa, awards a
+    where pa.award_id = a.award_id
+
+    
+## #4 - Get a Sorted Listing of all the First Names (ascending order)
+
+    select first_name
+    from person
+    order by 1
+    
+
+#5 - Get a Sorted Listing of all the First Names (descending order)
+
+    select first_name
+    from person
+    order by 1 desc
+    
+
+## #6 - Count the number of BIOS that don't yet have an award  
+
+    select count(*) from person p
+    where not exists 
+        (select 1 from person_awards 
+         where person_id = p.person_id)
+
+
+### 7 - Display the System ID (Primary Key) for the BIO in Query #6
+
+    select p.person_id from person p
+    where not exists 
+        (select 1 from person_awards 
+         where person_id = p.person_id)
+
+## #8 - Display names (first and last) from BIOS with 1 Contribution AND 2 Awards
+
+    select p.first_name, p.last_name
+    from person p
+    where (select count(*) from contribs c where c.person_id = p.person_id) = 1
+    and (select count(*) from person_awards pa where pa.person_id = p.person_id) = 2
+    
+
+### 9 - Display names (first and last) from BIOS with 1 Contributions OR 2 Awards
+
+    select p.first_name, p.last_name
+    from person p
+    where (select count(*) from contribs c where c.person_id = p.person_id) = 1
+    or (select count(*) from person_awards pa where pa.person_id = p.person_id) = 2    
+
+### 10 - List all the Awards for a BIO
+
+    select p.first_name, p.last_name, a.award_name
+    from awards a, person_awards pa, person p
+    where a.award_id = pa.award_id
+    and p.person_id = pa.person_id
+    and p.person_id = 1
 
 
