@@ -17,7 +17,6 @@ show dbs
 // Switch to Database
 use hello
 
-
 // Create a "towns" Collection
 db.towns.insert(
 {
@@ -78,10 +77,10 @@ insertCity("Portland", 582000, '2007-09-20',
 )
 
 // Find Document by ID
-db.towns.find({ "_id" : ObjectId("542a16972e2530bd6e1fcfc4") })
+db.towns.find({ "_id" : ObjectId("5adb7eedb7a52b72fb10f5cd") })
 
 // Find Document by ID selecting/excluding fields
-db.towns.find({ "_id" : ObjectId("542a16972e2530bd6e1fcfc4") },
+db.towns.find({ "_id" : ObjectId("5adb7eedb7a52b72fb10f5cd") },
     { name : 1, population : 1 }
 )
 

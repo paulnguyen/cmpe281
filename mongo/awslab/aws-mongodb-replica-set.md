@@ -3,6 +3,8 @@
 
     https://docs.mongodb.com/manual/tutorial/deploy-replica-set-with-keyfile-access-control/#deploy-repl-set-with-auth
     https://gist.github.com/calvinh8/c99e198ce5df3d8b1f1e42c1b984d7a4    
+    https://eladnava.com/deploy-a-highly-available-mongodb-replica-set-on-aws/
+    http://www.serverlab.ca/tutorials/linux/database-servers/how-to-create-mongodb-replication-clusters/
 
 ## Launch Ubuntu Server 16.04 LTS
 
@@ -27,12 +29,36 @@
 
 ## Install MongoDB
 
+    === 3.4 ===
+
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+
+    echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+
+    sudo apt-get update
+    sudo apt-get install -y mongodb-org
+
+    === 4.0 ===
+
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
 
     sudo apt update
     sudo apt install mongodb-org
+
+    === Install a Specific Version ===
+
+    sudo apt install mongodb-org=4.0.1 mongodb-org-server=4.0.1 mongodb-org-shell=4.0.1 mongodb-org-mongos=4.0.1 mongodb-org-tools=4.0.1
+
+    === Start/Stop and Install Verification ===
+
+    sudo systemctl enable mongod
+    sudo systemctl start mongod 
+    sudo systemctl stop mongod
+    sudo systemctl restart mongod
+
+    mongod --version 
 
 ## MongoDB Keyfile
 
@@ -157,6 +183,21 @@
 
         mongo -u <user> -p <password> <mongo host ip> --authenticationDatabase admin
 
+
+## (Optional) Add Additional Replica Set Members
+
+    Add the data member to the replica set:
+
+        rs.add("<public-ip-address>")
+
+    Add the arbiter, making sure to pass in true as the second argument 
+    (which denotes that the member is an arbiter and not a data member).
+
+        rs.add("<public-ip-address>", true)
+
+    Take a look at the replica set status by running:
+
+        rs.status()
 
 ## Connect to Primary and Test DB Commands (i.e. from Your Desktop using RoboMongo)
 
