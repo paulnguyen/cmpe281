@@ -17,11 +17,17 @@
     7. SG Open Ports:   22, 27017
     8. Key Pair:        cmpe281-us-west-1
 
-## Allocate & Assign an Elastic IP to Mongo Instance
+## Allocate & Assign an Elastic IP for Mongo Instance
 
     1. Allocate Elastic IP:     Scope VPC
     2. Name Elastic IP:         mongodb
     3. Associate Elastic IP:    Instance = Mongo EC2 Instance
+
+    Example:
+
+    54.241.134.105  primary
+    52.9.143.102    secondary1
+    52.9.21.190     secondary2
 
 ## SSH into Mongo Instance
 
@@ -131,6 +137,12 @@
 
         hostname -f    
 
+    If not, change the hostnames on each instance as follows:
+
+        sudo hostnamectl set-hostname <new hostname>
+        sudo hostname -f
+        reboot (to make sure the change sticks)
+
     Initialize the Replica Set
 
         mongo  (run as local client on primary)
@@ -182,6 +194,11 @@
     Login to Mongo Remote
 
         mongo -u <user> -p <password> <mongo host ip> --authenticationDatabase admin
+
+    Change Password (if needed)
+
+        use admin
+        db.changeUserPassword( "admin", "*****" )
 
 
 ## (Optional) Add Additional Replica Set Members
