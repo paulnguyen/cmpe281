@@ -14,9 +14,8 @@ Serial# 1234998871109
 
 **/
 
-var machine = "http://api.nguyenresearch.com:8080/gumball";
-var endpoint = "http://api.nguyenresearch.com:8080/order";
-
+var machine = "https://pnguyen-goapi.herokuapp.com/gumball";
+var endpoint = "https://pnguyen-goapi.herokuapp.com/order";
 
 // added in v2: crypto
 // crypto functions:  http://nodejs.org/api/crypto.html
@@ -24,10 +23,16 @@ var endpoint = "http://api.nguyenresearch.com:8080/order";
 var crypto = require('crypto');
 var fs = require('fs');
 var express = require('express');
+var connect = require('connect');
 var Client = require('node-rest-client').Client;
 
 var app = express();
-app.use(express.bodyParser());
+
+//var connect = require('connect');
+app.use(connect.cookieParser()) 
+app.use(express.urlencoded());
+app.use(express.json());
+
 app.use("/images", express.static(__dirname + '/images'));
 
 var secretKey = "kwRg54x2Go9iEdl49jFENRM12Mp711QI" ;

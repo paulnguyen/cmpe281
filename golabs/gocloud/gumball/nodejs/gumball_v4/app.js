@@ -31,10 +31,16 @@ Serial# 1234998871109
 var crypto = require('crypto');
 var fs = require('fs');
 var express = require('express');
+var connect = require('connect');
 var Client = require('node-rest-client').Client;
 
 var app = express();
-app.use(express.bodyParser());
+
+//var connect = require('connect');
+app.use(connect.cookieParser()) 
+app.use(express.urlencoded());
+app.use(express.json());
+
 app.use("/images", express.static(__dirname + '/images'));
 handlebars  = require('express3-handlebars');
 hbs = handlebars.create();
@@ -331,7 +337,7 @@ db.runCommand( { createUser: "accountAdmin01",
 db.gumball.insert(
 { 
   id: 1,
-  countGumballs: 8,
+  countGumballs: 1000,
   modelNumber: 'M102988',
   serialNumber: '1234998871109' 
 }
