@@ -5,6 +5,8 @@
     https://gist.github.com/calvinh8/c99e198ce5df3d8b1f1e42c1b984d7a4    
     https://eladnava.com/deploy-a-highly-available-mongodb-replica-set-on-aws/
     http://www.serverlab.ca/tutorials/linux/database-servers/how-to-create-mongodb-replication-clusters/
+    https://docs.mongodb.com/manual/reference/default-mongodb-port/
+
 
 ## Launch Ubuntu Server 16.04 LTS
 
@@ -16,6 +18,7 @@
     6. Security Group:  mongodb-cluster 
     7. SG Open Ports:   22, 27017
     8. Key Pair:        cmpe281-us-west-1
+
 
 ## Allocate & Assign an Elastic IP for Mongo Instance
 
@@ -29,9 +32,11 @@
     52.9.143.102    secondary1
     52.9.21.190     secondary2
 
+
 ## SSH into Mongo Instance
 
     ssh -i <key>.pem ubuntu@<public ip>
+
 
 ## Install MongoDB
 
@@ -66,6 +71,7 @@
 
     mongod --version 
 
+
 ## MongoDB Keyfile
 
     openssl rand -base64 741 > keyFile
@@ -73,6 +79,7 @@
     sudo cp keyFile /opt/mongodb
     sudo chown mongodb:mongodb /opt/mongodb/keyFile
     sudo chmod 0600 /opt/mongodb/keyFile
+
 
 ## Config mongod.conf
 
@@ -120,9 +127,11 @@
         sudo service mongod restart
         sudo service mongod status
 
+
 ## Save to AMI Image
 
     AMI: mongo-ami
+    
     
 ## Initialize the replica set.  Replace Host Names with Public IP or DNS Names.
 
@@ -165,6 +174,7 @@
         sudo service mongod status
 
         telnet <host or ip> 27017
+
 
 ## Create Admin Account
 
@@ -216,10 +226,34 @@
 
         rs.status()
 
+
 ## Connect to Primary and Test DB Commands (i.e. from Your Desktop using RoboMongo)
 
-    db.test.save( { a : 1 } )   // save simple document
-    db.test.find()              // find document
+    db.test.save( { a : 1 } )   				  // save simple document
+    db.test.find()              				  // find document
+	db.test.replaceOne( { a : 1 }, { a : 2 } )   // update document
+
+
+## Allowing Queries from Replicas
+
+	https://docs.mongodb.com/manual/core/read-preference/
+	https://docs.mongodb.com/manual/reference/method/rs.slaveOk/	https://docs.mongodb.com/manual/reference/method/Mongo.setSlaveOk/
+	
+	Note: Query from Replica Returns:
+	
+		db.test.find() ;
+		
+		Error: error: {
+			"operationTime" : Timestamp(1537972200, 1),
+			"ok" : 0,
+			"errmsg" : "not master and slaveOk=false",
+			"code" : 13435,
+			"codeName" : "NotMasterNoSlaveOk"
+		}
+		
+	Need to Enable "Slave OK" Mode:
+	
+		db.getMongo().setSlaveOk()
 
 
 ## Setup Bios MySQL and MongoDB Data
