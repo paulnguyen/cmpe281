@@ -24,11 +24,13 @@
 
 * https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce
 
+<pre>
 	sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 	sudo yum install docker-ce
 	sudo systemctl start docker
 	sudo systemctl is-active docker
+</pre>
 
 ## Test Docker Install (Run Hello Container)
 
