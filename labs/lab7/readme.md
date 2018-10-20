@@ -1,4 +1,19 @@
 
+
+## Gumball API Docker Containers
+
+In this Lab challenge, you will be deploying the modified version of the 
+Go Gumball API demonstrated in class to your local Docker Host.
+
+Key Tasks Include:
+
+    Installing Docker Images for MySQL, Cassandra and Kong
+    Build Modification of Go Gumball REST API
+    Deploy your modified Go REST API
+    Deploy and Configure Kong API Gateway
+    Test Deployment using Postman or Curl
+
+
 ## STEP 1 - INSTALL DOCKER IMAGES & SET UP MYSQL DB
 
 	Download the following Docker Images Versions:
