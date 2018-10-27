@@ -5,6 +5,17 @@ clean:
 	find . -name 'gumball' -type f -exec rm -f {} \; 
 	go clean
 
+go-get:
+	rm -rf src/github.com
+	rm -rf src/gopkg.in
+	go get -v github.com/codegangsta/negroni
+	go get -v github.com/streadway/amqp
+	go get -v github.com/gorilla/mux
+	go get -v github.com/unrolled/render
+	go get -v github.com/satori/go.uuid
+	go get -v gopkg.in/mgo.v2
+	go get -v gopkg.in/mgo.v2/bson
+
 run:
 	go run src/app/$(app).go
 
@@ -33,17 +44,23 @@ docker-build:
 	docker build -t gumball .
 	docker images
 
+network-create:
+	docker network create --driver bridge gumball
+
+network-inspect:
+	docker network inspect gumball
+
 rabbitmq-run:
 	docker run --name rabbitmq \
+	           --network gumball \
 			   -p 8080:15672 -p 4369:4369 -p 5672:5672 \
 			   -d rabbitmq:3-management
 mongodb-run:
-	docker run --name mongodb -p 27017:27017 -d mongo
+	docker run --name mongodb --network gumball -p 27017:27017 -d mongo
 
 docker-run:
 	docker run \
-	  		--link mongodb:mongodb \
-            --link rabbitmq:rabbitmq \
+            --network gumball \
 			--name gumball -p 3000:3000 -td gumball
 	docker ps
 

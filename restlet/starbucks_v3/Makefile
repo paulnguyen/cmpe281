@@ -54,14 +54,19 @@ docker-shell:
 kong-shell:
 	docker exec -it kong bash 
 
+network-create:
+	docker network create --driver bridge kong-network
+
+network-inspect:
+	docker network inspect kong-network
+
 run-app:
-	docker run -d --name starbucks -td starbucks
-	docker run -d --name kong-database -p 9042:9042 cassandra:2.2
+	docker run -d --name starbucks --network kong-network -td starbucks
+	docker run -d --name kong-database --network kong-network -p 9042:9042 cassandra:2.2
 
 run-kong:
 	docker run -d --name kong \
-			  --link starbucks:starbucks \
-              --link kong-database:kong-database \
+	          --network kong-network \
               -e "KONG_DATABASE=cassandra" \
               -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
               -e "KONG_PG_HOST=kong-database" \
@@ -71,6 +76,15 @@ run-kong:
               -p 7946:7946 \
               -p 7946:7946/udp \
               kong:0.9.9
+
+install-curl:
+	apt-get update; apt-get install curl
+	yum install curl
+
+
+
+
+
 
 
 	
