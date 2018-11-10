@@ -81,6 +81,9 @@ kong-shell:
 docker-network:
 	docker network ls
 
+docker-network-prune:
+	docker network prune
+
 docker-network-inspect:
 	docker network inspect host
 
