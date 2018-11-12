@@ -76,6 +76,9 @@ nodejs-down:
 gumball-up:
 	docker-compose scale gumball=1 
 
+gumball-scale:
+	docker-compose scale gumball=2 
+
 gumball-down:
 	docker-compose stop gumball
 	docker-compose rm gumball
@@ -191,4 +194,64 @@ test-process-order:
 	curl -X POST \
   	http://localhost:3000/order/$(id) \
   	-H 'Content-Type: application/json'
+
+kong-add-api:
+	curl -X POST \
+  	http://localhost:8001/apis \
+  	-H 'Content-Type: application/json' \
+  	-d '{ \
+	"name": "goapi", \
+	"request_path": "/goapi", \
+	"strip_request_path": "true", \
+	"preserve_host": "true", \
+	"upstream_url": "http://gumball:3000/" \
+	}'
+
+kong-add-auth:
+	curl -X POST \
+  	http://localhost:8001/apis/goapi/plugins \
+    -H 'content-type: multipart/form-data;' \
+    -F name=key-auth
+
+kong-add-client:
+	curl -X POST \
+  	http://localhost:8001/consumers/ \
+    -H 'content-type: multipart/form-data;' \
+    -F username=apiclient
+
+kong-add-apikey:
+	curl -X POST \
+  	http://localhost:8001/consumers/apiclient/key-auth \
+    -H 'Content-Type: text/plain'
+
+kong-test-ping:
+	curl -X GET \
+  	http://localhost:8888/goapi/ping \
+  	-H 'Content-Type: application/json' \
+  	-H 'apikey: $(key)'
+
+kong-test-inventory:
+	curl -X GET \
+  	http://localhost:8888/goapi/gumball \
+  	-H 'Content-Type: application/json' \
+  	-H 'apikey: $(key)'
+
+kong-test-place-order:
+	curl -X POST \
+  	http://localhost:8888/goapi/order \
+  	-H 'Content-Type: application/json' \
+  	-H 'apikey: $(key)' 
+
+kong-test-get-order:
+	curl -X GET \
+  	http://localhost:8888/goapi/order/$(id) \
+  	-H 'Content-Type: application/json' \
+  	-H 'apikey: $(key)' 
+
+kong-test-process-order:
+	curl -X POST \
+  	http://localhost:8888/goapi/order/$(id) \
+  	-H 'Content-Type: application/json' \
+  	-H 'apikey: $(key)' 
+
 

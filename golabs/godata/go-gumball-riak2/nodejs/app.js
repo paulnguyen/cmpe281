@@ -144,7 +144,7 @@ var order = function( req, res, state, ts ) {
                     status = jsdata.OrderStatus ;
                     console.log( "order id: " + id ) ;
                     console.log( "order status: " + status ) ;
-                    status_msg = "order id: " + id + " order status: " + status ;
+                    status_msg = "order id: " + id + "\norder status: " + status ;
                     page( req, res, state, ts, status_msg ) ;
             });
 }

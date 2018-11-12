@@ -1,10 +1,10 @@
 #
 #   Docker Compose File
 # 
-# * https://docs.docker.com/compose/reference/overview/
-# * https://docs.docker.com/compose/compose-file/
-# * https://docs.docker.com/compose/networking/
-# * https://docs.docker.com/compose/startup-order/
+#   * https://docs.docker.com/compose/reference/overview/
+#   * https://docs.docker.com/compose/compose-file/
+#   * https://docs.docker.com/compose/networking/
+#   * https://docs.docker.com/compose/startup-order/
 # 
 
 version: "3"
