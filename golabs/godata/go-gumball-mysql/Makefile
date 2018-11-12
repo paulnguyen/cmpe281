@@ -5,6 +5,15 @@ clean:
 	find . -name 'gumball' -type f -exec rm -f {} \; 
 	go clean
 
+go-get:
+	rm -rf src/github.com
+	go get -v github.com/codegangsta/negroni
+	go get -v github.com/gorilla/mux
+	go get -v github.com/unrolled/render
+	go get -v github.com/satori/go.uuid
+	go get -v database/sql
+	go get -v github.com/go-sql-driver/mysql
+
 run:
 	go run src/app/$(app).go
 
@@ -23,27 +32,29 @@ build:
 start:
 	./gumball 
 
-test-ping:
-	curl localhost:3000/ping
-
-test-gumball:
-	curl localhost:3000/gumball
-
 docker-build: 
 	docker build -t gumball .
 	docker images
 
+network-create:
+	docker network create --driver bridge gumball
+
+network-inspect:
+	docker network inspect gumball
+
 mysql-run:
-	docker run -d --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe281 mysql:5.5
+	docker run -d --name mysql --network gumball -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe281 mysql:5.5
 
 docker-run:
-	docker run -d --name gumball --link mysql:mysql -td -p 3000:3000 gumball
+	docker run -d --name gumball --network gumball -td -p 3000:3000 gumball
+
+
+kong-database:
+	docker run -d --name kong-database --network gumball -p 9042:9042 cassandra:2.2
 
 kong-run:
-	docker run -d --name kong-database -p 9042:9042 cassandra:2.2
 	docker run -d --name kong \
-			  --link gumball:gumball \
-              --link kong-database:kong-database \
+	          --network gumball \
               -e "KONG_DATABASE=cassandra" \
               -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
               -e "KONG_PG_HOST=kong-database" \
@@ -85,5 +96,33 @@ docker-ps:
 
 docker-ps-ports:
 	 docker ps --all --format "table {{.Names}}\t{{.Ports}}\t"
+
+test-ping:
+	curl localhost:3000/ping
+
+test-get-inventory:
+	curl localhost:3000/gumball
+
+test-update-inventory:
+	curl -X PUT \
+  	http://localhost:3000/gumball \
+  	-H 'Content-Type: application/json' \
+  	-d '{ \
+  		"CountGumballs": 1000 }' 
+
+test-place-order:
+	curl -X POST \
+  	http://localhost:3000/order \
+  	-H 'Content-Type: application/json'
+
+test-order-status:
+	curl -X GET \
+  	http://localhost:3000/order \
+  	-H 'Content-Type: application/json'
+
+test-process-order:
+	curl -X POST \
+  	http://localhost:3000/orders \
+  	-H 'Content-Type: application/json'
 
 
