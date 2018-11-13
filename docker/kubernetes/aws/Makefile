@@ -1,6 +1,6 @@
 
 ##
-## Kubernetes (Docker for Mac)
+## Kubernetes (AWS EKS)
 ##
 
 version:
@@ -30,9 +30,6 @@ install-dashboard:
 run-dashboard:
 	kubectl port-forward $(pod) 8443:8443 --namespace=kube-system
 
-start-api-proxy:
-	kubectl proxy --port=8001 
-
 run-helloworld:
 	 kubectl run hello-nginx --image=nginx --port=80
 
@@ -54,8 +51,11 @@ describe-service:
 scale-helloworld-service:
 	 kubectl scale --replicas=3 deployment/hello-nginx
 
+start-api-proxy:
+	kubectl proxy --port=8080 
+
 ping-api:
-	curl -X GET http://localhost:8001/api
+	curl -X GET http://localhost:8080/api
 
 	
 # kubectl get pods my-pod -o jsonpath --template={.status.podIP}
