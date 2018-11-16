@@ -19,7 +19,7 @@ Serial# 1234998871109
 //var order_endpoint = "http://dockerhost:8000/goapi/order";
 var gumball_endpoint = "http://kong:8000/goapi/gumball";
 var order_endpoint = "http://kong:8000/goapi/order";
-var apikey = "6742761f569a454e9b4ea2dd7eaf9c4b"
+var apikey = "d7422fb7db9c43e6a87f0bad1207200f"
 
 
 // added in v3: handlebars
