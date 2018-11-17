@@ -54,46 +54,46 @@ help-container-logs:
 help-container-cmd:
 	kubectl exec --help
 
-# Pod Labels 
+# Pod (with Labels) 
 
-labels-create-pod:
+pod-create:
 	kubectl create -f pod-labels.yaml
 
-labels-list-using:
+pod-get:
 	kubectl get pods -l app=nginx
 
-labels-delete-using:
+pod-delete:
 	kubectl delete pod -l app=nginx
 
 # Deployments 
 
-deployments-create:
+deployment-create:
 	kubectl create -f deployment.yaml
 
-deployments-get:
+deployment-get:
 	kubectl get deployment
 
-deployments-get-pods:
+deployment-get-pods:
 	kubectl get pods -l app=nginx
 
-deployments-upgrade:
+deployment-upgrade:
 	kubectl apply -f deployment-update.yaml
 
-deployments-delete:
+deployment-delete:
 	kubectl delete deployment nginx-deployment
 
 # Services
 
-services-create:
+service-create:
 	kubectl create -f service.yaml
 
-services-get-list:
+service-get-list:
 	kubectl get services
 
-services-get-ip:
+service-get-ip:
 	kubectl get service nginx-service -o wide
 
-services-delete:
+service-delete:
 	kubectl delete service nginx-service
 
 
