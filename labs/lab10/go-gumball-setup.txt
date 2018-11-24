@@ -78,6 +78,7 @@
 	
 	sudo apt-get update
 	sudo apt-get install curl
+	sudo apt-get install iputils-ping
 	
 	
 -- Install Redis Client in your "Jump Box"
@@ -115,6 +116,9 @@
 
 	https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
 	https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
+	sudo apt-get update
+	sudo apt-get install mongodb
 	
 	mongo <host>:<port>/<database> -u <username> -p <password>
 
