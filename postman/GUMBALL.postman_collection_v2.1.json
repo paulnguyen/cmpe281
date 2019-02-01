@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "527499ba-2819-4bf0-a7b8-abc801c917f7",
+		"_postman_id": "a10e6f56-e129-4a68-a88a-bebb6b4f7494",
 		"name": "GUMBALL",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Gumball Google",
-			"description": null,
 			"item": [
 				{
 					"name": "Google | Gumball Get Machine Inventory",
@@ -170,7 +169,6 @@
 		},
 		{
 			"name": "Gumball Go API",
-			"description": null,
 			"item": [
 				{
 					"name": "GO | Gumball Ping API",
@@ -362,14 +360,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/order/6a931de1-41cb-49a5-bc0e-9b437d35ff0e",
+							"raw": "localhost:3000/order/8e58ec51-1581-4bd7-9b8c-dd098b025ef2",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"order",
-								"6a931de1-41cb-49a5-bc0e-9b437d35ff0e"
+								"8e58ec51-1581-4bd7-9b8c-dd098b025ef2"
 							]
 						}
 					},
@@ -406,7 +404,6 @@
 		},
 		{
 			"name": "Gumball Node API",
-			"description": null,
 			"item": [
 				{
 					"name": "Node API | Gumball Place New Order",
@@ -479,7 +476,6 @@
 		},
 		{
 			"name": "Gumball Go AWS",
-			"description": null,
 			"item": [
 				{
 					"name": "GO | Gumball Ping API",
@@ -732,7 +728,6 @@
 		},
 		{
 			"name": "Gumball Heroku",
-			"description": null,
 			"item": [
 				{
 					"name": "Node API | Gumball Place New Order",
@@ -995,7 +990,6 @@
 		},
 		{
 			"name": "Gumball MySQL",
-			"description": null,
 			"item": [
 				{
 					"name": "GO | Gumball Ping API",
@@ -1175,7 +1169,6 @@
 		},
 		{
 			"name": "Gumball Riak KV",
-			"description": null,
 			"item": [
 				{
 					"name": "GO | Gumball Ping API",
@@ -1356,7 +1349,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:{{port}}/ping",
 							"host": [
@@ -1375,7 +1371,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:{{port}}/types/no_type/buckets/no_bucket/keys/no_key",
 							"host": [
@@ -1395,25 +1394,180 @@
 					"response": []
 				},
 				{
-					"name": "Riak | REST API | Get Buckets",
+					"name": "Riak | REST API | Get Default Buckets",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets?buckets=true",
+							"raw": "localhost:{{port}}/types/default/buckets?buckets=true",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"types",
-								"animals",
+								"default",
 								"buckets"
 							],
 							"query": [
 								{
 									"key": "buckets",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Default Keys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port}}/types/default/buckets/orders/keys?keys=true",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"default",
+								"buckets",
+								"orders",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "keys",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Default Object",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port}}/types/default/buckets/orders/keys/{{order_id}}",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"default",
+								"buckets",
+								"orders",
+								"keys",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Buckets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port}}/types/gumball/buckets?buckets=true",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets"
+							],
+							"query": [
+								{
+									"key": "buckets",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Buckets Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port}}/types/gumball/buckets/orders/props",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"props"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Bucket's Keys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys?keys=true",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "keys",
 									"value": "true"
 								}
 							]
@@ -1433,53 +1587,21 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nickname\": \"The Wonder Dog\", \"breed\":\"German Shepherd\"}"
+							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe4f\", \"OrderStatus\":\"Order Placed\"}"
 						},
 						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets/dogs/keys/ace",
+							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe4f",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"types",
-								"animals",
+								"gumball",
 								"buckets",
-								"dogs",
+								"orders",
 								"keys",
-								"ace"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Riak | REST API | Get Object",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"ace\":\"German Shepherd\"}"
-						},
-						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets/dogs/keys/ace",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"types",
-								"animals",
-								"buckets",
-								"dogs",
-								"keys",
-								"ace"
+								"d14edc6b-cfc4-4cc8-b005-47a43e44fe4f"
 							]
 						}
 					},
@@ -1497,21 +1619,21 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nickname\": \"Sweek Polly Purebreed\", \"breed\":\"Purebreed\"}"
+							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe43\", \"OrderStatus\":\"Order Placed\"}"
 						},
 						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets/dogs/keys/polly?returnbody=true",
+							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43?returnbody=true",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"types",
-								"animals",
+								"gumball",
 								"buckets",
-								"dogs",
+								"orders",
 								"keys",
-								"polly"
+								"d14edc6b-cfc4-4cc8-b005-47a43e44fe43"
 							],
 							"query": [
 								{
@@ -1524,52 +1646,32 @@
 					"response": []
 				},
 				{
-					"name": "Riak | REST API | Get Buckets Properties",
+					"name": "Riak | REST API | Get Object",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets/dogs/props",
+							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/{{order_id}}",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"types",
-								"animals",
+								"gumball",
 								"buckets",
-								"dogs",
-								"props"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Riak | REST API | Get Bucket's Keys",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets/dogs/keys?keys=true",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"types",
-								"animals",
-								"buckets",
-								"dogs",
-								"keys"
-							],
-							"query": [
-								{
-									"key": "keys",
-									"value": "true"
-								}
+								"orders",
+								"keys",
+								"{{order_id}}"
 							]
 						}
 					},
@@ -1590,18 +1692,18 @@
 							"raw": "{\"nickname\": \"The Wonder Dog\", \"breed\":\"German Shepherd\"}"
 						},
 						"url": {
-							"raw": "localhost:{{port}}/types/animals/buckets/dogs/keys/2ASY0pH8LB1gLTkjFrw9ARM5Pm",
+							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/{{order_id}}",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
 								"types",
-								"animals",
+								"gumball",
 								"buckets",
-								"dogs",
+								"orders",
 								"keys",
-								"2ASY0pH8LB1gLTkjFrw9ARM5Pm"
+								"{{order_id}}"
 							]
 						}
 					},
@@ -1611,7 +1713,6 @@
 		},
 		{
 			"name": "Gumball Docker (3000)",
-			"description": null,
 			"item": [
 				{
 					"name": "GO Docker API | Gumball Ping API",
@@ -1791,7 +1892,6 @@
 		},
 		{
 			"name": "Gumball Docker (80)",
-			"description": null,
 			"item": [
 				{
 					"name": "GO Docker API | Gumball Ping API",
@@ -1965,7 +2065,6 @@
 		},
 		{
 			"name": "Gumball Kong",
-			"description": null,
 			"item": [
 				{
 					"name": "GO Kong API | Gumball Ping API",
@@ -2600,8 +2699,136 @@
 		},
 		{
 			"name": "Gumball Grails",
-			"description": null,
 			"item": [
+				{
+					"name": "DOCKER | Gumball Machine Status (Inventory Status)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/gumball-v3-3.0/gumball/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gumball-v3-3.0",
+								"gumball",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DOCKER | Gumball Machine Status (Inventory Update)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"countGumballs\": 990\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/gumball-v3-3.0/gumball/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gumball-v3-3.0",
+								"gumball",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DOCKER | Gumball Place New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "48fe045a-f800-46b3-ad93-9603486b7c9b",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.id );"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/gumball-v3-3.0/order/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gumball-v3-3.0",
+								"order",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DOCKER | Gumball Order Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/gumball-v3-3.0/order/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gumball-v3-3.0",
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "GRAILS | Gumball Machine Status (Inventory Status)",
 					"request": {
@@ -2862,7 +3089,6 @@
 		},
 		{
 			"name": "Gumball Restlet",
-			"description": null,
 			"item": [
 				{
 					"name": "Restlet Gumball Machine | Get Banner",
