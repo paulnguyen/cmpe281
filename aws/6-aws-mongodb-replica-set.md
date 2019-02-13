@@ -135,6 +135,8 @@
     
 ## Initialize the replica set.  Replace Host Names with Public IP or DNS Names.
 
+    Using mongo-ami, launch three free tier instances with their own Elastic IPs.
+
     Edit /etc/hosts in each EC2 Instance adding local host names for Public IPs.
     For example:
 
