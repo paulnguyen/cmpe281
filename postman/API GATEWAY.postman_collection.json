@@ -1,0 +1,1280 @@
+{
+	"info": {
+		"_postman_id": "6252fe30-75e6-4966-b90c-7ceea2f578dc",
+		"name": "API GATEWAY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Riak API | Ping",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "secretKey",
+							"value": "{{aws_secret_key}}",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "{{aws_access_key}}",
+							"type": "string"
+						},
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+					"host": [
+						"{{riakapi_endpoint}}"
+					],
+					"path": [
+						"{{riakapi_stage}}",
+						"ping"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Riak API | Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+							"host": [
+								"{{riakapi_endpoint}}"
+							],
+							"path": [
+								"{{riakapi_stage}}",
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 15 Feb 2019 08:42:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "ad6c84a1-30fd-11e9-b866-498b2e4b978e"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "UnrecognizedClientException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VIg9pH_APHcFa8g="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The security token included in the request is invalid.\"\n}"
+				},
+				{
+					"name": "Riak API | Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+							"host": [
+								"{{riakapi_endpoint}}"
+							],
+							"path": [
+								"{{riakapi_stage}}",
+								"ping"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 15 Feb 2019 08:43:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "c4c7fa8d-30fd-11e9-9274-07f30defe161"
+						},
+						{
+							"key": "x-amzn-Remapped-Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VIhDxHcBvHcFt1Q="
+						},
+						{
+							"key": "x-amzn-Remapped-Server",
+							"value": "MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)"
+						},
+						{
+							"key": "x-amzn-Remapped-Date",
+							"value": "Fri, 15 Feb 2019 08:43:27 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				},
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Riak API | List Buckets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "secretKey",
+							"value": "{{aws_secret_key}}",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "{{aws_access_key}}",
+							"type": "string"
+						},
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/buckets?buckets=true",
+					"host": [
+						"{{riakapi_endpoint}}"
+					],
+					"path": [
+						"{{riakapi_stage}}",
+						"buckets"
+					],
+					"query": [
+						{
+							"key": "buckets",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Riak API | Add Key",
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "secretKey",
+							"value": "{{aws_secret_key}}",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "{{aws_access_key}}",
+							"type": "string"
+						},
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"foo\": \"bar\"\n}"
+				},
+				"url": {
+					"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1?returnbody=true",
+					"host": [
+						"{{riakapi_endpoint}}"
+					],
+					"path": [
+						"{{riakapi_stage}}",
+						"buckets",
+						"bucket",
+						"keys",
+						"key1"
+					],
+					"query": [
+						{
+							"key": "returnbody",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Riak API | Get Key",
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "secretKey",
+							"value": "{{aws_secret_key}}",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "{{aws_access_key}}",
+							"type": "string"
+						},
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1",
+					"host": [
+						"{{riakapi_endpoint}}"
+					],
+					"path": [
+						"{{riakapi_stage}}",
+						"buckets",
+						"bucket",
+						"keys",
+						"key1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Riak API | Ping (No Auth)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+					"host": [
+						"{{riakapi_endpoint}}"
+					],
+					"path": [
+						"{{riakapi_stage}}",
+						"ping"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Pet Store | Get Pets (Direct)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://petstore-demo-endpoint.execute-api.com/petstore/pets",
+					"protocol": "http",
+					"host": [
+						"petstore-demo-endpoint",
+						"execute-api",
+						"com"
+					],
+					"path": [
+						"petstore",
+						"pets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Pet Store | Get Pets (No Auth)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "V9tkq7oL1P1oyMyVnWeUA2Jgn1bsKmqm5CrH8Rmf"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{pet_api_endpoint}}/{{pet_api_stage}}/pets",
+					"protocol": "https",
+					"host": [
+						"{{pet_api_endpoint}}"
+					],
+					"path": [
+						"{{pet_api_stage}}",
+						"pets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Pet Store | Get Pets (No Key)",
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						},
+						{
+							"key": "secretKey",
+							"value": "K4cLEYyDv4KxdKCMI4y/DqIuvRet1bXPBbL7xGUv",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "AKIAIPMTPTI2NK423F4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{pet_api_endpoint}}/{{pet_api_stage}}/pets",
+					"protocol": "https",
+					"host": [
+						"{{pet_api_endpoint}}"
+					],
+					"path": [
+						"{{pet_api_stage}}",
+						"pets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Pet Store | Get Pets (Gateway)",
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						},
+						{
+							"key": "secretKey",
+							"value": "K4cLEYyDv4KxdKCMI4y/DqIuvRet1bXPBbL7xGUv",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "AKIAIPMTPTI2NK423F4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "V9tkq7oL1P1oyMyVnWeUA2Jgn1bsKmqm5CrH8Rmf"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{pet_api_endpoint}}/{{pet_api_stage}}/pets",
+					"protocol": "https",
+					"host": [
+						"{{pet_api_endpoint}}"
+					],
+					"path": [
+						"{{pet_api_stage}}",
+						"pets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Pet Store | Get A Pet (Gateway)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						},
+						{
+							"key": "secretKey",
+							"value": "K4cLEYyDv4KxdKCMI4y/DqIuvRet1bXPBbL7xGUv",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "AKIAIPMTPTI2NK423F4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "V9tkq7oL1P1oyMyVnWeUA2Jgn1bsKmqm5CrH8Rmf"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pig\",\n    \"price\": 599.99\n}"
+				},
+				"url": {
+					"raw": "https://{{pet_api_endpoint}}/{{pet_api_stage}}/pets/1",
+					"protocol": "https",
+					"host": [
+						"{{pet_api_endpoint}}"
+					],
+					"path": [
+						"{{pet_api_stage}}",
+						"pets",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Pet Store | Create Pet (Gateway)",
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "region",
+							"value": "us-west-2",
+							"type": "string"
+						},
+						{
+							"key": "secretKey",
+							"value": "K4cLEYyDv4KxdKCMI4y/DqIuvRet1bXPBbL7xGUv",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "AKIAIPMTPTI2NK423F4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "V9tkq7oL1P1oyMyVnWeUA2Jgn1bsKmqm5CrH8Rmf"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pig\",\n    \"price\": 599.99\n}"
+				},
+				"url": {
+					"raw": "https://{{pet_api_endpoint}}/{{pet_api_stage}}/pets",
+					"protocol": "https",
+					"host": [
+						"{{pet_api_endpoint}}"
+					],
+					"path": [
+						"{{pet_api_stage}}",
+						"pets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Beta Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{riakapi_beta}}/ping",
+							"host": [
+								"{{riakapi_beta}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+						},
+						{
+							"key": "x-amzn-ErrorType",
+							"value": "MissingAuthenticationTokenException"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "VGAZYERDPHcFaDA="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+				}
+			]
+		}
+	]
+}
