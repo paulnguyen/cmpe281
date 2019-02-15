@@ -1,16 +1,16 @@
 
 # Setup Riak Cluster
 
-* http://basho.com/posts/technical/riak-on-aws-deployment-options/
+    http://basho.com/posts/technical/riak-on-aws-deployment-options/
 
-* http://docs.basho.com/riak/kv/2.2.3/developing/usage/
-* http://docs.basho.com/riak/kv/2.2.3/setup/installing/amazon-web-services/
-* http://docs.basho.com/riak/kv/2.2.3/using/running-a-cluster/#configure-the-first-node
-* http://docs.basho.com/riak/kv/2.2.3/using/cluster-operations/adding-removing-nodes/
-* http://docs.basho.com/riak/kv/2.2.3/developing/usage/conflict-resolution/
+    http://docs.basho.com/riak/kv/2.2.3/developing/usage/
+    http://docs.basho.com/riak/kv/2.2.3/setup/installing/amazon-web-services/
+    http://docs.basho.com/riak/kv/2.2.3/using/running-a-cluster/#configure-the-first-node
+    http://docs.basho.com/riak/kv/2.2.3/using/cluster-operations/adding-removing-nodes/
+    http://docs.basho.com/riak/kv/2.2.3/developing/usage/conflict-resolution/
 
-* https://aws.amazon.com/marketplace/pp/B00YFZ60X2?ref=cns_srchrow
-* http://docs.basho.com/riak/kv/2.2.3/setup/installing/amazon-web-services/
+    https://aws.amazon.com/marketplace/pp/B00YFZ60X2?ref=cns_srchrow
+    http://docs.basho.com/riak/kv/2.2.3/setup/installing/amazon-web-services/
 
 ## Launch Riak Marketplace AMI (3 Nodes)
 
@@ -70,7 +70,7 @@
     
 ## Setup Riak Cluster Nodes (3 Nodes)
 
-* http://docs.basho.com/riak/kv/2.2.3/using/running-a-cluster/#configure-the-first-node
+    * http://docs.basho.com/riak/kv/2.2.3/using/running-a-cluster/#configure-the-first-node
 
     You will need need to launch at least 3 instances 
     to form a Riak cluster. When the instances have been 
@@ -175,7 +175,7 @@
     curl -i http://riak-node3:8098/buckets/bucket/keys/key1
 
 
-# Setup Internal Load Balancers in front of Riak HTTP API (Port 8098)
+# Setup Classic Internal Load Balancer in front of Riak HTTP API (Port 8098)
 
 ## Classic Load Balancer Settings
 
@@ -190,35 +190,17 @@
     8. Health Check:    /ping
     9. EC2 Instances:   Select the three Riak Nodes
 
-## Network Load Balancer Settings
-
-    1. Name:            aws-riak-elb-net
-    2. Schema:          internal
-    3. Port:            80
-    4. VPC:             CMPE281
-    5. Subnet:          Select Private Subnet
-    6. Routing:         
-        Target Group:   RiakNodes
-        Target Port:    8098
-        Target Type:    instance
-        Protocol:       TCP
-        Health Check:   TCP (Port: 8098)
-    7. Instances:       Select the three Riak Nodes
-
 ## Test from Jump Box
 
-    ## Test Classic Load Balancer (Sample DNS Name -- Replace with your own)
-
     curl -i http://internal-aws-riak-elb-app-1260081257.us-west-2.elb.amazonaws.com/ping    
+
     curl -i http://internal-aws-riak-elb-app-1260081257.us-west-2.elb.amazonaws.com/buckets/bucket/keys/key1
 
-    ## Test Network Load Balancer (Sample DNS Name -- Replace with your own)
-
-    curl -i http://aws-riak-elb-net-6f2f46db7180948d.elb.us-west-2.amazonaws.com/ping  
-    curl -i http://aws-riak-elb-net-6f2f46db7180948d.elb.us-west-2.amazonaws.com/buckets/bucket/keys/key1
 
 
 
-    
+
+  
+
 
 
