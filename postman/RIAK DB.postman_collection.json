@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "0f790509-829e-433d-902e-d1f6ccae63b7",
 		"name": "RIAK DB",
-		"description": "riak ping\nriak-admin test\n\t\nriak-admin bucket-type create gumball '{\"props\":{\"search_index\":\"orders\"}}'\nriak-admin bucket-type activate gumball\t\n\nriak-admin bucket-type create bios '{\"props\":{\"search_index\":\"name\"}}'\nriak-admin bucket-type activate bios\t\n\ncurl -v -XPUT http://localhost:8098/search/index/name\n\ncurl -i http://riak-node1:8098/ping\n\ncurl -i http://riak-node1:8098/buckets?buckets=true    \n\ncurl -v -XPUT -d '{\"foo\":\"bar\"}' \\\n        http://riak-node2:8098/buckets/bucket/keys/key1?returnbody=true\n\ncurl -i http://riak-node3:8098/buckets/bucket/keys/key1\n\n\nhttp://docs.basho.com/riak/kv/2.2.3/developing/usage/search/\n\n",
+		"description": "riak ping\nriak-admin test\n\t\nriak-admin bucket-type create gumball '{\"props\":{\"search_index\":\"orders\"}}'\nriak-admin bucket-type activate gumball\t\n\nriak-admin bucket-type create bios '{\"props\":{\"search_index\":\"name\"}}'\nriak-admin bucket-type activate bios\t\n\ncurl -v -XPUT http://localhost:8098/search/index/name\n\ncurl -i http://riak-node1:8098/ping\n\ncurl -i http://riak-node1:8098/buckets?buckets=true    \n\ncurl -v -XPUT -d '{\"foo\":\"bar\"}' \\\n        http://riak-node2:8098/buckets/bucket/keys/key1?returnbody=true\n\ncurl -i http://riak-node3:8098/buckets/bucket/keys/key1\n\n\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

@@ -1,0 +1,57 @@
+version: "3"
+services:
+
+  coordinator:
+    image: basho/riak-kv
+    ports:
+      - "8087:8087"
+      - "8098:8098"
+    networks:
+      - db    
+    environment:
+      - CLUSTER_NAME=riakkv
+    labels:
+      - "com.basho.riak.cluster.name=riakkv"
+    volumes:
+      - schemas:/etc/riak/schemas
+
+  member:
+    image: basho/riak-kv
+    ports:
+      - "8087"
+      - "8098"
+    networks:
+      - db   
+    labels:
+      - "com.basho.riak.cluster.name=riakkv"
+    links:
+      - coordinator
+    depends_on:
+      - coordinator
+    environment:
+      - CLUSTER_NAME=riakkv
+      - COORDINATOR_NODE=coordinator
+ 
+  proxy:
+    image: eeacms/haproxy
+    depends_on:
+    - member
+    ports:
+    - "80:5000"
+    environment:
+      FRONTEND_PORT: "5000"
+      BACKENDS: "member"
+      BACKENDS_PORT: "8098"
+      DNS_ENABLED: "true"
+      LOG_LEVEL: "info"
+    networks:
+      - db
+
+volumes:
+  schemas:
+    external: false
+
+networks:
+  db:
+    driver: bridge
+
