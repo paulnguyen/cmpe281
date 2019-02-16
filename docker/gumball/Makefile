@@ -42,6 +42,12 @@ mysql-commit:
 mysql-push:
 	docker push paulnguyen/gumball-mysql:5.5
 
+tomcat-run2:
+	docker run -d --name tomcat -v /tmp:/tmp --network gumball -td -p 8080:8080 paulnguyen/gumball-tomcat:7.0.92 
+
+mysql-run2:
+	docker run -d --name mysql --network gumball -td -p 3306:3306  paulnguyen/gumball-mysql:5.5
+
 docker-login:
 	docker login -u paulnguyen
 
@@ -54,6 +60,33 @@ docker-ps:
 
 docker-ps-ports:
 	 docker ps --all --format "table {{.Names}}\t{{.Ports}}\t"
+
+compose-network:
+	docker network create --driver bridge gumball_network
+
+compose-up-nolb:
+	docker-compose scale tomcat=2 mysql=1
+
+compose-up-lb:
+	docker-compose scale proxy=1 tomcat=2 mysql=1
+
+compose-down:
+	docker-compose down 	
+
+mysql-up:
+	docker-compose up -d mysql
+
+tomcat-up:
+	docker-compose scale tomcat=2 
+
+mysql-compose-shell:
+	docker exec -it gumball_mysql_1 bash
+
+tomcat-compose-shell-1:
+	docker exec -it gumball_tomcat_1 bash
+
+tomcat-compose-shell-2:
+	docker exec -it gumball_tomcat_2 bash
 
 
 
