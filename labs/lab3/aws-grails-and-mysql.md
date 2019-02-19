@@ -151,7 +151,7 @@
                 mysql> show tables ;
 
                 mysql> create user cmpe281;
-                mysql> grant all on cmpe281.* to 'cmpe281'@'%'' identified by '*****';
+                mysql> grant all on cmpe281.* to 'cmpe281'@'%' identified by '*****';
 
                 mysql --user=cmpe281 --password=**** cmpe281
 ```
