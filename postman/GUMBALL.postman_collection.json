@@ -472,6 +472,90 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Heroku API | Gumball v6 | Place New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "15c9956d-a6eb-4df0-8605-d863d6abe2a1",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"order_id\", json.OrdNum );"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://pnguyen-gumball.herokuapp.com/gumball",
+							"protocol": "https",
+							"host": [
+								"pnguyen-gumball",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"gumball"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heroku API | Gumball v6 | Get Order Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "728b1e2b-f88d-4c09-bc36-b88576ab202b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://pnguyen-gumball.herokuapp.com/gumball/{{order_id}}",
+							"protocol": "https",
+							"host": [
+								"pnguyen-gumball",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"gumball",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -730,90 +814,6 @@
 		{
 			"name": "Gumball Heroku",
 			"item": [
-				{
-					"name": "Node API | Gumball v6 | Place New Order",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "15c9956d-a6eb-4df0-8605-d863d6abe2a1",
-								"exec": [
-									"var json = JSON.parse(responseBody);",
-									"postman.setGlobalVariable(\"order_id\", json.OrdNum );"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "https://pnguyen-gumball.herokuapp.com/gumball",
-							"protocol": "https",
-							"host": [
-								"pnguyen-gumball",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"gumball"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Node API | Gumball v6 | Get Order Status",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "728b1e2b-f88d-4c09-bc36-b88576ab202b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "https://pnguyen-gumball.herokuapp.com/gumball/{{order_id}}",
-							"protocol": "https",
-							"host": [
-								"pnguyen-gumball",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"gumball",
-								"{{order_id}}"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "GO | Gumball Ping API",
 					"request": {
