@@ -4,17 +4,17 @@
 var Client = require('node-rest-client').Client;
 var http = require('http') ;
 var count = "";
-var endpoint = "http://localhost:8080/gumball/" ;
+var endpoint = "http://localhost:3000/gumball" ;
 
 function request_handler (req, res) {
     var client = new Client();
             client.get( endpoint, function(data, response_raw){
                 console.log(data) ;
-                console.log(data.id) ;
-                console.log(data.countGumballs) ;
-                console.log(data.modelNumber) ;
-                console.log(data.serialNumber) ;
-                count = data.countGumballs
+                console.log(data.Id) ;
+                console.log(data.CountGumballs) ;
+                console.log(data.ModelNumber) ;
+                console.log(data.SerialNumber) ;
+                count = data.CountGumballs
                 console.log( "count = " + count ) ;
                 res.end( "count = " + count + "\n");
             });
