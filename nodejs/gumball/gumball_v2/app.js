@@ -14,8 +14,13 @@ Serial# 1234998871109
 
 **/
 
+/**
 var machine = "https://pnguyen-goapi.herokuapp.com/gumball";
 var endpoint = "https://pnguyen-goapi.herokuapp.com/order";
+**/
+
+var machine = "http://localhost:3000/gumball";
+var endpoint = "http://localhost:3000/order";
 
 // added in v2: crypto
 // crypto functions:  http://nodejs.org/api/crypto.html

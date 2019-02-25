@@ -61,7 +61,6 @@ var db_user = "cmpe281" ;
 var db_pwd  = "cmpe281" ;
 var db_name = "test" ;
 
-   
 
 var db = new DB(db_name,
                 new DB_Server( db_host, db_port,
@@ -311,21 +310,32 @@ Port:   27017
 See:  https://docs.mongodb.com/manual/tutorial/enable-authentication/
 
 use admin
-db.addUser('cmpe281', 'cmpe281');
+db.createUser(
+  {
+    user: "admin",
+    pwd: "cmpe281",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+                
+use test
+db.createUser(
+  {
+    user: "cmpe281",
+    pwd: "cmpe281",
+    roles: [ { role: "readWrite", db: "test" } ]
+  }
+)
+
+mongo --port 27017 -u "cmpe281" -p "cmpe281" --authenticationDatabase "test"
 
 use test
-db.runCommand( { createUser: "accountAdmin01",
-                 pwd: "cleartext password",
-                 roles: [
-                           { role: "clusterAdmin", db: "admin" },
-                           { role: "readWriteAnyDatabase", db: "admin" },
-                             "readWrite"
-                        ],
-                 writeConcern: { w: "majority" , wtimeout: 5000 }
-                } )
-                
+db.auth( "cmpe281", "cmpe281" )
+
 
 -- Gumball MongoDB Collection (Create Document)
+
+use test
 
 db.gumball.insert(
 { 

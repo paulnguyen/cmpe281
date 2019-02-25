@@ -121,17 +121,34 @@ Port:   27017
 
 See:  https://docs.mongodb.com/manual/reference/method/db.createUser/
 
- use test
- db.createUser(
-    {
-      user: "cmpe281",
-      pwd: "cmpe281",
-      roles: [ "readWrite", "dbAdmin" ]
-    }
- )
+use admin
+db.createUser(
+  {
+    user: "admin",
+    pwd: "cmpe281",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+                
+use test
+db.createUser(
+  {
+    user: "cmpe281",
+    pwd: "cmpe281",
+    roles: [ { role: "readWrite", db: "test" } ]
+  }
+)
+
+mongo --port 27017 -u "cmpe281" -p "cmpe281" --authenticationDatabase "test"
+
+use test
+db.auth( "cmpe281", "cmpe281" )
+
 
 
 -- Gumball MongoDB Collection (Create Document)
+
+use test
 
 db.gumball.insert(
 { 

@@ -13,9 +13,13 @@ Serial# 1234998871109
 
 **/
 
+/**
 var machine = "https://pnguyen-goapi.herokuapp.com/gumball";
 var endpoint = "https://pnguyen-goapi.herokuapp.com/order";
+**/
 
+var machine = "http://localhost:3000/gumball";
+var endpoint = "http://localhost:3000/order";
 
 var fs = require('fs');
 var express = require('express');
