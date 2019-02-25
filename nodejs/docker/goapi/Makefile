@@ -46,13 +46,21 @@ docker-clean:
 docker-ip:
 	docker-machine ip
 
+heroku-login:
+	heroku login 
+
+heroku-push:
+	heroku container:login
+	heroku container:push web -a pnguyen-goapi
+
+heroku-release:
+	heroku container:release web -a pnguyen-goapi
+
 heroku-tag:
 	docker build -t gumball .
 	docker tag gumball registry.heroku.com/pnguyen-goapi/web
 
-heroku-push:
-	heroku login 
-	heroku container:login
+heroku-registry:
 	docker push registry.heroku.com/pnguyen-goapi/web
 
 test-ping:
