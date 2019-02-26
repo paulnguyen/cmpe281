@@ -238,39 +238,46 @@ db.gumballorders.find()
 ** Stored MongoDB JavaScript Function
 ** http://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/
 
-
-function processGumballOrders() {
-    gm = db.gumball.find( { id : 1 } ) ;
-    cnt = gm.next().countGumballs ;
-    print( "Current Inventory: " + cnt ) ;
-    cursor = db.gumballorders.find( { OrdStatus: { $ne: "Shipped" } } );
-    cursor.snapshot() ; // force read isolation
-    while ( cursor.hasNext() ) {
-        order = cursor.next() ;        
-        printjson( order );
-        if ( cnt > 0 ) {
-            cnt-- ;
-            db.gumballorders.update( 
-                { _id: order._id }, 
-                { $set : { OrdStatus : "Shipped" } },
+db.system.js.save(
+ {
+     _id: "processGumballOrders",
+     value : 
+            function () {
+            gm = db.gumball.find( { id : 1 } ) ;
+            cnt = gm.next().countGumballs ;
+            print( "Current Inventory: " + cnt ) ;
+            cursor = db.gumballorders.find( { OrdStatus: { $ne: "Shipped" } } );
+            // cursor.snapshot() ; // force read isolation
+            while ( cursor.hasNext() ) {
+                order = cursor.next() ;        
+                printjson( order );
+                if ( cnt > 0 ) {
+                    cnt-- ;
+                    db.gumballorders.update( 
+                        { _id: order._id }, 
+                        { $set : { OrdStatus : "Shipped" } },
+                        { multi : false } 
+                    );
+                }
+                else {
+                    db.gumballorders.update( 
+                        { _id: order._id }, 
+                        { $set : { OrdStatus : "Backorder" } },
+                        { multi : false } 
+                    );
+                }
+            }   
+            db.gumball.update ( 
+                { id: 1 }, 
+                { $set : { countGumballs : cnt } },
                 { multi : false } 
-            );
+            )
         }
-        else {
-            db.gumballorders.update( 
-                { _id: order._id }, 
-                { $set : { OrdStatus : "Backorder" } },
-                { multi : false } 
-            );
-        }
-    }   
-    db.gumball.update ( 
-        { id: 1 }, 
-        { $set : { countGumballs : cnt } },
-        { multi : false } 
-    )
-}
+ }
+);
 
+
+db.loadServerScripts() ;
 processGumballOrders() ;
 
 
