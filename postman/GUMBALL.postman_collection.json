@@ -185,11 +185,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/ping",
+							"raw": "{{host}}:{{port}}/ping",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"ping"
 							]
@@ -212,11 +212,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/gumball",
+							"raw": "{{host}}:{{port}}/gumball",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"gumball"
 							]
@@ -239,11 +239,11 @@
 							"raw": "{\n  \"CountGumballs\": 1000\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/gumball",
+							"raw": "{{host}}:{{port}}/gumball",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"gumball"
 							]
@@ -257,11 +257,12 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "958f437d-4450-4646-a705-45ebeb635e92",
 								"exec": [
 									"var json = JSON.parse(responseBody);",
-									"postman.setGlobalVariable(\"order_id\", json.id );"
-								]
+									"postman.setGlobalVariable(\"order_id\", json.Id );"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -278,11 +279,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/order",
+							"raw": "{{host}}:{{port}}/order",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"order"
 							]
@@ -305,11 +306,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/order",
+							"raw": "{{host}}:{{port}}/order",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"order"
 							]
@@ -332,14 +333,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/order/6a931de1-41cb-49a5-bc0e-9b437d35ff0e",
+							"raw": "{{host}}:{{port}}/order/{{order_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"order",
-								"6a931de1-41cb-49a5-bc0e-9b437d35ff0e"
+								"{{order_id}}"
 							]
 						}
 					},
@@ -360,14 +361,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/order/8e58ec51-1581-4bd7-9b8c-dd098b025ef2",
+							"raw": "{{host}}:{{port}}/order/{{order_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"order",
-								"8e58ec51-1581-4bd7-9b8c-dd098b025ef2"
+								"{{order_id}}"
 							]
 						}
 					},
@@ -388,11 +389,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/orders",
+							"raw": "{{host}}:{{port}}/orders",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
+							"port": "{{port}}",
 							"path": [
 								"orders"
 							]
