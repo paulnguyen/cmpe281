@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "f76a83dd-d521-055e-4d06-fa3d2e07d05e",
+		"_postman_id": "0504b260-39dd-4d67-9a50-9519a0f0f256",
 		"name": "STARBUCKS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Starbucks API",
-			"description": "",
 			"item": [
 				{
 					"name": "Place Starbucks Order (V1)",
@@ -139,7 +138,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
@@ -216,7 +215,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v1/starbucks/orders",
@@ -364,7 +363,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
@@ -441,7 +440,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/starbucks/orders",
@@ -471,7 +470,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
@@ -508,7 +507,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/",
@@ -580,7 +579,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
@@ -617,7 +616,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v3/starbucks/orders",
@@ -804,7 +803,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order",
@@ -839,7 +838,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/1",
@@ -938,14 +937,16 @@
 		},
 		{
 			"name": "Starbucks Kong",
-			"description": "",
 			"item": [
 				{
 					"name": "Kong Server Status (Docker)",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/status",
 							"protocol": "http",
@@ -965,7 +966,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/cluster",
 							"protocol": "http",
@@ -985,7 +989,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}",
 							"protocol": "http",
@@ -1002,7 +1009,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
 							"protocol": "http",
@@ -1256,7 +1266,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/consumers",
 							"protocol": "http",
@@ -1276,7 +1289,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -1297,7 +1313,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -1318,7 +1337,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
 							"protocol": "http",
@@ -1340,7 +1362,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins/12cc3fd7-c07e-4c3b-bc0f-465e311bf948",
 							"protocol": "http",
@@ -1353,6 +1378,44 @@
 								"starbucks",
 								"plugins",
 								"12cc3fd7-c07e-4c3b-bc0f-465e311bf948"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Place Starbucks Order - No Auth (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e279227-d413-4a14-a709-bb082070ba58",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order"
 							]
 						}
 					},
@@ -1539,7 +1602,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
@@ -1680,7 +1743,6 @@
 		},
 		{
 			"name": "Starbucks Test",
-			"description": "",
 			"item": [
 				{
 					"name": "Post Starbucks API | Localhost",
