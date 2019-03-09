@@ -1,0 +1,1850 @@
+{
+	"info": {
+		"_postman_id": "0504b260-39dd-4d67-9a50-9519a0f0f256",
+		"name": "STARBUCKS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Starbucks API",
+			"item": [
+				{
+					"name": "Place Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay For Starbucks Order (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (V1)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v1/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay For Starbucks Order (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (V2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order - ETAG (V2)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "If-None-Match",
+								"value": "{{starbucks_order_etag}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v2",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping Starbucks Service (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"starbucks",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay For Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/v3/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v3",
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place Starbucks Order (APIary)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order",
+							"protocol": "https",
+							"host": [
+								"private-849760-restbucksapi",
+								"apiary-mock",
+								"com"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Orders (APIary)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order",
+							"protocol": "https",
+							"host": [
+								"private-849760-restbucksapi",
+								"apiary-mock",
+								"com"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Starbucks Order (APIary)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/1",
+							"protocol": "https",
+							"host": [
+								"private-849760-restbucksapi",
+								"apiary-mock",
+								"com"
+							],
+							"path": [
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Starbucks Order (APIary)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location\": \"takeAway\",\n    \"item\": {\n        \"name\" : \"cappuccino\",\n        \"quantity\" : 1,\n        \"milk\" : \"skim\",\n        \"size\" : \"large\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/id",
+							"protocol": "https",
+							"host": [
+								"private-849760-restbucksapi",
+								"apiary-mock",
+								"com"
+							],
+							"path": [
+								"order",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Starbucks Order (APIary)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://private-849760-restbucksapi.apiary-mock.com/order/1",
+							"protocol": "https",
+							"host": [
+								"private-849760-restbucksapi",
+								"apiary-mock",
+								"com"
+							],
+							"path": [
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Starbucks Kong",
+			"item": [
+				{
+					"name": "Kong Server Status (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/status",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Cluster Status (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/cluster",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"cluster"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Node Information (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong List APIs (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Add API (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"starbucks\",\n    \"request_path\": \"/starbucks\",\n    \"strip_request_path\": \"false\",\n    \"preserve_host\": \"true\",\n    \"upstream_url\": \"http://starbucks:9090/v3/\"\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Add Logfile (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "file-log",
+									"type": "text"
+								},
+								{
+									"key": "config.path",
+									"value": "/tmp/kong.log",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Add Resp Transformer (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "response-transformer",
+									"type": "text"
+								},
+								{
+									"key": "config.remove.json",
+									"value": "links",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Add API Key Auth (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "key-auth",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong API Client Add (Docker)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "apiclient",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers/",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong  API Client Add Key (Docker)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_api_key\", response.key);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers/apiclient/key-auth",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers",
+								"apiclient",
+								"key-auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong API Client Delete (Docker)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "apiclient",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers/apiclient",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers",
+								"apiclient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong API Clients List (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/consumers",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"consumers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Get API Details (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Delete API (Docker)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Get List of API Plugins (Docker)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kong Plugin Remove from API (Docker)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins/12cc3fd7-c07e-4c3b-bc0f-465e311bf948",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_port}}",
+							"path": [
+								"apis",
+								"starbucks",
+								"plugins",
+								"12cc3fd7-c07e-4c3b-bc0f-465e311bf948"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Place Starbucks Order - No Auth (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e279227-d413-4a14-a709-bb082070ba58",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Place Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"starbucks_order_id\", response.id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Cancel Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Update Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"dine-in\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"skim\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Order - ETAG (V3)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "If-None-Match",
+								"value": "W/\"35883c054313ac9f0ab39736dce6701a\""
+							},
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Pay For Starbucks Order (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}/pay",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"order",
+								"{{starbucks_order_id}}",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Orders (V3)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{starbucks_api_key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Starbucks API | Get Starbucks Orders (No API Key)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
+							"protocol": "http",
+							"host": [
+								"{{kong_host}}"
+							],
+							"port": "{{kong_api_port}}",
+							"path": [
+								"starbucks",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Starbucks Test",
+			"item": [
+				{
+					"name": "Post Starbucks API | Localhost",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{local_host}}:{{local_port}}/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{local_host}}"
+							],
+							"port": "{{local_port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Starbucks API |Docker Local",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{docker_host}}:{{docker_port}}/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{docker_host}}"
+							],
+							"port": "{{docker_port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Starbucks API |Docker Cloud (DNS)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{aws_host}}:{{aws_port}}/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{aws_host}}"
+							],
+							"port": "{{aws_port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Starbucks API |Docker Cloud (Host IP)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://{{aws_ip}}:{{aws_port}}/v1/starbucks/order",
+							"protocol": "http",
+							"host": [
+								"{{aws_ip}}"
+							],
+							"port": "{{aws_port}}",
+							"path": [
+								"v1",
+								"starbucks",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
