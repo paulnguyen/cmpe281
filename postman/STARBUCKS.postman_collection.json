@@ -1754,12 +1754,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:9090/v1/starbucks/order",
+							"raw": "http://{{local_host}}:{{local_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{local_host}}"
 							],
-							"port": "9090",
+							"port": "{{local_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -1779,15 +1779,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://192.168.99.100:9090/v1/starbucks/order",
+							"raw": "http://{{docker_host}}:{{docker_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{docker_host}}"
 							],
-							"port": "9090",
+							"port": "{{docker_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -1807,14 +1804,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://api.nguyenresearch.com:90/v1/starbucks/order",
+							"raw": "http://{{aws_host}}:{{aws_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"api",
-								"nguyenresearch",
-								"com"
+								"{{aws_host}}"
 							],
-							"port": "90",
+							"port": "{{aws_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -1834,15 +1829,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://54.190.57.200:90/v1/starbucks/order",
+							"raw": "http://{{aws_ip}}:{{aws_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"54",
-								"190",
-								"57",
-								"200"
+								"{{aws_ip}}"
 							],
-							"port": "90",
+							"port": "{{aws_port}}",
 							"path": [
 								"v1",
 								"starbucks",
