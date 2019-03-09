@@ -1,20 +1,22 @@
 {
 	"info": {
-		"_postman_id": "baae9c1f-d53a-2841-5d30-fbcb75849954",
+		"_postman_id": "f45e4b2b-f9f5-4269-b61c-817511519401",
 		"name": "RESTLET",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Hello Restlet",
-			"description": "",
 			"item": [
 				{
 					"name": "Restlet | Hello World",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8080/restlet/hello",
 							"protocol": "http",
@@ -35,7 +37,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/test/abcd",
 							"protocol": "http",
@@ -56,7 +61,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/accounts/",
 							"protocol": "http",
@@ -78,7 +86,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/accounts/123",
 							"protocol": "http",
@@ -100,7 +111,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/?param=value",
 							"protocol": "http",
@@ -126,7 +140,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/123",
 							"protocol": "http",
@@ -146,7 +163,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/?method=options",
 							"protocol": "http",
@@ -172,7 +192,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/",
 							"protocol": "http",
@@ -192,7 +215,10 @@
 					"request": {
 						"method": "OPTIONS",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/",
 							"protocol": "http",
@@ -236,7 +262,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/accounts/",
 							"protocol": "http",
@@ -259,7 +288,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:8111/accounts/0",
@@ -331,7 +360,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:8080/mail",
@@ -382,7 +411,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:9000/mail",
@@ -433,7 +462,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://192.168.99.100:9000/mail",
@@ -487,14 +516,16 @@
 		},
 		{
 			"name": "Restlet Tutorial",
-			"description": "",
 			"item": [
 				{
 					"name": "Hello | Get Hello Message",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8111/hello",
 							"protocol": "http",
@@ -514,7 +545,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8080/contacts/123",
 							"protocol": "http",
@@ -623,7 +657,10 @@
 								"value": "Basic c2NvdHQ6dGlnZXI="
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:8182",
 							"host": [
@@ -698,7 +735,10 @@
 								"value": "Digest username=\"scott\", realm=\"TestRealm\", nonce=\"MTQ3ODkzMTA5NTM0NDo0YTI5ZGJhZjJhMzRiNTJiNzQzNjZmY2I1ZjZjMDQ2Mg==\", uri=\"/\", response=\"bf484dfbd07d659773d1dec08706da32\", opaque=\"\""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:8182",
 							"host": [
@@ -714,7 +754,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -767,7 +810,10 @@
 								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -849,7 +895,10 @@
 								"value": "Digest username=\"chunkylover53\", realm=\"My Realm\", nonce=\"MTQ3ODkzODE4MzA1MjpmODExMDU0NzEzYjYwOTZhYTM5NTY3ZjQ4MTQ5MTU1Zg==\", uri=\"/accounts/chunkylover53/mails/123\", response=\"98c673e16b9fd81560eeff8eb46f5304\", opaque=\"\""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -902,7 +951,10 @@
 								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -930,7 +982,10 @@
 								"value": "Basic Y2h1bmt5bG92ZXI1Mzpwd2Q="
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://localhost:8183/accounts/chunkylover53/mails/123",
 							"protocol": "https",
@@ -952,7 +1007,6 @@
 		},
 		{
 			"name": "Starbucks Test",
-			"description": "",
 			"item": [
 				{
 					"name": "Post Starbucks API | Localhost",
@@ -964,12 +1018,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:9090/v1/starbucks/order",
+							"raw": "http://{{local_host}}:{{local_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{local_host}}"
 							],
-							"port": "9090",
+							"port": "{{local_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -989,15 +1043,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://192.168.99.100:9090/v1/starbucks/order",
+							"raw": "http://{{docker_host}}:{{docker_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{docker_host}}"
 							],
-							"port": "9090",
+							"port": "{{docker_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -1017,14 +1068,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://aws.nguyenresearch.com:90/v1/starbucks/order",
+							"raw": "http://{{aws_host}}:{{aws_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"aws",
-								"nguyenresearch",
-								"com"
+								"{{aws_host}}"
 							],
-							"port": "90",
+							"port": "{{aws_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -1044,15 +1093,12 @@
 							"raw": "{\n  \"location\": \"take-out\",\n  \"items\": [\n    {\n      \"qty\": 1,\n      \"name\": \"latte\",\n      \"milk\": \"whole\",\n      \"size\": \"large\"\n    }\n  ]\n}"
 						},
 						"url": {
-							"raw": "http://54.201.122.231:90/v1/starbucks/order",
+							"raw": "http://{{aws_ip}}:{{aws_port}}/v1/starbucks/order",
 							"protocol": "http",
 							"host": [
-								"54",
-								"201",
-								"122",
-								"231"
+								"{{aws_ip}}"
 							],
-							"port": "90",
+							"port": "{{aws_port}}",
 							"path": [
 								"v1",
 								"starbucks",
@@ -1066,7 +1112,6 @@
 		},
 		{
 			"name": "Starbucks API",
-			"description": "",
 			"item": [
 				{
 					"name": "Place Starbucks Order (V1)",
@@ -1198,7 +1243,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v1/starbucks/order/{{starbucks_order_id}}",
@@ -1275,7 +1320,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v1/starbucks/orders",
@@ -1423,7 +1468,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
@@ -1454,7 +1499,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/starbucks/order/{{starbucks_order_id}}",
@@ -1531,7 +1576,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/starbucks/orders",
@@ -1553,14 +1598,16 @@
 		},
 		{
 			"name": "Starbucks Kong",
-			"description": "",
 			"item": [
 				{
 					"name": "Kong Server Status (Docker)",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/status",
 							"protocol": "http",
@@ -1580,7 +1627,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/cluster",
 							"protocol": "http",
@@ -1600,7 +1650,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}",
 							"protocol": "http",
@@ -1617,7 +1670,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis",
 							"protocol": "http",
@@ -1871,7 +1927,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/consumers",
 							"protocol": "http",
@@ -1891,7 +1950,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -1912,7 +1974,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks",
 							"protocol": "http",
@@ -1933,7 +1998,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins",
 							"protocol": "http",
@@ -1955,7 +2023,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_port}}/apis/starbucks/plugins/12cc3fd7-c07e-4c3b-bc0f-465e311bf948",
 							"protocol": "http",
@@ -2120,7 +2191,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
@@ -2154,7 +2225,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/order/{{starbucks_order_id}}",
@@ -2239,7 +2310,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
@@ -2274,7 +2345,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://{{kong_host}}:{{kong_api_port}}/starbucks/orders",
@@ -2295,7 +2366,6 @@
 		},
 		{
 			"name": "Service Test",
-			"description": "",
 			"item": [
 				{
 					"name": "Restlet | Hello World (Cloud 9)",
@@ -2323,7 +2393,10 @@
 								"value": "1DKHA4AAAAG5A5BQADQA"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://design-paulnguyen.c9users.io/restlet/hello",
 							"protocol": "https",
@@ -2366,7 +2439,10 @@
 								"value": "1DKHA4AAAAG5A5BQADQA"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://restapi-hello-1.c2247b6d.cont.dockerapp.io/restlet/hello",
 							"protocol": "http",
@@ -2411,7 +2487,10 @@
 								"value": "1DKHA4AAAAG5A5BQADQA"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://ec2-54-153-1-207.us-west-1.compute.amazonaws.com/restlet/hello",
 							"protocol": "http",
@@ -2456,7 +2535,10 @@
 								"value": "1DKHA4AAAAG5A5BQADQA"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://54.153.1.207/restlet/hello",
 							"protocol": "http",
@@ -2500,7 +2582,10 @@
 								"value": "1DKHA4AAAAG5A5BQADQA"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://aws.nguyenresearch.com/restlet/hello",
 							"protocol": "http",
@@ -2522,7 +2607,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8080/restlet/hello",
 							"protocol": "http",
@@ -2543,7 +2631,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://192.168.99.100:8080/restlet/hello",
 							"protocol": "http",
@@ -2567,7 +2658,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://192.168.99.100/restlet/hello",
 							"protocol": "http",
@@ -2592,7 +2686,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://aws.nguyenresearch.com:8080/mail",
@@ -2647,7 +2741,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "Account #1"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://aws.nguyenresearch.com:81/mail",
@@ -2707,7 +2801,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:8080/cart",
@@ -2735,7 +2829,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"subject\": \"RE: Message to Self\",\n  \"content\": \"Hello There Again!\",\n  \"status\": \"Received\"\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://aws.nguyenresearch.com:8080/cart",
@@ -2757,14 +2851,16 @@
 		},
 		{
 			"name": "Gumball Test",
-			"description": "",
 			"item": [
 				{
 					"name": "Restlet Gumball Machine | Get Banner",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/gumball",
 							"protocol": "http",
@@ -2840,7 +2936,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v1/gumball",
 							"protocol": "http",
@@ -2919,7 +3018,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v2/gumball",
 							"protocol": "http",
@@ -2998,7 +3100,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v3/gumball",
 							"protocol": "http",
@@ -3048,7 +3153,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://{{host}}:{{port}}/v4/gumball",
 							"protocol": "http",
