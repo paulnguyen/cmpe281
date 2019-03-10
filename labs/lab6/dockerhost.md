@@ -14,7 +14,7 @@
 	2. Instance Type:   t2.micro
 	3. VPC:             cmpe281
 	4. Network:         public subnet
-	5. Auto Public IP:  no
+	5. Auto Public IP:  yes (or no and use elastic ip)
 	6. Security Group:  docker 
 	7. SG Open Ports:   22, 80, 8080
 	8. Key Pair:        cmpe281-us-west-1
