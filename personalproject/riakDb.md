@@ -17,7 +17,7 @@ Create 4 riak nodes using the following steps. 2 nodes will be in public subnet 
 ssh to every node and update riak.conf in /etc/riak/
 listener.http.internal = 10.0.0.165:8098
 listener.protobuf.internal = 10.0.0.165:8087
-nodename = riak@100.27.49.78
+nodename = riak@10.0.0.165
 'execute sudo riak-admin cluster join riak@firstNodeIp on other three nodes'
 sudo riak-admin cluster plan
 sudo riak-admin cluster status
