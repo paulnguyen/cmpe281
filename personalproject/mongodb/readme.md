@@ -1,7 +1,7 @@
 # Introduction
 Testing partition tolerance in mongodb. As mongodb support CP of CAP theorem which states that in case of any partition, the data will remain consistent across the nodes in a distributed system. This article will walk you through setting up the cluster of nodes running mongodb, creating a network partition and runs test cases in the partition mode and normal mode of a cluster.
 
-### SETUP EC2 Instances:
+### Setup EC2 Instances:
 -----------------------------
 -   In amazon management console, set up the free tier ubuntu instance and install the mongo DB on an instance.
 -   Create the amazon AMI image.
@@ -93,8 +93,11 @@ rs.initiate({ _id: "cmpe281", members: [ {_id:0, host:"54.145.195.42:27017"}, {_
 Going to perform several test cases to see the data in node during normal mode when there is no partition and in a partition mode. Below are the test cases done:
 ### No Partition Mode
 ----
-NodeJs code is written to insert,update and retrieve the data from the db. Mocha is used to write the test cases for operations in nodejs. 
+
+NodeJs code is written to insert,update and retrieve the data from the db. Mocha is used to write the test cases for operations in nodejs.
+
 **Test Case 1:**
+
 Inserting data into the replica set using ```mocha -g 'insert' ```
 **Results**: The data will be inserted into all nodes in a replicaset. Check the data on all instances and the results are consistent.
 ---
