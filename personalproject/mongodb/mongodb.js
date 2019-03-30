@@ -40,10 +40,10 @@
             });  
          
           // Delayed for 1 sec then dispatch another insert
-          if(id<30){
+          if(id<10){
            setTimeout(insertDocument, 1000);
           }
-          else if(id>=30){         
+          else if(id>=10){         
             setTimeout(function(){
             products.count(function(err, result) {
               if(err) throw err;
