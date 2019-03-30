@@ -25,7 +25,7 @@ it('inserting 2 documents', function(done){
 });
 
 describe('update',function(){
-it('updating a document', function(done){
+it('updating', function(done){
 	mongo.update(function(result){
 		assert.equal(result,'updated');
 		done();
@@ -35,7 +35,7 @@ it('updating a document', function(done){
 
 describe('retrieve',function(){
 it('retreiving', function(done){
-	mongo.get(function(result,doc){
+	mongo.get(function(doc,result){
 		assert.equal(result,'retrieved');
 		console.log(doc);
 		done();

@@ -123,14 +123,18 @@ Disconnect the primary node from the replicaset using above commands on primary 
 **Result:** 
 Primary node will get down and other node will become primary and data will be inserted trough that node. The data will be replicated on all other nodes in a replica set except the disconnected node.
 
----
-
 **Test Case 2:**
-Update the record in the replicaset using ```mocha -g 'update' ```
+Insert new data in the replica set.
 
-**Result:** The data will be updated on all nodes in the replicaset except the disconnected node i.e primary. So we will be able to read ```stale data``` from that node.
+**Result:** 
+ The data will be inserted on all nodes in the replicaset except the disconnected node i.e primary. 
 
 **Test Case 3:**
+Update the record in the replicaset using ```mocha -g 'update' ```
+
+**Result:** The data will be updated on all nodes in the replicaset except the disconnected node i.e primary. This node has now become slave and we will be able to read ```stale data``` from that node.
+
+**Test Case 4:**
 Now heal the partition by using below commands on the disconnected node.
 
 ```
@@ -143,4 +147,6 @@ sudo iptables -D INPUT -s 52.202.192.206 -j DROP
 **Result:** The disconnected node will become secondary and by using ```rs.slaveOk()```, it will become consistent with the replicaset and will get the updated data.
 
 
+# Conclusion
+We have succesfully tested the partition tolerance in Mongo Database.
 

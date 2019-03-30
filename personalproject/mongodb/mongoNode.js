@@ -30,8 +30,8 @@ connectDatabase: function(callback){
   },
   insert: function(callback){
   	  var test = database.db("test");
-      var obj = test.collection("people");
-      var docArray = [{'id':'3','name':'ABC'},{'id':'4','name':'DEF'}];
+      var obj = test.collection("bios");
+      var docArray = [{'id':'1','name':'ABC'},{'id':'2','name':'DEF'},'id':'3','name':'ABC'},{'id':'4','name':'DEF'}];
       obj.insertMany(docArray,function(err,inserted){
                 if (err) throw err;
                 callback(docArray,'inserted');
@@ -39,18 +39,19 @@ connectDatabase: function(callback){
   },
   update: function(callback){
  	  var test = database.db("test");
-      var obj = test.collection("people");
-      obj.updateOne({'id':'1'},{$set:{'name':'ALPHA'}},function(err,res){
+      var obj = test.collection("bio");
+      obj.updateOne({'id':'1'},{$set:{'name':'America'}},function(err,result){
                 if (err) throw err;
                 callback('updated');
       }); 
   },
   get: function(callback){
  	  var test = database.db("test");
-      var obj = test.collection("people");
+      var obj = test.collection("bio");
       obj.find({}).toArray(function(err,res){
                 if (err) throw err;
-                callback('retrieved',res);
+                var doc = res;
+                callback(doc,'retrieved');
       }); 
   }
 
