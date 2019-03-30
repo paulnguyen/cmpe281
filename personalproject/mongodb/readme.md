@@ -97,8 +97,8 @@ Going to perform several test cases to see the data in node during normal mode w
 NodeJs code is written to insert,update and retrieve the data from the db. Mocha is used to write the test cases for operations in nodejs.
 
 **Test Case 1:**
-
 Inserting data into the replica set using ```mocha -g 'insert' ```
+
 **Results**: The data will be inserted into all nodes in a replicaset. Check the data on all instances and the results are consistent.
 ---
 **Test Case 2:**
@@ -117,6 +117,7 @@ sudo iptables -A INPUT -s 52.202.192.206 -j DROP
 ```
 **Test Case 1:**
 Disconnect the primary node from the replicaset using above commands on primary node. Test the node is disconnected using ```rs.status()``` to see the health is down for that node.
+
 **Result:** 
 Primary node will get down and other node will become primary and data will be inserted trough that node. The data will be replicated on all other nodes in a replica set except the disconnected node.
 ---
