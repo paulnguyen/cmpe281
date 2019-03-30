@@ -100,6 +100,7 @@ NodeJs code is written to insert,update and retrieve the data from the db. Mocha
 Inserting data into the replica set using ```mocha -g 'insert' ```
 
 **Results**: The data will be inserted into all nodes in a replicaset. Check the data on all instances and the results are consistent.
+
 ---
 **Test Case 2:**
 Updating data into the replica set using ```mocha -g 'update' ```
