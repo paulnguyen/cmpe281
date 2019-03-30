@@ -120,18 +120,24 @@ Disconnect the primary node from the replicaset using above commands on primary 
 
 **Result:** 
 Primary node will get down and other node will become primary and data will be inserted trough that node. The data will be replicated on all other nodes in a replica set except the disconnected node.
+
 ---
+
 **Test Case 2:**
 Update the record in the replicaset using ```mocha -g 'update' ```
+
 **Result:** The data will be updated on all nodes in the replicaset except the disconnected node i.e primary. So we will be able to read ```stale data``` from that node.
+
 **Test Case 3:**
 Now heal the partition by using below commands on the disconnected node.
+
 ```
 sudo iptables -D INPUT -s 3.85.252.30 -j DROP
 sudo iptables -D INPUT -s 3.209.66.95 -j DROP
 sudo iptables -D INPUT -s 3.81.242.72 -j DROP
 sudo iptables -D INPUT -s 52.202.192.206 -j DROP
 ```
+
 **Result:** The disconnected node will become secondary and by using ```rs.slaveOk()```, it will become consistent with the replicaset and will get the updated data.
 
 
