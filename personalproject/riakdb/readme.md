@@ -4,6 +4,7 @@ Riak supports AP in CAP theorem during a network partition. We are going to setu
 ---
 
 We will cerate another vpc with 1 publci/private subnet having ipv4 CIDR block 172.0.0.0/16. In order to do vpc peering, we have to add ipv4 CIDR block in each other route tables. To create the peering:
+
 |                   |               |
 | ----------------  | ------------- |
 | Peering connection name tag| Riak |
