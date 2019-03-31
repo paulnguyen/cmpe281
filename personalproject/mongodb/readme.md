@@ -117,6 +117,13 @@ sudo iptables -A INPUT -s 3.209.66.95 -j DROP
 sudo iptables -A INPUT -s 3.81.242.72 -j DROP
 sudo iptables -A INPUT -s 52.202.192.206 -j DROP
 ```
+
+**Test Case 0:**
+We are going to run the node js code `mongodb.js` and inspect the no of writes lost when the partition occurs. Mongodb replicaset recognizes the partition with a little delay and hence few writes gets lost during the time when ownership is passed to another node in the replicaset.  
+
+**Result:**
+Numbers of writes are lost as soon as the partition occurs. 
+
 **Test Case 1:**
 Disconnect the primary node from the replicaset using above commands on primary node. Test the node is disconnected using ```rs.status()``` to see the health is down for that node.
 

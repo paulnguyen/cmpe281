@@ -1,22 +1,26 @@
-# Testing Partition tolerance in Riak DB 
+# Introduction 
 Riak supports AP in CAP theorem during a network partition. We are going to setup a cluster of 4 riak nodes. We will do ***vpc peering*** to create a cluster of riak running on two different vpcs. Later we will remove the peer connection in order to create a network partition in a cluster.
 ### Setup VPC peering
 ---
 
 We will cerate another vpc with 1 publci/private subnet having ipv4 CIDR block 172.0.0.0/16. In order to do vpc peering, we have to add ipv4 CIDR block in each other route tables. To create the peering:
+
 |                   |               |
 | ----------------  | ------------- |
 | Peering connection name tag| Riak |
 | VPC (Requester)*  | Riak-vpc |
 | VPC (Acceptor)*  | CMPE-281 |
 |select peer connections->Actions|Accept the peer connection|
+
 **Route Tables - vpc1**
+
 |   Destination                |    Target           |
 | ----------------  | ------------- |
 |10.0.0.0/16|local|
 |0.0.0.0/0|	igw-084b07c61541f5a03|
 | 172.0.0.0/16  | pcx-0294e43a3f331cbba  |
 **Route Tables - vpc2**
+
 |   Destination                |    Target           |
 | ----------------  | ------------- |
 |172.0.0.0/16|local|
