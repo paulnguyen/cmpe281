@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jumpbox
+spec:
+  containers:
+  - name: jumpbox
+    image: mongo:3.7
+    imagePullPolicy: Always
