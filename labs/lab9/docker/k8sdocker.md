@@ -40,7 +40,7 @@
 	```
 
 
-## Install Kubernetes Dashbaord
+## Install Kubernetes Dashboard
 
 * install kubernetes dashboard
 
