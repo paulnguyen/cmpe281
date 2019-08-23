@@ -36,9 +36,9 @@
     
                 REF:  https://tomcat.apache.org/download-70.cgi
 
-                wget http://apache.osuosl.org/tomcat/tomcat-7/v7.0.90/bin/apache-tomcat-7.0.90.tar.gz
-                tar zxpvf apache-tomcat-7.0.90.tar.gz
-                sudo mv apache-tomcat-7.0.90 /usr/share
+                wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.96/bin/apache-tomcat-7.0.96.tar.gz
+                tar zxpvf apache-tomcat-7.0.96.tar.gz
+                sudo mv apache-tomcat-7.0.96 /usr/share
 
                 To configure Tomcat to launch automatically create 
                 a file called tomcat in the directory 
@@ -50,7 +50,7 @@
                         # chkconfig: 2345 96 14
                         # description: The Apache Tomcat servlet/JSP container.
                         JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk.x86_64
-                        CATALINA_HOME=/usr/share/apache-tomcat-7.0.90
+                        CATALINA_HOME=/usr/share/apache-tomcat-7.0.96
                         export JAVA_HOME CATALINA_HOME
                         exec $CATALINA_HOME/bin/catalina.sh $*
                 
@@ -66,7 +66,7 @@
 
     Step 5:     Config Tomcat Users
     
-                File: /usr/share/apache-tomcat-7.0.90/conf/tomcat-users.xml
+                File: /usr/share/apache-tomcat-7.0.96/conf/tomcat-users.xml
                 Password:  <Chose your Password>
                 
                 <tomcat-users>
@@ -195,23 +195,20 @@
 ```
     Note: assuming you already have Java JDK 7 or 8 Installed
     
-    sdk ls groovy
     sdk ls grails
-    sdk install groovy 2.4.7
-    sdk install grails 3.2.5
+    sdk install grails 4.0.0
     sdk current
 
     grails --version
 
-    | Grails Version: 3.2.5
-    | Groovy Version: 2.4.7
-    | JVM Version: 1.8.0_112
+	| Grails Version: 4.0.0
+	| JVM Version: 1.8.0_181
 ```
 
 ### Config Grails Database Connection for Production
 
 ```
-    Update Grails Project:  grails/gumball-v1 
+    Update Grails Project:  gumball-v1 
     Update Database Config: grails-app/conf/application.yml 
 
     To Connector to your AWS MySQL DB.  
@@ -233,7 +230,7 @@
     
     This should be in the folder:
     
-        /usr/share/apache-tomcat-7.0.90/webapps
+        /usr/share/apache-tomcat-7.0.96/webapps
 ```
 
 
