@@ -23,6 +23,46 @@
 
 
 # =========================
+# Setup 2FA to your Jumpbox
+# =========================
+
+## REF: https://aws.amazon.com/blogs/startups/securing-ssh-to-amazon-ec2-linux-hosts/
+
+## Install Google Authenticator
+
+	sudo yum install google-authenticator -y
+	google-authenticator 
+		- timebase? => yes
+		- save your 2fa keys / codes
+		- use the url generated to scan the QR code to your 2FA Token Client
+		- save .google_authenticator file => yes
+		- disallow multiple uses of the same authentication => yes
+		- increase the token valid window to 4 minutes => yes
+		- enable rate-limiting => yes
+
+## Configure SSH to use the Google Pluggable Authentication Module
+
+	sudo vi /etc/pam.d/sshd
+		- add the following to the end of file:
+		  auth required pam_google_authenticator.so
+		- comment out the password requirement
+		  #auth       substack     password-auth
+
+## Change the SSH configuration to make it prompt for a second authentication.
+
+	sudo vi /etc/ssh/sshd_config
+		- update to enable 2FA
+		  ChallengeResponseAuthentication yes
+		- Let SSH know that it should ask for SSH key and a verification code to let us in.
+          Add the folowing to the end of the file:
+          AuthenticationMethods publickey,keyboard-interactive
+
+## Restart the SSH to let the changes take effect.
+
+	sudo /etc/init.d/sshd restart 
+	or sudo service sshd restart
+
+# =========================
 # Install Tools in Jump Box
 # =========================
 
