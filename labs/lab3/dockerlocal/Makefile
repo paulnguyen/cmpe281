@@ -76,6 +76,9 @@ mysql-up:
 gumball-up:
 	docker-compose scale gumball=2 
 
+gumball-up-4:
+	docker-compose scale gumball=4 
+
 lb-up:
 	docker-compose up -d lb
 
@@ -90,6 +93,18 @@ gumball-compose-shell-1:
 
 gumball-compose-shell-2:
 	docker exec -it dockerlocal_gumball_2 bash
+
+gumball-logs-1:
+	docker logs dockerlocal_gumball_1
+
+gumball-logs-2:
+	docker logs dockerlocal_gumball_2
+
+gumball-logs-3:
+	docker logs dockerlocal_gumball_3
+
+gumball-logs-4:
+	docker logs dockerlocal_gumball_4
 
 
 
