@@ -1,7 +1,7 @@
 
 ## PART I - Setup
 
-    Install Docker Toolbox: 
+    Install Docker Desktop: 
 
         https://www.docker.com/products/docker-toolbox
         https://www.docker.com/docker-mac
@@ -18,8 +18,7 @@
 
     Set up a Docker Host to your AWS Account:
 
-        https://github.com/paulnguyen/cmpe281/blob/master/aws/8-aws-ec2-containers-dockerhost.md
-        Notes: Micro Free-Tier Instance in any AZ
+		https://github.com/paulnguyen/cmpe281/blob/master/aws/dockerhost/dockerhost.md
 
     Download and Install Postman Desktop App:
 
@@ -45,7 +44,7 @@
 
 ## PART III - LOCAL DOCKER
 
-	SOURCE:  https://github.com/paulnguyen/cmpe281/tree/master/restlet/starbucks_v1
+	SOURCE:  https://github.com/paulnguyen/cmpe281/blob/master/labs/lab4/starbucks.zip
 
 	Compile, Build JAR and Run Local Docker Instance on port 90 using Makefile Targets:
 
@@ -60,7 +59,7 @@
 
 ## PART IV -  DOCKER ON AWS
 
-	SOURCE:  https://github.com/paulnguyen/cmpe281/tree/master/restlet/starbucks_v1 
+	SOURCE:  https://github.com/paulnguyen/cmpe281/blob/master/labs/lab4/starbucks.zip
 
 	Using the docker.sh script, build and push a release to Docker Hub and then Deploy to Docker on AWS.
 
