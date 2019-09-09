@@ -38,7 +38,7 @@ docker-clean:
 	docker rmi gumball
 
 docker-run:
-	docker run --name gumball -td -p 8080:8080 gumball
+	docker run --name gumball -td -p 8080:8080 gumball --restart always
 	docker ps
 
 docker-network:

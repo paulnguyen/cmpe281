@@ -5,6 +5,21 @@
 - https://github.com/paulnguyen/cmpe281/blob/master/jumpbox/aws-jumpbox.md
 - https://github.com/paulnguyen/cmpe281/blob/master/aws/dockerhost/dockerhost.md
 
+- Install Docker Toolbox: 
+
+    https://www.docker.com/products/docker-toolbox
+    https://www.docker.com/docker-mac
+    https://www.docker.com/docker-windows
+    https://www.docker.com/docker-ubuntu
+
+    NOTE:  This lab works best on Mac or Linux. 
+    If you are using a Windows Machine, it is best to use
+    the Docker Toolbox Option to run Docker in a Linux VM. 
+
+- Register for Docker Hub Account:
+
+    https://hub.docker.com/
+
 
 ### Installing MySQL on a Private DB Instance
 
@@ -122,23 +137,66 @@
 
 ```
 
-### Generate and Deploy Application WAR file
+### Generate Application WAR file
 
 ```
     In your Grails Project Root Folder, Run Command:
     
         grails war
         
-    Deploy Generated WAR file in:
+    Confirm the Generated WAR file in:
     
-        build/libs (folder)
-        
-    Note: To Deploy, SCP War file to EC2 Instance and Copy into Tomcat's  "webapps" folder.  
-    
-    This should be in the folder:
-    
-        /usr/share/apache-tomcat-7.0.96/webapps
+        build/libs/gumball-v1-1.0.war
 ```
+
+
+### Build and Push Docker Image to your Docker Hub Account
+
+
+    Use Script:  docker.sh 
+
+```
+    ============================================
+              D O C K E R   M E N U             
+    ============================================
+    > grails-gumball - /grails-gumball:grails-v1.0 
+     
+    [1] login      - Login to Docker            
+    [2] images     - Show Docker Images         
+    [3] build      - Build Container Image      
+    [4] run        - Run Container              
+    [5] pull       - Pull Container Image       
+    [6] push       - Push Build to Docker Hub   
+    [7] ps         - Show Running Containers    
+    [8] rmi        - Remove Container Image     
+    [9] release    - Release to Docker Hub      
+     
+    [+] More Options                        
+    [X] Exit Menu                              
+     
+    Selection: 
+```
+
+### Deploy Docker Image on your Docker Host
+
+```
+    docker run --name grails-gumball-v1 -td -p 8080:8080 grails-gumball:grails-v1.0 --restart always
+    docker ps
+```
+
+### Expand Deployment to two Docker Hosts with a Classic ELB
+
+    - Deploy Gumball (V1) Grails App into a Two Tomcat EC2 Instances (connecting to the same EC2 MySQL Instance). NOTE: This does not have to be "Auto Scale".
+    
+    - Deploy Gumball (V2) Grails App into a Two Tomcat EC2 Instances (connecting to the same EC2 MySQL Instance). NOTE: This does not have to be "Auto Scale".
+
+    - Configure a Load Balancer (Classic ELB) in front of your two Tomcat EC2 Instances running Gumball V1 & V2.
+
+    - Did the Grails Gumball V1 App work as expected under load balancing?
+
+    - Did the Grails Gumball V2 App work as expected under load balancing?
+
+    - What happens when you turn on Sticky Sessions?
 
 
 ### (Optional) Using MySQL RDS instead of Local MySQL Instance
