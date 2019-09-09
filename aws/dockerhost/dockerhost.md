@@ -26,6 +26,8 @@
 * https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce
 
 ```
+    ssh -i <your pem key> centos@<your host public ip>
+
 	sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 	sudo yum install docker-ce
@@ -36,13 +38,12 @@
 ### Test Docker Install (Run Hello Container)
 
 ```
+	sudo docker login
 	sudo docker run hello-world
 
-	sudo docker login
 	sudo docker run -dt -p 80:3000 paulnguyen/gumball:goapi-v1.0
-
-	http://<your-docker-host-public-ip>/ping
-	curl http://13.56.137.117/gumball
+	curl http://<your-docker-host-public-ip>/ping
+	curl http://<your-docker-host-public-ip>/gumball
 ```
 
 ### Copy Docker Admin Script (admin.sh) to your Docker Host and CleanUp Local Images
