@@ -17,7 +17,7 @@
 	5. Auto Public IP:  yes (or no and use elastic ip)
 	6. Security Group:  docker 
 	7. SG Open Ports:   22, 80, 8080
-	8. Key Pair:        cmpe281-us-west-1
+	8. Key Pair:        your key pair (i.e. cmpe281-us-west-2 or cmpe281-us-east-1)
 
 
 ## Install Docker
