@@ -79,6 +79,9 @@ gumball-up:
 lb-up:
 	docker-compose up -d lb
 
+lb-config:
+	docker exec dockerlocal_lb_1 cat haproxy.cfg
+
 mysql-compose-shell:
 	docker exec -it dockerlocal_mysql_1 bash
 
