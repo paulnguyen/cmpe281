@@ -2,8 +2,9 @@
 
 ### Pre-Req:  Install Jumpbox and Dockerhost
 
-- 
-- 
+- https://github.com/paulnguyen/cmpe281/blob/master/jumpbox/aws-jumpbox.md
+- https://github.com/paulnguyen/cmpe281/blob/master/aws/dockerhost/dockerhost.md
+
 
 ### Installing MySQL on a Private DB Instance
 

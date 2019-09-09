@@ -41,3 +41,20 @@
 
 	http://<your-docker-host-public-ip>/ping
 	curl http://13.56.137.117/gumball
+
+## Copy Docker Admin Script (admin.sh) to your Docker Host and CleanUp Local Images
+
+```
+============================================
+         D O C K E R     A D M I N          
+============================================
+[i] images     - Show Docker Images         
+[p] ps         - Show Running Containers    
+[c] cleanup    - Remove Local Images        
+ 
+[X] Exit Menu                               
+ 
+Selection: c
+```
+
+
