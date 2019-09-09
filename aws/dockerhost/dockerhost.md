@@ -21,7 +21,7 @@
 	- Key Pair:        your key pair (i.e. cmpe281-us-west-2 or cmpe281-us-east-1)
 ```
 
-## Install Docker
+### Install Docker
 
 * https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce
 
@@ -33,7 +33,7 @@
 	sudo systemctl is-active docker
 ```
 
-## Test Docker Install (Run Hello Container)
+### Test Docker Install (Run Hello Container)
 
 ```
 	sudo docker run hello-world
@@ -45,7 +45,7 @@
 	curl http://13.56.137.117/gumball
 ```
 
-## Copy Docker Admin Script (admin.sh) to your Docker Host and CleanUp Local Images
+### Copy Docker Admin Script (admin.sh) to your Docker Host and CleanUp Local Images
 
 ```
 ============================================
