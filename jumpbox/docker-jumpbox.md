@@ -1,64 +1,64 @@
 
 
-# ===============
-# Jump Box Docker
-# ===============
+## ===============
+## Jump Box Docker
+## ===============
 
 
-## Create Jump Box Container
+### Create Jump Box Container
 
 	docker run --name jumpbox -t -d ubuntu
 
-## Jump Box Shell
+### Jump Box Shell
 
 	docker exec -it jumpbox bash 
 
-## Delete Jump Box
+### Delete Jump Box
 
 	docker stop jumpbox
 	docker rm jumpbox
 
 
-# =======================
-# Jump Box Kubernetes POD
-# =======================
+## =======================
+## Jump Box Kubernetes POD
+## =======================
 
 
-## Create Jump Box POD
+### Create Jump Box POD
 
 	kubectl create  --namespace gumball -f jumpbox.yaml
 
-## Get Jump Box POD
+### Get Jump Box POD
 
 	kubectl get --namespace gumball pod jumpbox
 
-## Jump Box POD Shell
+### Jump Box POD Shell
 
 	kubectl exec  --namespace gumball -it jumpbox -- /bin/bash
 
-## Delete Jump Box POD
+### Delete Jump Box POD
 
 	kubectl delete --namespace gumball pod jumpbox
 
 
-# =========================
-# Install Tools in Jump Box
-# =========================
+## =========================
+## Install Tools in Jump Box
+## =========================
 
 	
-## Install Curl & Ping in your "Jump Box"
+### Install Curl & Ping in your "Jump Box"
 	
 	apt-get update
 	apt-get install curl
 	apt-get install iputils-ping
 	
-## Install Redis Client in your "Jump Box"
+### Install Redis Client in your "Jump Box"
 
 	apt install redis-server
 
 	redis-cli -h <host> -p 6379
 		
-## Install Riak Client in your "Jump Box"
+### Install Riak Client in your "Jump Box"
 
 	http://docs.basho.com/riak/kv/2.2.3/setup/installing/debian-ubuntu/
 	
@@ -85,14 +85,14 @@
 	riak console
 	riak-admin test
 	
-## Install MySQL Client in your "Jump Box"
+### Install MySQL Client in your "Jump Box"
 
 	apt-get update
 	apt-get install mysql-client 
 	
 	mysql -u <user> -p -h <db host> <db name>
 
-## Install Mongo Client in your "Jump Box"
+### Install Mongo Client in your "Jump Box"
 
 	https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
