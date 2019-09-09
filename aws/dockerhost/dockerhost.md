@@ -33,6 +33,7 @@
 	sudo yum install docker-ce
 	sudo systemctl start docker
 	sudo systemctl is-active docker
+	sudo systemctl enable docker.service
 ```
 
 ### Test Docker Install (Run Hello Container)
@@ -41,7 +42,7 @@
 	sudo docker login
 	sudo docker run hello-world
 
-	sudo docker run -dt -p 80:3000 paulnguyen/gumball:goapi-v1.0
+	sudo docker run --restart always -dt -p 80:3000 paulnguyen/gumball:goapi-v1.0 
 	curl http://<your-docker-host-public-ip>/ping
 	curl http://<your-docker-host-public-ip>/gumball
 ```

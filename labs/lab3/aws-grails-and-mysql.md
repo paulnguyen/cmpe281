@@ -180,7 +180,7 @@
 ### Deploy Docker Image on your Docker Host
 
 ```
-    docker run --name grails-gumball-v1 -td -p 8080:8080 <your docker account>/grails-gumball:v1.0 --restart always
+    docker run --restart always --name grails-gumball-v1 -td -p 8080:8080 <your docker account>/grails-gumball:v1.0 
     docker ps
 ```
 
