@@ -1,9 +1,0 @@
-
-Download From: https://archive.apache.org/dist/tomcat/tomcat-7
-
-wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.96/bin/apache-tomcat-7.0.96.tar.gz	(2019)
-
-Older Download Notes:
-
-wget http://apache.mirrors.hoobly.com/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz	(2018)
-wget http://apache.mirrors.hoobly.com/tomcat/tomcat-7/v7.0.92/bin/apache-tomcat-7.0.92.tar.gz 	(2019)

@@ -1,4 +1,60 @@
 
+### Installing MySQL on a Private DB Instance
+
+```
+    Step 1:     Launch EC2 Free-Tier Instance
+    
+                AMI: Amazon Linux AMI
+                Type: t2.micro 
+                VPC: cmpe281
+                Subnet: Private
+                Create new SG: db-mysql
+                Open Ports: 3306
+                Key Pair: cmpe281-us-west-1
+                
+    Step 2:     SSH into EC2 Instance via Public IP (of Tomcat Instance)
+                And then via Private IP of MySQL Instance from Tomcat Instance.
+
+    Step 3:     Install MySQL 
+
+                NOTE: For the Private Instance to Reach Internet.  Associate Nat Gateway's
+                Security Group with MySQL Instance.
+    
+                REF:  http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
+                NOTE: Only Install MySQL from Instructions Above.
+                
+                sudo yum install -y mysql56-server 
+                
+                sudo service mysqld start
+                sudo service mysqld stop
+                sudo chkconfig mysqld on
+                
+                sudo mysql_secure_installation
+                    
+                    Default root password = none (hit enter)
+                    Set root passwrd = ***** (choose your own)
+                    Remove Anonymous Users = Y
+                    Disallow root Remote Logins = Y
+                    Remove Test Databases = Y
+                    Reload privilege tables now? = Y
+                
+    Step 4:     MySQL Command Line
+    
+                REF: https://dev.mysql.com/doc/refman/5.6/en/mysql.html
+                                
+                mysql --user=root --password
+                password: ***** (enter your password)
+
+                mysql> create database cmpe281 ;
+                mysql> use cmpe281;
+                mysql> show tables ;
+
+                mysql> create user cmpe281;
+                mysql> grant all on cmpe281.* to 'cmpe281'@'%'' identified by '*****';
+
+                mysql --user=cmpe281 --password=**** cmpe281
+```
+
 ### Installing Java 8 and Tomcat 7 on AWS
 
 ```
@@ -100,63 +156,7 @@
 
 ```                
 
-### Installing MySQL on a Private DB Instance
-
-```
-    Step 1:     Launch EC2 Free-Tier Instance
-    
-                AMI: Amazon Linux AMI
-                Type: t2.micro 
-                VPC: cmpe281
-                Subnet: Private
-                Create new SG: db-mysql
-                Open Ports: 3306
-                Key Pair: cmpe281-us-west-1
-                
-    Step 2:     SSH into EC2 Instance via Public IP (of Tomcat Instance)
-                And then via Private IP of MySQL Instance from Tomcat Instance.
-
-    Step 3:     Install MySQL 
-
-                NOTE: For the Private Instance to Reach Internet.  Associate Nat Gateway's
-                Security Group with MySQL Instance.
-    
-                REF:  http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
-                NOTE: Only Install MySQL from Instructions Above.
-                
-                sudo yum install -y mysql56-server 
-                
-                sudo service mysqld start
-                sudo service mysqld stop
-                sudo chkconfig mysqld on
-                
-                sudo mysql_secure_installation
-                    
-                    Default root password = none (hit enter)
-                    Set root passwrd = ***** (choose your own)
-                    Remove Anonymous Users = Y
-                    Disallow root Remote Logins = Y
-                    Remove Test Databases = Y
-                    Reload privilege tables now? = Y
-                
-    Step 4:     MySQL Command Line
-    
-                REF: https://dev.mysql.com/doc/refman/5.6/en/mysql.html
-                                
-                mysql --user=root --password
-                password: ***** (enter your password)
-
-                mysql> create database cmpe281 ;
-                mysql> use cmpe281;
-                mysql> show tables ;
-
-                mysql> create user cmpe281;
-                mysql> grant all on cmpe281.* to 'cmpe281'@'%'' identified by '*****';
-
-                mysql --user=cmpe281 --password=**** cmpe281
-```
-
-### Connect to MySQL from your Tomcat Instance & Install Gumball DB Tables
+### Connect to MySQL from your Grails Instance & Install Gumball DB Tables
 
 ```
     Step 1:     MySQL Command Line
