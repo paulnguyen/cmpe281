@@ -159,7 +159,7 @@
     ============================================
               D O C K E R   M E N U             
     ============================================
-    > grails-gumball - /grails-gumball:grails-v1.0 
+    > grails-gumball - /grails-gumball:v1.0 
      
     [1] login      - Login to Docker            
     [2] images     - Show Docker Images         
@@ -180,7 +180,7 @@
 ### Deploy Docker Image on your Docker Host
 
 ```
-    docker run --name grails-gumball-v1 -td -p 8080:8080 grails-gumball:grails-v1.0 --restart always
+    docker run --name grails-gumball-v1 -td -p 8080:8080 <your docker account>/grails-gumball:v1.0 --restart always
     docker ps
 ```
 
