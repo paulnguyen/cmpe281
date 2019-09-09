@@ -7,10 +7,10 @@
 
 - Install Docker Toolbox: 
 
-    https://www.docker.com/products/docker-toolbox
-    https://www.docker.com/docker-mac
-    https://www.docker.com/docker-windows
-    https://www.docker.com/docker-ubuntu
+    - https://www.docker.com/products/docker-toolbox
+    - https://www.docker.com/docker-mac
+    - https://www.docker.com/docker-windows
+    - https://www.docker.com/docker-ubuntu
 
     NOTE:  This lab works best on Mac or Linux. 
     If you are using a Windows Machine, it is best to use
@@ -18,7 +18,7 @@
 
 - Register for Docker Hub Account:
 
-    https://hub.docker.com/
+    - https://hub.docker.com/
 
 
 ### Installing MySQL on a Private DB Instance
