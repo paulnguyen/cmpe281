@@ -46,7 +46,7 @@
     (Hourly charges for NAT devices apply.)
 
     CIDR block                  10.0.0.0/16 
-    IP range                    0.0.0.0 - 10.0.255.255   
+    IP range                    10.0.0.0 - 10.0.255.255   
     Subnet Mask                 255.255.0.0  
     IP Quantity                 65536   
 
