@@ -73,7 +73,7 @@ compose-down:
 mysql-up:
 	docker-compose up -d mysql
 
-gumball-up:
+gumball-up-2:
 	docker-compose scale gumball=2 
 
 gumball-up-4:
