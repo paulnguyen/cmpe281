@@ -37,7 +37,7 @@ gumball-commit:
 	docker commit $(container) paulnguyen/grails-gumball:latest
 
 gumball-push:
-	docker push paulnguyen/gumball-tomcat:7.0.92
+	docker push paulnguyen/grails-gumball:latest
 
 mysql-commit:
 	docker commit $(container) paulnguyen/gumball-mysql:5.5
