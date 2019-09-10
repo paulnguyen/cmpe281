@@ -13,8 +13,11 @@ services:
       - mysql      
   lb:
     image: dockercloud/haproxy
+    # https://hub.docker.com/r/dockercloud/haproxy/
+    # options: roundrobin (default), static-rr, source, leastconn
+    # see: https://cbonte.github.io/haproxy-dconv/configuration-1.5.html#4-balance
     environment:
-      - BALANCE=roundrobin
+      - BALANCE=leastconn
     depends_on:
       - gumball
     networks:
