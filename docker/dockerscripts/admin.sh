@@ -44,10 +44,19 @@ docker_rmi_all() {
 	do
 		echo "Removing Image: $IMG_ID"
  		docker rmi -f $IMG_ID
-		IMG_ID=`docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | tr -s ' ' | tr ' ' '|' | cut -f 1 -d '|' | tail -n +2 | head -1`
+		IMG_ID=`docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | grep -v "k8s" | tr -s ' ' | tr ' ' '|' | cut -f 1 -d '|' | tail -n +2 | head -1`
 	done
 }
 
+docker_rmi_unused() {
+	IMG_ID=`docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | grep "<none>" | tr -s ' ' | tr ' ' '|' | cut -f 1 -d '|' | tail -n +1 | head -1`
+	while [ "$IMG_ID" != "" ]
+	do
+		echo "Removing Image: $IMG_ID"
+ 		docker rmi -f $IMG_ID
+		IMG_ID=`docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" |  grep "<none>" | tr -s ' ' | tr ' ' '|' | cut -f 1 -d '|' | tail -n +1 | head -1`
+	done
+}
 
 docker_ps() {
 	echo "Running Containers:"
@@ -91,6 +100,7 @@ do
 	echo "============================================" ;
 	echo "[i] images     - Show Docker Images         " ;
 	echo "[p] ps         - Show Running Containers    " ;
+	echo "[r] prune      - Remove Unused Images       " ;
 	echo "[c] cleanup    - Remove Local Images        " ;
 	echo " " 
 	echo "[X] Exit Menu                               " ;
@@ -101,6 +111,7 @@ do
 		i|images)	    echo " " ; docker_images ; okay_pause ;;
 		p|ps) 			echo " " ; docker_ps ; okay_pause ;;
 		c|C|cleanup) 	echo " " ; docker_stop_all; docker_rmi_all ; okay_pause ;;
+		r|R|prune)		echo " " ; docker_stop_all; docker_rmi_unused ; okay_pause ;;
 		x|X) 			clear ; OPT="X" ; echo "Exiting " ;; 
 	esac
 done
