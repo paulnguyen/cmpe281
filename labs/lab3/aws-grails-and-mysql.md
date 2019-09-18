@@ -184,7 +184,7 @@
     docker ps
 ```
 
-### Expand Deployment to two Docker Hosts with a Classic ELB
+### Expand Deployment to two Docker Hosts with a Network ELB
 
     - Deploy Gumball (V1) Grails App into a Two Tomcat EC2 Instances 
       (connecting to the same EC2 MySQL Instance). 
@@ -194,14 +194,13 @@
       (connecting to the same EC2 MySQL Instance). 
       NOTE: This does not have to be "Auto Scale".
 
-    - Configure a Load Balancer (Classic ELB) in front of your two 
+    - Configure a Load Balancer (Network ELB) in front of your two 
       Docker Host Instances running Gumball V1 & V2.
 
     - Did the Grails Gumball V1 App work as expected under load balancing?
 
     - Did the Grails Gumball V2 App work as expected under load balancing?
 
-    - What happens when you turn on Sticky Sessions?
 
 
 ### (Optional) Using MySQL RDS instead of Local MySQL Instance
