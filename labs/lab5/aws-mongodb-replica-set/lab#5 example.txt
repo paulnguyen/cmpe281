@@ -1,0 +1,46 @@
+
+Public IPs:
+==========
+
+52.25.65.188	primary
+100.21.154.220	secondary1
+100.21.145.121	secondary2
+
+
+Private IPs:
+===========
+
+10.0.0.118		primary
+10.0.0.43		secondary1
+10.0.0.170		secondary2
+
+
+hostname -f
+sudo hostnamectl set-hostname <hostname>
+
+sudo hostnamectl set-hostname primary
+sudo hostnamectl set-hostname secondary1
+sudo hostnamectl set-hostname secondary2
+
+telnet <host or ip> 27017
+
+db.createUser( {
+    user: "admin",
+    pwd: "cmpe281",
+    roles: [{ role: "root", db: "admin" }]
+});
+
+
+mongo -u admin -p cmpe281 --authenticationDatabase admin
+
+mongo -u admin -p cmpe281 -host 10.0.0.118 --authenticationDatabase admin
+
+mongo -u admin -p cmpe281 -host primary --authenticationDatabase admin
+mongo -u admin -p cmpe281 -host secondary1 --authenticationDatabase admin
+mongo -u admin -p cmpe281 -host secondary2 --authenticationDatabase admin
+
+
+
+
+
+
