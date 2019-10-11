@@ -1,0 +1,172 @@
+
+======================================================================
+# Riak 3-Node Cluster Setup
+======================================================================
+
+https://docs.riak.com/riak/kv/2.2.3/setup/installing/amazon-web-services/
+https://docs.riak.com/riak/kv/2.2.3/using/running-a-cluster/#configure-the-first-node
+
+
+10.0.1.103	riak-node1
+10.0.1.48	riak-node2
+10.0.1.193	riak-node3
+
+
+Riak Node 1:
+===========
+
+Private IP: 	10.0.1.103
+
+Node 1 Config (/etc/riak/riak.conf):
+
+listener.http.internal = 10.0.1.103:8098
+listener.protobuf.internal = 10.0.1.103:8087
+nodename = riak@10.0.1.103
+
+Start Node 1:
+
+sudo riak start
+sudo riak ping
+sudo riak-admin status
+
+
+
+Riak Node 2:
+===========
+
+Private IP: 	10.0.1.48
+
+listener.http.internal = 10.0.1.48:8098
+listener.protobuf.internal = 10.0.1.48:8087
+riak.conf:nodename = riak@10.0.1.48
+
+Start Node 2 / Join Cluster:
+
+sudo riak start
+sudo riak ping
+sudo riak-admin status
+
+sudo riak-admin cluster join riak@10.0.1.103 (node 1)
+sudo riak-admin cluster plan
+sudo riak-admin cluster status
+
+
+
+Riak Node 3:
+===========
+
+Private IP: 	10.0.1.193
+
+listener.http.internal = 10.0.1.193:8098
+listener.protobuf.internal = 10.0.1.193:8087
+riak.conf:nodename = riak@10.0.1.193
+
+Start Node 3 / Join Cluster:
+
+sudo riak start
+sudo riak ping
+sudo riak-admin status
+
+sudo riak-admin cluster join riak@10.0.1.103  (node 1)
+sudo riak-admin cluster plan
+sudo riak-admin cluster status
+
+
+
+======================================================================
+# Riak Bucket Setup
+======================================================================
+
+riak ping
+riak-admin test
+
+riak-admin bucket-type create gumball '{"props":{"search_index":"orders"}}'
+riak-admin bucket-type activate gumball	
+
+riak-admin bucket-type create bios '{"props":{"search_index":"name"}}'
+riak-admin bucket-type activate bios	
+
+
+
+======================================================================
+# Riak DB API - Curl tests
+======================================================================
+
+https://docs.riak.com/riak/kv/2.2.3/developing/api/http/
+
+
+curl -v -XPUT http://localhost:8098/search/index/name
+
+curl -i http://riak-node1:8098/ping
+
+curl -i http://riak-node1:8098/buckets?buckets=true    
+
+curl -v -XPUT -d '{"foo":"bar"}' \
+        http://riak-node2:8098/buckets/bucket/keys/key1?returnbody=true
+
+curl -i http://riak-node3:8098/buckets/bucket/keys/key1
+
+
+
+======================================================================
+# AWS API Gateway Setup
+======================================================================
+
+https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html
+
+
+API ARN:  
+=======
+
+arn:aws:execute-api:us-west-2:791365632044:axnmtyele3/*/*/*
+
+
+Resource Policy:
+===============
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "execute-api:Invoke",
+            "Resource": "arn:aws:execute-api:us-west-2:791365632044:axnmtyele3/*/*/*"
+        }
+    ]
+}
+
+
+
+Deployment Stage:
+================
+
+Invoke URL: https://axnmtyele3.execute-api.us-west-2.amazonaws.com/prod 
+Stage: prod
+
+
+
+Postman AWS Auth:
+================
+
+https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-use-postman-to-call-api.html
+
+The Postman app is a convenient tool to test a REST API in API Gateway. The following instructions walk you through the essential steps of using the Postman app to call an API. For more information, see the Postman help.
+
+1. Launch Postman.
+
+2. Enter the endpoint URL of a request in the address bar and choose the appropriate HTTP method from the drop-down list to the left of the address bar.
+
+3. If required, choose the Authorization tab. Choose AWS Signature for the authorization Type. Enter your AWS IAM user's access key ID in the AccessKey input field. Enter your IAM user secret key in SecretKey. Specify an appropriate AWS region that matches the region specified in the invocation URL. Enter execute-api in Service Name.
+
+4. Choose the Headers tab. Optionally, delete any existing headers. This can clear any stale settings that may cause errors. Add any required custom headers. For example, if API keys are enabled, you can set the x-api-key:{api_key} name/value pair here.
+
+5. Choose Send to submit the request and receive a response.
+
+
+
+
+
+
+
+
