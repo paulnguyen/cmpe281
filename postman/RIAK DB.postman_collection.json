@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0f790509-829e-433d-902e-d1f6ccae63b7",
+		"_postman_id": "315d3af0-02f0-4d54-82e6-a65048e3d522",
 		"name": "RIAK DB",
 		"description": "riak ping\nriak-admin test\n\t\nriak-admin bucket-type create gumball '{\"props\":{\"search_index\":\"orders\"}}'\nriak-admin bucket-type activate gumball\t\n\nriak-admin bucket-type create bios '{\"props\":{\"search_index\":\"name\"}}'\nriak-admin bucket-type activate bios\t\n\ncurl -v -XPUT http://localhost:8098/search/index/name\n\ncurl -i http://riak-node1:8098/ping\n\ncurl -i http://riak-node1:8098/buckets?buckets=true    \n\ncurl -v -XPUT -d '{\"foo\":\"bar\"}' \\\n        http://riak-node2:8098/buckets/bucket/keys/key1?returnbody=true\n\ncurl -i http://riak-node3:8098/buckets/bucket/keys/key1\n\n\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -14,12 +14,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port}}/ping",
+							"raw": "http://localhost:{{port}}/ping",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -36,12 +33,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port}}/types/no_type/buckets/no_bucket/keys/no_key",
+							"raw": "http://localhost:{{port}}/types/no_type/buckets/no_bucket/keys/no_key",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -63,12 +57,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port}}/types/default/buckets?buckets=true",
+							"raw": "http://localhost:{{port}}/types/default/buckets?buckets=true",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -93,12 +84,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port}}/types/default/buckets/orders/keys?keys=true",
+							"raw": "http://localhost:{{port}}/types/default/buckets/orders/keys?keys=true",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -106,126 +94,6 @@
 							"path": [
 								"types",
 								"default",
-								"buckets",
-								"orders",
-								"keys"
-							],
-							"query": [
-								{
-									"key": "keys",
-									"value": "true"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Riak | REST API | Get Default Object",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:{{port}}/types/default/buckets/orders/keys/{{order_id}}",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"types",
-								"default",
-								"buckets",
-								"orders",
-								"keys",
-								"{{order_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Riak | REST API | Get Gumball Buckets",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets?buckets=true",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"types",
-								"gumball",
-								"buckets"
-							],
-							"query": [
-								{
-									"key": "buckets",
-									"value": "true"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Riak | REST API | Get Buckets Properties",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets/orders/props",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"types",
-								"gumball",
-								"buckets",
-								"orders",
-								"props"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Riak | REST API | Get Bucket's Keys",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys?keys=true",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"types",
-								"gumball",
 								"buckets",
 								"orders",
 								"keys"
@@ -255,7 +123,8 @@
 							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe4f\", \"OrderStatus\":\"Order Placed\"}"
 						},
 						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe4f",
+							"raw": "http://localhost:{{port}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe4f",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -267,6 +136,114 @@
 								"orders",
 								"keys",
 								"d14edc6b-cfc4-4cc8-b005-47a43e44fe4f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Default Object",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:{{port}}/types/default/buckets/orders/keys/{{order_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"default",
+								"buckets",
+								"orders",
+								"keys",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Buckets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/types/gumball/buckets?buckets=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets"
+							],
+							"query": [
+								{
+									"key": "buckets",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Buckets Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/types/gumball/buckets/orders/props",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"props"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Bucket's Keys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/types/gumball/buckets/orders/keys?keys=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "keys",
+									"value": "true"
+								}
 							]
 						}
 					},
@@ -287,7 +264,8 @@
 							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe43\", \"OrderStatus\":\"Order Placed\"}"
 						},
 						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43?returnbody=true",
+							"raw": "http://localhost:{{port}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43?returnbody=true",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -320,12 +298,9 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/{{order_id}}",
+							"raw": "http://localhost:{{port}}/types/gumball/buckets/orders/keys/{{order_id}}",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -357,7 +332,8 @@
 							"raw": "{\"nickname\": \"The Wonder Dog\", \"breed\":\"German Shepherd\"}"
 						},
 						"url": {
-							"raw": "localhost:{{port}}/types/gumball/buckets/orders/keys/{{order_id}}",
+							"raw": "http://localhost:{{port}}/types/gumball/buckets/orders/keys/{{order_id}}",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -377,7 +353,364 @@
 			]
 		},
 		{
-			"name": "Riak KV (AWS)",
+			"name": "Riak KV (AWS ELB)",
+			"item": [
+				{
+					"name": "Riak | REST API | Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/ping",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Create Gumball Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"Id\": \"{{object_key}}\", \"OrderStatus\":\"Order Placed\"}"
+						},
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Object",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Buckets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets?buckets=true",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets"
+							],
+							"query": [
+								{
+									"key": "buckets",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Buckets Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/props",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"props"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Bucket's Keys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys?keys=true",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "keys",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Delete Gumball Object",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nickname\": \"The Wonder Dog\", \"breed\":\"German Shepherd\"}"
+						},
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Object",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Create with Return Body",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe43\", \"OrderStatus\":\"Order Placed\"}"
+						},
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}?returnbody=true",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							],
+							"query": [
+								{
+									"key": "returnbody",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Object",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Delete Gumball Object",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nickname\": \"The Wonder Dog\", \"breed\":\"German Shepherd\"}"
+						},
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Riak | REST API | Get Gumball Object",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://{{riak_host}}:{{riak_port}}/types/gumball/buckets/orders/keys/{{object_key}}",
+							"protocol": "http",
+							"host": [
+								"{{riak_host}}"
+							],
+							"port": "{{riak_port}}",
+							"path": [
+								"types",
+								"gumball",
+								"buckets",
+								"orders",
+								"keys",
+								"{{object_key}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Riak KV (AWS API Gateway)",
 			"item": [
 				{
 					"name": "Riak API | Ping",
@@ -419,7 +752,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -430,61 +764,6 @@
 						}
 					},
 					"response": [
-						{
-							"name": "Beta Ping",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{riakapi_beta}}/ping",
-									"host": [
-										"{{riakapi_beta}}"
-									],
-									"path": [
-										"ping"
-									]
-								}
-							},
-							"status": "Forbidden",
-							"code": 403,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Thu, 14 Feb 2019 14:26:42 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Content-Length",
-									"value": "42"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "x-amzn-RequestId",
-									"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
-								},
-								{
-									"key": "x-amzn-ErrorType",
-									"value": "MissingAuthenticationTokenException"
-								},
-								{
-									"key": "x-amz-apigw-id",
-									"value": "VGAZYERDPHcFaDA="
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
-						},
 						{
 							"name": "Riak API | Ping",
 							"originalRequest": {
@@ -497,10 +776,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
 									"host": [
@@ -568,10 +843,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
 									"host": [
@@ -618,6 +889,57 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"message\": \"The security token included in the request is invalid.\"\n}"
+						},
+						{
+							"name": "Beta Ping",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{riakapi_beta}}/ping",
+									"host": [
+										"{{riakapi_beta}}"
+									],
+									"path": [
+										"ping"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 14 Feb 2019 14:26:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "8c8af2d6-3064-11e9-878b-45c57edd63e7"
+								},
+								{
+									"key": "x-amzn-ErrorType",
+									"value": "MissingAuthenticationTokenException"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "VGAZYERDPHcFaDA="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
 						}
 					]
 				},
@@ -661,7 +983,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/buckets?buckets=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/buckets?buckets=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -683,10 +1006,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{riakapi_beta}}/ping",
 									"host": [
@@ -772,7 +1091,8 @@
 							"raw": "{\n    \"foo\": \"bar\"\n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -797,10 +1117,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{riakapi_beta}}/ping",
 									"host": [
@@ -881,12 +1197,9 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -905,10 +1218,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{riakapi_beta}}/ping",
 									"host": [
@@ -958,6 +1267,57 @@
 					]
 				},
 				{
+					"name": "Riak API | Delete Object",
+					"request": {
+						"auth": {
+							"type": "awsv4",
+							"awsv4": [
+								{
+									"key": "secretKey",
+									"value": "{{aws_secret_key}}",
+									"type": "string"
+								},
+								{
+									"key": "accessKey",
+									"value": "{{aws_access_key}}",
+									"type": "string"
+								},
+								{
+									"key": "region",
+									"value": "us-west-2",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/buckets/bucket/keys/key1",
+							"protocol": "https",
+							"host": [
+								"{{riakapi_endpoint}}"
+							],
+							"path": [
+								"{{riakapi_stage}}",
+								"buckets",
+								"bucket",
+								"keys",
+								"key1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Riak API | Get Default Buckets",
 					"request": {
 						"auth": {
@@ -982,12 +1342,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/default/buckets?buckets=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/default/buckets?buckets=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1032,12 +1389,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/default/buckets/orders/keys?keys=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/default/buckets/orders/keys?keys=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1084,12 +1438,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets?buckets=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets?buckets=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1134,12 +1485,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/props",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/props",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1180,12 +1528,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys?keys=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys?keys=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1242,7 +1587,8 @@
 							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe4f\", \"OrderStatus\":\"Order Placed\"}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe4f",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe4f",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1294,7 +1640,8 @@
 							"raw": "{\"Id\": \"d14edc6b-cfc4-4cc8-b005-47a43e44fe43\", \"OrderStatus\":\"Order Placed\"}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1347,12 +1694,9 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1404,7 +1748,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/gumball/buckets/orders/keys/d14edc6b-cfc4-4cc8-b005-47a43e44fe43",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1424,7 +1769,7 @@
 			]
 		},
 		{
-			"name": "Riak KV Bios (AWS)",
+			"name": "Riak KV Bios (AWS API Gateway)",
 			"item": [
 				{
 					"name": "Riak API | Ping",
@@ -1436,13 +1781,13 @@
 							"type": "awsv4",
 							"awsv4": [
 								{
-									"key": "secretKey",
-									"value": "{{aws_secret_key}}",
+									"key": "accessKey",
+									"value": "{{aws_access_key}}",
 									"type": "string"
 								},
 								{
-									"key": "accessKey",
-									"value": "{{aws_access_key}}",
+									"key": "secretKey",
+									"value": "{{aws_secret_key}}",
 									"type": "string"
 								},
 								{
@@ -1466,7 +1811,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1489,10 +1835,65 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
+								"url": {
+									"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
+									"host": [
+										"{{riakapi_endpoint}}"
+									],
+									"path": [
+										"{{riakapi_stage}}",
+										"ping"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Feb 2019 08:42:50 GMT"
 								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "ad6c84a1-30fd-11e9-b866-498b2e4b978e"
+								},
+								{
+									"key": "x-amzn-ErrorType",
+									"value": "UnrecognizedClientException"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "VIg9pH_APHcFa8g="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The security token included in the request is invalid.\"\n}"
+						},
+						{
+							"name": "Riak API | Ping",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
 									"host": [
@@ -1549,77 +1950,10 @@
 							"body": "OK"
 						},
 						{
-							"name": "Riak API | Ping",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/ping",
-									"host": [
-										"{{riakapi_endpoint}}"
-									],
-									"path": [
-										"{{riakapi_stage}}",
-										"ping"
-									]
-								}
-							},
-							"status": "Forbidden",
-							"code": 403,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Fri, 15 Feb 2019 08:42:50 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Content-Length",
-									"value": "68"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "x-amzn-RequestId",
-									"value": "ad6c84a1-30fd-11e9-b866-498b2e4b978e"
-								},
-								{
-									"key": "x-amzn-ErrorType",
-									"value": "UnrecognizedClientException"
-								},
-								{
-									"key": "x-amz-apigw-id",
-									"value": "VIg9pH_APHcFa8g="
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"The security token included in the request is invalid.\"\n}"
-						},
-						{
 							"name": "Beta Ping",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{riakapi_beta}}/ping",
 									"host": [
@@ -1693,12 +2027,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets?buckets=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets?buckets=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1743,12 +2074,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/props",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/props",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1789,12 +2117,9 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys?keys=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys?keys=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1851,7 +2176,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"John\",\n        \"last\" : \"Backus\"\n    },\n    \"birth\" : \"1924-12-03T05:00:00Z\",\n    \"death\" : \"2007-03-17T04:00:00Z\",\n    \"contribs\" : [\n        \"Fortran\",\n        \"ALGOL\",\n        \"Backus-Naur Form\",\n        \"FP\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"W.W. McDowell Award\",\n            \"year\" : 1967,\n            \"by\" : \"IEEE Computer Society\"\n        },\n        {\n            \"award\" : \"National Medal of Science\",\n            \"year\" : 1975,\n            \"by\" : \"National Science Foundation\"\n        },\n        {\n            \"award\" : \"Turing Award\",\n            \"year\" : 1977,\n            \"by\" : \"ACM\"\n        },\n        {\n            \"award\" : \"Draper Prize\",\n            \"year\" : 1993,\n            \"by\" : \"National Academy of Engineering\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnBackus?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnBackus?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1909,7 +2235,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"John\",\n        \"last\" : \"McCarthy\"\n    },\n    \"birth\" : \"1927-09-04T04:00:00Z\",\n    \"death\" : \"2011-12-24T05:00:00Z\",\n    \"contribs\" : [\n        \"Lisp\",\n        \"Artificial Intelligence\",\n        \"ALGOL\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"Turing Award\",\n            \"year\" : 1971,\n            \"by\" : \"ACM\"\n        },\n        {\n            \"award\" : \"Kyoto Prize\",\n            \"year\" : 1988,\n            \"by\" : \"Inamori Foundation\"\n        },\n        {\n            \"award\" : \"National Medal of Science\",\n            \"year\" : 1990,\n            \"by\" : \"National Science Foundation\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnMcCarthy?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnMcCarthy?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -1967,7 +2294,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"Grace\",\n        \"last\" : \"Hopper\"\n    },\n    \"title\" : \"Rear Admiral\",\n    \"birth\" : \"1906-12-09T05:00:00Z\",\n    \"death\" : \"1992-01-01T05:00:00Z\",\n    \"contribs\" : [\n        \"UNIVAC\",\n        \"compiler\",\n        \"FLOW-MATIC\",\n        \"COBOL\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"Computer Sciences Man of the Year\",\n            \"year\" : 1969,\n            \"by\" : \"Data Processing Management Association\"\n        },\n        {\n            \"award\" : \"Distinguished Fellow\",\n            \"year\" : 1973,\n            \"by\" : \" British Computer Society\"\n        },\n        {\n            \"award\" : \"W.W. McDowell Award\",\n            \"year\" : 1976,\n            \"by\" : \"IEEE Computer Society\"\n        },\n        {\n            \"award\" : \"National Medal of Technology\",\n            \"year\" : 1991,\n            \"by\" : \"United States\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/GraceHopper?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/GraceHopper?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2083,7 +2411,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"Ole-Johan\",\n        \"last\" : \"Dahl\"\n    },\n    \"birth\" : \"1931-10-12T04:00:00Z\",\n    \"death\" : \"2002-06-29T04:00:00Z\",\n    \"contribs\" : [\n        \"OOP\",\n        \"Simula\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"Rosing Prize\",\n            \"year\" : 1999,\n            \"by\" : \"Norwegian Data Association\"\n        },\n        {\n            \"award\" : \"Turing Award\",\n            \"year\" : 2001,\n            \"by\" : \"ACM\"\n        },\n        {\n            \"award\" : \"IEEE John von Neumann Medal\",\n            \"year\" : 2001,\n            \"by\" : \"IEEE\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/OleJohanDahl?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/OleJohanDahl?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2141,7 +2470,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"Guido\",\n        \"last\" : \"van Rossum\"\n    },\n    \"birth\" : \"1956-01-31T05:00:00Z\",\n    \"contribs\" : [\n        \"Python\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"Award for the Advancement of Free Software\",\n            \"year\" : 2001,\n            \"by\" : \"Free Software Foundation\"\n        },\n        {\n            \"award\" : \"NLUUG Award\",\n            \"year\" : 2003,\n            \"by\" : \"NLUUG\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/GuidoVanRossum?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/GuidoVanRossum?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2199,7 +2529,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"Dennis\",\n        \"last\" : \"Ritchie\"\n    },\n    \"birth\" : \"1941-09-09T04:00:00Z\",\n    \"death\" : \"2011-10-12T04:00:00Z\",\n    \"contribs\" : [\n        \"UNIX\",\n        \"C\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"Turing Award\",\n            \"year\" : 1983,\n            \"by\" : \"ACM\"\n        },\n        {\n            \"award\" : \"National Medal of Technology\",\n            \"year\" : 1998,\n            \"by\" : \"United States\"\n        },\n        {\n            \"award\" : \"Japan Prize\",\n            \"year\" : 2011,\n            \"by\" : \"The Japan Prize Foundation\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/DennisRitchie?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/DennisRitchie?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2257,7 +2588,8 @@
 							"raw": "{\n   \"name\" : {\n        \"first\" : \"Yukihiro\",\n        \"aka\" : \"Matz\",\n        \"last\" : \"Matsumoto\"\n    },\n    \"birth\" : \"1965-04-14T04:00:00Z\",\n    \"contribs\" : [\n        \"Ruby\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"Award for the Advancement of Free Software\",\n            \"year\" : \"2011\",\n            \"by\" : \"Free Software Foundation\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/YukihiroMatsumoto?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/YukihiroMatsumoto?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2315,7 +2647,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"James\",\n        \"last\" : \"Gosling\"\n    },\n    \"birth\" : \"1955-05-19T04:00:00Z\",\n    \"contribs\" : [\n        \"Java\"\n    ],\n    \"awards\" : [\n        {\n            \"award\" : \"The Economist Innovation Award\",\n            \"year\" : 2002,\n            \"by\" : \"The Economist\"\n        },\n        {\n            \"award\" : \"Officer of the Order of Canada\",\n            \"year\" : 2007,\n            \"by\" : \"Canada\"\n        }\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JamesGosling?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JamesGosling?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2373,7 +2706,8 @@
 							"raw": "{\n    \"name\" : {\n        \"first\" : \"Martin\",\n        \"last\" : \"Odersky\"\n    },\n    \"contribs\" : [\n        \"Scala\"\n    ]    \n}"
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/MartinOdersky?returnbody=true",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/MartinOdersky?returnbody=true",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2426,12 +2760,9 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnBackus",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnBackus",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2483,7 +2814,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnBackus",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/types/bios/buckets/authors/keys/JohnBackus",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2538,7 +2870,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{riakapi_endpoint}}/{{riakapi_stage}}/search/query/name?wt=json&q=first:John*",
+							"raw": "https://{{riakapi_endpoint}}/{{riakapi_stage}}/search/query/name?wt=json&q=first:James",
+							"protocol": "https",
 							"host": [
 								"{{riakapi_endpoint}}"
 							],
@@ -2555,10 +2888,11 @@
 								},
 								{
 									"key": "q",
-									"value": "first:John*"
+									"value": "first:James"
 								}
 							]
-						}
+						},
+						"description": "https://docs.riak.com/riak/kv/2.2.3/developing/usage/search.1.html"
 					},
 					"response": []
 				}
