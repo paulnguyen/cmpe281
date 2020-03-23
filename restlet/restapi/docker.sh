@@ -124,7 +124,7 @@ docker_rmi_all() {
 docker_ps() {
 	echo "Running Containers:"
 	echo " "
-	docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t"
+	docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}\t"
 }
 
 docker_restart() {
