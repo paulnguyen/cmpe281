@@ -45,7 +45,7 @@
 * install kubernetes dashboard
 
 	```
-	kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+	kubectl create -f kubernetes-dashboard.yaml
 	```
 
 *  kubectl get pods --namespace=kube-system
