@@ -117,7 +117,10 @@ func gumballOrderStatusHandler(formatter *render.Render) http.HandlerFunc {
 func gumballProcessOrdersHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		for key, _ := range orders {
-			order_queue <- key
+			var order = orders[key]
+			if order.OrderStatus == "Order Placed" {
+				order_queue <- key	
+			}
 		}
 		formatter.JSON(w, http.StatusOK, "Processing Orders...")
 	}

@@ -52,7 +52,7 @@ func initRoutes(mx *mux.Router, formatter *render.Render) {
 // API Ping Handler
 func pingHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
-		formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 2.0 alive!"})
+		formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 3.0 alive!"})
 	}
 }
 
@@ -117,7 +117,10 @@ func gumballOrderStatusHandler(formatter *render.Render) http.HandlerFunc {
 func gumballProcessOrdersHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		for key, _ := range orders {
-			order_queue <- key
+			var order = orders[key]
+			if order.OrderStatus == "Order Placed" {
+				order_queue <- key	
+			}
 		}
 		formatter.JSON(w, http.StatusOK, "Processing Orders...")
 	}

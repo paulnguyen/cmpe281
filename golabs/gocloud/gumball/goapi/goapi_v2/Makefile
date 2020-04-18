@@ -24,12 +24,6 @@ build:
 start:
 	./gumball 
 
-test-ping:
-	curl localhost:3000/ping
-
-test-gumball:
-	curl localhost:3000/gumball
-
 docker-build: 
 	docker build -t gumball .
 	docker images
@@ -60,3 +54,31 @@ heroku-push:
 	heroku login 
 	heroku container:login
 	docker push registry.heroku.com/pnguyen-goapi/web
+
+test-ping:
+	curl localhost:3000/ping
+
+test-get-inventory:
+	curl localhost:3000/gumball
+
+test-update-inventory:
+	curl -X PUT \
+  	http://localhost:3000/gumball \
+  	-H 'Content-Type: application/json' \
+  	-d '{ \
+  		"CountGumballs": 1000 }' 
+
+test-place-order:
+	curl -X POST \
+  	http://localhost:3000/order \
+  	-H 'Content-Type: application/json'
+
+test-order-status:
+	curl -X GET \
+  	http://localhost:3000/order \
+  	-H 'Content-Type: application/json'
+
+test-process-order:
+	curl -X POST \
+  	http://localhost:3000/orders \
+  	-H 'Content-Type: application/json'
