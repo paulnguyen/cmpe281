@@ -5,7 +5,8 @@
 kubectl create -f kubernetes-namespace.yaml
 kubectl create -f kubernetes-dashboard.yaml
 kubectl get pods --namespace=kube-system
-kubectl port-forward <dashboard-pod> 8443:8443 --namespace=kube-system
+export pod=<dashboard-pod>
+kubectl port-forward $pod 8443:8443 --namespace=kube-system
 
 
 # Kubernetes Localhost
@@ -69,6 +70,11 @@ Durable:	no
 > rabbitmqadmin declare queue name=gumball durable=false
 > rabbitmqadmin list queues vhost name node messages 
 
+export host=localhost
+export user=guest
+export passwd=guest
+
+rabbitmqadmin -u $user -p $passwd -H $host list queues name node messages
 
 ## Gumball API
 
@@ -212,7 +218,7 @@ kubectl create -f kubernetes-namespace.yaml
    - RabbitMQ Service Account:  (create new one)
 4. On GKE Applications for RabbitMQ.  Get Admin User's Password.
    - Username = rabbit
-   - Password = TRiMxUpTscY1
+   - Password = ZracSMjs9k8b
 5. On GKE Services for RabbitMQ.  Note the Service Name.
    (i.e. RabbitMQ Service Name = rabbitmq-rabbitmq-svc)
 
@@ -314,7 +320,7 @@ rabbitmqadmin -u rabbit -p <password> -H <host-ip-address> -P 15672 list queues 
 
 export host=10.81.11.48 
 export host=rabbitmq-rabbitmq-svc
-export passwd=TRiMxUpTscY1
+export passwd=ZracSMjs9k8b
 
 rabbitmqadmin -u rabbit -p $passwd -H $host -P 15672 list queues name node messages
 

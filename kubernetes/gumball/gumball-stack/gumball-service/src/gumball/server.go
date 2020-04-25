@@ -65,7 +65,7 @@ func init() {
 		rabbitmq_port = "5672"
 		rabbitmq_queue = "gumball"
 		rabbitmq_user = "rabbit"
-		rabbitmq_pass = "TRiMxUpTscY1"
+		rabbitmq_pass = "ZracSMjs9k8b"
     }
 }
 
