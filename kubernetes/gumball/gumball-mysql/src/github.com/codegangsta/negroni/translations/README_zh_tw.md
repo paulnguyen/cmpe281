@@ -12,11 +12,12 @@
 如果你喜歡[Martini](http://github.com/go-martini/martini), 但覺得這其中包太多神奇的功能, 那麼尼格龍尼會是你的最佳選擇.
 
 其他語言:
-* [German (de_DE)](translations/README_de_de.md)
-* [Português Brasileiro (pt_BR)](translations/README_pt_br.md)
-* [简体中文 (zh_cn)](translations/README_zh_cn.md)
-* [繁體中文 (zh_tw)](translations/README_zh_tw.md)
-* [日本語 (ja_JP)](translations/README_ja_JP.md)
+* [Deutsch (de_DE)](./README_de_de.md)
+* [Português Brasileiro (pt_BR)](./README_pt_br.md)
+* [简体中文 (zh_cn)](./README_zh_CN.md)
+* [繁體中文 (zh_tw)](./README_zh_tw.md)
+* [日本語 (ja_JP)](./README_ja_JP.md)
+* [Français (fr_FR)](./README_fr_FR.md)
 
 ## 入門
 
@@ -287,7 +288,7 @@ func main() {
 
 本中介器接收`panic`跟錯誤代碼`500`的回應. 如果其他任何中介器寫了回應
 的HTTP代碼或內容的話, 中介器會無法順利地傳送500給用戶端, 因為用戶端
-已經收到HTTP的回應代碼. 另外, 可以掛載`ErrorHandlerFunc`來回報500
+已經收到HTTP的回應代碼. 另外, 可以掛載`PanicHandlerFunc`來回報500
 的錯誤到錯誤回報系統, 如: Sentry或Airbrake.
 
 範例:
@@ -339,20 +340,49 @@ func main() {
 
   n := negroni.New()
   recovery := negroni.NewRecovery()
-  recovery.ErrorHandlerFunc = reportToSentry
+  recovery.PanicHandlerFunc = reportToSentry
   n.Use(recovery)
   n.UseHandler(mux)
 
   http.ListenAndServe(":3003", n)
 }
 
-func reportToSentry(error interface{}) {
+func reportToSentry(info *negroni.PanicInformation) {
     // 在這寫些程式回報錯誤給Sentry
 }
 ```
 
 
-## Logger
+中介器在預設會簡易的輸出資訊到STDOUT. 你可以使用`SetFormatter()`函式客製化輸出的程序.
+
+你也可以使用`HTMLPanicFormatter` 在錯誤時顯示格式化的HTML.
+
+``` go
+package main
+
+import (
+  "net/http"
+
+  "github.com/urfave/negroni"
+)
+
+func main() {
+  mux := http.NewServeMux()
+  mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+    panic("oh no")
+  })
+
+  n := negroni.New()
+  recovery := negroni.NewRecovery()
+  recovery.Formatter = &negroni.HTMLPanicFormatter{}
+  n.Use(recovery)
+  n.UseHandler(mux)
+
+  http.ListenAndServe(":3003", n)
+}
+```
+
+## 記錄器
 
 本中介器紀錄各個進入的請求與回應.
 
@@ -386,9 +416,17 @@ func main() {
 在每個請求印的紀錄會看起來像:
 
 ```
-[negroni] Started GET /
-[negroni] Completed 200 OK in 145.446µs
+[negroni] 2017-10-04T14:56:25+02:00 | 200 |      378µs | localhost:3004 | GET /
 ```
+
+你也可以用`SetFormat`函式來 設定自己的紀錄格式. 格式樣本字串與欄位如`LoggerEntry`結構中所述. 例:
+
+```go
+l.SetFormat("[{{.Status}} {{.Duration}}] - {{.Request.UserAgent}}")
+```
+
+會顯示像是 - `[200 18.263µs] - Go-User-Agent/1.1 `
+
 
 ## 第三方中介器
 
@@ -396,6 +434,7 @@ func main() {
 
 | 中介器 | 作者 | 說明 |
 | -----------|--------|-------------|
+| [authz](https://github.com/casbin/negroni-authz) | [Yang Luo](https://github.com/hsluoyz) | 一款使用[Casbin](https://github.com/casbin/casbin)的權限管理中介器可支援ACL, RBAC, ABAC |
 | [binding](https://github.com/mholt/binding) | [Matt Holt](https://github.com/mholt) | 把HTTP請求的資料榜定到structs |
 | [cloudwatch](https://github.com/cvillecsteele/negroni-cloudwatch) | [Colin Steele](https://github.com/cvillecsteele) | AWS CloudWatch 矩陣的中介器 |
 | [cors](https://github.com/rs/cors) | [Olivier Poitrey](https://github.com/rs) | 支援[Cross Origin Resource Sharing](http://www.w3.org/TR/cors/)(CORS) |
@@ -420,11 +459,14 @@ func main() {
 | [xrequestid](https://github.com/pilu/xrequestid) | [Andrea Franz](https://github.com/pilu) | 在每個request指定一個隨機X-Request-Id header的中介器 |
 | [mgo session](https://github.com/joeljames/nigroni-mgo-session) | [Joel James](https://github.com/joeljames) | 處理在每個請求建立與關閉mgo sessions |
 | [digits](https://github.com/bamarni/digits) | [Bilal Amarni](https://github.com/bamarni) | 處理[Twitter Digits](https://get.digits.com/)的認證 |
+| [stats](https://github.com/guptachirag/stats) | [Chirag Gupta](https://github.com/guptachirag/stats) | 終端用的管理QPS與延遲狀態的中介器非同步地將狀態刷入InfluxDB |
+| [Chaos](https://github.com/falzm/chaos) | [Marc Falzon](https://github.com/falzm) | 以開發的方式在應用程式中插入無序行為的中介器 |
 
 ## 應用範例
 
 [Alexander Rødseth](https://github.com/xyproto)所建
 [mooseware](https://github.com/xyproto/mooseware)用來寫尼格龍尼中介處理器的骨架
+[Go-Skeleton](https://github.com/pjebs/go-skeleton)有效的網頁GO尼格龍尼骨架
 
 ## 即時編譯
 

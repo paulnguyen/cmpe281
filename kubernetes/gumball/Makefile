@@ -110,7 +110,7 @@ jumpbox-docker:
 
 
 ##
-## API Test inside Jump Box (Kubernetes Serivce)
+## API Test inside Jump Box (Kubernetes Service)
 ##
 
 

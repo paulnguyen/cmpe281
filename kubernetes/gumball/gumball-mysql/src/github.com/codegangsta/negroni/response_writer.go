@@ -2,7 +2,7 @@ package negroni
 
 import (
 	"bufio"
-	"fmt"
+	"errors"
 	"net"
 	"net/http"
 )
@@ -13,8 +13,8 @@ import (
 type ResponseWriter interface {
 	http.ResponseWriter
 	http.Flusher
-	// Status returns the status code of the response or 200 if the response has
-	// not been written (as this is the default response code in net/http)
+	// Status returns the status code of the response or 0 if the response has
+	// not been written
 	Status() int
 	// Written returns whether or not the ResponseWriter has been written.
 	Written() bool
@@ -82,7 +82,7 @@ func (rw *responseWriter) Before(before func(ResponseWriter)) {
 func (rw *responseWriter) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 	hijacker, ok := rw.ResponseWriter.(http.Hijacker)
 	if !ok {
-		return nil, nil, fmt.Errorf("the ResponseWriter doesn't support the Hijacker interface")
+		return nil, nil, errors.New("the ResponseWriter doesn't support the Hijacker interface")
 	}
 	return hijacker.Hijack()
 }
@@ -104,6 +104,10 @@ func (rw *responseWriter) Flush() {
 	}
 }
 
+// Deprecated: the CloseNotifier interface predates Go's context package.
+// New code should use Request.Context instead.
+//
+// We still implement it for backwards compatibliity with older versions of Go
 type responseWriterCloseNotifer struct {
 	*responseWriter
 }

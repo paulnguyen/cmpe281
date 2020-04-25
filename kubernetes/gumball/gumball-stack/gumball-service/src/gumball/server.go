@@ -1,6 +1,10 @@
 /*
 	Gumball API in Go (Version 2)
 	Uses MongoDB and RabbitMQ 
+
+	http://labix.org/mgo
+	https://github.com/streadway/amqp
+
 */
 
 package main
@@ -19,17 +23,53 @@ import (
     "gopkg.in/mgo.v2/bson"
 )
 
-// MongoDB Config
-var mongodb_server = "mongo-service"
-var mongodb_database = "cmpe281"
-var mongodb_collection = "gumball"
+var config = "GKE" // LOCAL, K8S, GKE
 
-// RabbitMQ Config
-var rabbitmq_server = "rabbitmq-service"
-var rabbitmq_port = "5672"
-var rabbitmq_queue = "gumball"
-var rabbitmq_user = "guest"
-var rabbitmq_pass = "guest"
+// MongoDB Config (Local Docker)
+var mongodb_server = ""
+var mongodb_database = ""
+var mongodb_collection = ""
+
+// RabbitMQ Config (Local Docker)
+var rabbitmq_server = ""
+var rabbitmq_port = ""
+var rabbitmq_queue = ""
+var rabbitmq_user = ""
+var rabbitmq_pass = ""
+
+func init() {
+    switch config {
+    case "LOCAL":
+    	mongodb_server = "mongodb://admin:cmpe281@localhost:27017/cmpe281"
+		mongodb_database = "cmpe281"
+		mongodb_collection = "gumball"
+		rabbitmq_server = "localhost"
+		rabbitmq_port = "5672"
+		rabbitmq_queue = "gumball"
+		rabbitmq_user = "guest"
+		rabbitmq_pass = "guest"
+    case "K8S":
+    	mongodb_server = "mongodb://admin:cmpe281@mongo-service:27017/cmpe281"
+		mongodb_database = "cmpe281"
+		mongodb_collection = "gumball"
+		rabbitmq_server = "rabbitmq-service"
+		rabbitmq_port = "5672"
+		rabbitmq_queue = "gumball"
+		rabbitmq_user = "guest"
+		rabbitmq_pass = "guest"
+    case "GKE":
+    	mongodb_server = "mongodb://admin:cmpe281@10.138.0.9:27017/cmpe281"
+		mongodb_database = "cmpe281"
+		mongodb_collection = "gumball"
+		rabbitmq_server = "rabbitmq-rabbitmq-svc"
+		rabbitmq_port = "5672"
+		rabbitmq_queue = "gumball"
+		rabbitmq_user = "rabbit"
+		rabbitmq_pass = "TRiMxUpTscY1"
+    }
+}
+
+
 
 // NewServer configures and returns a Server.
 func NewServer() *negroni.Negroni {
@@ -65,6 +105,14 @@ func failOnError(err error, msg string) {
 // API Ping Handler
 func pingHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
+		fmt.Println("mongodb_server:", mongodb_server )
+		fmt.Println("mongodb_database:", mongodb_database )
+		fmt.Println("mongodb_collection:", mongodb_collection )
+		fmt.Println("rabbitmq_server:", rabbitmq_server )
+		fmt.Println("rabbitmq_port:", rabbitmq_port )
+		fmt.Println("rabbitmq_queue:", rabbitmq_queue )
+		fmt.Println("rabbitmq_user:", rabbitmq_user )
+		fmt.Println("rabbitmq_pass:", rabbitmq_pass )
 		formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 1.0 alive!"})
 	}
 }
@@ -321,6 +369,14 @@ func queue_receive() []string {
 	use cmpe281
 	show dbs
 	
+	db.createUser(
+   	 {
+     	user: "admin",
+     	pwd: "cmpe281",  
+     	roles: [ "readWrite", "dbAdmin" ]
+   	 }
+	) ;
+
     db.gumball.insert(
 	    { 
 	      Id: 1,
@@ -353,5 +409,27 @@ func queue_receive() []string {
     -- Gumball Delete Documents
 
     db.gumball.remove({})
+
+
+    -- CURL Tests
+
+	curl localhost:3000/ping
+	curl localhost:3000/gumball
+
+	test-place-order:
+		curl -X POST \
+	  	http://localhost:3000/order \
+	  	-H 'Content-Type: application/json'
+
+	test-order-status:
+		curl -X GET \
+	  	http://localhost:3000/order \
+	  	-H 'Content-Type: application/json'
+
+	test-process-order:
+		curl -X POST \
+	  	http://localhost:3000/orders \
+	  	-H 'Content-Type: application/json'
+
 
  */

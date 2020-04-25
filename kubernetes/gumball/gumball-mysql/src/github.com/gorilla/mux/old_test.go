@@ -121,12 +121,7 @@ func TestRouteMatchers(t *testing.T) {
 		var routeMatch RouteMatch
 		matched := router.Match(request, &routeMatch)
 		if matched != shouldMatch {
-			// Need better messages. :)
-			if matched {
-				t.Errorf("Should match.")
-			} else {
-				t.Errorf("Should not match.")
-			}
+			t.Errorf("Expected: %v\nGot: %v\nRequest: %v %v", shouldMatch, matched, request.Method, url)
 		}
 
 		if matched {
@@ -188,7 +183,6 @@ func TestRouteMatchers(t *testing.T) {
 	match(true)
 
 	// 2nd route --------------------------------------------------------------
-
 	// Everything match.
 	reset2()
 	match(true)
@@ -391,6 +385,11 @@ var urlBuildingTests = []urlBuildingTest{
 		vars:  []string{"subdomain", "foo", "category", "technology", "id", "42"},
 		url:   "http://foo.domain.com/articles/technology/42",
 	},
+	{
+		route: new(Route).Host("example.com").Schemes("https", "http"),
+		vars:  []string{},
+		url:   "https://example.com",
+	},
 }
 
 func TestHeaderMatcher(t *testing.T) {
@@ -508,18 +507,6 @@ func TestUrlBuilding(t *testing.T) {
 		url := u.String()
 		if url != v.url {
 			t.Errorf("expected %v, got %v", v.url, url)
-			/*
-				reversePath := ""
-				reverseHost := ""
-				if v.route.pathTemplate != nil {
-						reversePath = v.route.pathTemplate.Reverse
-				}
-				if v.route.hostTemplate != nil {
-						reverseHost = v.route.hostTemplate.Reverse
-				}
-
-				t.Errorf("%#v:\nexpected: %q\ngot: %q\nreverse path: %q\nreverse host: %q", v.route, v.url, url, reversePath, reverseHost)
-			*/
 		}
 	}
 
@@ -687,7 +674,7 @@ func TestNewRegexp(t *testing.T) {
 	}
 
 	for pattern, paths := range tests {
-		p, _ = newRouteRegexp(pattern, false, false, false, false, false)
+		p, _ = newRouteRegexp(pattern, regexpTypePath, routeRegexpOptions{})
 		for path, result := range paths {
 			matches = p.regexp.FindStringSubmatch(path)
 			if result == nil {

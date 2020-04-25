@@ -49,22 +49,6 @@ docker-run:
 	docker run -d --name gumball --network gumball -td -p 3000:3000 gumball
 
 
-kong-database:
-	docker run -d --name kong-database --network gumball -p 9042:9042 cassandra:2.2
-
-kong-run:
-	docker run -d --name kong \
-	          --network gumball \
-              -e "KONG_DATABASE=cassandra" \
-              -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-              -e "KONG_PG_HOST=kong-database" \
-              -p 8000:8000 \
-              -p 8443:8443 \
-              -p 8001:8001 \
-              -p 7946:7946 \
-              -p 7946:7946/udp \
-              kong:0.9.9
-
 docker-shell:
 	docker exec -it gumball bash 
 
@@ -80,10 +64,6 @@ docker-network-inspect:
 docker-clean:
 	docker stop mysql
 	docker rm mysql
-	docker stop kong-database
-	docker rm kong-database
-	docker stop kong
-	docker rm kong
 	docker stop gumball
 	docker rm gumball
 	docker rmi gumball
@@ -124,5 +104,56 @@ test-process-order:
 	curl -X POST \
   	http://localhost:3000/orders \
   	-H 'Content-Type: application/json'
+
+
+
+# Pod  
+
+pod-create:
+	kubectl create -f $(pod)-pod.yaml
+
+pod-get:
+	kubectl get pods --namespace gumball $(pod)
+
+pod-shell:
+	kubectl exec  --namespace gumball -it $(pod) -- /bin/bash
+
+pod-delete:
+	kubectl delete pod --namespace gumball $(pod)
+
+# Deployment
+
+deployment-create:
+	kubectl create -f gumball-deployment.yaml --save-config 
+
+deployment-get:
+	kubectl get --namespace gumball deployments
+
+deployment-get-pods:
+	kubectl get pods --namespace gumball -l name=$(pod)
+
+deployment-pod-shell:
+	kubectl exec  --namespace gumball -it $(pod) -- /bin/bash
+
+deployment-upgrade:
+	kubectl apply --namespace gumball -f gumball-deployment.yaml
+
+deployment-delete:
+	kubectl delete deployment --namespace gumball gumball-deployment
+
+# Service
+
+service-create:
+	kubectl create -f $(pod)-service.yaml
+
+service-get:
+	kubectl get --namespace gumball services
+
+service-get-ip:
+	kubectl get --namespace gumball service $(pod)-service -o wide
+
+service-delete:
+	kubectl delete --namespace gumball service $(pod)-service
+
 
 

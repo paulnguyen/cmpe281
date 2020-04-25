@@ -4,6 +4,15 @@
 ## Mongo on Kubernetes
 ##
 
+
+rabbitmq-run:
+	docker run --name rabbitmq \
+			   -p 8080:15672 -p 4369:4369 -p 5672:5672 \
+			   -d rabbitmq:3-management
+
+rabbitmq-shell:
+	docker exec -it rabbitmq bash 
+
 # Basics 
 
 docker-images:

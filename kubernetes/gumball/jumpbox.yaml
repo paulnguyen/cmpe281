@@ -5,5 +5,5 @@ metadata:
 spec:
   containers:
   - name: jumpbox
-    image: mongo:3.7
+    image: mongo:4.2.6
     imagePullPolicy: Always

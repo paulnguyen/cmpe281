@@ -81,6 +81,7 @@ Render comes with a variety of configuration options _(Note: these are not the d
 // ...
 r := render.New(render.Options{
     Directory: "templates", // Specify what path to load the templates from.
+    FileSystem: &LocalFileSystem{}, // Specify filesystem from where files are loaded.
     Asset: func(name string) ([]byte, error) { // Load from an Asset function instead of file.
       return []byte("template content"), nil
     },
@@ -117,6 +118,7 @@ r := render.New()
 
 r := render.New(render.Options{
     Directory: "templates",
+    FileSystem: &LocalFileSystem{},
     Asset: nil,
     AssetNames: nil,
     Layout: "",
@@ -373,7 +375,6 @@ import (
     "net/http"
 
     "github.com/labstack/echo"
-    "github.com/labstack/echo/engine/standard"
     "github.com/unrolled/render"  // or "gopkg.in/unrolled/render.v1"
 )
 
@@ -390,13 +391,13 @@ func main() {
 
     e := echo.New()
 
-    e.SetRenderer(r)
+    e.Renderer = r
 
     e.GET("/", func(c echo.Context) error {
         return c.Render(http.StatusOK, "TemplateName", "TemplateData")
     })
 
-    e.Run(standard.New(":1323"))
+    e.Logger.Fatal(e.Start(":1323"))
 }
 ~~~
 

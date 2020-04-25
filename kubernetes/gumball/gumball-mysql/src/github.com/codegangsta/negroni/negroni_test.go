@@ -59,6 +59,46 @@ func TestNegroniWith(t *testing.T) {
 	expect(t, result, "onetwothree")
 }
 
+func TestNegroniWith_doNotModifyOriginal(t *testing.T) {
+	result := ""
+	response := httptest.NewRecorder()
+
+	n1 := New()
+	n1.handlers = make([]Handler, 0, 10) // enforce initial capacity
+	n1.Use(HandlerFunc(func(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+		result = "one"
+		next(rw, r)
+	}))
+
+	n1.ServeHTTP(response, (*http.Request)(nil))
+	expect(t, 1, len(n1.Handlers()))
+
+	n2 := n1.With(HandlerFunc(func(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+		result += "two"
+		next(rw, r)
+	}))
+	n3 := n1.With(HandlerFunc(func(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+		result += "three"
+		next(rw, r)
+	}))
+
+	// rebuilds middleware
+	n2.UseHandlerFunc(func(rw http.ResponseWriter, r *http.Request) {})
+	n3.UseHandlerFunc(func(rw http.ResponseWriter, r *http.Request) {})
+
+	n1.ServeHTTP(response, (*http.Request)(nil))
+	expect(t, 1, len(n1.Handlers()))
+	expect(t, result, "one")
+
+	n2.ServeHTTP(response, (*http.Request)(nil))
+	expect(t, 3, len(n2.Handlers()))
+	expect(t, result, "onetwo")
+
+	n3.ServeHTTP(response, (*http.Request)(nil))
+	expect(t, 3, len(n3.Handlers()))
+	expect(t, result, "onethree")
+}
+
 func TestNegroniServeHTTP(t *testing.T) {
 	result := ""
 	response := httptest.NewRecorder()
@@ -133,4 +173,35 @@ func TestDetectAddress(t *testing.T) {
 	if detectAddress() != ":8080" {
 		t.Error("Expected the PORT env var with a prefixed colon")
 	}
+}
+
+func voidHTTPHandlerFunc(rw http.ResponseWriter, r *http.Request) {
+	// Do nothing
+}
+
+// Test for function Wrap
+func TestWrap(t *testing.T) {
+	response := httptest.NewRecorder()
+
+	handler := Wrap(http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
+		rw.WriteHeader(http.StatusOK)
+	}))
+
+	handler.ServeHTTP(response, (*http.Request)(nil), voidHTTPHandlerFunc)
+
+	expect(t, response.Code, http.StatusOK)
+}
+
+// Test for function WrapFunc
+func TestWrapFunc(t *testing.T) {
+	response := httptest.NewRecorder()
+
+	// WrapFunc(f) equals Wrap(http.HandlerFunc(f)), it's simpler and usefull.
+	handler := WrapFunc(func(rw http.ResponseWriter, r *http.Request) {
+		rw.WriteHeader(http.StatusOK)
+	})
+
+	handler.ServeHTTP(response, (*http.Request)(nil), voidHTTPHandlerFunc)
+
+	expect(t, response.Code, http.StatusOK)
 }

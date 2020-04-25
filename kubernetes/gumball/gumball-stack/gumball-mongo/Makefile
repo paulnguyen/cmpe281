@@ -4,6 +4,13 @@
 ## Mongo on Kubernetes
 ##
 
+
+mongodb-run:
+	docker run --name mongodb -p 27017:27017 -d mongo:4.2.6
+
+mongodb-shell:
+	docker exec -it mongodb bash 
+
 # Basics 
 
 docker-images:

@@ -401,6 +401,9 @@ func (ch *Channel) recvContent(f frame) error {
 		return ch.transition((*Channel).recvMethod)
 
 	case *bodyFrame:
+		if cap(ch.body) == 0 {
+			ch.body = make([]byte, 0, ch.header.Size)
+		}
 		ch.body = append(ch.body, frame.Body...)
 
 		if uint64(len(ch.body)) >= ch.header.Size {
@@ -550,7 +553,7 @@ ordered Ack and Nack DeliveryTag to the respective channels.
 For strict ordering, use NotifyPublish instead.
 */
 func (ch *Channel) NotifyConfirm(ack, nack chan uint64) (chan uint64, chan uint64) {
-	confirms := ch.NotifyPublish(make(chan Confirmation, len(ack)+len(nack)))
+	confirms := ch.NotifyPublish(make(chan Confirmation, cap(ack)+cap(nack)))
 
 	go func() {
 		for c := range confirms {
@@ -889,7 +892,7 @@ and exchanges will also be restored on server restart.
 If the binding could not complete, an error will be returned and the channel
 will be closed.
 
-When noWait is true and the queue could not be bound, the channel will be
+When noWait is false and the queue could not be bound, the channel will be
 closed with an error.
 
 */
@@ -1580,6 +1583,9 @@ multiple messages, reducing the amount of protocol messages to exchange.
 See also Delivery.Reject
 */
 func (ch *Channel) Reject(tag uint64, requeue bool) error {
+	ch.m.Lock()
+	defer ch.m.Unlock()
+
 	return ch.send(&basicReject{
 		DeliveryTag: tag,
 		Requeue:     requeue,

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -51,6 +50,8 @@ type Delims struct {
 type Options struct {
 	// Directory to load templates. Default is "templates".
 	Directory string
+	// FileSystem to access files
+	FileSystem FileSystem
 	// Asset function to use in place of directory. Defaults to nil.
 	Asset func(name string) ([]byte, error)
 	// AssetNames function to use in place of directory. Defaults to nil.
@@ -65,6 +66,8 @@ type Options struct {
 	Delims Delims
 	// Appends the given character set to the Content-Type header. Default is "UTF-8".
 	Charset string
+	// If DisableCharset is set to true, it will not append the above Charset value to the Content-Type header. Default is false.
+	DisableCharset bool
 	// Outputs human readable JSON.
 	IndentJSON bool
 	// Outputs human readable XML. Default is false.
@@ -73,8 +76,18 @@ type Options struct {
 	PrefixJSON []byte
 	// Prefixes the XML output with the given bytes.
 	PrefixXML []byte
-	// Allows changing of output to XHTML instead of HTML. Default is "text/html".
+	// Allows changing the binary content type.
+	BinaryContentType string
+	// Allows changing the HTML content type.
 	HTMLContentType string
+	// Allows changing the JSON content type.
+	JSONContentType string
+	// Allows changing the JSONP content type.
+	JSONPContentType string
+	// Allows changing the Text content type.
+	TextContentType string
+	// Allows changing the XML content type.
+	XMLContentType string
 	// If IsDevelopment is set to true, this will recompile the templates on every request. Default is false.
 	IsDevelopment bool
 	// Unescape HTML characters "&<>" to their original values. Default is false.
@@ -88,6 +101,7 @@ type Options struct {
 	// Disables automatic rendering of http.StatusInternalServerError when an error occurs. Default is false.
 	DisableHTTPErrorRendering bool
 	// Enables using partials without the current filename suffix which allows use of the same template in multiple files. e.g {{ partial "carosuel" }} inside the home template will match carosel-home or carosel.
+	// ***NOTE*** - This option should be named RenderPartialsWithoutSuffix as that is what it does. "Prefix" is a typo. Maintaining the existing name for backwards compatibility.
 	RenderPartialsWithoutPrefix bool
 }
 
@@ -110,9 +124,7 @@ type Render struct {
 // New constructs a new Render instance with the supplied options.
 func New(options ...Options) *Render {
 	var o Options
-	if len(options) == 0 {
-		o = Options{}
-	} else {
+	if len(options) > 0 {
 		o = options[0]
 	}
 
@@ -131,16 +143,36 @@ func (r *Render) prepareOptions() {
 	if len(r.opt.Charset) == 0 {
 		r.opt.Charset = defaultCharset
 	}
-	r.compiledCharset = "; charset=" + r.opt.Charset
+	if r.opt.DisableCharset == false {
+		r.compiledCharset = "; charset=" + r.opt.Charset
+	}
 
 	if len(r.opt.Directory) == 0 {
 		r.opt.Directory = "templates"
 	}
+	if r.opt.FileSystem == nil {
+		r.opt.FileSystem = &LocalFileSystem{}
+	}
 	if len(r.opt.Extensions) == 0 {
 		r.opt.Extensions = []string{".tmpl"}
 	}
+	if len(r.opt.BinaryContentType) == 0 {
+		r.opt.BinaryContentType = ContentBinary
+	}
 	if len(r.opt.HTMLContentType) == 0 {
 		r.opt.HTMLContentType = ContentHTML
+	}
+	if len(r.opt.JSONContentType) == 0 {
+		r.opt.JSONContentType = ContentJSON
+	}
+	if len(r.opt.JSONPContentType) == 0 {
+		r.opt.JSONPContentType = ContentJSONP
+	}
+	if len(r.opt.TextContentType) == 0 {
+		r.opt.TextContentType = ContentText
+	}
+	if len(r.opt.XMLContentType) == 0 {
+		r.opt.XMLContentType = ContentXML
 	}
 }
 
@@ -158,7 +190,7 @@ func (r *Render) compileTemplatesFromDir() {
 	r.templates.Delims(r.opt.Delims.Left, r.opt.Delims.Right)
 
 	// Walk the supplied directory and compile any files that match our extension list.
-	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+	r.opt.FileSystem.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		// Fix same-extension-dirs bug: some dir might be named to: "users.tmpl", "local.html".
 		// These dirs should be excluded as they are not valid golang templates, but files under
 		// them should be treat as normal.
@@ -179,7 +211,7 @@ func (r *Render) compileTemplatesFromDir() {
 
 		for _, extension := range r.opt.Extensions {
 			if ext == extension {
-				buf, err := ioutil.ReadFile(path)
+				buf, err := r.opt.FileSystem.ReadFile(path)
 				if err != nil {
 					panic(err)
 				}
@@ -320,7 +352,7 @@ func (r *Render) Render(w io.Writer, e Engine, data interface{}) error {
 // Data writes out the raw bytes as binary data.
 func (r *Render) Data(w io.Writer, status int, v []byte) error {
 	head := Head{
-		ContentType: ContentBinary,
+		ContentType: r.opt.BinaryContentType,
 		Status:      status,
 	}
 
@@ -365,7 +397,7 @@ func (r *Render) HTML(w io.Writer, status int, name string, binding interface{},
 // JSON marshals the given interface object and writes the JSON response.
 func (r *Render) JSON(w io.Writer, status int, v interface{}) error {
 	head := Head{
-		ContentType: ContentJSON + r.compiledCharset,
+		ContentType: r.opt.JSONContentType + r.compiledCharset,
 		Status:      status,
 	}
 
@@ -383,7 +415,7 @@ func (r *Render) JSON(w io.Writer, status int, v interface{}) error {
 // JSONP marshals the given interface object and writes the JSON response.
 func (r *Render) JSONP(w io.Writer, status int, callback string, v interface{}) error {
 	head := Head{
-		ContentType: ContentJSONP + r.compiledCharset,
+		ContentType: r.opt.JSONPContentType + r.compiledCharset,
 		Status:      status,
 	}
 
@@ -399,7 +431,7 @@ func (r *Render) JSONP(w io.Writer, status int, callback string, v interface{}) 
 // Text writes out a string as plain text.
 func (r *Render) Text(w io.Writer, status int, v string) error {
 	head := Head{
-		ContentType: ContentText + r.compiledCharset,
+		ContentType: r.opt.TextContentType + r.compiledCharset,
 		Status:      status,
 	}
 
@@ -413,7 +445,7 @@ func (r *Render) Text(w io.Writer, status int, v string) error {
 // XML marshals the given interface object and writes the XML response.
 func (r *Render) XML(w io.Writer, status int, v interface{}) error {
 	head := Head{
-		ContentType: ContentXML + r.compiledCharset,
+		ContentType: r.opt.XMLContentType + r.compiledCharset,
 		Status:      status,
 	}
 

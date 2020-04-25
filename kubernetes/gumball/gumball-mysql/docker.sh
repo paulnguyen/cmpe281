@@ -4,7 +4,7 @@
 
 ACCOUNT=""
 CONTAINER="gumball"
-VERSION="gumball-v4.0"
+VERSION="gumball-mysql-pod"
 
 # Shell Variables
 
