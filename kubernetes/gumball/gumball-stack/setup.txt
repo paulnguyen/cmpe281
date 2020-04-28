@@ -23,6 +23,15 @@ Collection Name: gumball
 use cmpe281
 show dbs
 
+db.createUser(
+   {
+     user: "admin",
+     pwd: "cmpe281",  
+     roles: [ "readWrite", "dbAdmin" ]
+   }
+) ;
+
+
 db.gumball.insert(
     { 
       Id: 1,
