@@ -3,11 +3,6 @@
 ## Kubernetes (Docker for Mac)
 ##
 
-clean-up:
-	kubectl delete --all pods --namespace=gumball
-	kubectl delete --all deployments --namespace=gumball
-	kubectl delete --all services --namespace=gumball
-
 version:
 	kubectl version
 
@@ -29,11 +24,17 @@ list-all-pods:
 list-system-pods:
 	kubectl get pods --namespace=kube-system
 
-install-dashboard:
+dashboard-install:
 	kubectl create -f kubernetes-dashboard.yaml
 
-run-dashboard:
-	kubectl port-forward $(pod) 8443:8443 --namespace=kube-system
+dashboard-proxy:
+	kubectl proxy
+
+dashboard-get-token:
+	kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+
+dashboard-open:
+	open http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 
 start-api-proxy:
 	kubectl proxy --port=8080 
