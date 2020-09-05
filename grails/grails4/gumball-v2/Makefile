@@ -2,7 +2,7 @@ all: clean
 
 clean:
 	find . -name "*.class" -exec rm -rf {} \;
-	rm -f build/libs/*
+	rm -rf build
 	rm -f *.db
 
 compile:
