@@ -1,0 +1,8 @@
+
+See:  
+
+https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html
+https://aws.amazon.com/premiumsupport/knowledge-center/ec2-access-internet-with-NAT-gateway/
+
+amzn-ami-vpc-nat-2018.03.0.20200716.0-x86_64-ebs - ami-0fcc6101b7f2370b9 (Oregon)
+amzn-ami-vpc-nat-2018.03.0.20200716.0-x86_64-ebs - ami-0e365eb5252ebe986 (N. Cal)
