@@ -1,0 +1,36 @@
+# Localhost File /etc/hosts
+
+10.0.1.48 primary 
+10.0.2.186 secondary1 
+10.0.6.65 secondary2
+
+# On Primary
+
+db.createUser( { user: "admin",
+pwd: "cmpe281",
+roles: [{ role: "root", db: "admin" }] });
+
+mongo -u admin -p cmpe281 --authenticationDatabase admin
+
+# Remote Connections 
+
+mongo -u admin -p cmpe281 primary --authenticationDatabase admin
+mongo -u admin -p cmpe281 secondary1 --authenticationDatabase admin
+mongo -u admin -p cmpe281 secondary2 --authenticationDatabase admin
+
+## From Jumpbox
+
+mongo <host>:<port>/<database> -u <username> -p <password>
+
+mongo primary/admin -u admin -p cmpe281
+db.test.save( { a : 1 } ) // save simple document 
+db.test.find() // find document
+
+mongo secondary1/admin -u admin -p cmpe281
+rs.slaveOk() ;
+db.test.find() // find document
+
+mongo secondary2/admin -u admin -p cmpe281
+rs.slaveOk() ;
+db.test.find() // find document
+
