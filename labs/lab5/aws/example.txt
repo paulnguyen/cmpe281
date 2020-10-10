@@ -22,6 +22,12 @@ mongo -u admin -p cmpe281 secondary2 --authenticationDatabase admin
 
 mongo <host>:<port>/<database> -u <username> -p <password>
 
+mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
+
+mongo "mongodb://admin:cmpe281@primary,secondary1,secondary2/admin?replicaSet=cmpe281"
+
+mongo primary/admin -u admin -p cmpe281
+
 mongo primary/admin -u admin -p cmpe281
 db.test.save( { a : 1 } ) // save simple document 
 db.test.find() // find document
@@ -34,3 +40,4 @@ mongo secondary2/admin -u admin -p cmpe281
 rs.slaveOk() ;
 db.test.find() // find document
 
+db.test.save( { a : 2 } ) 

@@ -1,0 +1,29 @@
+
+# /etc/hosts on jumpbox
+
+10.0.1.122	riak1
+10.0.2.85	riak2
+10.0.6.240	riak3
+
+10.0.1.122	riak-node1
+10.0.2.85	riak-node2
+10.0.6.240	riak-node3
+
+
+# node startup tests
+
+sudo riak start
+sudo riak ping
+sudo riak-admin status
+sudo riak-admin cluster status
+
+# curl tests
+
+curl -i http://riak-node1:8098/ping
+
+curl -i http://riak-node1:8098/buckets?buckets=true    
+
+curl -v -XPUT -d '{"foo":"bar"}' \
+    http://riak-node2:8098/buckets/bucket/keys/key1?returnbody=true
+
+curl -i http://riak-node3:8098/buckets/bucket/keys/key1
