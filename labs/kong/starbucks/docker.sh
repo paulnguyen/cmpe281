@@ -4,7 +4,7 @@
 
 ACCOUNT=""
 CONTAINER="starbucks"
-VERSION="v5.0"
+VERSION="kong"
 
 # Shell Variables
 

@@ -65,7 +65,7 @@ kong-v2-db-setup:
      -e "KONG_PG_USER=kong" \
      -e "KONG_PG_PASSWORD=kong" \
      -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-     kong:latest kong migrations bootstrap
+     kong:2 kong migrations bootstrap
 
 kong-v2:
 	docker run -d --name kong \

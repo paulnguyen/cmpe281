@@ -15,7 +15,7 @@ public class PingResource extends ServerResource {
 
         api.Status api = new api.Status() ;
         api.status = "OK" ;
-        api.message = "Starbucks API Service: Version 5" ;
+        api.message = "Starbucks API Service: Version 3" ;
         return new JacksonRepresentation<api.Status>(api) ;
 
     }
