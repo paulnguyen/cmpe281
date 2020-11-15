@@ -7,3 +7,6 @@ spec:
   - name: jumpbox
     image: ubuntu
     imagePullPolicy: Always
+    command:
+    - sleep
+    - "3600"
